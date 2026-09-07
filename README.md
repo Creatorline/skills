@@ -18,29 +18,37 @@ until a person approves them, so nothing reaches an audience on its own.
 
 ## Add it to Claude
 
-No terminal, three steps.
+Four steps, no terminal.
 
-**1.** In Claude, open **Settings → Plugins → Add → Add marketplace → Add from a repository**
-and enter:
+### 1. Open Settings → Plugins, then Add → Add marketplace
+
+![The Add menu in Claude's Plugins settings](docs/plugins-add.png)
+
+### 2. Choose "Add from a repository" and paste the address
 
 ```text
-Creatorline/skills
+https://github.com/Creatorline/skills
 ```
 
-**2.** Install **Creatorline workflows**. Claude offers to connect it, with the name and
-address already filled in. Press **Continue**.
+![The Add marketplace dialog, with the option to sync from a GitHub repository](docs/add-marketplace.png)
 
-![The connector Claude offers when you install the plugin](docs/plugin-connector.png)
+### 3. Install "Creatorline workflows", then press Continue
 
-**3.** Choose **None** under Authentication — Creatorline uses an API key, not a sign-in.
-Then under **Request headers** pick `x-api-key` and paste your key from **Settings → API** in
-the Creatorline studio.
+The plugin brings the connection with it, so the name and address are already filled in.
 
-![Authentication set to None, with the key pasted as an x-api-key header](docs/plugin-auth.png)
+![The connector Claude offers when the plugin installs](docs/plugin-connector.png)
 
-Press **Add**. That is it. Ask for something and watch it build.
+### 4. Choose "None", add your key, press Add
 
-Your key is stored by Claude and never shown again. If you ever need to retire it, revoke that
+Creatorline uses an API key rather than a sign-in, so **None** is the right choice under
+Authentication. Under **Request headers**, pick `x-api-key` and paste your key from
+**Settings → API** in the Creatorline studio.
+
+![Authentication set to None, with the key added as an x-api-key header](docs/plugin-auth.png)
+
+That is it. Ask for something and watch it build.
+
+Claude stores your key and never shows it again. If you ever need to retire it, revoke that
 key in **Settings → API** and add a new one here.
 
 ## Using a coding assistant instead
