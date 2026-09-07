@@ -18,7 +18,8 @@ until a person approves them, so nothing reaches an audience on its own.
 
 ## Add it to Claude
 
-Four steps, no terminal.
+Four steps, no terminal. Have your API key ready:
+**[app.creatorline.io/settings/api](https://app.creatorline.io/settings/api)**
 
 ### 1. Open Settings → Plugins, then Add → Add marketplace
 
@@ -42,19 +43,19 @@ The plugin brings the connection with it, so the name and address are already fi
 
 Creatorline uses an API key rather than a sign-in, so **None** is the right choice under
 Authentication. Under **Request headers**, pick `x-api-key` and paste your key from
-**Settings → API** in the Creatorline studio.
+[Settings → API](https://app.creatorline.io/settings/api).
 
 ![Authentication set to None, with the key added as an x-api-key header](docs/plugin-auth.png)
 
 That is it. Ask for something and watch it build.
 
 Claude stores your key and never shows it again. If you ever need to retire it, revoke that
-key in **Settings → API** and add a new one here.
+key in [Settings → API](https://app.creatorline.io/settings/api) and add a new one here.
 
 ## Using a coding assistant instead
 
 Claude Code, Cursor, Codex CLI, Windsurf, VS Code and Zed take the skill and the server
-directly:
+directly, with a key from [Settings → API](https://app.creatorline.io/settings/api):
 
 ```bash
 npx skills add Creatorline/skills --skill creatorline-workflows
