@@ -2,10 +2,7 @@
   "mcpServers": {
     "creatorline": {
       "type": "http",
-      "url": "https://api.creatorline.io/mcp",
-      "headers": {
-        "Authorization": "Bearer ${CREATORLINE_API_KEY}"
-      }
+      "url": "https://api.creatorline.io/mcp"
     }
   }
 }

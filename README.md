@@ -16,30 +16,40 @@ It knows every model, what each one costs and which one suits the job. It picks,
 and it waits for your yes before spending anything. Finished posts wait in your review queue
 until a person approves them, so nothing reaches an audience on its own.
 
-## Connect it to Claude
+## Add it to Claude
 
-**1.** In Claude, open **Settings → Connectors**, then **Add → Add custom connector**.
+No terminal, three steps.
 
-![Adding a custom connector in Claude settings](docs/connector-add.png)
-
-**2.** Name it Creatorline. Copy your key from **Settings → API** in the Creatorline studio and
-paste it onto the end of this address:
+**1.** In Claude, open **Settings → Plugins → Add → Add marketplace → Add from a repository**
+and enter:
 
 ```text
-https://api.creatorline.io/mcp/YOUR_API_KEY
+Creatorline/skills
 ```
 
-![Naming the connector and pasting the URL](docs/connector-url.png)
+**2.** Install **Creatorline workflows**. Claude offers to connect it, with the name and
+address already filled in. Press **Continue**.
 
-Leave the OAuth fields under **Advanced settings** empty, and press **Continue**.
+![The connector Claude offers when you install the plugin](docs/plugin-connector.png)
 
-> Keep that URL to yourself, the way you would a password: it contains your key. If it ever
-> gets out, revoke that one key in **Settings → API** and paste a new URL.
+**3.** Choose **None** under Authentication — Creatorline uses an API key, not a sign-in.
+Then under **Request headers** pick `x-api-key` and paste your key from **Settings → API** in
+the Creatorline studio.
 
-**3.** Add the skill:
+![Authentication set to None, with the key pasted as an x-api-key header](docs/plugin-auth.png)
+
+Press **Add**. That is it. Ask for something and watch it build.
+
+Your key is stored by Claude and never shown again. If you ever need to retire it, revoke that
+key in **Settings → API** and add a new one here.
+
+## Using a coding assistant instead
+
+Claude Code, Cursor, Codex CLI, Windsurf, VS Code and Zed take the skill and the server
+directly:
 
 ```bash
 npx skills add Creatorline/skills --skill creatorline-workflows
+claude mcp add --transport http creatorline https://api.creatorline.io/mcp \
+  --header "Authorization: Bearer YOUR_API_KEY"
 ```
-
-That is it. Ask for something and watch it build.
