@@ -17,11 +17,12 @@ and it waits for your yes before spending anything.
 
 ## Add it
 
-**1. Connect your account.** Copy your API key from **Settings → API** in the studio, then run:
+**1. Connect your account.** Copy your key from **Settings → API** in the studio. In the
+Claude app, open **Settings → Connectors → Add custom connector**, name it Creatorline and
+paste this as the URL, with your key on the end:
 
-```bash
-claude mcp add --transport http creatorline https://api.creatorline.io/mcp \
-  --header "Authorization: Bearer YOUR_API_KEY"
+```text
+https://api.creatorline.io/mcp/YOUR_API_KEY
 ```
 
 **2. Add the skill.**
@@ -32,8 +33,8 @@ npx skills add Creatorline/skills --skill creatorline-workflows
 
 That is it. Ask for something and watch it build.
 
-On Cursor or another assistant, the same two things go into its MCP settings: the address
-above and your key. The Claude and ChatGPT apps cannot connect yet.
+Keep that URL to yourself, the way you would a password: it contains your key. If it ever
+gets out, revoke that key in **Settings → API** and paste a new URL.
 
 ## Nothing publishes itself
 
