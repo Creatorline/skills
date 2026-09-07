@@ -1,0 +1,19 @@
+{
+  "name": "creatorline",
+  "owner": {
+    "name": "Creatorline",
+    "url": "https://creatorline.io"
+  },
+  "description": "Creatorline's agent plugins: drive AI influencer photo and video pipelines from your assistant.",
+  "plugins": [
+    {
+      "name": "creatorline-workflows",
+      "source": "./creatorline-workflows",
+      "description": "Build, replicate and run Creatorline workflows: AI influencer photo and video pipelines, authored by your assistant and priced before they run.",
+      "version": "1.0.0",
+      "author": {
+        "name": "Creatorline"
+      }
+    }
+  ]
+}
