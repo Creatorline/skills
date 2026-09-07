@@ -1,0 +1,42 @@
+{
+  "name": "Scene swap and re-voice",
+  "description": "A real source clip (uploaded first) with the creator swapped in by the scene-video step, then re-voiced with the creator's cloned voice and captioned. No prompt needed on scene video; the source drives everything.",
+  "account_id": "<creator id from list_accounts>",
+  "nodes": [
+    {
+      "id": "swap",
+      "kind": "generation",
+      "title": "Swap the creator in",
+      "stageId": "scene-video",
+      "modelId": "scene-seedance-2-5",
+      "slotBindings": { "source_video": "<asset id of the uploaded source clip>" },
+      "params": { "aspect_ratio": "9:16", "generate_audio": true }
+    },
+    {
+      "id": "voice",
+      "kind": "generation",
+      "title": "Creator voice",
+      "stageId": "change-voice",
+      "params": { "remove_background_noise": true }
+    },
+    {
+      "id": "captions",
+      "kind": "generation",
+      "title": "Hook and captions",
+      "stageId": "caption-burn",
+      "params": { "hook_mode": "auto", "caption_style": "hormozi" }
+    },
+    {
+      "id": "post",
+      "kind": "publish",
+      "prompt": "you were not ready for this one",
+      "publishChannels": ["TikTok", "IG"],
+      "postSettings": { "videoMadeWithAi": true }
+    }
+  ],
+  "edges": [
+    { "source": "swap", "target": "voice" },
+    { "source": "voice", "target": "captions" },
+    { "source": "captions", "target": "post" }
+  ]
+}

@@ -1,0 +1,44 @@
+{
+  "name": "Photo to hero video",
+  "description": "A text-to-image frame edited to include the creator, animated with the top image-to-video tier, then posted. The source pipeline had final prompts, so every step runs verbatim.",
+  "account_id": "<creator id from list_accounts>",
+  "nodes": [
+    {
+      "id": "frame",
+      "kind": "generation",
+      "title": "Base frame",
+      "stageId": "photo",
+      "prompt": "Rooftop terrace at golden hour, empty wicker chair facing the skyline, soft haze, 35mm film look, vertical composition.",
+      "params": { "enhance": false, "aspect_ratio": "9:16", "resolution": "2K" }
+    },
+    {
+      "id": "withCreator",
+      "kind": "generation",
+      "title": "Place the creator",
+      "stageId": "photo-edit",
+      "prompt": "Put @Image1 in the wicker chair of @Image2, relaxed, looking at the skyline, same light and grain. Keep the scene exactly as it is.",
+      "params": { "enhance": false, "aspect_ratio": "auto", "resolution": "2K" }
+    },
+    {
+      "id": "hero",
+      "kind": "generation",
+      "title": "Hero clip",
+      "stageId": "video-i2v",
+      "modelId": "bytedance-seedance-2-5-image-to-video",
+      "prompt": "Slow dolly in on her as the sun dips, hair moves in a light breeze, she turns and smiles at the camera on the last second. Ambient city sound.",
+      "params": { "enhance": false, "duration": 10, "resolution": "1080p", "generate_audio": true },
+      "reviewScript": false
+    },
+    {
+      "id": "post",
+      "kind": "publish",
+      "prompt": "golden hour, no plans",
+      "publishFormat": "video"
+    }
+  ],
+  "edges": [
+    { "source": "frame", "target": "withCreator", "targetHandle": "location" },
+    { "source": "withCreator", "target": "hero", "targetHandle": "image_url" },
+    { "source": "hero", "target": "post" }
+  ]
+}

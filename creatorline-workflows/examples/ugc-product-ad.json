@@ -1,0 +1,56 @@
+{
+  "name": "UGC product ad",
+  "description": "One reference-to-video take of the creator holding the product, captioned and sent to review. Prompt is final, so Enhance is off.",
+  "account_id": "<creator id from list_accounts>",
+  "nodes": [
+    {
+      "id": "topic",
+      "kind": "text",
+      "name": "topic",
+      "values": ["the new matcha latte", "the cold brew can"],
+      "activeIndex": 0
+    },
+    {
+      "id": "product",
+      "kind": "image",
+      "title": "Product shot",
+      "values": ["<asset id of the product photo>"],
+      "activeIndex": 0
+    },
+    {
+      "id": "take",
+      "kind": "generation",
+      "title": "Talking take",
+      "stageId": "video-ref",
+      "modelId": "bytedance-seedance-2-5-reference-to-video",
+      "prompt": "@Image1 sits at a kitchen table, phone propped on the counter, natural window light. She picks up @Image2, turns it to the camera and says: \"okay so I finally tried @topic and I get the hype\". One continuous handheld shot, no cuts, casual iPhone look.",
+      "params": {
+        "enhance": false,
+        "duration": 10,
+        "resolution": "1080p",
+        "aspect_ratio": "9:16",
+        "generate_audio": true
+      }
+    },
+    {
+      "id": "captions",
+      "kind": "generation",
+      "title": "Captions",
+      "stageId": "caption-burn",
+      "params": { "hook_mode": "off", "caption_style": "tiktok" }
+    },
+    {
+      "id": "post",
+      "kind": "publish",
+      "prompt": "finally tried @topic ☕️ #ugc #morningroutine",
+      "publishFormat": "video",
+      "publishChannels": ["TikTok"],
+      "postSettings": { "videoMadeWithAi": true }
+    }
+  ],
+  "edges": [
+    { "source": "product", "target": "take", "targetHandle": "objects" },
+    { "source": "take", "target": "captions" },
+    { "source": "captions", "target": "post" }
+  ]
+}

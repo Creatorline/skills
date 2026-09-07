@@ -1,0 +1,55 @@
+{
+  "name": "Three-shot day in the life",
+  "description": "Three reference-to-video shots merged into one clip (edge order is the cut order), with the @step tokens naming upstream outputs where a later shot has to match an earlier one. Runs weekly.",
+  "account_id": "<creator id from list_accounts>",
+  "schedule": { "enabled": true, "timezone": "Europe/Istanbul", "days": { "mon": ["09:00"], "thu": ["09:00"] } },
+  "nodes": [
+    {
+      "id": "shot1",
+      "kind": "generation",
+      "title": "Morning",
+      "stageId": "video-ref",
+      "modelId": "bytedance-seedance-2-0-reference-to-video",
+      "prompt": "@Image1 pulls the curtains open in a small bright bedroom, stretches, phone propped on the dresser, morning light. 5 seconds, one shot.",
+      "params": { "enhance": false, "duration": 5, "resolution": "1080p", "aspect_ratio": "9:16" }
+    },
+    {
+      "id": "shot2",
+      "kind": "generation",
+      "title": "Coffee",
+      "stageId": "video-ref",
+      "modelId": "bytedance-seedance-2-0-reference-to-video",
+      "prompt": "@Image1 in the same outfit as @step1, pouring coffee in a compact kitchen, steam, handheld phone framing. 5 seconds.",
+      "params": { "enhance": false, "duration": 5, "resolution": "1080p", "aspect_ratio": "9:16" }
+    },
+    {
+      "id": "shot3",
+      "kind": "generation",
+      "title": "Out the door",
+      "stageId": "video-ref",
+      "modelId": "bytedance-seedance-2-0-reference-to-video",
+      "prompt": "@Image1 grabs keys and a tote bag by the front door, checks the mirror, waves at the camera and leaves. Same outfit as @step1. 5 seconds.",
+      "params": { "enhance": false, "duration": 5, "resolution": "1080p", "aspect_ratio": "9:16" }
+    },
+    {
+      "id": "merge",
+      "kind": "generation",
+      "title": "Cut together",
+      "stageId": "merge-clips"
+    },
+    {
+      "id": "post",
+      "kind": "publish",
+      "prompt": "a tuesday, basically",
+      "publishFormat": "video"
+    }
+  ],
+  "edges": [
+    { "source": "shot1", "target": "shot2", "targetHandle": "source_video" },
+    { "source": "shot1", "target": "shot3", "targetHandle": "source_video" },
+    { "source": "shot1", "target": "merge", "targetHandle": "video_urls" },
+    { "source": "shot2", "target": "merge", "targetHandle": "video_urls" },
+    { "source": "shot3", "target": "merge", "targetHandle": "video_urls" },
+    { "source": "merge", "target": "post" }
+  ]
+}

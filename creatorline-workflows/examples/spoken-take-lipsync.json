@@ -1,0 +1,58 @@
+{
+  "name": "Scripted line with lipsync",
+  "description": "A fixed script spoken in the creator's cloned voice (text-to-speech), a reference take filmed in parallel, then lipsynced together and captioned. Both prompts are final, so Enhance is off.",
+  "account_id": "<creator id from list_accounts>",
+  "nodes": [
+    {
+      "id": "line",
+      "kind": "text",
+      "name": "line",
+      "values": ["okay so nobody told me the new update changes the whole feed", "three things I wish I knew before I started"]
+    },
+    {
+      "id": "speech",
+      "kind": "generation",
+      "title": "Voice line",
+      "stageId": "text-to-speech",
+      "prompt": "@line",
+      "params": { "enhance": false, "model_id": "eleven_v3", "speed": 1 }
+    },
+    {
+      "id": "take",
+      "kind": "generation",
+      "title": "Talking take",
+      "stageId": "video-ref",
+      "modelId": "bytedance-seedance-2-0-reference-to-video",
+      "prompt": "@Image1 talks straight to a phone camera in a bright living room, mid-shot, natural gestures, no cuts. She says: \"@line\"",
+      "params": { "enhance": false, "duration": 8, "resolution": "1080p", "aspect_ratio": "9:16", "generate_audio": false }
+    },
+    {
+      "id": "sync",
+      "kind": "generation",
+      "title": "Lipsync",
+      "stageId": "lipsync",
+      "modelId": "sync-lipsync-v2-pro",
+      "params": { "sync_mode": "cut_off" }
+    },
+    {
+      "id": "captions",
+      "kind": "generation",
+      "title": "Captions",
+      "stageId": "caption-burn",
+      "params": { "hook_mode": "off", "caption_style": "minimal" }
+    },
+    {
+      "id": "post",
+      "kind": "publish",
+      "prompt": "@line",
+      "publishFormat": "video",
+      "postSettings": { "videoMadeWithAi": true }
+    }
+  ],
+  "edges": [
+    { "source": "take", "target": "sync", "targetHandle": "video_url" },
+    { "source": "speech", "target": "sync", "targetHandle": "audio_url" },
+    { "source": "sync", "target": "captions" },
+    { "source": "captions", "target": "post" }
+  ]
+}
