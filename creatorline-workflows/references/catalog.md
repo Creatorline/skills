@@ -11,7 +11,7 @@ second, `/src s` = per source second, `/run` = flat. The first model listed unde
 ## Video
 
 ### `video-ref` (reference to video, the UGC workhorse)  output: video
-Slots: `characters:image/character` (creator auto-added), `location:image?`, `objects:image?`,
+Slots: `characters:image/character` (the avatar auto-added), `location:image?`, `objects:image?`,
 `audio_urls:audio?`, `source_video:video?`. Prompt required; verbatim supported; composes a
 timeline (`reviewScript` works); **tokens bind inputs** when verbatim.
 Params: `ugc_style` (compose-only), `aspect_ratio`, `duration`, `resolution`, `generate_audio`,

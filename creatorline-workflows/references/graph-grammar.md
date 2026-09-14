@@ -18,12 +18,12 @@ surfaces instead of silently doing nothing.
   "prompt": "…",              // the prompt (caption on a publish node)
   "params": { "enhance": false, "duration": 10, "resolution": "1080p", "aspect_ratio": "9:16" },
   "slotBindings": { "objects": "<asset id>" },  // slot key -> ONE asset id pinned into it
-  "dropCharacterAvatar": true, // keep the creator out of this step
+  "dropCharacterAvatar": true, // keep the avatar out of this step
   "reviewScript": true,        // park the run for a human to approve the composed script
 
   // publish
   "publishFormat": "video",    // auto | video | photo | carousel
-  "publishChannels": ["TikTok"], // subset of the creator's connected channels; omit = all
+  "publishChannels": ["TikTok"], // subset of the brand's connected channels; omit = all
   "postSettings": { "videoMadeWithAi": true, "autoAddMusic": false, "draft": false, "physicalDevice": false },
   "platformSettings": { "YouTube": { "title": "…", "visibility": "unlisted" } },
 
@@ -78,10 +78,10 @@ Rules the validator enforces:
   positional token at kickoff, so write `@step3` and never guess `@Video2`.
 - `@name` in a prompt or caption is replaced by the active value of the text node `name`.
 - Positional tokens (`@Image1`, `@Video1`, `@Audio1`) number a step's inputs in **slot order**,
-  one counter per modality, counting: the creator's avatar (prepended into the
+  one counter per modality, counting: the avatar's face (prepended into the
   `role: "character"` slot unless `dropCharacterAvatar`), then static assets
   (`slotBindings` and baked `image` nodes), then wired steps. So on Seedance reference with
-  a bound workflow and a product in `objects`: `@Image1` = the creator, `@Image2` = the product.
+  a bound workflow and a product in `objects`: `@Image1` = the avatar, `@Image2` = the product.
 - With `enhance: true` the writer is handed the token manifest and binds inputs for you.
   With `enhance: false` on a `tokens_bind_inputs` model you must write every token yourself.
 
@@ -90,7 +90,7 @@ Rules the validator enforces:
 | Key | Default | Effect |
 | --- | --- | --- |
 | `enhance` | `true` | `false` = the prompt goes to the provider verbatim: no rewrite, no persona, no template, no timeline compose. |
-| `inject_persona` | `true` | `false` = keep the creator's persona (bio, tone) out of a composed prompt. Meaningless when `enhance` is false. |
+| `inject_persona` | `true` | `false` = keep the avatar's persona (bio, tone) out of a composed prompt. Meaningless when `enhance` is false. |
 | `ugc_style` | `Auto` | Video template for reference-to-video (Product ad, Unboxing, Talking head, …). Compose-only: ignored when `enhance` is false. |
 | `ugc_hook` | | A hook template name. Compose-only. |
 
@@ -112,12 +112,23 @@ Weekday keys `sun`..`sat`, times `HH:mm` in the given zone. An enabled schedule 
 least one slot. `update_workflow` with `schedule: null` removes it. A scheduled run runs
 every step; nothing is reused.
 
+## Identity: brand and avatar
+
+A workflow belongs to a **brand** (`account_id`, from `list_brands` or its alias
+`list_accounts`): the publish step uses that brand's channels and the outputs land on its
+wall. The face and voice the steps render with come from an **avatar**: the brand's
+`default_avatar_id` unless the workflow carries an `avatar_id` (from `list_avatars`).
+`update_workflow` with `avatar_id: null` returns to the brand's default. Changing the
+avatar changes the reuse fingerprint, so "run only what changed" re-runs the steps that
+render the face; renaming the brand does not.
+
 ## Run options
 
 ```jsonc
 { "workflow_id": "…", "dry_run": true }                         // plan + cost, nothing spent
 { "workflow_id": "…", "only_node_ids": ["n3"] }                  // run one step (+ what it needs)
 { "workflow_id": "…", "reuse_from_run_id": "<run id>" }          // serve unchanged steps from that run
+{ "workflow_id": "…", "avatar_id": "<avatar id>" }               // render THIS run with another avatar
 ```
 
 A run charges each step as it executes and refunds a failed step. The run row reports

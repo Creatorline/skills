@@ -5,7 +5,7 @@ license: MIT
 compatibility: Needs the Creatorline MCP server connected (https://api.creatorline.io/mcp) with a write-scope API key. Works in Claude Code, Cursor, Codex CLI, Windsurf and any MCP client.
 metadata:
   author: creatorline
-  version: "1.0"
+  version: "1.1"
 ---
 
 # Creatorline workflows over MCP
@@ -22,7 +22,8 @@ Creatorline with no loss and the best possible output.
 | Tool | Use it for |
 | --- | --- |
 | `get_workflow_catalog` | The vocabulary: stages, models, slots, params, prices. Pass `stage` to keep it small. |
-| `list_accounts` | The creators (AI influencers). A workflow is bound to one. |
+| `list_brands` (alias `list_accounts`) | The brands: the accounts a workflow is bound to (`account_id`). Each carries `default_avatar_id`, the face and voice its runs render with by default. |
+| `list_avatars` / `get_avatar` | The avatars: the reusable identities (face, voice, persona). Pass one as `avatar_id` only when the run must render with a face other than the brand's default. |
 | `list_assets` / `list_models` / `list_voices` | Existing media to pin into slots; the generation catalog; voices for audio steps. |
 | `validate_workflow` | Free. Every error at once, step order, real model per step, cost of one run. |
 | `create_workflow` / `update_workflow` | Persist. `update_workflow` replaces the whole graph (pass `nodes` and `edges` together). |
@@ -54,7 +55,8 @@ or run. A `read` key can still call the catalog, `validate_workflow` and dry run
 5. **Validate.** `validate_workflow` until `ok: true`. Read every error; each names the node
    or edge and the fix.
 6. **Persist.** `create_workflow` (or `update_workflow`) with the validated `nodes` and `edges`,
-   a short `name`, and the creator's `account_id`.
+   a short `name`, and the brand's `account_id`. Add `avatar_id` only when the user named a
+   specific avatar; otherwise the brand's default avatar is the identity.
 7. **Price and run.** `run_workflow` with `dry_run: true`, tell the user the credit total, and
    run only after they agree. Poll `get_workflow_run`.
 8. **Report.** A mapping table (source node → Creatorline step), what you dropped and why,
@@ -102,9 +104,11 @@ says a key is unknown.
   `list_assets` or upload through the API / CLI first.
 - Something the user swaps between runs: a `text` node (`@name` in prompts) or an `image` node
   (a list of asset ids wired into one slot).
-- The creator's face: nothing. The workflow's `account_id` adds their avatar to the
-  `role: "character"` slot automatically. Set `dropCharacterAvatar: true` only on a step where
-  the creator must not appear (a product-only shot).
+- The face: nothing in the graph. The workflow's `account_id` adds the brand's default avatar
+  to the `role: "character"` slot automatically; `avatar_id` on the workflow (or on
+  `run_workflow`, per run) swaps in another avatar from `list_avatars`, face and voice
+  together. Set `dropCharacterAvatar: true` only on a step where the avatar must not appear
+  (a product-only shot).
 
 **5. Verbatim + reference-to-video = tokens.** With `enhance: false` on a reference-to-video
 model (`prompt.tokens_bind_inputs: true`), every media input reaches the model **only** through
@@ -126,7 +130,8 @@ full graph back with only the intended changes; ids that survive keep their canv
 ```json
 {
   "name": "Matcha product ad",
-  "account_id": "<creator id from list_accounts>",
+  "account_id": "<brand id from list_brands or list_accounts>",
+  "avatar_id": "<optional: an avatar id from list_avatars; omit for the brand's default avatar>",
   "nodes": [
     { "id": "topic", "kind": "text", "name": "topic", "values": ["matcha latte", "cold brew"] },
     { "id": "product", "kind": "image", "values": ["<asset id of the product shot>"] },
@@ -145,7 +150,7 @@ full graph back with only the intended changes; ids that survive keep their canv
 }
 ```
 
-`@Image1` is the creator's avatar (auto-added to `characters`), `@Image2` the product wired into
+`@Image1` is the avatar's face (auto-added to `characters`), `@Image2` the product wired into
 `objects`. More examples, each validated by the repo's tests, live in [examples/](examples/).
 
 ## What cannot be replicated today (say it, do not fake it)

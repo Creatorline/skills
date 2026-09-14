@@ -27,7 +27,7 @@ map, collapse, then validate.
 | Motion transfer, "copy this dance", pose-driven video | `motion-control` | `character_image` + `motion_video`. Prompt is fixed; no `enhance` key. |
 | Redo a reference video as the creator (clay sheet, reshoot) | `reshoot` | Owns its own analysis → sheet → engine chain; prompt is a direction, no `enhance` key. |
 | Lipsync audio onto a clip | `lipsync` | `video_url` + `audio_url` (an audio asset). Pro tier for fast speech. |
-| Replace the voice in a clip with the creator's | `change-voice` | `video_url`. Uses the creator's cloned voice by default; `voice_id` overrides. |
+| Replace the voice in a clip with the creator's | `change-voice` | `video_url`. Uses the avatar's cloned voice by default (the brand's default avatar, or the workflow's `avatar_id`); `voice_id` overrides. |
 | Add a music/voice track | `add-audio` | `video_url` + `audio_url`, `start_offset`. |
 | Text → speech | `text-to-speech` | Emits audio; wire it into `lipsync` or `add-audio`. `voice_id`, `model_id` (`eleven_v3` default). |
 | Two-voice dialogue | `dialogue` | Prompt is an `A:` / `B:` script; `voice_a`, `voice_b`. |
@@ -46,8 +46,9 @@ map, collapse, then validate.
   `scene-video` step (it does exactly this, with the model's `max_duration_sec` as the cut).
 - **Transcribe → write hook → burn captions** → one `caption-burn` step.
 - **Load face / IP-Adapter / LoRA of the creator** → nothing. Bind the workflow to the
-  creator (`account_id`); their avatar goes into the character slot automatically and their
-  persona into composed prompts. A LoRA of a *product* → `objects` (video) or
+  brand (`account_id`); its default avatar's face goes into the character slot automatically
+  and its persona into composed prompts. A different face is `avatar_id` (an avatar from
+  `list_avatars`), never an image node. A LoRA of a *product* → `objects` (video) or
   `other_elements` (photo) via `slotBindings`.
 - **Seed, sampler, CFG, scheduler, steps** → nothing. Not exposed; the provider tunes them.
 - **Preview / save / "show image"** → nothing. Every step's output is saved as an asset and
