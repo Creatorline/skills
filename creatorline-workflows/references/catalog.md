@@ -51,17 +51,17 @@ No slots. Ladder: `bytedance-seedance-2-0-text-to-video` (default, 8/s), `veo3-1
 Prefer `video-ref` whenever the creator should appear.
 
 ### `scene-video` (put the creator into a real clip)  output: video
-Slots: `source_video:video/driving` (required), `character:image/character` (auto),
-`location:image?`. Prompt optional (a fixed internal template drives it). Splits sources
-longer than the model's take and merges them back itself.
+Slots: `source_video:video/driving` (required), `character:image/character` (auto, up to
+2 avatars), `other_elements:image?` (Motion Transfer only: a place, an outfit, a product).
+Prompt optional: on Motion Transfer it is a direction the prompt writer follows; Object Swap
+takes none. The source keeps its audio. Takes 4 to 30 s of source.
 
-| Ladder | Model id | Max take | Res | Price |
+The two engines differ in one thing, the outfit (the studio calls the choice Outfit):
+
+| Outfit | Model id | Max take | Res | Price |
 | --- | --- | --- | --- | --- |
-| 1 | `scene-seedance-2-5` | 30 s | 720p | 8/s |
-| 2 | `scene-seedance-2-0` | 15 s | 720p/1080p | 5/s, 10/s |
-| 3 default | `scene-seedance-2-0-fast` | 15 s | 720p | 3/s |
-| 4 | `scene-seedance-2-0-mini` | 15 s | 720p | 3/s |
-| Kling | `scene-kling-o3-pro-reference`, `scene-kling-o3-standard-reference`, `scene-kling-o3-pro-edit`, `scene-kling-o3-standard-edit` | 15 s | | 3 to 4/s |
+| Video's outfit (default) | `scene-genjutsu-motion-transfer` | 30 s | 480p/720p/1080p | 8/s, 17/s, 41/s |
+| Avatar's outfit | `scene-genjutsu-object-swap` | 30 s | 480p/720p/1080p | 8/s, 17/s, 41/s |
 
 ### `motion-control`  output: video
 `kling-v3-standard-motion-control`: `character_image:image/character`, `motion_video:video/driving`;

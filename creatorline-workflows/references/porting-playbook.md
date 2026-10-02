@@ -23,7 +23,7 @@ map, collapse, then validate.
 | Image → video, first/last frame, keyframes | `video-i2v` | `image_url` (+ `end_image_url`). Keyframe lists → Flux 3 Keyframes (`keyframes` slot, up to 10). |
 | Character / reference / "consistent person" video, UGC talking video, product-in-hand | `video-ref` | Seedance reference. Slots `characters`, `location`, `objects`, `audio_urls`, `source_video`. The creator is auto-added to `characters`. |
 | Text → video with no references | `video-t2v` | Only when the source truly had no image input; otherwise `video-ref` gives identity. |
-| Replace the person in a real clip, "face swap in video", scene swap | `scene-video` | `source_video` (driving) + `character` (auto) + optional `location`. Splits and merges long sources itself. |
+| Replace the person in a real clip, "face swap in video", scene swap | `scene-video` | `source_video` (driving) + `character` (auto). Pick the engine by outfit: `scene-genjutsu-motion-transfer` keeps the video's outfit, `scene-genjutsu-object-swap` brings the avatar's own. 4 to 30 s of source. |
 | Motion transfer, "copy this dance", pose-driven video | `motion-control` | `character_image` + `motion_video`. Prompt is fixed; no `enhance` key. |
 | Redo a reference video as the creator (clay sheet, reshoot) | `reshoot` | Owns its own analysis → sheet → engine chain; prompt is a direction, no `enhance` key. |
 | Lipsync audio onto a clip | `lipsync` | `video_url` + `audio_url` (an audio asset). Pro tier for fast speech. |

@@ -8,9 +8,9 @@
       "kind": "generation",
       "title": "Swap the creator in",
       "stageId": "scene-video",
-      "modelId": "scene-seedance-2-5",
+      "modelId": "scene-genjutsu-motion-transfer",
       "slotBindings": { "source_video": "<asset id of the uploaded source clip>" },
-      "params": { "aspect_ratio": "9:16", "generate_audio": true }
+      "params": { "resolution": "720p" }
     },
     {
       "id": "voice",
