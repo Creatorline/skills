@@ -34,12 +34,16 @@ Creatorline with no loss and the best possible output.
 Setup, if the server is not connected yet:
 
 ```bash
-claude mcp add --transport http creatorline https://api.creatorline.io/mcp \
-  --header "Authorization: Bearer $CREATORLINE_API_KEY"
+claude mcp add --transport http creatorline https://api.creatorline.io/mcp
 ```
 
-The key comes from Settings → API in the studio and must have the `write` scope to author
-or run. A `read` key can still call the catalog, `validate_workflow` and dry runs.
+Then sign in with `/mcp`: the connection acts as the user and reaches the brands they work
+on. If the only tool it offers is `list_workspaces`, the user belongs to several workspaces:
+call it, show them the list, and ask them to reconnect with the address of the one they want.
+
+An API key works too (`--header "Authorization: Bearer $CREATORLINE_API_KEY"`). It comes
+from Settings → MCP in the studio and must have the `write` scope to author or run. A `read`
+key can still call the catalog, `validate_workflow` and dry runs.
 
 ## The loop
 
