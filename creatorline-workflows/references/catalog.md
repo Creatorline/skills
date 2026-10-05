@@ -48,9 +48,9 @@ frames are wired directly (no tokens needed).
 ### `video-t2v` (text to video)  output: video
 No slots. Ladder: `bytedance-seedance-2-0-text-to-video` (default, 8/s), `veo3-1-text-to-video`
 (8 s, 12/s), `veo-3-1-lite-text-to-video` (2/s), `flux-3-text-to-video` (20 s, 5/s), MiniMax.
-Prefer `video-ref` whenever the creator should appear.
+Prefer `video-ref` whenever the avatar should appear.
 
-### `scene-video` (put the creator into a real clip)  output: video
+### `scene-video` (put the avatar into a real clip)  output: video
 Slots: `source_video:video/driving` (required), `character:image/character` (auto, up to
 2 avatars), `other_elements:image?` (Motion Transfer only: a place, an outfit, a product).
 Prompt optional: on Motion Transfer it is a direction the prompt writer follows; Object Swap
@@ -83,7 +83,7 @@ unless asked), `num_images`.
 | 2 volume | `nano-banana-2-text-to-image` | 2/image |
 | typography | `gpt-image-v2-text-to-image` (`quality` Low/Medium/High) | 1 to 50/image |
 
-### `photo-edit` (image to image, keeps a creator / product / reference)  output: image
+### `photo-edit` (image to image, keeps an avatar / product / reference)  output: image
 Slots: `characters:image/character?` (auto, up to 4), `location:image?`, `other_elements:image?`.
 
 | Ladder | Model id | Price |

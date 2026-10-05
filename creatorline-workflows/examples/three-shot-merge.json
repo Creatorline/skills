@@ -1,7 +1,7 @@
 {
   "name": "Three-shot day in the life",
   "description": "Three reference-to-video shots merged into one clip (edge order is the cut order), with the @step tokens naming upstream outputs where a later shot has to match an earlier one. Runs weekly.",
-  "account_id": "<creator id from list_accounts>",
+  "brand_id": "<brand id from list_brands>",
   "schedule": { "enabled": true, "timezone": "Europe/Istanbul", "days": { "mon": ["09:00"], "thu": ["09:00"] } },
   "nodes": [
     {
