@@ -1,7 +1,7 @@
 {
   "name": "Scripted line with lipsync",
-  "description": "A fixed script spoken in the creator's cloned voice (text-to-speech), a reference take filmed in parallel, then lipsynced together and captioned. Both prompts are final, so Enhance is off.",
-  "account_id": "<creator id from list_accounts>",
+  "description": "A fixed script spoken in the avatar's cloned voice (text-to-speech), a reference take filmed in parallel, then lipsynced together and captioned. Both prompts are final, so Enhance is off.",
+  "brand_id": "<brand id from list_brands>",
   "nodes": [
     {
       "id": "line",

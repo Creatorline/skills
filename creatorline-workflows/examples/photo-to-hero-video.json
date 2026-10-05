@@ -1,7 +1,7 @@
 {
   "name": "Photo to hero video",
-  "description": "A text-to-image frame edited to include the creator, animated with the top image-to-video tier, then posted. The source pipeline had final prompts, so every step runs verbatim.",
-  "account_id": "<creator id from list_accounts>",
+  "description": "A text-to-image frame edited to include the avatar, animated with the top image-to-video tier, then posted. The source pipeline had final prompts, so every step runs verbatim.",
+  "brand_id": "<brand id from list_brands>",
   "nodes": [
     {
       "id": "frame",
@@ -14,7 +14,7 @@
     {
       "id": "withCreator",
       "kind": "generation",
-      "title": "Place the creator",
+      "title": "Place the avatar",
       "stageId": "photo-edit",
       "prompt": "Put @Image1 in the wicker chair of @Image2, relaxed, looking at the skyline, same light and grain. Keep the scene exactly as it is.",
       "params": { "enhance": false, "aspect_ratio": "auto", "resolution": "2K" }

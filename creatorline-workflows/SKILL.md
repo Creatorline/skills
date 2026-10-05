@@ -22,7 +22,7 @@ Creatorline with no loss and the best possible output.
 | Tool | Use it for |
 | --- | --- |
 | `get_workflow_catalog` | The vocabulary: stages, models, slots, params, prices. Pass `stage` to keep it small. |
-| `list_brands` (alias `list_accounts`) | The brands: the accounts a workflow is bound to (`account_id`). Each carries `default_avatar_id`, the face and voice its runs render with by default. |
+| `list_brands` | The brands a workflow is bound to (`brand_id`). Each carries `default_avatar_id`, the face and voice its runs render with by default. |
 | `list_avatars` / `get_avatar` | The avatars: the reusable identities (face, voice, persona). Pass one as `avatar_id` only when the run must render with a face other than the brand's default. |
 | `list_assets` / `list_models` / `list_voices` | Existing media to pin into slots; the generation catalog; voices for audio steps. |
 | `validate_workflow` | Free. Every error at once, step order, real model per step, cost of one run. |
@@ -55,7 +55,7 @@ or run. A `read` key can still call the catalog, `validate_workflow` and dry run
 5. **Validate.** `validate_workflow` until `ok: true`. Read every error; each names the node
    or edge and the fix.
 6. **Persist.** `create_workflow` (or `update_workflow`) with the validated `nodes` and `edges`,
-   a short `name`, and the brand's `account_id`. Add `avatar_id` only when the user named a
+   a short `name`, and the brand's `brand_id`. Add `avatar_id` only when the user named a
    specific avatar; otherwise the brand's default avatar is the identity.
 7. **Price and run.** `run_workflow` with `dry_run: true`, tell the user the credit total, and
    run only after they agree. Poll `get_workflow_run`.
@@ -66,7 +66,7 @@ or run. A `read` key can still call the catalog, `validate_workflow` and dry run
 
 **1. Finished prompts run verbatim. Never leave Enhance on for a prompt the user supplied.**
 Every generation node has a compose-time switch `params.enhance` (default `true`, the AI
-rewrites the idea into a full prompt, injects the creator's persona and applies a template).
+rewrites the idea into a full prompt, injects the avatar's persona and applies a template).
 When the user brings their own prompts, or you are replicating a pipeline whose prompts are
 already final, set `params.enhance: false` on **every** generation node that has a prompt,
 and pass the prompt exactly as given. Do not fix typos, do not translate, do not "improve".
@@ -78,7 +78,7 @@ idea as the prompt. Models that report `prompt.verbatim_supported: false` in the
 **2. Always pick the most optimized, highest-quality path.** In order:
 - Fewest steps that produce the asked result. Creatorline steps are composites: Scene video
   already splits, swaps and merges a long source; Hook + captions already transcribes, writes
-  the hook and burns captions; the creator's avatar is added to the character slot
+  the hook and burns captions; the avatar is added to the character slot
   automatically. Do not rebuild those by hand.
 - The best model that meets the brief's hard constraints (duration, resolution, inputs it
   takes), from the ladder in [references/catalog.md](references/catalog.md). The stage default
@@ -104,7 +104,7 @@ says a key is unknown.
   `list_assets` or upload through the API / CLI first.
 - Something the user swaps between runs: a `text` node (`@name` in prompts) or an `image` node
   (a list of asset ids wired into one slot).
-- The face: nothing in the graph. The workflow's `account_id` adds the brand's default avatar
+- The face: nothing in the graph. The workflow's `brand_id` adds the brand's default avatar
   to the `role: "character"` slot automatically; `avatar_id` on the workflow (or on
   `run_workflow`, per run) swaps in another avatar from `list_avatars`, face and voice
   together. Set `dropCharacterAvatar: true` only on a step where the avatar must not appear
@@ -130,7 +130,7 @@ full graph back with only the intended changes; ids that survive keep their canv
 ```json
 {
   "name": "Matcha product ad",
-  "account_id": "<brand id from list_brands or list_accounts>",
+  "brand_id": "<brand id from list_brands>",
   "avatar_id": "<optional: an avatar id from list_avatars; omit for the brand's default avatar>",
   "nodes": [
     { "id": "topic", "kind": "text", "name": "topic", "values": ["matcha latte", "cold brew"] },

@@ -2,7 +2,7 @@
 
 Say what you want. Your assistant builds the pipeline, tells you what it costs, and runs it.
 
-Creatorline turns AI creators into finished video and photo content. This skill teaches your
+Creatorline turns AI avatars into finished video and photo content. This skill teaches your
 assistant how to drive it, so you describe the result instead of wiring up a canvas.
 
 ## Things to ask for

@@ -21,13 +21,13 @@ map, collapse, then validate.
 | Text → image (Flux, SD, Imagen, Midjourney, Ideogram, GPT Image) | `photo` | No slots. Default Nano Banana Pro; GPT 2 for typography-heavy or "quality High". |
 | Image → image edit, inpaint, restyle, "with this product / this face" | `photo-edit` | Slots `characters`, `location`, `other_elements`. Use this, not `photo`, whenever an existing image must be preserved. |
 | Image → video, first/last frame, keyframes | `video-i2v` | `image_url` (+ `end_image_url`). Keyframe lists → Flux 3 Keyframes (`keyframes` slot, up to 10). |
-| Character / reference / "consistent person" video, UGC talking video, product-in-hand | `video-ref` | Seedance reference. Slots `characters`, `location`, `objects`, `audio_urls`, `source_video`. The creator is auto-added to `characters`. |
+| Character / reference / "consistent person" video, UGC talking video, product-in-hand | `video-ref` | Seedance reference. Slots `characters`, `location`, `objects`, `audio_urls`, `source_video`. The avatar is auto-added to `characters`. |
 | Text → video with no references | `video-t2v` | Only when the source truly had no image input; otherwise `video-ref` gives identity. |
 | Replace the person in a real clip, "face swap in video", scene swap | `scene-video` | `source_video` (driving) + `character` (auto). Pick the engine by outfit: `scene-genjutsu-motion-transfer` keeps the video's outfit, `scene-genjutsu-object-swap` brings the avatar's own. 4 to 30 s of source. |
 | Motion transfer, "copy this dance", pose-driven video | `motion-control` | `character_image` + `motion_video`. Prompt is fixed; no `enhance` key. |
-| Redo a reference video as the creator (clay sheet, reshoot) | `reshoot` | Owns its own analysis → sheet → engine chain; prompt is a direction, no `enhance` key. |
+| Redo a reference video as the avatar (clay sheet, reshoot) | `reshoot` | Owns its own analysis → sheet → engine chain; prompt is a direction, no `enhance` key. |
 | Lipsync audio onto a clip | `lipsync` | `video_url` + `audio_url` (an audio asset). Pro tier for fast speech. |
-| Replace the voice in a clip with the creator's | `change-voice` | `video_url`. Uses the avatar's cloned voice by default (the brand's default avatar, or the workflow's `avatar_id`); `voice_id` overrides. |
+| Replace the voice in a clip with the avatar's | `change-voice` | `video_url`. Uses the avatar's cloned voice by default (the brand's default avatar, or the workflow's `avatar_id`); `voice_id` overrides. |
 | Add a music/voice track | `add-audio` | `video_url` + `audio_url`, `start_offset`. |
 | Text → speech | `text-to-speech` | Emits audio; wire it into `lipsync` or `add-audio`. `voice_id`, `model_id` (`eleven_v3` default). |
 | Two-voice dialogue | `dialogue` | Prompt is an `A:` / `B:` script; `voice_a`, `voice_b`. |
@@ -45,14 +45,14 @@ map, collapse, then validate.
 - **Split long source → per-segment generate → concat** around a person swap → one
   `scene-video` step (it does exactly this, with the model's `max_duration_sec` as the cut).
 - **Transcribe → write hook → burn captions** → one `caption-burn` step.
-- **Load face / IP-Adapter / LoRA of the creator** → nothing. Bind the workflow to the
-  brand (`account_id`); its default avatar's face goes into the character slot automatically
+- **Load face / IP-Adapter / LoRA of the avatar** → nothing. Bind the workflow to the
+  brand (`brand_id`); its default avatar's face goes into the character slot automatically
   and its persona into composed prompts. A different face is `avatar_id` (an avatar from
   `list_avatars`), never an image node. A LoRA of a *product* → `objects` (video) or
   `other_elements` (photo) via `slotBindings`.
 - **Seed, sampler, CFG, scheduler, steps** → nothing. Not exposed; the provider tunes them.
 - **Preview / save / "show image"** → nothing. Every step's output is saved as an asset and
-  visible on the creator's wall and in `get_workflow_run`.
+  visible on the brand's wall and in `get_workflow_run`.
 - **A "for each" over values** → one `text` node holding the values (the user runs once per
   value with `activeIndex`, or you run it N times over MCP by updating `activeIndex`).
 - **Two branches from one image (e.g. a photo and a video from the same frame)** → one graph;

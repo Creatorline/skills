@@ -1,12 +1,12 @@
 {
   "name": "Scene swap and re-voice",
-  "description": "A real source clip (uploaded first) with the creator swapped in by the scene-video step, then re-voiced with the creator's cloned voice and captioned. No prompt needed on scene video; the source drives everything.",
-  "account_id": "<creator id from list_accounts>",
+  "description": "A real source clip (uploaded first) with the avatar swapped in by the scene-video step, then re-voiced with the avatar's cloned voice and captioned. No prompt needed on scene video; the source drives everything.",
+  "brand_id": "<brand id from list_brands>",
   "nodes": [
     {
       "id": "swap",
       "kind": "generation",
-      "title": "Swap the creator in",
+      "title": "Swap the avatar in",
       "stageId": "scene-video",
       "modelId": "scene-genjutsu-motion-transfer",
       "slotBindings": { "source_video": "<asset id of the uploaded source clip>" },
@@ -15,7 +15,7 @@
     {
       "id": "voice",
       "kind": "generation",
-      "title": "Creator voice",
+      "title": "Avatar voice",
       "stageId": "change-voice",
       "params": { "remove_background_noise": true }
     },

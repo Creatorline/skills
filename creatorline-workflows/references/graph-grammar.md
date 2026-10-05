@@ -114,8 +114,7 @@ every step; nothing is reused.
 
 ## Identity: brand and avatar
 
-A workflow belongs to a **brand** (`account_id`, from `list_brands` or its alias
-`list_accounts`): the publish step uses that brand's channels and the outputs land on its
+A workflow belongs to a **brand** (`brand_id`, from `list_brands`): the publish step uses that brand's channels and the outputs land on its
 wall. The face and voice the steps render with come from an **avatar**: the brand's
 `default_avatar_id` unless the workflow carries an `avatar_id` (from `list_avatars`).
 `update_workflow` with `avatar_id: null` returns to the brand's default. Changing the

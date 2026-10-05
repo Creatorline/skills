@@ -1,7 +1,7 @@
 {
   "name": "UGC product ad",
-  "description": "One reference-to-video take of the creator holding the product, captioned and sent to review. Prompt is final, so Enhance is off.",
-  "account_id": "<brand id from list_brands or list_accounts>",
+  "description": "One reference-to-video take of the avatar holding the product, captioned and sent to review. Prompt is final, so Enhance is off.",
+  "brand_id": "<brand id from list_brands>",
   "avatar_id": "<optional: an avatar id from list_avatars; omit for the brand's default avatar>",
   "nodes": [
     {
