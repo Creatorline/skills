@@ -18,8 +18,7 @@ until a person approves them, so nothing reaches an audience on its own.
 
 ## Add it to Claude
 
-Four steps, no terminal. Have your API key ready:
-**[app.creatorline.io/settings/api](https://app.creatorline.io/settings/api)**
+Four steps, no terminal, no key to copy: you sign in with your Creatorline account.
 
 ### 1. Open Settings → Plugins, then Add → Add marketplace
 
@@ -39,26 +38,47 @@ The plugin brings the connection with it, so the name and address are already fi
 
 ![The connector Claude offers when the plugin installs](docs/plugin-connector.png)
 
-### 4. Choose "None", add your key, press Add
+### 4. Sign in
 
-Creatorline uses an API key rather than a sign-in, so **None** is the right choice under
-Authentication. Under **Request headers**, pick `x-api-key` and paste your key from
-[Settings → API](https://app.creatorline.io/settings/api).
-
-![Authentication set to None, with the key added as an x-api-key header](docs/plugin-auth.png)
+Claude sees that Creatorline offers a sign-in. Keep the sign-in option selected, sign in to
+Creatorline in the window that opens, and approve the access request.
 
 That is it. Ask for something and watch it build.
 
-Claude stores your key and never shows it again. If you ever need to retire it, revoke that
-key in [Settings → API](https://app.creatorline.io/settings/api) and add a new one here.
+The connection acts as you: it reaches the brands you work on in the workspace you signed
+in to. If you belong to several workspaces with brands, Claude will tell you which address
+to reconnect with. To disconnect, remove the connector in Claude.
+
+<details>
+<summary>Use an API key instead</summary>
+
+Under Authentication choose **None**. Under **Request headers**, pick `x-api-key` and paste
+a key from [Settings → MCP](https://app.creatorline.io/settings/api). Not every organization
+in Claude has the request headers section; if you do not see it, sign in instead.
+
+![Authentication set to None, with the key added as an x-api-key header](docs/plugin-auth.png)
+
+Claude stores your key and never shows it again. To retire it, revoke that key in
+[Settings → MCP](https://app.creatorline.io/settings/api) and add a new one here.
+
+</details>
 
 ## Using a coding assistant instead
 
 Claude Code, Cursor, Codex CLI, Windsurf, VS Code and Zed take the skill and the server
-directly, with a key from [Settings → API](https://app.creatorline.io/settings/api):
+directly. In Claude Code, add both and sign in with `/mcp`:
 
 ```bash
 npx skills add Creatorline/skills --skill creatorline-workflows
+claude mcp add --transport http creatorline https://api.creatorline.io/mcp
+```
+
+In Codex, `codex mcp add creatorline --url https://api.creatorline.io/mcp`, then
+`codex mcp login creatorline`.
+
+With an API key from [Settings → MCP](https://app.creatorline.io/settings/api) instead:
+
+```bash
 claude mcp add --transport http creatorline https://api.creatorline.io/mcp \
   --header "Authorization: Bearer YOUR_API_KEY"
 ```
