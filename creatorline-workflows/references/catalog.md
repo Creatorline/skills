@@ -52,16 +52,18 @@ Prefer `video-ref` whenever the avatar should appear.
 
 ### `scene-video` (put the avatar into a real clip)  output: video
 Slots: `source_video:video/driving` (required), `character:image/character` (auto, up to
-2 avatars), `other_elements:image?` (Motion Transfer only: a place, an outfit, a product).
-Prompt optional: on Motion Transfer it is a direction the prompt writer follows; Object Swap
-takes none. The source keeps its audio. Takes 4 to 30 s of source.
+2 avatars), then by mode: `other_elements:image?` (Transfer: a place, an outfit, a product)
+or `outfit:image?` (Replace: one photo of the outfit the avatar wears).
+Prompt optional: in Transfer it is a direction the prompt writer follows; Replace takes none.
+The source keeps its audio. Takes 4 to 30 s of source.
 
-The two engines differ in one thing, the outfit (the studio calls the choice Outfit):
+The two modes differ in one thing, whose clothes the avatar wears (the studio calls the
+choice Mode):
 
-| Outfit | Model id | Max take | Res | Price |
+| Mode | Model id | Max take | Res | Price |
 | --- | --- | --- | --- | --- |
-| Video's outfit (default) | `scene-genjutsu-motion-transfer` | 30 s | 480p/720p/1080p | 8/s, 17/s, 41/s |
-| Avatar's outfit | `scene-genjutsu-object-swap` | 30 s | 480p/720p/1080p | 8/s, 17/s, 41/s |
+| Transfer: the video's outfit (default) | `character-swap-transfer` | 30 s | 480p/720p/1080p | 8/s, 17/s, 41/s |
+| Replace: the avatar's own outfit, or the `outfit` photo | `character-swap-replace` | 30 s | 480p/720p/1080p | 8/s, 17/s, 41/s |
 
 ### `motion-control`  output: video
 `kling-v3-standard-motion-control`: `character_image:image/character`, `motion_video:video/driving`;

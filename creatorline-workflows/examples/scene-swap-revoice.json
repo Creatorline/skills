@@ -8,7 +8,7 @@
       "kind": "generation",
       "title": "Swap the avatar in",
       "stageId": "scene-video",
-      "modelId": "scene-genjutsu-motion-transfer",
+      "modelId": "character-swap-transfer",
       "slotBindings": { "source_video": "<asset id of the uploaded source clip>" },
       "params": { "resolution": "720p" }
     },
