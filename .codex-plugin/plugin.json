@@ -1,0 +1,38 @@
+{
+  "name": "creatorline",
+  "version": "2.0.0",
+  "description": "Make short videos and photos with your AI avatars from a conversation: talking videos, product videos, unboxings, try-ons, tutorials, app promos, trend reshoots, character swaps, ad variations, captions, voiceovers, covers, scripts, content calendars, posting and workflows.",
+  "author": {
+    "name": "Creatorline",
+    "email": "support@creatorline.io",
+    "url": "https://creatorline.io"
+  },
+  "homepage": "https://docs.creatorline.io/mcp-server",
+  "repository": "https://github.com/Creatorline/skills",
+  "license": "MIT",
+  "keywords": ["ai avatar", "ai influencer", "ugc", "short video", "social media", "content", "mcp"],
+  "skills": "./skills/",
+  "mcpServers": "./.mcp.json",
+  "interface": {
+    "displayName": "Creatorline",
+    "shortDescription": "Your organic growth engine",
+    "longDescription": "Creatorline makes short vertical videos and photos with your AI avatars, each with its own face, voice and persona. These skills teach Codex how to make every format well: talking videos, product videos, unboxings, try-ons, tutorials, app promos, reshoots of trending videos, character swaps, ad variations, faceless videos, captions, hooks, voiceovers, photos, carousels, covers, scripts and content calendars. Codex asks only what changes the result, says what a run will use and waits for your yes before it starts, edits in Video Studio, and leaves every post in your review queue until you approve it.",
+    "developerName": "Creatorline",
+    "category": "Creativity",
+    "capabilities": ["Interactive", "Read", "Write"],
+    "websiteURL": "https://creatorline.io",
+    "privacyPolicyURL": "https://creatorline.io/privacy",
+    "termsOfServiceURL": "https://creatorline.io/terms",
+    "defaultPrompt": [
+      "Show me my brands and avatars, and what I can make here.",
+      "Make a 15 second talking video of my avatar reviewing this product.",
+      "Turn my newest video into three ad variations with new hooks."
+    ],
+    "brandColor": "#7777F2"
+  },
+  "extensions": {
+    "com.openai": {
+      "onboardingSkill": "./skills/creatorline/SKILL.md"
+    }
+  }
+}

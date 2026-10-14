@@ -1,0 +1,13 @@
+interface:
+  display_name: "Ad Variations"
+  short_description: "Many versions of one winning video"
+  default_prompt: "Use $creatorline-ad-variations to make versions of my best video with new hooks, our other products or other backgrounds."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: creatorline
+      description: "Creatorline MCP server"
+      transport: streamable_http
+      url: https://api.creatorline.io/mcp

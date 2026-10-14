@@ -1,0 +1,42 @@
+{
+  "name": "Scene swap and re-voice",
+  "description": "A real source clip (imported first) with the avatar swapped in by the Character Swap step (stage scene-video), then re-voiced and captioned. No prompt needed on the swap; the source drives everything. Set duration to the source's length (at most 30). Before saving, replace the change-voice step's voice_id with the avatar's voice_id from get_avatar.",
+  "brand_id": "<brand id from list_brands>",
+  "nodes": [
+    {
+      "id": "swap",
+      "kind": "generation",
+      "title": "Swap the avatar in",
+      "stageId": "scene-video",
+      "modelId": "character-swap-transfer",
+      "slotBindings": { "source_video": "<asset id of the imported source clip>" },
+      "params": { "resolution": "720p", "duration": 15 }
+    },
+    {
+      "id": "voice",
+      "kind": "generation",
+      "title": "Avatar voice",
+      "stageId": "change-voice",
+      "params": { "voice_id": "<the avatar's voice_id from get_avatar>", "remove_background_noise": true }
+    },
+    {
+      "id": "captions",
+      "kind": "generation",
+      "title": "Hook and captions",
+      "stageId": "caption-burn",
+      "params": { "hook_mode": "auto", "caption_style": "hormozi" }
+    },
+    {
+      "id": "post",
+      "kind": "publish",
+      "prompt": "you were not ready for this one",
+      "publishChannels": ["TikTok", "IG"],
+      "postSettings": { "videoMadeWithAi": true }
+    }
+  ],
+  "edges": [
+    { "source": "swap", "target": "voice" },
+    { "source": "voice", "target": "captions" },
+    { "source": "captions", "target": "post" }
+  ]
+}

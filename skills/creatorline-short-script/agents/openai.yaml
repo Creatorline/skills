@@ -1,0 +1,13 @@
+interface:
+  display_name: "Short-Form Script"
+  short_description: "Hooks and scripts for short videos"
+  default_prompt: "Use $creatorline-short-script to write hooks and a 30-second script for my product, ready to film with my avatar."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: creatorline
+      description: "Creatorline MCP server"
+      transport: streamable_http
+      url: https://api.creatorline.io/mcp

@@ -1,0 +1,13 @@
+interface:
+  display_name: "Content Calendar"
+  short_description: "A week of posts, planned and made"
+  default_prompt: "Use $creatorline-content-calendar to work out next week's posts for my brand and make them."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: creatorline
+      description: "Creatorline MCP server"
+      transport: streamable_http
+      url: https://api.creatorline.io/mcp

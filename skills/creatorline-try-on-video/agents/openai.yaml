@@ -1,0 +1,13 @@
+interface:
+  display_name: "Try-On Video"
+  short_description: "Try-ons, fit checks and OOTD videos"
+  default_prompt: "Use $creatorline-try-on-video to make a fit check video of my avatar wearing this outfit."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: creatorline
+      description: "Creatorline MCP server"
+      transport: streamable_http
+      url: https://api.creatorline.io/mcp

@@ -1,0 +1,13 @@
+interface:
+  display_name: "AI Host Series"
+  short_description: "Episodes with your avatar as host"
+  default_prompt: "Use $creatorline-ai-host to make a 60-second episode with my avatar as the host."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: creatorline
+      description: "Creatorline MCP server"
+      transport: streamable_http
+      url: https://api.creatorline.io/mcp

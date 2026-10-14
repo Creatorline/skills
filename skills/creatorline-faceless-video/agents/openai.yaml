@@ -1,0 +1,13 @@
+interface:
+  display_name: "Faceless Video"
+  short_description: "Narrated videos with no face on camera"
+  default_prompt: "Use $creatorline-faceless-video to make a narrated faceless video about this topic."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: creatorline
+      description: "Creatorline MCP server"
+      transport: streamable_http
+      url: https://api.creatorline.io/mcp

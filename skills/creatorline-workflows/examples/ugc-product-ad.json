@@ -1,0 +1,56 @@
+{
+  "name": "UGC product ad",
+  "description": "One reference-to-video take of the avatar holding the product, captioned and sent to review. The prompt is final, so Enhance is off. Renders with the brand's default avatar; pass avatar_id only when the person names another one.",
+  "brand_id": "<brand id from list_brands>",
+  "nodes": [
+    {
+      "id": "topic",
+      "kind": "text",
+      "name": "topic",
+      "values": ["the new matcha latte", "the cold brew can"],
+      "activeIndex": 0
+    },
+    {
+      "id": "product",
+      "kind": "image",
+      "title": "Product shot",
+      "values": ["<asset id of the product photo>"],
+      "activeIndex": 0
+    },
+    {
+      "id": "take",
+      "kind": "generation",
+      "title": "Talking take",
+      "stageId": "video-ref",
+      "modelId": "bytedance-seedance-2-5-reference-to-video",
+      "prompt": "@Image1 sits at a kitchen table, phone propped on the counter, natural window light. She picks up @Image2, turns it to the camera and says: \"okay so I finally tried @topic and I get the hype\". One continuous handheld shot, no cuts, casual phone camera look.",
+      "params": {
+        "enhance": false,
+        "duration": 10,
+        "resolution": "720p",
+        "aspect_ratio": "9:16",
+        "generate_audio": true
+      }
+    },
+    {
+      "id": "captions",
+      "kind": "generation",
+      "title": "Captions",
+      "stageId": "caption-burn",
+      "params": { "hook_mode": "off", "caption_style": "tiktok" }
+    },
+    {
+      "id": "post",
+      "kind": "publish",
+      "prompt": "finally tried @topic ☕️ #ugc #morningroutine",
+      "publishFormat": "video",
+      "publishChannels": ["TikTok"],
+      "postSettings": { "videoMadeWithAi": true }
+    }
+  ],
+  "edges": [
+    { "source": "product", "target": "take", "targetHandle": "objects" },
+    { "source": "take", "target": "captions" },
+    { "source": "captions", "target": "post" }
+  ]
+}

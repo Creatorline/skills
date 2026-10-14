@@ -1,0 +1,13 @@
+interface:
+  display_name: "Character Swap"
+  short_description: "Swap the people in a real video"
+  default_prompt: "Use $creatorline-character-swap to put my avatar in place of the person in this video."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: creatorline
+      description: "Creatorline MCP server"
+      transport: streamable_http
+      url: https://api.creatorline.io/mcp
