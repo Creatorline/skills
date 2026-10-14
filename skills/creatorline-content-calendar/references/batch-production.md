@@ -113,7 +113,7 @@ the first three") is a new quote and a new yes.
 
 | The live price | Do |
 |---|---|
-| At or under the quote | The same call again with `confirm: true`, at once. The week's yes covers it. |
+| At or under the quote | The person's yes covers this row at its quoted price: the same call again with `confirm: true`. |
 | Above the quote | Hold this row only. "Friday's product video comes to <N>, <d> more than quoted, because the clip runs longer. Go ahead?" The other rows go on. |
 | `sufficient: false` | Stop starting rows. Say so; what is made stays made and gets filed. |
 
@@ -175,7 +175,7 @@ Every failed run is refunded automatically.
 | What happened | Do this |
 |---|---|
 | A run failed | Mark the row "Failed, refunded" and keep going with the others. At the end, ask once for all failed rows: retry each (a new quote) or drop it. Say what you would change. |
-| A refusal (a real face in a reshoot source, a blocked subject) | The format skill's fix, then a new quote for that row. |
+| A refusal (a real face in a reshoot source, a blocked subject) | Say what was refused. Offer another source or another format for that day, as a new quote. |
 | A take is fine but weak | Its verdict: keep it, fix it in Video Studio (the edits are free, the export is quoted), or one more take as a new quote. |
 | The first of a format shows a flaw the next would repeat | Hold the not-started rows of that format and ask before more spend. Change one thing, then retry. |
 | The balance ran out mid-week | Stop starting rows. File what is made. Quote the rest again when there is room. |

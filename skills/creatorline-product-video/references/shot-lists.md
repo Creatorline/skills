@@ -13,8 +13,8 @@ together as the place; the middle shots keep one or two at the edge of the frame
 goes wider with the result.
 
 Opening line ideas are patterns. Product facts come from the label, the page or the person; the
-persona's own routine and results are welcome too (voiceover.md, section 5). The words are
-shown to the person with the price.
+avatar's opinions and reactions are its own (voiceover.md, section 5). The words are shown to
+the person with the price.
 
 ## Contents
 
@@ -104,10 +104,10 @@ shown to the person with the price.
   2. Use, top-down: the lid off, one scoop into the shaker.
   3. Second use, propped medium: the shaker shaken in both hands, then set down.
   4. Result, close: poured into a glass, the texture.
-- **Opening line idea:** a number the label prints (per serving), said plainly, or the persona's
-  routine with it ("after every workout since March").
+- **Opening line idea:** a number the label prints (per serving), said plainly, or the moment
+  it is for ("the after-workout scoop").
 - **Goes wrong:** a promise that it cures, treats or prevents a disease (truth-and-safety.md,
-  section 3). The persona's routine and what changed for it are fine.
+  section 3).
 
 ## 6. Drinks
 
@@ -144,8 +144,7 @@ shown to the person with the price.
   2. Use, propped medium: fruit in, lid secured, the button pressed, the contents spinning.
   3. Second use, medium: poured into a glass.
   4. Result, close: the glass, the colour of the fruit that went in.
-- **Opening line idea:** the step it saves, as the label or the page states it, or in the
-  persona's own routine.
+- **Opening line idea:** the step it saves, as the label or the page states it.
 - **Goes wrong:** the result must be what went in: the fruit that went in is the colour that
   comes out.
 
@@ -287,7 +286,7 @@ shown to the person with the price.
   2. Use, medium: it opens, a page turns, a pen clicks.
   3. Second use, close: one line drawn, or one thing filed.
   4. Result, wide: the tidy desk.
-- **Opening line idea:** the habit it builds, as the page states it or as the persona lives it.
+- **Opening line idea:** the habit it builds, as the page states it.
 - **Goes wrong:** handwriting comes out garbled. Show the stroke, never readable words.
 
 ## 20. Clothing, shoes and jewelry

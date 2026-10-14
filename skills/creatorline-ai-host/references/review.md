@@ -51,9 +51,6 @@ the full failure table. SKILL.md carries the short list.
   nothing reordered, no second copy anywhere.
 - A script the person gave stays word for word through the cut into parts, the briefs and the
   edit. Only a line that breaks the house rules changes, and you say which and why.
-- The host's first person is its own: tests, purchases, results, failures, confessions,
-  credentials, history and an audience are welcome (the persona, house-rules.md, section 7).
-  Only the fixed lines there limit them.
 - A fact about the world you could not back (a number, a headline, a date) is out of the
   host's mouth and off the screen, and listed for the person in the plan.
 
@@ -173,7 +170,7 @@ Seven questions, answered with a reason each:
   yes still covers that part. Say so in one line. A second failure needs the person.
 - A part that finished with a real flaw (a different face, missing or garbled words, the room
   changed) is a replacement: say what is wrong and what you will change, quote it, and wait for
-  a yes (unless they told you to fix such things without asking). Keep the first take. Put the
+  a yes. Keep the first take. Put the
   new one in its place (`replace_clip`), then hear the captions again and re-time what sat
   over it.
 - Never re-film for a caption that misheard a word, or because an answer came back without a
@@ -228,6 +225,6 @@ Seven questions, answered with a reason each:
 | The episode grew longer than planned | Extra material added without a slot | Take it out, or ask for the extra seconds |
 | Cutaway sound fights the host | A layer with sound on | `update_layer` `sound: false` |
 | The episode runs over 180 s | Video Studio's limit | Cut a part, or make two episodes |
-| A part refused for a real face | The default model takes AI faces only | video-briefs.md, section 12 |
+| A part with a real person's face | The default model is for AI faces | With that person's consent, the real-face route: video-briefs.md, section 12 |
 
 A failed run is refunded automatically (house-rules.md, section 5).

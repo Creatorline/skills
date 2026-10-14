@@ -123,8 +123,8 @@ section 2. A cover and a thumbnail for the same video: one concept, two calls, p
 5. **Concept.** Brainstorm at least five across the sixteen frameworks
    ([concepts](references/concepts.md)) and keep the strongest information gap with one focal
    subject. It must read in under a second at about 120 px wide. Use the person's own words and
-   concept as given, unless the video does not keep their promise or they cross a fixed line
-   (concepts, section 9): then say so.
+   concept as given, unless the video does not keep their promise or concepts, section 9 says
+   otherwise: then say so.
 6. **Briefs.** One brief per variant with [cover briefs](references/cover-briefs.md): the eleven
    blocks in order, the identity lock in full, the frame's Keep clear line. Variants of one
    concept differ only in the expression line, the take line, or both. Run the check before you
@@ -226,9 +226,7 @@ The short version. The long one is in [concepts](references/concepts.md),
 - **Words, when there are words**: 2 to 4, capitals, a thick outline outside the letters, never
   on a face.
 - **True to the video.** Turn up the feeling, never promise what the video does not deliver.
-  The avatar is a living persona: its own result or time with the product is welcome when the
-  video tells it. A review, comment or exact number is typed, not drawn; no made-up news
-  strip, no other brand.
+  A review, comment or exact number is typed, not drawn; no made-up news strip, no other brand.
 - **Consistent.** A series keeps one layout. Only the words, the face and the episode number
   change.
 

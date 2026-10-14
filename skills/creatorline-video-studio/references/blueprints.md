@@ -109,8 +109,8 @@ reads, and it is honest about what it is: each step appears on a cut.
 ]
 ```
 
-The number can be a product fact, the brand's figure or the persona's own result (house rules,
-section 7). When it points at something to see, the video shows it.
+The number can be a product fact or the brand's figure. When it points at something to see, the
+video shows it.
 
 **A phrase build** ("Stop" then "Stop washing" then "Stop washing your face"): each step is the
 whole phrase so far, `align: "left"` so the first word stays put while the line grows (a

@@ -123,7 +123,7 @@ intake.
 
 | The person wants | Skill |
 |---|---|
-| The avatar talking to camera: a product review, testimonial or demo, a hot take, a story, tips, a GRWM chat, a reaction, a street-interview bit (5 to 30 s, one take) | `creatorline-talking-video` |
+| The avatar talking to camera: a product review or demo, a hot take, a story, tips, a GRWM chat, a reaction, a street-interview bit (5 to 30 s, one take) | `creatorline-talking-video` |
 | The product as the hero with a voice over it; a person only as hands or a point of view | `creatorline-product-video` |
 | An unboxing, a haul or a PR package opened, with the avatar's reaction | `creatorline-unboxing-video` |
 | An outfit, shoes, a bag or jewelry on the avatar: OOTD, fit check, try-on haul | `creatorline-try-on-video` |
@@ -288,9 +288,8 @@ idea and the facts it cannot invent; it does the filmmaking ([references/video-b
 - **Scene clip:** the subject, the place and light, one action, one camera move, the sound.
 - **Voice line:** the words exactly as spoken. Tags such as `[excited]`, `[whispers]` and
   `[laughs]` set the feeling.
-- Describe what is there, never "no X". The avatar is a living persona: its own results, its
-  history with a product and its credentials are welcome; it never claims to be a real, named
-  person (house rules, section 7).
+- Describe what is there, never "no X". The avatar speaks in its own voice; it never claims
+  to be a real, named person (house rules, section 7).
 
 ## Check before you show it
 

@@ -18,7 +18,7 @@ be done from a chat at all.
 
 | The person says | Skill |
 |---|---|
-| "Mia reviews my serum", "a testimonial: Mia has used my serum for a month", "a hot take about cold plunges", "storytime about my first client", "3 tips for new runners", "GRWM while talking about my day" | `creatorline-talking-video` |
+| "Mia reviews my serum", "a hot take about cold plunges", "storytime about my first client", "3 tips for new runners", "GRWM while talking about my day" | `creatorline-talking-video` |
 | "a video of my candle with a voiceover", "hands pouring the protein shake", "product B-roll with narration" | `creatorline-product-video` |
 | "Mia unboxes the PR package", "a haul video", "first look at the new drop" | `creatorline-unboxing-video` |
 | "Mia wearing this dress", "a fit check", "OOTD with these sneakers" | `creatorline-try-on-video` |
@@ -55,7 +55,7 @@ When one comes up inside a one-off this skill is already making, the fast path m
 | "a photo of Mia holding my serum" | `creatorline-photos` | their product is in it: it needs the product intake |
 | "8 photos of Mia at the beach for a carousel" | `creatorline-photos` | a set that has to work together, then a carousel post |
 | "a clip of Mia walking her dog" | fast path, `ugc-video` | a moment, no format |
-| "a clip of Mia reviewing my dog shampoo" | `creatorline-talking-video` | a review or a testimonial is a format with its own beats |
+| "a clip of Mia reviewing my dog shampoo" | `creatorline-talking-video` | a review is a format with its own beats |
 | "animate this photo" | fast path, `photo-to-video` | one photo, one continuous take |
 | "turn these 5 photos into a reel with music" | `creatorline-video-studio` | several pieces assembled, then exported |
 | "voiceover for my video" | `creatorline-voiceover` | the voice has to fit the video's timing |

@@ -50,7 +50,8 @@ The cover's price comes from `create_generation` without `confirm`. The export's
 `export_video` without `confirm` on the project the cover will go into: every export of a video
 costs the same, so the quote holds after the cover is added. A clip that is not in a project
 yet: make the project first with `create_video` and the clip alone (free), then quote. One yes
-for the total; then make the cover, get the pick, and continue below without asking again.
+for the total covers every step below at its quoted price; then make the cover, get the pick,
+and continue.
 
 1. **The cover first.** Make it, check it, get the person's pick. Use the `9:16` version: it
    fills the video's 1080 x 1920 frame exactly, and a wide cover would lose its sides.

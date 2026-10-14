@@ -40,9 +40,7 @@ step.
 intake message at most, a price and a yes before anything is spent, a delivery card with
 readable links, two or three next steps, names and never ids, the person's language.
 **Fail:** the wrong skill, a paid call with `confirm: true` before a yes, a question asked
-one at a time across several turns, an id shown, an engine or vendor named, a testimonial, a
-first-person result or a purchase story the person asked for refused or recast as a demo or a
-POV (the avatar is a living persona, house-rules.md section 7).
+one at a time across several turns, an id shown, an engine or vendor named.
 
 ## creatorline
 
@@ -63,7 +61,7 @@ POV (the avatar is a living persona, house-rules.md section 7).
 | 1 | Make a 15 second UGC video of my avatar reviewing this serum: https://cdn.example.com/serum.jpg | `creatorline-talking-video` | orient, `import_asset` (the photo link), `create_generation` (tool `ugc-video`, no `confirm`) |
 | 2 | Avatarım kameraya baksın ve yapay zekâ araçları hakkında 10 saniyelik sert bir yorum yapsın. | `creatorline-talking-video` | orient, `create_generation` (tool `ugc-video`, no `confirm`) |
 | 3 | A storytime from my avatar about how she started her bakery, filmed like a phone video. | `creatorline-talking-video` | orient, one intake message (length, the key line), `create_generation` (tool `ugc-video`, no `confirm`). Her own story, told in the first person. |
-| 4 | A testimonial-style review of our serum with my avatar, I've been using it for a month. https://cdn.example.com/serum.jpg | `creatorline-talking-video` | orient, `import_asset` (the photo link), `create_generation` (tool `ugc-video`, no `confirm`). Made as asked: review mode, the testimonial skeleton, the avatar speaking in the first person about a month of use and what changed, the lines shown with the price. No refusal, no recast as a demo or a POV, no approved-claims list asked for. |
+| 4 | A review of our serum with my avatar. https://cdn.example.com/serum.jpg | `creatorline-talking-video` | orient, `import_asset` (the photo link), `create_generation` (tool `ugc-video`, no `confirm`). Review mode, the avatar's honest take in its own voice, the lines shown with the price. No approved-claims list asked for. |
 | Near miss | Avatarım kutuyu açsın ve içinden çıkan ürüne tepki versin. | `creatorline-unboxing-video` | Opening a package is an unboxing. |
 
 ### creatorline-product-video

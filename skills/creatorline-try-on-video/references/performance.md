@@ -83,14 +83,12 @@ breath out).
 
 ## 7. The lines
 
-- **The first section** opens on the format's proven hook, the purchase or the wait ("I
-  finally ordered it", "my order came", "I've waited months for this one"), or on a reason this
-  piece matters now: an occasion ("This is the dress for every summer wedding"), a gap it fills
-  ("Every outfit needs one pair like this"), what the frame shows. The persona has a past, so
-  its story is welcome (house-rules.md, section 7).
+- **The first section** opens on the format's proven hook, a reason this piece matters now: an
+  occasion ("This is the dress for every summer wedding"), a gap it fills ("Every outfit needs
+  one pair like this"), what the frame shows.
 - **Later sections** continue mid-thought and say more specific things in the same number of
-  words. A seated verdict can carry time and fit with it ("I've worn it three times this week",
-  "I'm a medium and it fits true to size").
+  words. A seated verdict can carry the fit the frame shows ("Sits right at the hip") or an
+  opinion ("the one I keep reaching for").
 - **Word bands:** 12-20 words up to 10 s, 20-28 for 11-12 s, 28-35 for 13-15 s, about 2 words a
   second. A shot with a move or a twirl holds fewer words; the detail shots take the most
   (try-on-arc.md, section 8).
@@ -98,8 +96,7 @@ breath out).
   (fabric, price, sizes offered) come from the person, the label or the page; an approved-claims
   list, when the person gives one, is kept word for word (product-intake.md, section 4).
 - **Every claim carries one concrete:** a place on the body ("cropped right at the waist"), a
-  time or occasion ("for a summer wedding"), or the persona's own size and time with it. Never
-  compared with another brand by name.
+  time or occasion ("for a summer wedding"). Never compared with another brand by name.
 
 ## 8. Words never used
 

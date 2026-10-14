@@ -328,8 +328,8 @@ rewrites lines when the product changes.
    - L rows: change only the line under test; keep the rest word for word.
    - T rows: translate for speech, not word for word.
    - Spoken, it must be no longer than the original: about 2.5 words per second
-     (video-briefs.md, speech budget). A new line may tell the persona's own story; only the
-     fixed lines limit it (house-rules.md, section 7).
+     (video-briefs.md, speech budget). A new line is in the avatar's own voice and follows
+     Safety (house-rules.md, section 7).
 3. The speech:
 
 ```

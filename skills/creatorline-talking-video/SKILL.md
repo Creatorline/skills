@@ -1,6 +1,6 @@
 ---
 name: creatorline-talking-video
-description: "Makes a 5 to 30 second video of the brand's AI avatar talking to camera in one take: a story, review or testimonial with a product, hot take, storytime, tips, GRWM chat or reaction. Use for 'my avatar talks about', 'UGC video of my product', 'talking head'. Not for unboxings or try-ons: use creatorline-unboxing-video or creatorline-try-on-video. Over 30 s: creatorline-ai-host."
+description: "Makes a 5 to 30 second video of the brand's AI avatar talking to camera in one take: a story or review with a product, hot take, storytime, tips, GRWM chat or reaction. Use for 'my avatar talks about', 'UGC video of my product', 'talking head'. Not for unboxings or try-ons: use creatorline-unboxing-video or creatorline-try-on-video. Over 30 s: creatorline-ai-host."
 license: MIT
 metadata:
   author: creatorline
@@ -25,8 +25,6 @@ spending, waiting, the result card, failures, safety) and ask every question the
 The avatar is on camera and speaking, for 5 to 30 seconds, in one take:
 
 - a video of the avatar with the person's product, with or without the word "review";
-- a testimonial in the avatar's own words: how long it has used the product, what changed, a
-  purchase story;
 - reviewing or demoing a product in one take, with no labeled steps;
 - a hot take, an opinion, advice; tips ("3 mistakes everyone makes with...");
 - storytime, a POV story;
@@ -96,8 +94,8 @@ one.
 
    Any concrete detail they give beats every default here; only the gate beats them. Pick the
    format ([formats](references/formats.md)) and, with a product, the mode: review mode for a
-   review, a testimonial or a demo, story mode for a story; no hint, the one that suits the
-   product ([story mode](references/story-mode.md), section 1).
+   review or a demo, story mode for a story; no hint, the one that suits the product
+   ([story mode](references/story-mode.md), section 1).
 5. **Intake.** One message: the hard gaps only, each with numbered options and a recommended
    one, then one line of defaults that names the mode and shape for veto.
 
@@ -226,7 +224,7 @@ The short version. The long one: [story mode](references/story-mode.md),
 
 - **Two modes with a product**: story mode (one scenario, stakes in the hook, one "but then",
   the product entering at about 40 to 60 % of the runtime; delete the product and the story
-  still stands) and review mode (a testimonial, a purchase story, results over time, a demo).
+  still stands) and review mode (the avatar's own take, a demo).
   Read it from the ask; no hint, pick the one that suits the product.
 - **The hook lands in 0.4 seconds**: shot 1 opens in motion, the first word (or a sound) at
   once, one hook pattern per video, none of the banned openers.
@@ -240,8 +238,7 @@ The short version. The long one: [story mode](references/story-mode.md),
   fully put away.
 - **Phone-shot in neutral daylight.** `Cinematic` only when the person asks for a polished film.
 - **The persona** ([the persona and the gate](references/truth-and-safety.md), section 4): the
-  avatar is a creator with a past. Its history with the product, results, a before and after
-  and a testimonial in its own words are welcome; write them specific.
+  avatar speaks in its own voice, with its tone and opinions; write it specific.
 - **Our edge**: the same avatar, face and voice in every video, so a series builds a
   recognizable creator ([series](references/series.md)).
 
@@ -327,8 +324,7 @@ first: `create_video` with `brand_id`, a `title` and one `add_clip` operation wi
 
 - [Formats](references/formats.md): each talking format with its `ugc_style`, length, beats,
   pitfalls and an example brief with its lines.
-- [Story mode](references/story-mode.md): story mode and review mode (testimonials included),
-  the story shapes, the beats by length, where the product enters, quiet, silent and ASMR clips.
+- [Story mode](references/story-mode.md): story mode and review mode, the story shapes, the beats by length, where the product enters, quiet, silent and ASMR clips.
 - [Monologue craft](references/monologue-craft.md): hook patterns, lines, word bands, banned
   openers and words, registers and performance, accents.
 - [Staging](references/staging.md): phone position, hands, the product in frame, cuts,

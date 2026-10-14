@@ -35,7 +35,7 @@ read with the sound off, in about a second, over a picture that is moving.
 | POV | Puts the viewer in the scene | "POV: the carry-on actually fits" | Lifestyle, try-on, unboxing |
 | Question | A question the viewer wants answered | "is this serum worth it?" | Reviews, comparisons |
 | Shown result | Points at what the video demonstrates | "watch the stain lift in one wipe" | Demos, only when it is on camera |
-| Personal result | The presenter's own result, with the time it took | "3 weeks in and my skin calmed down" | Reviews, talking videos, storytime |
+| Result | What the product visibly does, or the time a task takes | "eleven minutes, start to finish" | Reviews, talking videos, tutorials |
 
 Front-load the word that carries it ("3", "stop", "POV", the product's category). The rest can
 be small.
@@ -81,16 +81,14 @@ be small.
 
 ## 6. Words on screen and the persona
 
-On-screen words follow the same rules as speech (house-rules section 7). The avatar is a living
-persona: its own result, how long it has used the product, its purchase story, its credentials
-and its verdict are welcome on screen, as the video tells them.
+On-screen words follow the same rules as speech (house-rules section 7). The avatar speaks in its
+own voice on screen too: its verdict, its opinion and its reactions, as the video tells them.
 
 | On screen | How |
 |---|---|
-| "it cleared my skin", "3 weeks in", "I caved and bought two" | Welcome: the persona's own story |
-| "as a nurse", "dermatologist approved" | Welcome: the persona's credential, the brand's claim |
+| "the one I keep reaching for", "watch what it does in ten seconds" | The avatar's own verdict or a demonstration |
 | "10,000 sold", "rated 4.9" | The brand's figure, exactly as it gave it |
-| "cures acne", "guaranteed income" | Never: the legal line for health and money. "I lost 5 kg" as the persona's own story is fine |
+| "cures acne", "guaranteed income" | Never: the legal line for health and money |
 | Another brand's name or product | Only the brand's own |
 | "comment YES for the link" as the payoff | A call to action at the end, from `brand_voice.call_to_action` |
 

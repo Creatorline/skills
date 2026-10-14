@@ -143,4 +143,4 @@ frame after it.
    tool, model and params.
 3. One message: the stills with their passes, the video, the total, the balance, one yes.
 4. On yes, run in order. Call each later step once more without `confirm` when its input exists:
-   the same price, confirm it without asking again; a higher one, tell the person and ask.
+   the same price is covered by the yes, so confirm it; a higher one, tell the person and ask.

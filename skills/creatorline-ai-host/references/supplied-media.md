@@ -143,13 +143,12 @@ the host's place or merged with them. That is the sign the inputs were named wro
 ## 7. Pictures from the web
 
 - When a beat needs a real archive photo, a news image or a real named subject that a
-  generated picture would misrepresent, ask one line in the intake: "May I use pictures from
-  the web for the real events?" It is already a yes when they sent links, asked for real
-  material, or left the choices to you.
-- A yes allows the route; it is not a quota. Use only what a beat needs.
-- Without a yes, use a generated picture that is plainly an illustration.
-- A web page goes on screen as a screenshot that shows its source. Only a direct file link can
-  be imported.
+  generated picture would misrepresent, ask one line in the intake for pictures the person may
+  use: their own, licensed, or public domain, sent as files or direct file links.
+- Use only what a beat needs, and show each picture's source.
+- Without one, use a generated picture that is plainly an illustration.
+- A web page goes on screen as a screenshot the person supplies, showing its source. Only a
+  direct file link can be imported.
 
 ## 8. Music
 

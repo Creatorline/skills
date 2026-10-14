@@ -171,9 +171,8 @@ Fingertips holding a thing up "to present it" render badly. Hold it the way it i
 - The state moves across the shots: at rest, working, working differently, after.
 - Use it for what it is for, the way the label or the page says.
 - Never a change that needs time (skin, hair, weight, a plant growing) inside the clip: one take
-  cannot show weeks passing. The voice may tell it as the persona's own result
-  (truth-and-safety.md, section 4); a before and after on screen is two takes cut together in
-  Video Studio.
+  cannot show weeks passing. A before and after on screen is two takes cut together in Video
+  Studio (truth-and-safety.md, section 4).
 - No wording that makes an action repeat: "sprays again", "back and forth", "presses
   repeatedly".
 - When unsure how it works: hold it, show the label, set it down. Showing less beats showing it

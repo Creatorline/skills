@@ -1,9 +1,8 @@
 # Story mode and review mode
 
 How a talking video with a product is built. Two modes, both first-class: story mode (the
-product as one step of a scenario) and review mode (the avatar's own take: a testimonial, a
-hands-on review, a demo). The lines themselves are in monologue-craft.md, the staging in
-staging.md.
+product as one step of a scenario) and review mode (the avatar's own take: a hands-on review,
+a demo). The lines themselves are in monologue-craft.md, the staging in staging.md.
 
 ## Contents
 
@@ -20,8 +19,8 @@ staging.md.
 
 | The person asks for | Mode |
 |---|---|
-| A video of the avatar with the product, "UGC", "a TikTok about my serum", no format named | Your pick for this product: review mode as a testimonial when the product works over days (skincare, supplements, sleep, an everyday tool); story mode when it shines in one moment |
-| "Review", "testimonial", "demo", "show how it works", "your take on it", "I've been using it for a month" | Review mode (section 4) |
+| A video of the avatar with the product, "UGC", "a TikTok about my serum", no format named | Your pick for this product: review mode for an everyday product (skincare, supplements, sleep, an everyday tool); story mode when it shines in one moment |
+| "Review", "demo", "show how it works", "your take on it" | Review mode (section 4) |
 | A named format (hot take, GRWM, storytime, tips) | That format (formats.md); the product moment follows section 7 |
 | No product at all | Creator-led: the format's beats; never ask for a product |
 
@@ -35,17 +34,15 @@ is late, the serum is the one step she keeps"). Never ask which shape they want.
   first second.
 - **Exactly one "but then"**: the turn that opens the middle. Two turns crowd a short clip.
 - **The person first, the product second.** It comes in as a supporting actor at about 40 to
-  60 % of the runtime and does its visible job right then, or the avatar tells what it has done
-  for it.
+  60 % of the runtime and does its visible job right then.
 - **The ending resolves the scenario** with a verdict on what the product just did. The call
   to action lives in the caption: our server's writer turns a spoken one into a verdict anyway.
 - **The deletion test**: take the product out and the story must still stand. If it falls
   apart, it is an ad pretending to be a story: pick another shape.
 - **Three shapes, then one.** Sketch at least three shapes from section 3 for this product and
   brand, pick the one with the sharpest stakes, and state it in the plan.
-- **The persona has a past** (truth-and-safety.md, section 4): the scenario may be its own
-  history ("the week before my sister's wedding, my skin broke out"), and the product's job may
-  be a result over time it tells. What a line promises the viewer to SEE is shown.
+- **The persona** speaks in its own voice (truth-and-safety.md, section 4). What a line
+  promises the viewer to SEE is shown.
 
 ## 3. Story shapes
 
@@ -69,8 +66,7 @@ Each shape with the template it runs on. Name the shape in the brief's Idea line
 | Green-screen commentary | The avatar comments on a picture the person supplies, placed beside or behind her afterwards in Video Studio | `Talking head` |
 | Feature checklist | Features gone through one at a time, a nod for each, never counted on fingers | `Talking head` |
 | Host question | The avatar asks the viewer one question and answers it | `Talking head` |
-| Baseline to demo | The starting state, then the demonstration on camera; a result that needs time is told, or cut from two takes in Video Studio | `Before & after` |
-| Personal turnaround | The avatar's own before, the moment it caved and tried the product, what changed since | `Storytime` |
+| Baseline to demo | The starting state, then the demonstration on camera; a result that needs time is cut from two takes in Video Studio | `Before & after` |
 | Silent flex | No words: looks, gestures and the product's own sounds (section 5) | `Auto` |
 | ASMR | Whispered, close, built on sounds (section 5) | `Auto` |
 
@@ -81,24 +77,21 @@ Each shape with the template it runs on. Name the shape in the brief's Idea line
 ## 4. Review mode
 
 The avatar's own take, in its own words. Pick ONE compact skeleton. Two to four spoken lines in
-all; the first line carries the most specific thing: a result, a duration, a detail the camera
-can see. When the person gave an approved-claims list, keep to it.
+all; the first line carries the most specific thing: what the product visibly does, a detail
+the camera can see. When the person gave an approved-claims list, keep to it.
 
 | Skeleton | The beats |
 |---|---|
-| Testimonial | The hook (the result, or the doubt it had); the problem; how it found the product or caved; how long and what changed; a verdict |
-| Purchase story | "I caved" or "I waited months for this"; why; what it is like now |
-| Results over time | Day one against a month in, told; the product in hand now |
+| Review | The hook (its take, or a doubt); what it is; the product in use on camera; a verdict |
 | Problem, agitate, solve | The problem in one line; why it bites; the product doing its visible fix |
 | Before, after, bridge | The before state, shown; the after, shown on camera; how it got there |
 | Hook, story, offer | A hook; a tiny scene; the product (an offer only when the person supplied one, and it goes in the caption) |
 | Us against them | The product against a lazy, overpriced default way of doing it, never a named brand |
 | "Watch this" | About 5 seconds: "watch this" and the demonstration, nothing else |
 
-Before, after, bridge: a before the avatar tells needs nothing more; a before the viewer SEES
-is a change made on camera (a look, a surface, a setup) or two takes cut together in Video
-Studio, since one take cannot show weeks passing. The template is `Product ad` (`Talking head`
-for a testimonial), the product in `objects`.
+Before, after, bridge: a before the viewer SEES is a change made on camera (a look, a surface,
+a setup) or two takes cut together in Video Studio, since one take cannot show weeks passing.
+The template is `Product ad`, the product in `objects`.
 
 ## 5. Quiet, silent and ASMR clips
 

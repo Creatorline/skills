@@ -93,17 +93,17 @@ shot that succeeded is quoted and asked for (house rules, section 2).
 
 ## 6. When a run fails: the retry ladder
 
-A failed or refused run is refunded, and refusals are often false alarms. For one picture or
-take that fails:
+A failed run is refunded. For one picture or take that fails:
 
 1. Attempts 2 and 3: the same call again, unchanged.
-2. Attempts 4 and 5: reword the risky words (visual-style.md, sections 8 and 9).
-3. After that: change the shot's framing or staging.
-4. About 8 attempts on one shot: stop. Tell the person which shot failed and what was tried.
+2. After that: change the shot's framing or staging.
+3. About 8 attempts on one shot: stop. Tell the person which shot failed and what was tried.
    An Animated shot then drops out (narration-and-assembly.md, section 7, step 5); a Picture
    story frame takes the frame before it for its slot.
 
-- The references stay the same on every attempt: never drop them to get a refusal through.
+- A run refused by the content check is not retried: tell the person which shot it was and
+  offer another picture for that beat.
+- The references stay the same on every attempt.
 - Never drop a whole block, leave a gap, or put a neighbour's picture in a failed shot's place.
 - The look reference failing the whole ladder stops the run: nothing is made without it.
 - Retrying a failed item of the approved video spends nothing extra: it was refunded and is

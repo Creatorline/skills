@@ -110,9 +110,8 @@ them to fewer people. The posting days should be alike (no holiday against a wee
 named with the version's name. The MP4 links are in the delivery list; the files also stay in
 the brand's library in the app (https://app.creatorline.io/library).
 
-A version can be a testimonial in the avatar's own voice: the persona's review is welcome.
-The fixed line is a real person: never credit a version to a real, named person or to a real
-brand's official account, in the post or in the ad (house rules, section 7).
+A version can be a review in the avatar's own voice, never credited to a real, named person
+or to a real brand's official account, in the post or in the ad (house rules, section 7).
 
 ## 7. Reading the results
 

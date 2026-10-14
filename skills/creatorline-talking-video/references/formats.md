@@ -9,7 +9,7 @@ the brief. Every example carries its full lines: you write them, count them agai
 
 1. [Pick the format](#1-pick-the-format)
 2. [Story mode with a product](#2-story-mode-with-a-product)
-3. [Review, testimonial or demo](#3-review-testimonial-or-demo-product-ad)
+3. [Review or demo](#3-review-or-demo-product-ad)
 4. [Hot take](#4-hot-take-talking-head)
 5. [Storytime](#5-storytime-storytime)
 6. [Tips](#6-tips-talking-head)
@@ -30,7 +30,7 @@ mark. Shots follow the length: 10 s is 3 shots, 15 s is 4, 30 s is 8 in two sect
 | The person says | Format | `ugc_style` | Recommended | Words | Voice step |
 |---|---|---|---|---|---|
 | A video with the product, "UGC", no format named | Story mode | By shape (story-mode.md) | 15 s | Action-led | Yes |
-| "review", "testimonial", "my honest take", "I've been using it for a month", "demo", "show how it works" | Review, testimonial or demo | `Product ad` (`Talking head` for a testimonial) | 15 s | Action-led (talk-led for a testimonial) | Yes |
+| "review", "my honest take", "demo", "show how it works" | Review or demo | `Product ad` | 15 s | Action-led | Yes |
 | "hot take", "opinion", "unpopular opinion", "advice", "rant" | Hot take | `Talking head` | 10 s | Talk-led | Yes |
 | "storytime", "tell the story of", "what happened when" | Storytime | `Storytime` | 15 s (30 s for a longer story) | Talk-led | With care |
 | "3 tips", "mistakes", "things I wish I knew" | Tips | `Talking head` | 15 s | Talk-led | Yes |
@@ -55,7 +55,7 @@ mark. Shots follow the length: 10 s is 3 shots, 15 s is 4, 30 s is 8 in two sect
 
 **What it is.** One scenario with stakes and one turn; the product comes in at about 40 to 60 %
 and does its job. With a product and no format named, it is one of the two picks beside a
-testimonial (story-mode.md, section 1). Shapes, beats and rules: story-mode.md.
+review (story-mode.md, section 1). Shapes, beats and rules: story-mode.md.
 
 ```
 Idea: GRWM with stakes. @Avatar1 is getting ready for a job interview in twenty minutes; the
@@ -79,13 +79,12 @@ Sound: voice and room sound only.
 28 words, action-led band for 15 s (28-35). "Okay" is fine here: it is not the clip's first
 word.
 
-## 3. Review, testimonial or demo (`Product ad`)
+## 3. Review or demo (`Product ad`)
 
 **What it is.** The avatar's own take on the product. A demo holds it to camera, shows the one
-thing it does, and gives a verdict. A testimonial tells the avatar's own story with it: how it
-found it, how long it has used it, what changed, a verdict. Pick one skeleton (story-mode.md,
-section 4); two to four spoken lines; the first carries the most specific thing (a result, a
-duration, a detail the camera sees).
+thing it does, and gives a verdict. Pick one skeleton (story-mode.md, section 4); two to four
+spoken lines; the first carries the most specific thing (what the product visibly does, a detail
+the camera sees).
 
 | Time (15 s) | Beat |
 |---|---|
@@ -95,16 +94,13 @@ duration, a detail the camera sees).
 | 11-15 s | Verdict at chest-up, the product in frame, label forward |
 
 **The brief carries** the product card (staging.md, section 10), the skeleton, the one
-demonstration or the avatar's own result, a label fact when it helps, and where it is used.
-
-A testimonial runs the same four beats as talk: the hook (the result or the doubt), the problem
-and how it found the product, how long and what changed, the verdict with the product in hand.
+demonstration, a label fact when it helps, and where it is used.
 
 **Inputs.** The product photo in `objects` (`@Object1`); a photo of the person's own space in
 `location`.
 
-**Pitfalls.** Vague praise ("it's amazing") sells nothing: "three weeks in, the redness on my
-chin is gone" is the line. A two-handed demo is a propped shot. A big printed logo can garble
+**Pitfalls.** Vague praise ("it's amazing") sells nothing: "this sinks in before my coffee's
+done" is the line. A two-handed demo is a propped shot. A big printed logo can garble
 (product-intake.md, section 5).
 
 ```
@@ -127,14 +123,15 @@ Sound: voice and room sound only.
 32 words.
 
 ```
-Idea: a testimonial. @Avatar1 has used the serum every morning for a month and tells what
-changed. Skeleton: testimonial.
-Hook: she taps her cheek on the first word, the bottle already in her other hand.
-Lines: "A month ago this whole cheek was red by noon. My sister kept leaving this on my sink, so
-I caved. Two drops every morning since. Now? I forget to check." Use these lines as written.
+Idea: a review. @Avatar1 shows the serum at her sink and gives her take on it. Skeleton:
+review.
+Hook: she lifts the bottle to the lens on the first word.
+Lines: "The one I keep reaching for. Two drops, fingertips, pressed in, not rubbed. Look, gone
+before the dropper's back in. No sticky layer, no shine on my cheeks. Easy yes." Use these
+lines as written.
 Product: Glow C Serum (@Object1), glass dropper bottle that fits in one palm, about 9 cm tall,
 the dropper screws off the top.
-Shots: arm's-length selfie at the bathroom sink, mid-tap; propped on the sink, medium, two drops
+Shots: arm's-length selfie at the bathroom sink, mid-lift; propped on the sink, medium, two drops
 onto her fingertips; selfie tight for the verdict, the bottle in hand, label forward.
 Setting: a bright modern bathroom, neutral daylight from a side window.
 Ending: a small shrug and a held look, the bottle at chest height.
@@ -142,7 +139,7 @@ Language: English.
 Sound: voice and room sound only.
 ```
 
-31 words, talk-led band for 15 s (30-45).
+30 words, action-led band for 15 s (28-35).
 
 ## 4. Hot take (`Talking head`)
 
@@ -188,8 +185,7 @@ At 30 seconds the writer builds two sections, the second starting mid-thought.
 
 **Pitfalls.** The story may be the avatar's own ("the week I...", truth-and-safety.md, section
 4), a POV ("POV: you..."), or a moment unfolding right now. Never about a real, named person or
-brand. A product may be in the story, and what it did for the avatar over time is welcome. The
-template leans on music (voice step: with care).
+brand. A product may be in the story. The template leans on music (voice step: with care).
 
 ```
 Idea: @Avatar1 tells a POV story: you show up to a job interview a day early, and it works out.
@@ -246,8 +242,7 @@ between the lines. The topic can be anything; with stakes it becomes story mode'
 **Inputs.** Products in `objects`, one per step at most.
 
 **Pitfalls.** Busy hands cost words: action-led band. One action per shot, a propped phone for
-two hands. Show the step; a result over time is told, not shown. A fit check or an outfit
-shown off is `creatorline-try-on-video`.
+two hands. Show the step. A fit check or an outfit shown off is `creatorline-try-on-video`.
 
 ```
 Idea: @Avatar1 does her morning makeup and says a short routine is all most people need. She
@@ -393,10 +388,9 @@ Sound: voice and room sound only.
 **What it is.** A visible change that lands on a cut: the before, then the after.
 
 **Changes.** A makeup look, a hairstyle, a desk setup, a room corner, a plated dish: something
-changed on camera. A skin, body or hair result over weeks is welcome too: the before as its own
-shot (or its own take, cut together in Video Studio), the after on the cut, the same face, light
-and framing on both sides so the change is the only change. An outfit change (a glow-up, a fit
-check) is `creatorline-try-on-video`.
+changed on camera. The before as its own shot (or its own take, cut together in Video Studio),
+the after on the cut, the same face, light and framing on both sides so the change is the only
+change. An outfit change (a glow-up, a fit check) is `creatorline-try-on-video`.
 
 | Time (10 s) | Beat |
 |---|---|

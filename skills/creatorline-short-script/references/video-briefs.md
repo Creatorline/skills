@@ -36,8 +36,7 @@ first version is filmed with no review. It already:
 - commits to the chosen `ugc_style` template;
 - reads a product or landing page when its URL is in the brief, and uses only facts it finds;
 - binds every attached image and clip to its role;
-- writes the avatar as a living persona (house-rules.md, section 7) and turns negatives into
-  positives.
+- writes in the avatar's own voice and turns negatives into positives.
 
 So never send lenses, rigs, lighting setups, shot timestamps, `@Image` headers or a finished
 model prompt: they fight the writer or get rewritten. The one `create_generation` tool that
@@ -210,25 +209,24 @@ The one safe negative is a body part staying still: "her left hand stays on the 
 
 ## 10. The persona in a brief
 
-The avatar is a living persona (house-rules.md, section 7). A brief may ask for its history with
-the product, a result it had, how long it has used it, a before and after, a purchase story or a
-testimonial in its own words. Give the writer the specifics; vague praise makes a vague clip.
+The avatar speaks in its own voice: its name, archetype and tone from `get_avatar`. Give the
+writer specifics; vague praise makes a vague clip.
 
 | A weak brief | A strong brief |
 |---|---|
-| "She says it's great for her skin" | "She has used it every morning for a month; the redness on her cheeks is what changed, and she says so" |
-| "A happy customer's review" | "A testimonial in her own words: she doubted it, caved after her sister kept using hers, and a month in it lives in her bag" |
-| "He lost weight with it" | "He eats one after every workout and has for six weeks; he says what changed in his evenings" |
-| "Before and after her skin" | "She says what her skin was like before; the after is her face on camera now" |
+| "She says it's great for her skin" | "She dots the gel on the back of her hand, pats it in, and says it sinks in fast and never feels sticky" |
+| "A product review" | "Her honest take: the one thing she likes most, the one small catch, and who it is for" |
+| "Show that it cleans" | "She wipes half the counter with it; the clean half stays in frame for the last two seconds" |
 
-The craft that stays:
+The craft:
 
 - **Show what you promise to SEE.** A line that points at something visible (a texture, the
-  product working, a change in the frame) needs a beat that shows it. A spoken story needs none.
+  product working, a change in the frame) needs a beat that shows it.
 - **A visible before and after** is a change made on camera (a makeup look, a stain lifted) or
   two takes cut together in Video Studio. One generated take cannot show weeks passing.
-- **Text in the frame comes out garbled.** A review, comment, DM, rating or earnings screenshot
-  goes in the edit as Video Studio text, or in from an image the person supplies.
+- **Text in the frame comes out garbled.** A comment, DM or rating card goes in the edit as
+  Video Studio text, or in from an image the person supplies.
+- **A call to action** ("comment YES") is never the spoken payoff: it goes in the caption.
 - When the person gave an approved-claims list, keep to it (product-intake.md, section 4).
 
 ## 11. Inputs and how to name them

@@ -1,4 +1,4 @@
-# The persona and the gate
+# The gate and the persona
 
 Run the gate (sections 1 and 2) before the intake, on every new request. When any item fails,
 make nothing and do not route around it: say plainly what you can make instead. Sections 3 to 5
@@ -15,12 +15,11 @@ are how the lines are written, not gate items. It all adds to house-rules.md, se
 
 ## 1. Who is on camera
 
-- The brand's avatar (a living persona, always an adult), or a real adult who is the person you
+- The brand's avatar (always an adult), or a real adult who is the person you
   are talking to or has agreed to appear. A photo of someone is not permission to make them
   talk.
 - Consent unclear: ask once. No clear yes: use the avatar.
 - Never a public figure, a celebrity, a minor, or anyone made to pass for a specific real person.
-  The avatar never claims to be a real, named person or a real brand's official account.
 - Never make anyone read younger: no "girl", "boy", "kid", "teen", "young", school uniforms or a
   child's bedroom in a brief. An ask that makes the person a minor, or leaves their adulthood
   unclear, stops here; nobody is quietly aged up to get around it.
@@ -29,53 +28,31 @@ are how the lines are written, not gate items. It all adds to house-rules.md, se
 
 ## 2. What may be promoted
 
-Decline, and say it is not something you make:
-
-- political persuasion;
-- adult sexual content;
-- gambling;
-- illegal or regulated drugs, and drug paraphernalia;
-- prescription medicine;
-- tobacco and nicotine;
-- weapons, explosives and harmful materials;
-- counterfeit or illicit goods;
-- extremist goods;
-- deceptive or high-risk financial services;
-- malware or spyware;
-- fraud;
-- covert surveillance.
-
-A neutral, educational mention of one of these is not promotion, but it is not a talking video
-for a brand either.
+Nothing on the Never promoted list (house-rules.md, section 7). A neutral, educational mention
+is not promotion, but it is not a talking video for a brand either.
 
 ## 3. Claims
 
-- **The brand is responsible for its claims.** Product facts from the label, the page and the
-  person's words are a good source, numbers included, not a limit. The persona's own experience
-  (section 4) goes beyond them.
+- **Product facts** from the label, the page and the person's words are a good source, numbers
+  included.
 - **An approved-claims list is an option.** When the person gives one, each claim is said
   exactly as written and nothing beyond it is claimed about the product. Never ask for one as a
   condition.
 - **Words to avoid** the person names are a hard rule, like the brand's don'ts.
-- **The legal line.** Health, supplements, skincare actives, finance: the persona's routine and
-  what changed for it are fine; a promise that the product cures, treats or prevents a disease,
-  or guarantees income or a return, is not.
+- **Health and money.** No promise that the product cures, treats or prevents a disease, or
+  guarantees income or a return.
 - **Exact on screen.** A price, an offer or a percentage that must read exactly goes in Video
   Studio text or the caption, never into the generated picture.
 
 ## 4. The persona
 
-- The avatar is a living persona: a creator with a life, a past and opinions. A testimonial in
-  its own words, a purchase story ("I caved after the third ad"), how long it has used the
-  product ("two months in"), a result it had, a before and after, a routine, people in its life
-  ("my sister stole mine"), credentials it holds and strong opinions are all welcome when they
-  make the clip land.
-- Write them specific: one concrete moment beats a list of benefits.
+- The avatar speaks in its own voice, with its name, tone and opinions (`get_avatar`).
+- Write it specific: one concrete moment beats a list of benefits.
 - **Show what you promise to SEE.** A line that points at something visible (a texture, the
-  product working) needs a beat that shows it. A spoken story needs none. A visible before and
-  after is a change made on camera, or two takes cut together in Video Studio.
-- **Text in the frame comes out garbled.** A review, comment, DM, rating or earnings screenshot
-  goes in the edit as text, or in from an image the person supplies.
+  product working) needs a beat that shows it. A visible before and after is a change made on
+  camera, or two takes cut together in Video Studio.
+- **Text in the frame comes out garbled.** A comment, DM or rating card goes in the edit as
+  text, or in from an image the person supplies.
 - **A real person on camera** says words they agreed to say: on the real-person path, show them
   the lines before the run.
 - A story with no product is fine as fiction, but never about a real person, company, product or
@@ -85,11 +62,8 @@ for a brand either.
 
 ## 5. Framing and disclosure
 
-- A video with a product may be framed any way the format wants: a testimonial, a hands-on
-  review, a creator's story, a demo.
-- Its post carries `made_with_ai: true`, and `#ad` in the caption when someone other than the
-  account's owner paid for it (checklists.md, section 3; `creatorline-publish`). Both are
-  defaults the person may switch off (house-rules.md, section 7).
+Its post carries `made_with_ai: true`, and `#ad` in the caption when someone other than the
+account's owner paid for it (checklists.md, section 3; `creatorline-publish`).
 
 ## 6. Small print
 

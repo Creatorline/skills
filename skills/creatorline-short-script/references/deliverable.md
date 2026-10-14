@@ -160,11 +160,11 @@ Text is for the viewer with the sound off, and for the eye while the ear listens
   statement, short. The publish skill puts it in the post's YouTube settings.
 - **Voice:** the brand's tone, do's and don'ts. Emojis only when the brand's past captions use
   them. No em dashes.
-- **The persona:** an avatar's caption may speak in its voice and with its own history, like
-  the lines ("three weeks of desk lunches, still my snack"); "my honest review" is fine.
+- **The persona:** an avatar's caption may speak in its voice, like the lines ("the one I keep
+  reaching for at my desk"); "my honest review" is fine.
 - **Disclosure:** AI disclosure is the post's `made_with_ai` setting, which the publish skill
-  sets; it is not words in the caption. A post someone other than the account's owner paid for
-  opens its caption with `#ad`. Both are defaults the person may switch off (house rules,
+  sets to `true` on every post with AI-made media; it is not words in the caption. A post
+  someone other than the account's owner paid for opens its caption with `#ad` (house rules,
   section 7).
 
 ## 6. The retention map
@@ -282,20 +282,18 @@ before anything runs. Never start a paid run from this skill.
 
 The person: "Write a 15 second TikTok script for our Peanut Crunch bar. Label says 20 g protein,
 4 g sugar." The brand's default avatar is Mia; `brand_voice.tone` is "friendly, matter of fact";
-its call to action is "Link in bio". The engine is a verdict and the spine her own use:
-Product and tech review, in the Hands-on lane. Mia is a living persona, so her three weeks with
-the bar are her story to tell; the numbers are the label's.
+its call to action is "Link in bio". The engine is a verdict and the spine a demo on camera:
+Product and tech review, in the Demo lane. The numbers are the label's.
 
 ```
-**Peanut Crunch, three weeks in**: 15 s product review, hands-on · Mia on camera · English
-Defaults: product review (not explainer: it ends on a verdict, not a how), Mia's three weeks
-of desk lunches as her story, for TikTok and Reels, lines in your brand's voice. Say if you
-want any changed.
+**Peanut Crunch, one catch**: 15 s product review, demo · Mia on camera · English
+Defaults: product review (not explainer: it ends on a verdict, not a how), the bar shown at
+Mia's desk, for TikTok and Reels, lines in your brand's voice. Say if you want any changed.
 
 **Hooks** (the script opens with 1)
-1. Verdict-first tease (recommended, her three weeks are the proof)
-   Says: "Three weeks in, and this bar wins. One catch, though."
-   On screen: 3 weeks in. One catch.
+1. Verdict-first tease (recommended, the label is the proof)
+   Says: "For a desk lunch, this bar wins. One catch, though."
+   On screen: It wins. One catch.
    First frame: Mia holds the bar to the lens, the front of the wrapper showing.
 2. Contrarian flip
    Says: "Everyone reads the protein. Read the sugar."
@@ -307,8 +305,8 @@ want any changed.
 **Script**
 
 **0-3 s · Hook**
-Says: "Three weeks in, and this bar wins. One catch, though."
-On screen: 3 weeks in. One catch.
+Says: "For a desk lunch, this bar wins. One catch, though."
+On screen: It wins. One catch.
 We see: Mia holds the bar up, the front of the wrapper to the lens.
 
 **3-6 s · Proof 1**
@@ -352,7 +350,7 @@ What next?
 ```
 
 **Why it works:** 37 spoken words for 15 seconds, each beat inside its band with the bar in
-hand. The verdict comes first, with her three weeks behind it, and the one loop (the catch) is
-paid at 9 to 12 seconds. The numbers are the label's; the three weeks and the half-at-ten habit
-are Mia's own, the persona carrying the review. All three hooks lead into the same second beat.
+hand. The verdict comes first, with the label behind it, and the one loop (the catch) is paid
+at 9 to 12 seconds. The numbers are the label's; the half-at-ten tip is Mia's own, in her
+voice. All three hooks lead into the same second beat.
 The call to action is on screen and in the caption, not spoken.

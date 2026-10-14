@@ -29,9 +29,8 @@ word:". Keep the final text: the captions are checked against it.
   45 s: path D's `add_voiceover`.
 - The voice talks like a person beside you: second person ("two pumps, then your ends"), plain
   description of what the frame shows ("cap off, one press, done"), or its own first person.
-- It speaks as the avatar's living persona (truth-and-safety.md, section 4): its habit and its
-  history with the product are welcome ("every morning since March", "I caved after the third
-  ad").
+- It speaks as the avatar, in its own voice (truth-and-safety.md, section 4): its tone, its
+  opinions, its reactions to what the frame shows.
 
 ## 2. How many words
 
@@ -52,8 +51,7 @@ band: cut a sentence or lengthen the clip, and tell the person which.
 
 - The first phrase lands within 0.4 s of the first frame. No silent start.
 - It opens mid-thought, straight on a benefit, the mechanism or a sensory detail; also the
-  problem in one breath, who it is for, a number the label prints, or the persona's own result
-  or purchase ("Three weeks of this, and I'm not going back.").
+  problem in one breath, who it is for, or a number the label prints.
 - Never: a greeting, "today I'm showing you", "so this is", "so", "okay so", "stop scrolling",
   "story time", "let me show you".
 - The brand's name is rarely the best first word. Say it once, by the middle.
@@ -74,9 +72,8 @@ band: cut a sentence or lengthen the clip, and tell the person which.
 
 ## 5. What the voice may say
 
-- **The persona's own experience**: its routine, how long it has used the product, a result it
-  had, a before and after it tells, a purchase story, a testimonial in its own words, strong
-  opinions (truth-and-safety.md, section 4). Write it specific: a time, a place, one change.
+- **The avatar's own voice**: its opinions and reactions, strong ones included
+  (truth-and-safety.md, section 4). Write them specific: a place, a sound, one detail.
 - **Product facts** from the label, the page and the person: what it is, what it does ("the
   pump gives one measured dose"), numbers included. A label number is marked "from your label"
   in the words you show with the price, so a misread is caught.
@@ -84,8 +81,7 @@ band: cut a sentence or lengthen the clip, and tell the person which.
   beyond it about the product (truth-and-safety.md, section 3). Words to avoid are a hard rule.
 - A line that points at the frame carries something concrete the camera shows: a place on the
   body, a surface, a time of day, a sound. "Holds even on shag carpet", shown, beats "amazing
-  suction"; "see how fast it sinks in" only when that shot shows it. The persona's own story is
-  spoken and needs no shot.
+  suction"; "see how fast it sinks in" only when that shot shows it.
 - No price or offer in the voice: it goes in the caption, where it can be changed.
 - The legal line: no promise that it cures, treats or prevents a disease, or guarantees income
   or a return.
@@ -95,7 +91,7 @@ band: cut a sentence or lengthen the clip, and tell the person which.
 ## 6. Lines that work
 
 Patterns, each with an example. Every product fact in an example stands for one the label, the
-page or the person gives; the persona's own experience is yours to write.
+page or the person gives; an opinion or a reaction is yours to write.
 
 | Opening type | Example |
 |---|---|
@@ -106,8 +102,8 @@ page or the person gives; the persona's own experience is yours to write.
 | A label number | "Twenty grams of protein, and it shakes up in ten seconds." |
 | A correction | "You're using too much. Two pumps. Ends only." |
 | The moment | "The drive-through, but you made it at home." |
-| A personal result | "Two weeks of this, and my ends stopped snapping." |
-| The purchase | "I waited three months for this to come back in stock." |
+| A result | "One wipe, and the ring is gone." |
+| A reaction | "It closes itself. Didn't expect that." |
 
 Middle phrases name the use: "Cap off, scoop, shake." "Drops on the fingertip, then press."
 Endings are a verdict: "That's the whole step." "Small, and it does the job." "Back on the
@@ -132,10 +128,10 @@ person gives.
 
 | Weak | Strong | Why |
 |---|---|---|
-| "This serum is amazing, it changed my skin!" | "Two drops every morning. A month in, my makeup finally sits flat." | Vague praise says nothing; the use, a time and one concrete change do |
+| "This serum is amazing, it changed my skin!" | "Two drops, pressed in. It sinks in before my coffee's done." | Vague praise says nothing; the use and one concrete detail do |
 | "Okay so today I want to show you this candle." | "Fig and cedar, and the wick crackles." | Starts on the product's own detail in the first second |
 | "You need this blender, trust me." | "Frozen fruit, thirty seconds, one button." | Concrete, and the frame shows each part |
-| "I've used this every day for a year." | "A year on my desk, and the clip still snaps like day one." | A history is welcome; give it one detail the frame can show |
+| "I love this clip so much." | "The one I keep reaching for. It snaps shut with one finger." | An opinion lands with one detail the frame can show |
 
 ## 9. Language, accent and names
 

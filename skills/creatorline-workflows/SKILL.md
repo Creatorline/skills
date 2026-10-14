@@ -137,7 +137,7 @@ Steps for chat apps are on https://app.creatorline.io/agents.
 3. A TikTok post, waiting in your review queue (nothing goes public on its own)
 Changes each run: the topic (matcha latte, cold brew).
 One run: about <N> credits. You have <M>. Saving is free.
-Schedule: Mondays at 09:00 Istanbul time: about <N> credits a week, spent without asking.
+Schedule: Mondays at 09:00 Istanbul time: about <N> credits a week, each run on this yes.
 
 1. Save it, run it once now, keep the schedule (recommended)
 2. Save it and run it once, no schedule yet

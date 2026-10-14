@@ -240,9 +240,9 @@ fixed and noted ([checking captions](references/checking-captions.md), section 1
   when the brand's voice uses them.
 - In the brand's voice: keep to `brand_voice.dos`, never write its `donts`. Same language as
   the speech.
-- The video pays it off. On-screen words follow the persona (house-rules section 7): the
-  avatar's own result, time with the product or verdict is welcome; a brand's figure only as
-  the brand gave it; never a promise of a cure or of guaranteed income.
+- The video pays it off. On-screen words follow the same rules as speech (house-rules section
+  7): the avatar's verdict in its own voice; a brand's figure only as the brand gave it; never
+  a promise of a cure or of guaranteed income.
 - Size `l` holds about 20 characters a line, `xl` about 16, `m` about 26. Two lines at most:
   break them yourself with `\n` at the natural pause.
 - Hold it 2.5 s for up to 5 words, 3 to 3.5 s for 6 to 8. For a list or a POV video it can stay

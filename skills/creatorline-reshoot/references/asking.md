@@ -69,14 +69,13 @@ Count what the person wrote about the content itself (not the greeting, not the 
 | 1 to 5 words ("serum video for TikTok") | Autopilot | Decide format, beats and lines yourself. Ask only hard gaps; state the defaults. |
 | 1 to 3 sentences | Keep their tone | Keep their tone, direction and any phrase they wrote. Build the rest yourself: structure, beats, lines. |
 | 4 or more sentences, or a list (a script, a shot list, beats) | Follow it | Beat for beat, in their order, with their words. Adapt only an action that is unsafe or breaks the house rules, and say what you changed and why. |
-| "Just do it", "surprise me", "don't ask" | Autopilot | Decide everything. Ask nothing except the price yes, which is never skipped. |
+| "Just do it", "surprise me", "you decide" | Autopilot | Decide everything. Ask nothing except the price yes, which is never skipped. |
 
 ## 5. Who wins
 
 When sources disagree, follow this order:
 
-1. Safety and the fixed lines (house-rules.md, section 7): no real, named person or real brand's
-   official account, no minor, nothing illegal. Nothing overrides these.
+1. Safety (house-rules.md, section 7). Nothing overrides it.
 2. What the person explicitly asked for.
 3. What their reference shows (a video, a photo, a past post).
 4. The brand's voice and settings from `get_brand`.

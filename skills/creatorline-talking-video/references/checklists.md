@@ -80,10 +80,8 @@ Offered after the result, written in chat, free. Nothing of it is burned into th
 - **A comment to pin**: it answers the open loop, or adds one detail the camera showed. The
   person pins it themselves once the post is live; no tool does this.
 - **Disclosure**: `#ad` opening the caption when someone other than the account's owner paid
-  for the post; a brand's own product on its own account needs none. The person may switch it
-  off (house-rules.md, section 7).
+  for the post; a brand's own product on its own account needs none (house-rules.md, section 7).
 - **The loop note**: one line on why the ending runs back into the start.
 
-Then, on a yes, `create_post` with the caption, the hashtags and `made_with_ai: true` (a
-default the person may switch off): it lands
+Then, on a yes, `create_post` with the caption, the hashtags and `made_with_ai: true`: it lands
 in the review queue (`creatorline-publish`).

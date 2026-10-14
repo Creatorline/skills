@@ -53,8 +53,8 @@ budget per shot and how a script becomes a filming brief.
 | What it is about | Only when nothing is given AND `brand_voice.content_angles` is empty | One content angle, stated |
 | Genre | Only when two genres truly fit and the person is there to answer: ONE question about the outcome ([router](references/router.md), section 4) | Routed from the ask; named in the defaults line with the genre it beat |
 | What the genre needs | Only what is missing and changes the script ([router](references/router.md), section 5) | Inferred and stated |
-| Proof (receipts, a test, a confession) | Only when the person speaks as themselves | The avatar's persona carries its own; a narrator, named sources; the person's own number, a marked blank |
-| Product facts, when a product is in it | Only when the product is named with no facts anywhere | What the person said, `brand_voice.positioning`, a page they paste; the persona's experience with it goes beyond them |
+| Proof (their numbers, a test, a confession) | Only when the person speaks as themselves | The avatar: a demo on camera, the product's facts; a narrator, named sources; the person's own number, a marked blank |
+| Product facts, when a product is in it | Only when the product is named with no facts anywhere | What the person said, `brand_voice.positioning`, a page they paste |
 | Who says it | No | The brand's default avatar on camera. A narrator when the brand has no avatar or the person says faceless or voiceover. The person themself when they say they will film or record it |
 | Length | No | The length they name (any whole number of seconds up to 60), else the genre's default |
 | Language | No | The brand's `language` for lines, text and caption; you talk in the person's language |
@@ -206,15 +206,14 @@ at about 2.9 words a second at most.
 
 | Speaker | Says | Keep in mind |
 |---|---|---|
-| The avatar on camera | A living persona in its own voice (house rules, section 7): its history with the product, how long it has used it, a result, a before and after, a purchase story, a test, a credential it holds, a confession, a testimonial, opinions, stories told as its own or as a POV | Write it specific: one concrete moment beats a list. A line that points at something to SEE gets a beat that shows it |
+| The avatar on camera | A character in its own voice: its tone, opinions, reactions and humor, the product shown and demonstrated, stories told as its own or as a POV | Write it specific: one concrete moment beats a list. A line that points at something to SEE gets a beat that shows it |
 | A narrator | The third person: the brand's facts and story; numbers written as they are said | A fact about the real world names its source ([router](references/router.md), section 7) |
 | The person themself | Their own experience and proof, in their words | What you do not know of theirs (a number, a date) is a marked blank they fill: "[your result]" |
 
-Health, supplements, skincare actives and money get the persona like anything else (its
-routine, what changed for it); never a promise that it cures, treats or prevents a disease, or
-guarantees income or a return. A hedge ("not financial advice") gets a beat of its own. An
-approved-claims list, when the person gives one, is kept word for word, and their never-say
-words are a hard rule. A real person is named only as a matter of record in a documentary or a
+Health, supplements, skincare actives and money: never a promise that it cures, treats or
+prevents a disease, or guarantees income or a return. A hedge ("not financial advice") gets a
+beat of its own. An approved-claims list, when the person gives one, is kept word for word, and
+their never-say words are a hard rule. A real person is named only as a matter of record in a documentary or a
 true-crime script, never shown, never as an endorser. Never another brand by name, and never a
 real creator's catchphrase, greeting, sign-off or running bit: invent the brand's own.
 
@@ -248,10 +247,9 @@ so when the person asks for more than one script.
    named in the defaults line; no blend.
 2. **Facts:** no invented real-world event, statistic, quote, or real person's words or inner
    thoughts; every real-world fact sourced in your notes; anything unchecked tagged `[VERIFY]`
-   under the script. The persona's own story needs no source: it is written.
-3. **Proof:** the genre's proof is there: the persona's own (its receipts, its test, its month
-   of use), the person's own or a marked blank, a supplied artifact or footage, or named
-   sources.
+   under the script.
+3. **Proof:** the genre's proof is there: a demo on camera, the person's own or a marked blank,
+   a supplied artifact or footage, or named sources.
 4. **Loops:** one loop, paid; every deferral and promise paid; no false callback.
 5. **Runtime:** the words fit the length at the genre's pace; beat times start at 0, never
    overlap, add up exactly; every beat 3 seconds or more when the avatar films it; over 30 s on
@@ -264,7 +262,7 @@ so when the person asks for more than one script.
    changes named.
 9. **On-screen texts** short enough to read in their beat, never the line word for word; the
    hook text works muted.
-10. **The fixed lines** (house rules, section 7), and any approved list or never-say words;
+10. **Safety** (house rules, section 7), and any approved list or never-say words;
     none of the brand's `donts`; no other brand, real creator or unrecorded real person; no
     warm-up opener, no em dash, the right language.
 11. **The retention map** lists only devices in the script, with times; no grades.
@@ -275,11 +273,10 @@ so when the person asks for more than one script.
 | The person says | Change |
 |---|---|
 | "Too long", "too much talking" | Cut adjectives, then a beat; or offer the next length up |
-| "Sounds like an ad" | Swap slogans for spoken lines and one concrete moment of the persona's own, show instead of claim, add one restart or half-laugh |
+| "Sounds like an ad" | Swap slogans for spoken lines and one concrete moment, show instead of claim, add one restart or half-laugh |
 | "That is not how we talk" | Reread `brand_voice` and the avatar's `tone`; copy the rhythm of a past caption (`list_posts`); ask for one line they like |
 | "The hook is weak" | A hook of another type; a sharper number or a named thing; the strongest line moved to 0 s |
-| "Can she say she has used it for months?" / "say she tested it" | Yes: the avatar is a living persona with a past (house rules, section 7). The Hands-on lane, made specific: how long, how often, what changed |
-| "Add a review from a customer" | The avatar's own testimonial, in her words, is welcome. A real customer's review is one the brand supplies and may use, quoted as theirs, shown as an image or Video Studio text |
+| "Add a review from a customer" | A real customer's review is one the brand supplies and may use, quoted as theirs, shown as an image or Video Studio text |
 | "Make it sound like <a famous creator>" | Their markers stay theirs: take the energy and the pace, and invent the brand's own opener and sign-off |
 | "Add our sponsor" or "plug the product" in a story or an explainer | After the payoff, never inside the reveal or the test ([router](references/router.md), section 8) |
 | "Make it 30 seconds" | Recut with the genre's map at the new length; keep the hook and the payoff |

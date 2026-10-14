@@ -40,8 +40,8 @@ Most viewers decide in the first two seconds. Everything there is chosen on purp
 | Point of view | "POV: your first 5K" |
 
 - The hook line and the post's caption say the same thing in different words.
-- Never promise what the video does not deliver. On-screen words follow the persona like
-  speech: its own result or history is welcome (house rules, section 7).
+- Never promise what the video does not deliver. On-screen words follow the same rules as
+  speech (house rules, section 7).
 
 ## 2. Length and pace
 

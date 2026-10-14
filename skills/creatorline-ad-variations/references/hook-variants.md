@@ -34,7 +34,7 @@ three wordings of it.
 | Question | Asks what the viewer is already wondering | "Why does your serum stop working?" |
 | How-to | Promises a method the video shows | "How to make your serum actually work" |
 | Look at this | Points at what the first frame shows | "Watch how fast this sinks in" |
-| Personal result | The presenter's own result, with the time it took | "Three weeks in and I ditched foundation" |
+| Result | What the product visibly does, or the time a task takes | "The whole routine takes thirty seconds" |
 
 Pick 3 to 5 that fit the video and the brand. The brand's content angles and tone from
 `get_brand` come first; a brand "don't" rules an angle out.
@@ -45,10 +45,9 @@ Pick 3 to 5 that fit the video and the brand. The brand's content angles and ton
   about 20 at `l`; two short lines read, a sentence does not.
 - Plain words and basic punctuation. No emoji, no hashtags.
 - The video must answer the hook. A hook the video does not pay off loses the viewer at second 4.
-- The presenter is a living persona (house-rules.md, section 7): its own result, how long it
-  has used the product or a purchase story ("I caved and bought the big one") make strong
-  hooks. A before and after the hook promises to show is in the video. When the person gave
-  approved claims, keep to them.
+- The presenter speaks in its own voice: its opinion or its reaction ("The one I keep
+  reaching for") makes a strong hook. A before and after the hook promises to show is in the
+  video. When the person gave approved claims, keep to them.
 - The brand's language, unless the test is about language.
 - The same line never repeats what is said in the first seconds word for word; it adds to it.
 - Write the set as a list first and check that no two share an angle.
