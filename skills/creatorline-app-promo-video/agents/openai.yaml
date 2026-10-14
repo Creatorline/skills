@@ -1,0 +1,13 @@
+interface:
+  display_name: "App Promo Video"
+  short_description: "UGC promos for apps and websites"
+  default_prompt: "Use $creatorline-app-promo-video to make a promo video of my avatar talking about my app, with my screenshots on screen."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: creatorline
+      description: "Creatorline MCP server"
+      transport: streamable_http
+      url: https://api.creatorline.io/mcp

@@ -1,0 +1,13 @@
+interface:
+  display_name: "Post and Schedule"
+  short_description: "Post captions, hashtags and scheduling"
+  default_prompt: "Use $creatorline-publish to write a caption and post my latest video to TikTok and Instagram."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: creatorline
+      description: "Creatorline MCP server"
+      transport: streamable_http
+      url: https://api.creatorline.io/mcp

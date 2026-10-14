@@ -1,0 +1,13 @@
+interface:
+  display_name: "Tutorial Video"
+  short_description: "Step-by-step how-to with your avatar"
+  default_prompt: "Use $creatorline-tutorial-video to make a step-by-step how-to video of my avatar using this product, with every step labeled."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: creatorline
+      description: "Creatorline MCP server"
+      transport: streamable_http
+      url: https://api.creatorline.io/mcp

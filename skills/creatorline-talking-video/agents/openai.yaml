@@ -1,0 +1,13 @@
+interface:
+  display_name: "UGC Talking Video"
+  short_description: "Your avatar talks to camera"
+  default_prompt: "Use $creatorline-talking-video to make a talking video of my avatar about this product."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: creatorline
+      description: "Creatorline MCP server"
+      transport: streamable_http
+      url: https://api.creatorline.io/mcp

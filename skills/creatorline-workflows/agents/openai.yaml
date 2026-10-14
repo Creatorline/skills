@@ -1,0 +1,13 @@
+interface:
+  display_name: "Workflows"
+  short_description: "Reusable pipelines that run on repeat"
+  default_prompt: "Use $creatorline-workflows to turn my content recipe into a workflow I can run every week."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: creatorline
+      description: "Creatorline MCP server"
+      transport: streamable_http
+      url: https://api.creatorline.io/mcp

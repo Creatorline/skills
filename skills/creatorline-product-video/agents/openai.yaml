@@ -1,0 +1,13 @@
+interface:
+  display_name: "Product Video"
+  short_description: "Product-first UGC with a voiceover"
+  default_prompt: "Use $creatorline-product-video to make a hands-only video of my product with a voiceover."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: creatorline
+      description: "Creatorline MCP server"
+      transport: streamable_http
+      url: https://api.creatorline.io/mcp

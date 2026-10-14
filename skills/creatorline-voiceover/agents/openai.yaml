@@ -1,0 +1,13 @@
+interface:
+  display_name: "Voiceover"
+  short_description: "Narration fitted to your video"
+  default_prompt: "Use $creatorline-voiceover to narrate my latest video in my avatar's voice."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: creatorline
+      description: "Creatorline MCP server"
+      transport: streamable_http
+      url: https://api.creatorline.io/mcp

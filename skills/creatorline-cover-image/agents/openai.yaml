@@ -1,0 +1,13 @@
+interface:
+  display_name: "Covers and Thumbnails"
+  short_description: "Covers for Reels, TikTok and Shorts"
+  default_prompt: "Use $creatorline-cover-image to make a cover for my latest video with my avatar and a few big words."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: creatorline
+      description: "Creatorline MCP server"
+      transport: streamable_http
+      url: https://api.creatorline.io/mcp

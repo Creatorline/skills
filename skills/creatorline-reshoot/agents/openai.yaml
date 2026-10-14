@@ -1,0 +1,13 @@
+interface:
+  display_name: "Reshoot a Trend"
+  short_description: "Re-film a viral video with your avatar"
+  default_prompt: "Use $creatorline-reshoot to re-film this TikTok with my avatar."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: creatorline
+      description: "Creatorline MCP server"
+      transport: streamable_http
+      url: https://api.creatorline.io/mcp

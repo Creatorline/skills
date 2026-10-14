@@ -1,0 +1,19 @@
+{
+  "name": "creatorline",
+  "displayName": "Creatorline",
+  "version": "2.0.0",
+  "description": "Make short videos and photos with your AI avatars from a conversation: talking videos, product videos, unboxings, try-ons, tutorials, app promos, trend reshoots, character swaps, ad variations, captions, voiceovers, covers, scripts, content calendars, posting and workflows. Brings the Creatorline connection with it.",
+  "author": {
+    "name": "Creatorline",
+    "email": "support@creatorline.io",
+    "url": "https://creatorline.io"
+  },
+  "homepage": "https://docs.creatorline.io/mcp-server",
+  "repository": "https://github.com/Creatorline/skills",
+  "license": "MIT",
+  "keywords": ["ai avatar", "ai influencer", "ugc", "short video", "reels", "social media", "content", "mcp"],
+  "documentationUrl": "https://docs.creatorline.io/mcp-server",
+  "supportUrl": "https://creatorline.io/contact",
+  "privacyPolicyUrl": "https://creatorline.io/privacy",
+  "termsOfServiceUrl": "https://creatorline.io/terms"
+}

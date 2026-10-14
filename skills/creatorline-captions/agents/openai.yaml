@@ -1,0 +1,13 @@
+interface:
+  display_name: "Captions and Hooks"
+  short_description: "Word-timed captions and hook text"
+  default_prompt: "Use $creatorline-captions to add word-timed captions and a hook line to my latest video."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: creatorline
+      description: "Creatorline MCP server"
+      transport: streamable_http
+      url: https://api.creatorline.io/mcp

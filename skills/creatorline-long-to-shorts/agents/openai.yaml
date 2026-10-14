@@ -1,0 +1,13 @@
+interface:
+  display_name: "Clips from Long Videos"
+  short_description: "Turn a long video into shorts"
+  default_prompt: "Use $creatorline-long-to-shorts to cut this long video into captioned shorts."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: creatorline
+      description: "Creatorline MCP server"
+      transport: streamable_http
+      url: https://api.creatorline.io/mcp

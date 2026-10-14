@@ -1,0 +1,13 @@
+interface:
+  display_name: "Video Editing"
+  short_description: "Edit videos in Video Studio"
+  default_prompt: "Use $creatorline-video-studio to put my latest clips together, cut the slow parts and add a hook line on screen."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: creatorline
+      description: "Creatorline MCP server"
+      transport: streamable_http
+      url: https://api.creatorline.io/mcp

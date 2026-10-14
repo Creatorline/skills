@@ -1,0 +1,13 @@
+interface:
+  display_name: "Unboxing Video"
+  short_description: "Your avatar unboxes and reacts"
+  default_prompt: "Use $creatorline-unboxing-video to make an unboxing video of my avatar opening this product."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: creatorline
+      description: "Creatorline MCP server"
+      transport: streamable_http
+      url: https://api.creatorline.io/mcp
