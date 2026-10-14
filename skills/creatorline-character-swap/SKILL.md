@@ -30,7 +30,7 @@ to before anything ran.
 | The person wants | Hand off to |
 |---|---|
 | The trend's idea filmed again with their product, new lines or a new place | `creatorline-reshoot` |
-| Only a product or object changed, the person kept as filmed | Not possible here: a swap always replaces a person. `creatorline-reshoot` films it again with their product. |
+| Only a product or object changed, the person kept as filmed | `creatorline-ad-variations`: a video edit (the `video-edit` tool) swaps the product and keeps the footage. `creatorline-reshoot` films it again with their product. |
 | Several versions of one video (other avatars, hooks, voices, languages) | `creatorline-ad-variations` |
 | A try-on, fit check or OOTD video, where the outfit is the content | `creatorline-try-on-video` |
 | A new video of the avatar from an idea or a script | `creatorline-talking-video` |

@@ -30,10 +30,13 @@ and say in the plan which rows it is the control for:
 | Rows | What else changes | Matching control |
 |---|---|---|
 | Product (Reshoot) | Every frame is filmed again | A plain Reshoot of the source, `<base>_00_reshoot` |
+| Product, outfit, background, colour or words (`video-edit`) | The picture is rendered again: close to the original, rarely the same pixels; at 720p it can look softer than a sharp original | None that changes nothing. Edit at the source's sharpness, or compare these rows with each other |
 | Spoken lines, when the original voice is not the avatar's | The voice | The original words through the same speech and lip sync, `<base>_00_revoiced` |
-| Outfit, when the source does not show this avatar | The person | A plain Replace with no outfit, `<base>_00_replace` |
+| Outfit (Character Swap Replace), when the source does not show this avatar | The person | A plain Replace with no outfit, `<base>_00_replace` |
+| Product (`video-edit`), when the lines name the old product | The words now disagree with the picture | None: fix the words with a lines step, or use Reshoot for the set |
 
-Product rows can also be compared only with each other: they share the same re-filming.
+Product rows made the same way can also be compared only with each other: they share the same
+re-filming or re-rendering.
 
 ## 2. One change per version
 
@@ -51,8 +54,13 @@ Product rows can also be compared only with each other: they share the same re-f
 | 1 | The hook | The first seconds decide if the rest is seen. The cheapest change, the biggest swings. |
 | 2 | The presenter (avatar) | The face the audience trusts carries the message. |
 | 3 | The offer, the lines, the product | What is said and shown, once people stay to hear it. |
-| 4 | Voice and language | Mostly for new markets and new audiences. |
-| 5 | Caption look, end text | Small effects; worth it once the big ones are settled. |
+| 4 | The setting, an outfit, a colour | What the picture says about who it is for. |
+| 5 | Voice and language | Mostly for new markets and new audiences. |
+| 6 | Caption look, end text | Small effects; worth it once the big ones are settled. |
+
+Some sets are not tests at all: "put each of our three new serums in this video" wants the
+three videos, not a winner. Make them the same way, skip the control and the reading of
+results, and keep the names.
 
 A person can start anywhere. When they ask for "variations" with no direction, propose hooks.
 
@@ -62,8 +70,9 @@ A person can start anywhere. When they ask for "variations" with no direction, p
 - Every version needs its own audience. Organic posts spread over days; ads split one budget.
   Fewer versions give a clear answer sooner.
 - More than 6 asked for: suggest the strongest 4 now and the rest as round two.
-- Hooks and caption looks are cheap; avatars and products cost the most per version, new speech
-  sits between. Say this in one line when the person picks a large number of the costly kind.
+- Hooks and caption looks are cheap; edits, avatars and products cost the most per version
+  (they are priced on the video's seconds), new speech sits between. Say this in one line when
+  the person picks a large number of the costly kind.
 
 ## 5. Names
 
@@ -73,8 +82,9 @@ Studio `title`, the delivery list, and the ad name if they run it as an ad.
 `<base>_<code><n>_<label>`
 
 - `<base>`: the winner in two or three lowercase words with hyphens: `glow-serum`.
-- `<code>`: H hook, A avatar, O outfit, P product, L lines, V voice, T language, S caption look,
-  E end text. `00` is the control (no number after it).
+- `<code>`: H hook, A avatar, O outfit, P product or object, B background or place, C colour,
+  material, season or time of day, W words in the picture, L lines, V voice, T language, S
+  caption look, E end text, X combined. `00` is the control (no number after it).
 - `<n>`: 1, 2, 3 within that code in this batch. Round two continues the numbers (H4, H5).
 - `<label>`: one or two words for the value: `problem`, `jade`, `mango`, `spanish`, `karaoke`.
 
@@ -100,8 +110,9 @@ them to fewer people. The posting days should be alike (no holiday against a wee
 named with the version's name. The MP4 links are in the delivery list; the files also stay in
 the brand's library in the app (https://app.creatorline.io/library).
 
-Never present an avatar's video as a real customer's review, in the post or in the ad (house
-rules, safety).
+A version can be a testimonial in the avatar's own voice: the persona's review is welcome.
+The fixed line is a real person: never credit a version to a real, named person or to a real
+brand's official account, in the post or in the ad (house rules, section 7).
 
 ## 7. Reading the results
 

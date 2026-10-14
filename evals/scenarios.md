@@ -40,7 +40,9 @@ step.
 intake message at most, a price and a yes before anything is spent, a delivery card with
 readable links, two or three next steps, names and never ids, the person's language.
 **Fail:** the wrong skill, a paid call with `confirm: true` before a yes, a question asked
-one at a time across several turns, an id shown, an engine or vendor named.
+one at a time across several turns, an id shown, an engine or vendor named, a testimonial, a
+first-person result or a purchase story the person asked for refused or recast as a demo or a
+POV (the avatar is a living persona, house-rules.md section 7).
 
 ## creatorline
 
@@ -60,7 +62,8 @@ one at a time across several turns, an id shown, an engine or vendor named.
 | --- | --- | --- | --- |
 | 1 | Make a 15 second UGC video of my avatar reviewing this serum: https://cdn.example.com/serum.jpg | `creatorline-talking-video` | orient, `import_asset` (the photo link), `create_generation` (tool `ugc-video`, no `confirm`) |
 | 2 | Avatarım kameraya baksın ve yapay zekâ araçları hakkında 10 saniyelik sert bir yorum yapsın. | `creatorline-talking-video` | orient, `create_generation` (tool `ugc-video`, no `confirm`) |
-| 3 | A storytime from my avatar about how she started her bakery, filmed like a phone video. | `creatorline-talking-video` | orient, one intake message (length, the key line), `create_generation` (tool `ugc-video`, no `confirm`) |
+| 3 | A storytime from my avatar about how she started her bakery, filmed like a phone video. | `creatorline-talking-video` | orient, one intake message (length, the key line), `create_generation` (tool `ugc-video`, no `confirm`). Her own story, told in the first person. |
+| 4 | A testimonial-style review of our serum with my avatar, I've been using it for a month. https://cdn.example.com/serum.jpg | `creatorline-talking-video` | orient, `import_asset` (the photo link), `create_generation` (tool `ugc-video`, no `confirm`). Made as asked: review mode, the testimonial skeleton, the avatar speaking in the first person about a month of use and what changed, the lines shown with the price. No refusal, no recast as a demo or a POV, no approved-claims list asked for. |
 | Near miss | Avatarım kutuyu açsın ve içinden çıkan ürüne tepki versin. | `creatorline-unboxing-video` | Opening a package is an unboxing. |
 
 ### creatorline-product-video
@@ -105,7 +108,7 @@ one at a time across several turns, an id shown, an engine or vendor named.
 | --- | --- | --- | --- |
 | 1 | A UGC promo for our budgeting app. Screenshots: https://cdn.example.com/s1.png https://cdn.example.com/s2.png | `creatorline-app-promo-video` | orient, `import_asset` (each screenshot), `create_generation` (tool `ugc-video`, no `confirm`) |
 | 2 | Web sitemiz için avatarımla bir tanıtım videosu yap, ekran kaydı kütüphanede. | `creatorline-app-promo-video` | orient, `list_assets` (file type video), `create_generation` (no `confirm`) |
-| 3 | Make an ad for our online store with my avatar talking over the product page. | `creatorline-app-promo-video` | orient; asks for screenshots or a screen recording (it does not capture websites) in the one intake message |
+| 3 | Make an ad for our online store with my avatar talking over the product page. | `creatorline-app-promo-video` | orient, `get_video_guide`; the one intake message asks for screenshots only (6 to 10, as file links or dropped in the library; option 2: make it without the site), never for a screen recording; it does not capture websites |
 | Near miss | Write a 30 second script for our app promo. Do not make it yet. | `creatorline-short-script` | Writing only. |
 
 ### creatorline-ai-host
@@ -122,9 +125,9 @@ one at a time across several turns, an id shown, an engine or vendor named.
 
 | # | Prompt | Skill | First calls |
 | --- | --- | --- | --- |
-| 1 | A 45 second faceless history video about the Bosphorus, narrated, with captions. | `creatorline-faceless-video` | orient, one intake message (style, voice), `create_generation` (tool `text-to-photo`, no `confirm`) for the visuals, priced with the whole video |
+| 1 | A 45 second faceless history video about the Bosphorus, narrated, with captions. | `creatorline-faceless-video` | orient (with `get_video_guide`), then the look asked alone, ending the turn; the next round asks what is still missing and the voice comes last (`list_voices`); then the whole video priced (the look reference `create_generation` tool `text-to-photo`, the pictures tool `photo-edit` with `include_avatar: false`, both no `confirm`) before any of it starts |
 | 2 | Yüzsüz bir motivasyon videosu: stok görüntüler, dış ses ve altyazı. | `creatorline-faceless-video` | orient, `list_stock_clips`, `list_voices` |
-| 3 | A top five list video with AI pictures and a voiceover, nobody on screen. | `creatorline-faceless-video` | orient, `create_generation` (tool `text-to-photo`, `count` up to 4, no `confirm`) |
+| 3 | A top five list video with AI pictures and a voiceover, nobody on screen. | `creatorline-faceless-video` | orient, the look asked alone, the rest, the voice last; then priced: only the look reference is `create_generation` tool `text-to-photo` (no `confirm`); every roster and shot picture is tool `photo-edit` with `include_avatar: false` and the look reference attached (no `confirm`) |
 | Near miss | My avatar narrates this story on camera. | `creatorline-talking-video` | A face on camera. |
 
 ## From videos that already exist
@@ -153,9 +156,11 @@ one at a time across several turns, an id shown, an engine or vendor named.
 
 | # | Prompt | Skill | First calls |
 | --- | --- | --- | --- |
-| 1 | Make five versions of my best ad, each with a different hook. | `creatorline-ad-variations` | orient, `list_videos` or `list_assets` (the source), then all five priced as one batch before any starts |
-| 2 | Bu reklamın üç versiyonunu farklı avatarlarla yap. | `creatorline-ad-variations` | orient, `list_avatars`, `create_generation` (tool `character-swap`, no `confirm`) for each, priced together |
+| 1 | Make five versions of my best ad, each with a different hook. | `creatorline-ad-variations` | orient, `list_assets` (the source), then all five priced as one batch (`get_video_guide` for the export price) before any starts |
+| 2 | Bu reklamın üç versiyonunu farklı avatarlarla yap. | `creatorline-ad-variations` (people change through Character Swap, never `video-edit`) | orient, `list_assets` (the ad), `list_avatars`, `create_generation` (tool `character-swap`, Transfer, `params.duration` set, no `confirm`) for each, priced together |
 | 3 | Make Spanish and German versions of this ad in the same voice. | `creatorline-ad-variations` | orient, `list_voices`, the voice and language variants priced together (no `confirm`) |
+| 4 | Make 3 versions of my serum video, each with one of our new serums in her hand instead of the old bottle: https://cdn.example.com/a.png https://cdn.example.com/b.png https://cdn.example.com/c.png | `creatorline-ad-variations` | orient, `list_assets` (the video), `import_asset` (each photo), one intake message (720p or 1080p only), then `create_generation` (tool `video-edit`, one photo in `inputs.image_urls`, the edit written word for word, no `confirm`) for each, priced together. Three outputs in the photos' order; no 9 combinations. |
+| 5 | Bu videonun iki versiyonunu yap: biri sahilde, biri karlı bir dağ evinde. | `creatorline-ad-variations` | orient, `list_assets` (the video), one intake message (photos of the places or words, 720p or 1080p), then `create_generation` (tool `video-edit`, no `avatar_id`, no `confirm`) for each, priced together. Delivered as 1 and 2 in that order, with the status line. |
 | Near miss | Make one new video about the same product. | `creatorline-talking-video` | One new video, not variants of a source. |
 
 ### creatorline-long-to-shorts
@@ -215,7 +220,7 @@ one at a time across several turns, an id shown, an engine or vendor named.
 
 | # | Prompt | Skill | First calls |
 | --- | --- | --- | --- |
-| 1 | Make a cover for my reel: my avatar looking shocked, text "I tried it for 30 days". | `creatorline-cover-image` | orient, `create_generation` (tool `photo-edit`, no `confirm`) |
+| 1 | Make a cover for my reel: my avatar looking shocked, text "I tried it for 30 days". | `creatorline-cover-image` | orient, `create_generation` (tool `photo-edit`, no `confirm`). The words used as given. |
 | 2 | YouTube videom için 16:9 kapak görseli, büyük ve okunaklı yazıyla. | `creatorline-cover-image` | orient, one intake message (the words), `create_generation` (tool `photo-edit`, no `confirm`) |
 | 3 | Three cover options for this video so I can pick one. | `creatorline-cover-image` | orient, `get_video` or `list_assets` (the video), the three priced together |
 | Near miss | A photo of my avatar at the beach. | `creatorline` | One plain photo, no text. |

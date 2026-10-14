@@ -32,6 +32,12 @@ together.
 - Times are seconds to the hundredth. Read them from the answer (`clips[].start`, `end`,
   `trim_start`, `trim_end`, `source_duration`); never add them up yourself.
 - A layer's `trim_start` is where in its own source it starts playing.
+- There is no third clock: nothing is grouped inside anything else, so every `start` and `end`
+  is a second of the finished video.
+- A span runs from its `start` up to its `end`. A text that ends at 4 s and one that starts at
+  4 s follow each other with no overlap. `over` gives a text or a layer exactly its clip's span,
+  and whatever you add is kept inside the video (and a layer inside its own source); the
+  `note` says when something was shortened to fit.
 
 ## 2. What moves when
 
@@ -109,6 +115,17 @@ Every add is the same each time: nothing copies the look of what was added befor
 | The stock library | `stock_id` | From `list_stock_clips`: `hooks` (2.5 to 10 s, all vertical, mostly silent) and `green_screen` (all with sound). Never with `asset_id` in the same operation |
 | An audio file | `asset_id` in `set_sound` only | Audio is never a clip or a layer |
 
+How each kind of picture fills the 1080 x 1920 frame:
+
+| What | Fit | So |
+|---|---|---|
+| A clip | Covers the frame: what does not fit is cropped | A wide clip loses its sides; never put a wide clip with words or a face near its edges in as a clip |
+| A layer (`video`, photo) | Shown whole at its `width`, with its own shape | Use it to show a wide or square picture complete |
+| A layer with `fill: true` | Covers the frame's width | A 9:16 layer covers the whole frame (b-roll over speech) |
+| A split screen part | Cropped to its part | `focus` and `main_focus` choose what stays in view |
+
+Nothing is ever stretched out of shape.
+
 - A file still uploading or being generated is refused until it is ready ("has no file yet").
 - A video whose length cannot be read is refused: import it again with `import_asset`.
 - A file on the person's device cannot travel through the chat: a public link to the file, or
@@ -119,6 +136,18 @@ Every add is the same each time: nothing copies the look of what was added befor
 
 The project you edit is the one the studio opens. The person can watch it at `studio_url`
 while you work, and each change you save appears there as you make it.
+
+**Rebuild or edit.** Decide this once, before your first operation on a video:
+
+- **A video you made in this conversation and nobody else changed** is yours: you may reorder,
+  replace or rebuild any of it.
+- **Any other video** (an older project, a teammate's, or one the person changed by hand in
+  the studio, even a little) gets small, named edits only: read `get_video`, then change just
+  what was asked, by the ids it prints. Never remove everything and add it back: that throws
+  away their hand edits, and every id changes with it.
+- Ids come from a fresh read. `split_clip` and `duplicate_clip` make new ids, a refusal can
+  mean the video changed under you, and the person may have deleted something: re-read
+  `get_video` before naming an id you have not just seen.
 
 - Every save is checked against the version it was made from (`revision` in the answer). When
   someone else saved in between, the server makes your change again on the newest version, a

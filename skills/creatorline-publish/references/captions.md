@@ -13,7 +13,7 @@ The video carries the content; the caption makes people stop, find it and act on
 6. [Words people search](#6-words-people-search)
 7. [Per platform](#7-per-platform)
 8. [The brand's voice](#8-the-brands-voice)
-9. [Truth and disclosure](#9-truth-and-disclosure)
+9. [The persona and disclosure](#9-the-persona-and-disclosure)
 10. [Language and style](#10-language-and-style)
 11. [Worked examples](#11-worked-examples)
 12. [A first comment](#12-a-first-comment)
@@ -59,13 +59,15 @@ search for more. It should continue the video's hook, not repeat the words alrea
 One to three short lines, each on its own line. Pick what helps the viewer most:
 
 - how it is used ("Two drops, on dry skin, before moisturizer.");
+- the persona's own take: how long it has used it, what changed ("Three weeks in, my skin
+  stopped feeling tight.");
 - what it is, in plain words ("A protein bar with 20 g of protein and no added sugar." only when
   the label says so);
 - where or when ("Packed for three days in Lisbon.");
 - the one step people get wrong.
 
-Never retell the whole video. Never add a fact the person did not give or the label does not
-show.
+Never retell the whole video. A fact about the product (what is in it, a number) comes from the
+person, the label or the brand document; the persona's own experience needs no source.
 
 ## 4. The call to action
 
@@ -154,24 +156,28 @@ No `brand_voice`: plain, warm and direct, no slang, at most one emoji. Say in on
 the brand document in the app makes captions sound more like the brand.
 
 The person's own caption wins over all of this. Use it as written; fix only a broken limit, a
-don't or the claim floor, and say what you changed.
+don't or a fixed line (house rules, section 7), and say what you changed.
 
-## 9. Truth and disclosure
+## 9. The persona and disclosure
 
-- **The claim floor** (house rules, section 7) holds in captions. The avatar is a synthetic
-  person: no "I've used it for months", "my skin cleared", "as a nurse", "my followers love it".
-  The caption may say what the label says, what the product does, what the video shows, and
-  opinions ("the texture is the best part").
-- **Nothing invented:** no price, discount, code, deadline, stock level, award, customer count,
-  review, rating or result the person did not give.
-- **Sensitive products** (health, supplements, skincare actives, finance): label facts only, no
-  cure, health, income or guaranteed-result promise.
+- **The persona** (house rules, section 7) speaks in captions as it does in the video. The
+  avatar is a living persona: "I've used it for months", "my skin cleared", "as a nurse", "my
+  followers love it", a review in its own words and its opinions are all welcome.
+- **The brand's figures as given:** a price, discount, code, deadline, stock level, award,
+  customer count or rating only as the person or the brand gave it: a wrong code fails at
+  checkout. When the person gave an approved-claims list, keep to it.
+- **Sensitive products** (health, supplements, skincare actives, finance): the persona's routine
+  and results are welcome; never a promise that it cures, treats or prevents a disease, or
+  guarantees income or a return.
 - **Sponsored posts.** When the account presents itself as a creator and the product belongs to
   someone paying for the post (an agency's client, a sponsor), open the caption with "#ad". Not
   buried among the hashtags. A brand posting its own product on its own account needs none. If
-  you cannot tell, ask once.
-- **AI.** `made_with_ai: true` on anything made, edited or voiced with AI. Never call an avatar
-  a real customer, never write "honest review" or "not sponsored" for an avatar.
+  you cannot tell, ask once. It is a default the person may switch off: say once that it is for
+  the ad disclosure rules, then do as they say.
+- **AI.** `made_with_ai: true` on anything made, edited or voiced with AI, by default; the
+  person may switch it off (say once that it sets the platforms' AI-content label). "Honest
+  review" in the persona's voice is fine; "not sponsored" never on a post that carries "#ad".
+  Never present the avatar as a real, named person or a real brand's official account.
 - **People and brands.** No @mention of a person or a brand that has not agreed. No other
   brand's name or tag.
 
@@ -193,7 +199,7 @@ action: questions).
 
 ```json
 {
-  "caption": "Two drops is the whole routine.\nGoes on before moisturizer, on dry skin.\nWhat's your step one?",
+  "caption": "Two drops is the whole routine.\nThree weeks in, my skin stopped feeling tight.\nWhat's your step one?",
   "hashtags": ["skincare", "vitamincserum", "morningroutine", "glowlab"],
   "made_with_ai": true
 }
@@ -263,6 +269,8 @@ not fit. Offer it once, as text, after the post is made.
 - 3 to 6 hashtags, at most 5 with Instagram, none of them filler or another brand's.
 - Caption plus hashtags fits every platform's limit.
 - The brand's language and voice; no `donts` item.
-- No claim, number, price, offer or review the person did not give.
-- `made_with_ai` set; "#ad" first when it is a paid post.
+- No price, offer, code or brand figure the person did not give; the persona's own review and
+  results are welcome.
+- `made_with_ai` set; "#ad" first when it is a paid post (unless the person switched either
+  off).
 - YouTube: a title of at most 100 characters and a visibility.

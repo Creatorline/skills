@@ -20,29 +20,34 @@ paste.
 
 ```
 Show: Speak Up Sundays. Short, calm coaching on sounding confident at work, one idea a week.
-Host: Mia, in her own voice in every part.
-Set: Mia at a light oak desk, sage green plaster wall, walnut shelf with a lamp.
-  The set photo is in your library (search "sage green plaster wall oak desk").
+Host: Mia, in her own voice in every part; she speaks low in her range, sentences ending
+  lower, energy in her pace.
+Set: a lived-in home office: Mia at a light oak desk, sage green plaster wall, walnut shelf
+  with a lamp. The set photo is in your library (search "sage green plaster wall oak desk").
 Look: soft light from the left, phone propped at eye level, her outfit from her photo,
-  talking-head style, vertical, standard sharpness.
-Episode: about 60 s, countdown, 3 parts and the sign-off, the hook first, never the show name first.
+  talking-head style, vertical, standard sharpness, unpolished and alive.
+Episode: about 60 s at a calm pace, countdown, 3 parts and the sign-off, the hook first,
+  never the show name first.
+Edit style: Bold Editorial, standard density.
 Tag (text after the hook): "Speak Up Sundays · Ep. <n>"
 Sign-off (the same clip every week): "That's Speak Up Sundays. See you next Sunday."
 Call to action (text over the sign-off, and in the post): "New episode every Sunday"
-Texts: words on a solid plate; big hook, medium labels "1. ...", small tag, all at the top.
-Captions: big bold words, the spoken word in yellow.
-Cutaways: hands, objects and rooms, no faces, about one every 12 s, silent.
+Texts: big plain words leaning left; big hook, labels "1. ...", small tag, all at the top.
+Captions: bold white lowercase words with a heavy edge.
+Cutaways: hands, objects and rooms, no faces, on the concrete words, silent.
 Music: none.
 Cover: Mia chest-up on the left, 3 to 4 words of the promise on the right.
 Post: one line of the promise, "Ep. <n> of Speak Up Sundays", #speakupsundays #careertips #meetings
 Episodes: 1 (last: "3 phrases that make you sound confident")
 ```
 
-Each line maps back to a call: the set and look lines become each part's set, light, wardrobe
-and camera sentences (host-continuity.md, section 1); "talking-head style, vertical, standard
-sharpness" are `ugc_style: "Talking head"`, `9:16` and `720p`; the exact text look, sizes and
-caption style are read off the last episode with `get_video`; the cover line is the brief for
-creatorline-cover-image; the post line feeds creatorline-publish.
+Each line maps back to a call: the host, set and look lines become each part's set, light,
+wardrobe, camera, voice and feel sentences (host-continuity.md, section 1); "talking-head
+style, vertical, standard sharpness" are `ugc_style: "Talking head"`, `9:16` and `720p`; the
+edit style is a section of edit-styles.md; the exact text look, sizes and caption style are
+read off the last episode with `get_video`; the cover line is the cover's brief; the post line
+feeds creatorline-publish. A show on the studio-takes route adds one line: "Filmed: studio
+takes, workflow '<Show> studio takes'".
 
 ## 2. Rules that make a format hold
 
@@ -56,7 +61,8 @@ creatorline-cover-image; the post line feeds creatorline-publish.
   the end of every episode: identical, and no new take each week.
 - **The same host kit.** Set photo, wardrobe, camera and light sentences, template, frame,
   voice. A change shows at once when episodes sit side by side on a profile.
-- **The same looks.** Text look and sizes, caption style, cover layout.
+- **The same looks.** The edit style, so text look and sizes, caption style, card edges and
+  cover layout.
 - **Numbered episodes.** In the title, the tag and the post caption.
 - **A steady day.** The posting rhythm is set with creatorline-publish or in the app's calendar.
 
@@ -92,9 +98,13 @@ creatorline-cover-image; the post line feeds creatorline-publish.
    set, same look, Ep. 5, about 60 s."
 5. Write the script in the series' format and parts; quote it the usual way. There is no new
    set photo and no new sign-off, so the episode costs less than the first.
-6. Film all parts at once: the look was approved on the pilot of episode 1.
-7. Assemble with the series' looks; the sign-off clip goes last. Update the episode count in
-   the bible you show at the end.
+6. Film all parts at once: the set and the host's look were proven in episode 1. Still check
+   each part (review.md, section 5).
+7. Assemble with the series' edit style; the sign-off clip goes last. Update the episode count
+   in the bible you show at the end.
+
+What the person chose for one episode only (under "just do it", or a one-off) is not a
+standing preference: it becomes the show's only when the bible is kept.
 
 Nothing found (no episodes, no set photo, no line in Format notes) and no bible pasted: treat
 it as a first episode with a new set and a pilot, and say so.

@@ -1,189 +1,262 @@
 # Unboxing craft
 
-What separates an unboxing people watch to the end from one they scroll past. Use it while
-you write the brief. The brief carries the idea and the facts; the server's writer turns them
-into shots (video-briefs.md, section 1), so describe what happens, never camera settings.
+The physical rules of an unboxing that reads as real: the four beats, the box, how it opens, how
+the product is held, where the camera is and what the hands do. Use it while you write the
+brief. The brief carries the staging and the facts; the server's writer turns them into timed
+shots (video-briefs.md, section 1), so describe what happens and where the phone is, never lens
+or lighting setups and never seconds.
 
 ## Contents
 
-1. [The beats in depth](#1-the-beats-in-depth)
-2. [The package](#2-the-package)
-3. [How each package opens](#3-how-each-package-opens)
-4. [Holding it for its size](#4-holding-it-for-its-size)
-5. [Hands and the phone](#5-hands-and-the-phone)
-6. [The reaction](#6-the-reaction)
-7. [Hooks](#7-hooks)
-8. [Honest details and what the avatar never says](#8-honest-details-and-what-the-avatar-never-says)
-9. [Variants in practice](#9-variants-in-practice)
+1. [The four beats](#1-the-four-beats)
+2. [Length, shots and sections](#2-length-shots-and-sections)
+3. [The box contract](#3-the-box-contract)
+4. [How each package opens](#4-how-each-package-opens)
+5. [Beat 1: the cutter or the build-up](#5-beat-1-the-cutter-or-the-build-up)
+6. [Surface and size](#6-surface-and-size)
+7. [Weight classes](#7-weight-classes)
+8. [Camera: where the phone is](#8-camera-where-the-phone-is)
+9. [Hands](#9-hands)
+10. [One product, props and printed text](#10-one-product-props-and-printed-text)
+11. [The persona, details and PR framing](#11-the-persona-details-and-pr-framing)
+12. [Variants in practice](#12-variants-in-practice)
 
-## 1. The beats in depth
+## 1. The four beats
 
-1. **The sealed package (the hook).** The first frame is already moving: fingers at the tape, the
-   box sliding a few centimetres toward the camera, a knuckle tapping the lid. The product is
-   not visible yet: the not-knowing is the hook. The package rests on the table; it is never
-   tossed or carried around.
-2. **The open.** One clear action (tape, flap, lid, sleeve). The moment it goes from closed to
-   open falls between two shots, so the cut hides it. Tissue paper shows for a moment as the
-   flaps fall open.
-3. **The reveal.** The one real peak of the video. The product comes up from box level toward
-   the chest, label to camera. The box drifts to the frame's edge or out of it.
-4. **First touch.** One physical thing that proves it is real in the hand: a cap unscrewed, a
-   case clicked open, a strap pulled, fabric rubbed between finger and thumb. One action only.
-5. **Reaction.** One human-sized moment: a small gasp, a laugh, a hand to the chest, a slow
-   head shake. It belongs to the reveal or right after it, never spread over every beat.
-6. **One honest detail.** One specific, true observation (section 8). It is what makes an
-   unboxing feel like a person and not an ad.
-7. **Verdict.** The product held beside the face or at chest height, chest-up framing, a
-   short verdict. Nothing new is claimed here. The call to action ("link in bio", a code)
-   belongs in the caption or as on-screen text.
+The first section of every unboxing runs these four beats in this order, one shot each. Every
+beat starts already in motion: no shot opens on a person standing and waiting.
 
-## 2. The package
+| Beat | What the frame shows | Camera |
+|---|---|---|
+| 1. Sealed | The sealed, taped box resting on the table; the avatar's fingers already at the tape edge; the product nowhere in sight. The box is never lifted, carried or held in the air. | Propped phone, waist-up with the box and the room |
+| 2. Reveal | The product just out of the box, held as its weight class says (section 7), coming up from box level toward the chest. The box sits at the frame's edge, just opened, or is gone. With a plain box, tissue in the matching colour (section 3) peeks from the open flaps, background only. This is the one real peak of the video. | Propped phone, chest-up |
+| 3. Product focus | The product is the hero, close to the lens. The box is gone. Of the avatar, at most the hands and part of the face. | Propped phone, tight on the product (close, not an extreme close-up of a surface) |
+| 4. Satisfaction | Settled ownership: the product held or set beside the avatar, the outfit and the room in view. The box is gone. | Phone picked up across the cut (selfie) at arm's length, as wide as an arm allows; or still propped, three-quarter or full body |
 
-| The person has | Do |
-|---|---|
-| A photo of their real package (shipping box, mailer, gift box, retail box) | Find it with `list_assets` or bring it in with `import_asset`, and pass it second in `objects`, after the product, so it is `@Object2`. Write in the brief how it opens. Show only what the photo shows: tape, tissue or a card only when the photo has them. |
-| No photo | A plain kraft-brown shipping box a little bigger than the product, clear tape across the top, tissue inside. No logos, labels or stickers. |
-| A soft product (clothing, a scarf, a bag) and no photo | A padded mailer or a plain mailer box instead of a carton. |
-| The product's own retail box is the package | Only with a photo of that box (a packshot showing product and box together can serve as both: say "@Object1 comes out of its own box"). Without one, a plain box: a retail box written from words comes out with invented print. |
+- The change from sealed to open happens on the cut between beats 1 and 2. That cut is never
+  replaced by a continuous move, because it is what hides the opening.
+- After beat 2 the box never comes back: no re-taping, no closing, no carrying it away, no
+  packing the product back in.
+- The four beats use four different distances that cover a close one, a middle one and a wide
+  one. Two neighbouring beats at the same distance blur into one shot.
+- A tiny product (a ring, a lipstick) may open with the phone in the hand (selfie) on beat 1.
 
-- Never invent branding on a box. A generated logo comes out garbled and pretends to be the
-  brand. When the box must carry the brand, it comes from their photo.
-- A big logo on a real box can come out slightly off: warn once (product-intake.md,
-  section 5).
-- An insert card or a note: keep it face down, or show it only from their photo. Readable
-  words inside the video are never exact.
+## 2. Length, shots and sections
 
-**Tissue colour,** only for a plain box or when their photo shows tissue:
+The writer gives every shot at least 3 seconds. That floor decides how many beats a length holds.
+The seconds below are planning weights: in the brief, say which beat holds longest ("the reveal
+is the longest beat, the product focus the shortest"), never the seconds themselves.
+
+| Length | Shots | Beats | Words spoken |
+|---|---|---|---|
+| Under 6 s | | Too short: the opening needs a cut between two shots. Offer 10 s. | |
+| 6-8 s | 2 | Sealed, then the reveal held into a satisfied verdict | 12-20 |
+| 10 s | 3 | Sealed (about 3) / reveal with the product focus folded in (about 4) / satisfaction (about 3) | 12-20 |
+| 12 s | 4 | All four, about 3 s each; the floor leaves no room to weight the reveal | 20-28 |
+| 15 s (default) | 4 | About 3.5 / 4.5 / 3 / 4: the reveal longest, the product focus shortest | 28-35 |
+| 16 s and up | | The first section is the four beats; the rest is post-reveal sections (after-the-reveal.md) | per section |
+
+Words are about 2 per second, below a talking video's, because handling eats speech time. A
+quiet unboxing has none. The budget counts every section on its own: a later section carries
+denser content, never faster speech.
+
+## 3. The box contract
+
+There are only two kinds of box. Decide which before writing the brief.
+
+**A. No photo of their package (the plain box).** One plain brown cardboard delivery box with
+tape across the top, a little bigger than the product. Plain sides: no logo, no label, no
+shipping sticker, no printing. Never a gift box, never a retail box, never the brand's own
+packaging drawn from words: invented branding comes out garbled and pretends to be the brand.
+Tissue paper inside, crumpled and loose, in the colour from this table; it shows for a moment
+when the flaps open and is mentioned once, briefly:
 
 | The product is mostly | Tissue |
 |---|---|
-| Pink or red | Blush pink |
-| Blue or green | Pale aqua |
-| Black or dark | Cream or warm grey |
+| Pink or red | Blush or rose |
+| Blue | Sky blue or aqua |
+| Black or dark | Cream, beige or warm grey |
 | White or pastel | A soft pastel that contrasts with it |
-| Many colours, or unsure | Cream |
+| Many colours | The brand's main colour |
+| Unsure | Cream |
 
-The tissue is background: it shows for a moment when the box opens and is never the subject.
+**B. A photo of their real package.** The video shows THAT package: its shape, its closure and
+the print the photo shows. Pass the photo in `objects` right after the product (`@Object2`).
+Read how it opens off the photo (section 4). Tape, a blade or tissue appear only when the photo
+shows them. A big readable logo on the package can come out slightly off: warn once
+(product-intake.md, section 5).
 
-## 3. How each package opens
+- When the person says a package photo is coming but sends none, ask once for the file and wait.
+  A "yes" is not a photo, and the video never starts with a promised input missing.
+- An insert card or a note lies face down, unless their photo shows it face up.
 
-Name the action in the brief so the hands do one believable thing.
+## 4. How each package opens
+
+Name the action in the brief, so the hands do one believable thing.
 
 | Package | The opening action |
 |---|---|
-| Taped shipping box | Peels the clear tape off in one long strip, folds the flaps back |
-| Padded mailer | Tears along the top strip |
-| Mailer box with a tuck flap | Lifts the front flap up and back |
+| Taped delivery box (plain) | One slice along the tape seam with a small box cutter, flaps fall open (section 5) |
 | Lift-off lid | Lifts the lid straight up with both hands |
+| Hinged lid | Swings the lid back on its hinge; it stays attached |
 | Magnetic flap | Swings the flap open; it lets go with a soft click |
-| Sleeve over a tray | Slides the sleeve off sideways |
 | Drawer box | Pulls the tray out by its ribbon or tab |
+| Sleeve over a tray | Slides the sleeve off sideways |
+| Mailer with a tuck flap | Lifts the front flap up and back |
+| Padded mailer | Tears along the top strip |
 | Zip pouch | Unzips it along the top |
 
-Read the opening off their photo when you can. When you cannot tell, ask once inside the
-intake, or choose the simplest action the photo allows. Peeling tape is safer on camera than a
-blade.
+Read the mechanism off their photo. When you cannot tell, choose the simplest action the photo
+allows, or ask inside the intake. The package opens in one motion; a second attempt or a
+struggle reads as a glitch.
 
-## 4. Holding it for its size
+## 5. Beat 1: the cutter or the build-up
 
-Decide the class before you write. When in doubt, choose the heavier one.
+Beat 1 ends at the moment the box opens. What leads to it depends on the box.
 
-| Class | Examples | How it comes out and is held | Surface |
-|---|---|---|---|
-| Tiny | Ring, earrings, lipstick, earbuds | Between thumb and two fingers, brought toward the lens at chest height | Desk, vanity, bedside table |
-| Light | Serum, phone case, a folded tee, a candle | One hand; the other hand is free for a gesture | Desk, kitchen counter |
-| Bulky but light | Sneakers in their box, a pillow, a plush toy | Two hands, no strain | Table or bed |
-| Heavy | Kitchen appliance, cast-iron pan, a large bottle | Two hands, a small lean as it comes up, set down on the table before the reaction, with real delight on the face | A sturdy table |
-| Big | Chair, bike, a large appliance | Stays on the floor; the avatar kneels beside it and opens the box where it stands | Living room floor |
+**Plain box (A).** A small box cutter lies beside the box from the first frame: the writer only
+keeps props that are named from the start. Near the end of the beat one hand picks it up and
+makes one decisive slice along the tape while the other hand steadies the box where it rests;
+the cutter is set down and never mentioned again; the flaps fall open with the tissue showing
+for a moment. The slice is that beat's one action. If a take renders the blade badly, the
+fallback is peeling the tape off in one long strip (no cutter in the brief at all).
 
-- A pair (shoes, earrings) counts as one product.
-- Real scale: the product is as big as it really is. A small thing comes closer to the lens; it
-  never grows.
-- The surface fits a real home and stays tidy: light wood, white counter, a clean rug. Only the
-  package and the product are on it, so nothing can be mistaken for a second product.
+**Their own package (B).** Build "it just arrived" instead, then open it the package's own way
+as the closing motion of the beat: three or four rhythmic knuckle taps on the lid, a little
+shoulder wiggle, a grin with the brows lifting, a playful slide of the box a few centimetres
+across the table (never lifted, never tossed), then the one opening motion. No blade, no tape
+and no tissue unless the photo has them.
 
-## 5. Hands and the phone
+## 6. Surface and size
 
-- Default: the phone is propped on the table facing the avatar, so both hands are free. One
-  hand steadies the box, the other opens it.
-- A selfie angle leaves one hand: use it only for a tiny product that opens one-handed.
-- One hand action per beat. Opening, lifting and turning the product are three beats, not one.
-- A hand that has nothing to do rests on the table or on the box. Say so when two hands are
-  busy in the beat before.
-
-## 6. The reaction
-
-Pick the register from the person's words first, then the brand's tone (`brand_voice.tone`).
-
-| Register | When | The reveal | The lines |
-|---|---|---|---|
-| Natural (default) | Most brands | A small gasp or a laugh, a hand to the chest | Short and warm |
-| Excited | The person says hyped, excited, high energy, or the brand is loud | A bigger gasp, a quick lean toward the lens | Faster, louder, still short |
-| Calm | Luxury, skincare, tech; a quiet brand | A slow breath out, a soft "oh", a long look | Few words, slow hands |
-| Silent (ASMR) | ASMR, satisfying, no talking | A small smile | None |
-
-One peak per video. A reaction on every beat reads as acting. Avoid screaming and staged shock:
-the most believable reaction is a person who likes what they see.
-
-## 7. Hooks
-
-The first line is the most specific moment, already happening. No greeting, and never open on
-"so", "okay", "wait" or "hey guys".
-
-| Shape | Example line |
+| Product size | Where the box sits |
 |---|---|
-| The weight | "This box is heavier than it has any right to be." |
-| The arrival | "It's here. First look at the new Glow C Serum." |
-| The size gap | "Why is the box this big?" |
-| The drop | "The whole spring drop, in one box." |
-| The question | "What do you think fits in a box this small?" |
-| The sound (quiet variant) | No words: the tape coming off in one long pull |
+| Tiny or small (cosmetics, jewelry, a phone, supplements) | A table only, never the floor |
+| Medium | A table |
+| Large, up to about 50 cm | A table or the floor |
+| Oversized (a bike, furniture, a big appliance) | The floor; the avatar kneels or stands beside it |
 
-Give the writer the hook line in quotes when you want it word for word; otherwise give its
-shape and let the writer word it in the avatar's voice.
+The surface fits the room and looks cared for: marble, light wood, white lacquer or quartz on a
+table; hardwood or a clean rug on the floor. Never a workbench, a garage, a folding table or a
+cluttered top. Only the box and what comes out of it are on it.
 
-## 8. Honest details and what the avatar never says
+## 7. Weight classes
 
-**One honest detail** is a true, specific thing the camera shows or the label prints, said in
-the present tense. Pick one.
+Decide the class before you write, and write it into the reveal beat in plain words. When it is
+unclear, pick the heavier class.
+
+| Class | Examples | The reveal |
+|---|---|---|
+| Heavy | An appliance, a bottle of 1 L or more, a kettlebell, a dumbbell of 3 kg or more | Both hands, a lean forward, the jaw set and a controlled breath out, together with real delight on the face: lifting and reacting at once, never deadpan effort |
+| Bulky but light | Sneakers in their box, a pillow, a plush toy | Two hands, no strain |
+| Light | A serum, a phone case, a folded tee, a candle | One relaxed hand; the other is free |
+| Tiny | A ring, earrings, a lipstick, earbuds | Pinched between thumb and fingers, brought near the lens |
+
+- Size is said against the hand, with an approximate measure: "fits in one palm, about 9 cm
+  tall". Never compare it to another object: compared sizes drift too big.
+- Real scale only. A small thing comes closer to the lens; it never grows.
+- A pair (shoes, earrings) counts as one product, held one per hand or set side by side, never
+  balanced together on one palm.
+
+## 8. Camera: where the phone is
+
+- **The phone is the camera and never appears in frame.** A forearm at the edge of a selfie is
+  fine. Never write "looking at her phone", "phone in her hand", "holding the phone up" or "the
+  phone screen".
+- **Propped (static) beats:** write "phone propped on the table, frame still". The frame is
+  locked but the body moves inside it: a weight shift, a lean, a head turn, the hands working.
+  In a propped beat never write handheld, shake, drift, wobble, sway or "slight movement": those
+  words leak camera motion.
+- **Selfie beats:** one hand is the phone, so only one hand is free and holds at most one thing.
+  Any two-handed action needs the phone propped.
+- **No mirrors and no reflections** anywhere: no mirror on the wall, no glass door, no shop
+  window, no glossy screen facing the lens. Reflections are where extra hands and second bodies
+  appear. Name a plain wall behind the avatar instead.
+- **Light:** neutral daylight from one window, everything in the room in focus, the look of a
+  phone's front camera. Never golden hour or an amber glow. Camera moves are off by default;
+  when the person wants one, at most one slow push-in in a beat, never in every beat.
+
+## 9. Hands
+
+- Two hands, each with one job per beat. Name both: "her left hand steadies the box, her right
+  hand slices the tape." A hand with no job rests on the table or the box, and the brief says so.
+- Three jobs at once (hold the box, slice, wave) render a third arm. Move the third job to the
+  next beat or set something down first.
+- One product action per beat: opening, lifting and turning the product are three beats. Rest a
+  prop on the table instead of holding it with a spare hand.
+
+## 10. One product, props and printed text
+
+- Exactly one unit of the product in the video: never one in the box and one in the hand, never
+  a second one on the counter. Keep anything with the same shape off the set; dress the room
+  with things of clearly different shapes.
+- One state per prop per beat: the box is sealed, or open at the edge, never half of each. A cap
+  that came off stays off.
+- Show only the product's front as the photo shows it. Turning it to a side the photo does not
+  show makes the model invent a label.
+- No readable text or numbers on any prop, sign or mug. The product's own label is the only
+  print, and its name appears on nothing else in the room. Words that must be exact (a price, a
+  code, a launch date) go in the caption or as Video Studio text.
+
+## 11. The persona, details and PR framing
+
+**The persona's story is welcome.** The avatar is a living persona with a past (house-rules.md,
+section 7). The purchase or the wait is the format's proven opening: "I caved and ordered it",
+"I've waited months for this", "my order finally came". After the reveal it may say how long
+it wanted it, what it replaces, and, in a later section or a follow-up video, what weeks of use
+did ("I've had it three weeks and it lives in my bag"). Spoken, a story needs no beat.
+
+**One concrete detail** is a specific thing the camera shows, the label prints or the persona
+lived, with one concrete in it (a place on the body, a time, a size against the hand).
 
 | Kind | Example |
 |---|---|
+| The wait or the buy | "I've waited months for this one." |
+| A use history | "My last one lasted two years. Not risking it." |
 | Size in the hand | "It's smaller than you'd think. It fits in my palm." |
-| Weight | "It's heavy. It feels solid." |
-| Material or finish | "The cap is metal, not plastic." |
+| Weight | "Heavy. It feels solid." |
+| Material or finish | "The cap is solid metal." |
 | How it works | "The lid closes with a magnet. Listen." |
 | What is in the box | "It comes with a pouch and a spare tip." |
 | A label fact | "Unscented, it says so right here." |
-| A small quirk, only when the brand is fine with it | "The box is way bigger than it needs to be." |
+| A sensation shown now | "It melts in, no stickiness." (only when the beat shows it being used) |
 
-Never: a result over time ("my skin cleared"), a use history ("I've had it for weeks"), a
-rating, a comparison with another brand, a health or income promise, or a review or comment
-on screen that the person did not supply. The full list is house-rules.md, section 7.
+What still holds:
 
-**PR and gifted framing.** A PR box is a look (a curated mailer, tissue, a card), not a claim.
-The avatar never says a brand "sent" or "gifted" it something unless that is true for the
-account that posts it, and then the post's caption discloses it (#ad, or #gifted when it was
-a gift). On the brand's own account, frame it as the brand's own launch: "the new launch box",
-"first look at the spring drop".
+- **The fixed lines** (house-rules.md, section 7): never a real, named person or a real brand's
+  official account; for health, supplements and skincare actives, no promise that it cures,
+  treats or prevents a disease.
+- **No other brand named.** A content check refuses it, and another brand's product in the
+  frame reads as that brand speaking.
+- **Text in the frame comes out garbled.** A review, a comment or a rating on screen goes in
+  Video Studio text, or in from an image the person supplies.
+- **One take cannot show weeks passing.** A result over time is said, or two takes are cut
+  together in Video Studio; a line that tells the viewer to look at something needs a beat that
+  shows it.
 
-## 9. Variants in practice
+**PR and gifted framing.** A PR box is a look (a curated mailer, tissue, a card). The persona
+may tell it either way: a gift ("look what they sent me") or its own buy ("I caved the day it
+dropped"). A post paid for by someone other than the account's owner opens its caption with
+#ad (#gifted for a gift), a default the person may switch off (house-rules.md, section 7). On
+the brand's own account a gift from itself reads odd: frame it as the brand's own launch ("the
+new launch box", "first look at the spring drop") or as the persona's own buy.
 
-**Classic.** The seven beats at 15 s. One product, one reveal.
+## 12. Variants in practice
 
-**PR or launch box.** 15-20 s. Their own box photo makes it: the brand's real mailer is the
-star of the first two beats. Tissue, a card face down, the product presented like something
-special. The verdict can mention when it launches only if the person gave the date.
+**Classic.** The four beats at 15 s. One product, one reveal.
 
-**Quiet (ASMR).** 10-15 s. Write "@Avatar1 stays quiet; the tape, the tissue and the lid are
-the only sounds." and, as the Sound line, "room sound only: the tape, the tissue paper and the
-lid". Slower hands, longer holds; the reveal still lands as a peak, with a smile.
+**PR or launch box.** 15 to 20 s. Their own package photo makes it (Case B and the build-up of
+section 5). The verdict can name the launch date only when the person gave it.
 
-**Full first look.** 20-25 s, one take. After the first touch, one short first use that the
-camera can show at once: earbuds go in, a lipstick swatch on the back of the hand, a mug
-filled. Nothing that needs time to show a result. A real step-by-step belongs to
-`creatorline-tutorial-video`.
+**Quiet (ASMR).** 10 to 15 s. "@Avatar1 stays quiet the whole time" and a Sound line that names
+every sound: the slice of the tape, the flaps, the tissue, the lid. Slower hands; the reveal
+still peaks, with a smile and a breath.
 
-**Haul.** One item per take, 8-12 s each, joined in Video Studio with numbered item labels
-(multi-take-assembly.md). Take 1 opens the package; later takes start with the box already
-open and lift out the next item.
+**Full first look.** 30 s: the four beats (15 s), then one FIRST-USE section
+(after-the-reveal.md). A result that needs time is said, not shown: one take cannot show weeks
+passing.
+
+**Haul.** One item per take, joined in Video Studio with item labels (multi-take-assembly.md).
+Take 1 has the four beats; later takes start with the box already open at the edge of the table
+and lift the next item out. The box stays open and at the edge in every later take: it is never
+closed, re-taped or carried.

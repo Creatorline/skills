@@ -102,9 +102,12 @@ head", not "happy").
 - Negatives: models draw what you name. "a plain grey t-shirt", not "no logo";
   "label facing the camera", not "don't hide the label".
 - Words a camera cannot see: "stunning", "viral", "masterpiece", "8K".
-- A personal result, a history with the product, a credential, a review that was not
-  supplied (house-rules.md, section 7). The claim floor holds with Enhance off too, and no
-  writer is there to catch it.
+- A review, comment card, rating or screenshot drawn into the picture: generated text comes
+  out garbled. It goes in as Video Studio text, or the person supplies it as an image.
+
+The persona applies with Enhance off too (house-rules.md, section 7): the avatar's own result,
+history with the product or credential is welcome in its spoken lines. The fixed lines hold,
+and no writer is there to catch a slip.
 
 ## 10. Weak and strong
 

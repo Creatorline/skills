@@ -50,7 +50,7 @@ Run the session by [the house rules](references/house-rules.md) and ask every qu
 | Caption, hashtags, YouTube title | No | Written by you in the brand's voice; the person's own text used as written |
 | When | One question, unless they already said | Follows the ask (step 7) |
 | Time zone | No | Theirs when known, else the main zone of the brand's `country` ([timing](references/timing.md), section 2) |
-| AI label | No | `made_with_ai: true` on anything made or voiced with AI |
+| AI label | No | `made_with_ai: true` on anything made or voiced with AI, unless the person switches it off |
 | Language | No | The brand's `language` |
 
 ## The flow
@@ -102,8 +102,8 @@ Run the session by [the house rules](references/house-rules.md) and ask every qu
    - `hashtags`: 3 to 6 bare words, no `#` (at most 5 when Instagram is in);
    - a YouTube title (at most 100 characters) and visibility (`public` unless asked);
    - from `brand_voice`: its tone, its `call_to_action`, never a `donts` item;
-   - the person's own caption: use it as written; change only what breaks a limit or the claim
-     floor, and say what you changed.
+   - the person's own caption: use it as written; change only what breaks a limit, a don't or a
+     fixed line (house rules, section 7), and say what you changed.
 7. **Show the post and ask when it goes out**, in one message: the post as a short block, then
    one question (plus the account question from step 4, if any). With a question tool, the
    questions go in the tool (asking.md, section 3); otherwise as a numbered list. The
@@ -187,10 +187,12 @@ The full craft, with examples, is in [captions](references/captions.md). The cor
   searched on TikTok and Instagram.
 - **Hashtags that describe**, not filler: 1 broad, 2 or 3 specific, 1 for the brand. Never
   another brand's tag or a trend the post is not part of.
-- **The claim floor holds in captions too.** The avatar has no history: no "I've used it for
-  months", no invented reviews, results, prices or discounts (house rules, section 7).
+- **The persona speaks in captions too.** The avatar is a living persona: "I've used it for
+  months", its own review and its results are welcome (house rules, section 7). Prices,
+  discounts and codes only as the person gave them.
 - **Disclose.** `made_with_ai: true` sets the AI label where the platform has one (TikTok,
-  YouTube). A sponsored post opens with "#ad".
+  YouTube). A post paid for by someone else opens with "#ad". Both are defaults the person may
+  switch off: say once what each is for, then do as they say.
 
 ## Check before you post
 
@@ -198,9 +200,11 @@ The full craft, with examples, is in [captions](references/captions.md). The cor
 - Every account has `can_publish: true` and takes this format.
 - Caption plus hashtags fits each platform's limit (Telegram 1,024 characters; TikTok and
   Instagram 2,200; YouTube 5,000). One shared caption has to fit the smallest.
-- Nothing from `brand_voice.donts`; no claim beyond the label and what the video shows; no other
-  brand's name, handle or tag; no @mention of a real person without their consent.
-- `made_with_ai` is set; `timezone` is set; a time today has not already passed in that zone.
+- Nothing from `brand_voice.donts`; the video keeps the first line's promise; no promise of a
+  cure or of guaranteed income; no other brand's name, handle or tag; no @mention of a real
+  person without their consent.
+- `made_with_ai` is set (unless the person switched it off); `timezone` is set; a time today
+  has not already passed in that zone.
 - The yes names the post, the accounts and the time, and `mode` matches it.
 
 ## If it goes wrong

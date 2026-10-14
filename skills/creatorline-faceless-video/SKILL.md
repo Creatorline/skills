@@ -1,6 +1,6 @@
 ---
 name: creatorline-faceless-video
-description: "Makes faceless short videos: a narrator's voice over AI pictures, moving scenes or stock clips, nobody on camera. Stories, history, explainers, top-N lists, motivation, scripted, voiced and captioned. Use for 'faceless video', 'narrated story', 'no face'. Not for the avatar on camera: use creatorline-talking-video. Product ads: creatorline-product-video."
+description: "Makes finished faceless videos: a narrator over illustrated scenes, animated or as a frame-by-frame picture story, or over stock clips. Explainers, history, myths, stories, top-N lists, motivation. Use for 'faceless video', 'narrated explainer', 'picture story', 'no face'. Not for the avatar on camera: use creatorline-talking-video. Product ads: creatorline-product-video."
 license: MIT
 metadata:
   author: creatorline
@@ -9,251 +9,246 @@ metadata:
 
 # Faceless Video
 
-You turn a topic, a story or a script into a finished vertical faceless short: a narrator's
-voice over pictures in one consistent art style, moving or still, with captions, exported from
-an editable Video Studio project and ready for the review queue. Nobody appears on camera. The
-promise to the person: one short intake, one price for the whole video, a look they pick before
-anything moves, and a finished, captioned video at the end with the next step offered.
+You turn a topic, a story or a script into ONE finished vertical faceless video: one narrator's
+voice over scenes in one consistent illustrated look, built from a fixed grid of 10-second
+blocks, captioned, exported from an editable Video Studio project and ready for the review
+queue. Nobody appears on camera. The promise to the person: they choose the look and the voice,
+see one price for the whole video, review it at three points before the next stage spends, and
+get a finished video with its cover and the next step offered.
 
 ## When to use
 
-- "Make a faceless video about...", "a narrated story", "a history short", "explain X in a
-  video with a voiceover", "a top 5 list video", "a motivational video with stock footage and a
-  voiceover", "a family-friendly animal video", "nobody on screen", "no face".
-- A brand with no avatar of its own (`get_brand` has no `default_avatar_id`), and any brand when
-  the person wants no face on camera. Do not judge by the brand's `kind`: most brands read
-  `faceless-channel` there even when they have an avatar.
-- The brand has an avatar but wants it off camera: its VOICE can still narrate. That keeps one
-  recognizable voice across the channel.
+- The person asks for a finished narrated video AND says how: "a faceless video", "a narrated
+  explainer", "a history short with a voiceover", "a picture story", "frame by frame",
+  "storybook video", "a myth retold", "top 5 facts with narration", "motivational video with
+  stock footage and a voiceover", "nobody on screen".
+- A topic alone is not enough ("a video about the Roman roads"): with an avatar on the brand,
+  that is a talking video; ask which, in one line, when it is unclear.
+- Any brand where the person wants no face on camera. A brand's avatar can still be the
+  NARRATOR: its voice keeps the channel recognizable while the face stays off screen.
 
 ## Not for
 
 | They want | Use |
 |---|---|
 | The avatar talking on camera | `creatorline-talking-video` |
-| A video that sells a product: the product on screen, a voice off screen | `creatorline-product-video` |
+| A video that sells a product, the product on screen | `creatorline-product-video` |
 | A 30-120 s episode with the avatar as host | `creatorline-ai-host` |
 | Only a script, hooks or ideas, nothing made | `creatorline-short-script` |
-| Edits to a video that already exists | `creatorline-video-studio` |
-| Narration over a video they already have, a voice track alone, or re-voicing a video | `creatorline-voiceover` |
+| One clip or one picture, silent animation of a photo, no narration | `creatorline` (a one-off generation) |
+| Edits to a video that already exists, or to their own footage | `creatorline-video-studio` |
+| Narration over a video they already have, or a voice track alone | `creatorline-voiceover` |
 | Captions on a finished video | `creatorline-captions` |
-| Photos or a carousel, no video | `creatorline-photos` |
-| Clips cut from a long video | `creatorline-long-to-shorts` |
+| Photos or a carousel | `creatorline-photos` |
 | A trending video re-filmed | `creatorline-reshoot` |
-| Content made FOR children (toddler learning, nursery songs, a kids' channel) | Nothing: Creatorline does not make child-directed content. Say so in one line and offer a family-friendly version for all ages ([formats.md](references/formats.md), section 9). |
+| Content made FOR children (toddler learning, nursery songs, a kids' channel) | Nothing: Creatorline does not make child-directed content. Say so in one line and offer a family-friendly version for all ages ([formats.md](references/formats.md), section 10) |
 
 ## What you need
 
-| Item | Hard gap or default |
+| Item | Asked or defaulted |
 |---|---|
-| Topic, story or script | Hard gap. With none, offer three topics from `brand_voice.content_angles` (`get_brand`) as options. |
-| Format | Infer it (story, history, explainer, top-N, motivational, family-friendly) and preselect it in a question only when unclear. |
-| Look | The format's default look ([formats.md](references/formats.md), section 1; the looks are in [visual-style.md](references/visual-style.md), section 2). |
-| Pictures | Moving scenes. Other choices: Still pictures (no motion, costs less), Stock footage. |
-| Length | 30 s. Options 20, 45, 60. Over 60 s: say it takes longer and costs more. |
-| Narrator | The brand's voice when `get_brand` has a `voice_id` (say its `voice_name`); else one voice from `list_voices` that fits the format. Name it in the defaults line. |
-| Language | The brand's `language`, else the language the person writes in. |
-| Captions | On, in the format's caption style. |
-| Music | None, unless the person has a track in the library (`list_assets`, `file_type: "audio"`). There is no stock music. |
-| Frame | 9:16, always. |
+| Format | Asked first, alone, when missing: Explainer (recommended), History, Fairy tale and myth, or Story, Top-N, Motivational, Family-friendly |
+| Look | Always asked, alone, right after the format (unless hands-off): the format's default first ([visual-style.md](references/visual-style.md), section 2). Stock footage is one of the options |
+| Topic | Asked when missing: their own, a link, or "pick one for me" ([intake.md](references/intake.md), section 7) |
+| Length | 1 min (6 blocks). Options 30 s, 2 min, 3 min. Fairy tale and myth: 2 min |
+| Pictures | Animated. Option: Picture story (frame-by-frame stills). Stock footage needs neither |
+| Captions | On, in the look's caption style |
+| Cover | Yes |
+| Mascot | Scenes only (asked for an Explainer or Top-N) |
+| Voice | Always asked, last: the brand's own voice first, then matches from `list_voices` |
+| Language | The brand's `language`, else the person's. Never asked |
+| Frame | 9:16, always. Never asked |
 
 ## The flow
 
-Follow [house-rules.md](references/house-rules.md) for the session, consent, waiting and
-delivery; these steps add what is particular to this format.
+Follow [house-rules.md](references/house-rules.md) for consent, waiting and delivery; these
+steps add what is particular to this format. [checks.md](references/checks.md) holds every gate.
 
 **0. Note the skill.** If `track_skill_activation` is in your tools, call it once for this new
-request with `skill_name: "creatorline-faceless-video"`. Not again while you wait or fix things.
-Never mention it.
+request with `skill_name: "creatorline-faceless-video"`. Not again while you wait or fix
+things. Never mention it.
 
-**1. Orient** (once per conversation). `list_brands`, `get_brand` (voice, `language`,
+**1. Orient** (once per conversation): `list_brands`, `get_brand` (its voice, `language`,
 `brand_voice`), `get_credit_balance` (a `free_trial: true` stops paid work: house rules,
-section 8). Call `get_video_guide` once: it is free and carries the live voiceover, captions and
-export prices you need in step 4.
+section 8), and `get_video_guide` once (free; it carries the voiceover, captions and export
+prices).
 
-**2. Intake: one message.** Ask only the gaps, at most three questions, with options and a
-recommended one ([asking.md](references/asking.md)). Typical:
+**2. Intake, in rounds** ([intake.md](references/intake.md)). Interactive unless the person's
+words say hands-off. The format alone; then the look alone; then at most 3 of topic, length,
+pictures, captions, cover, mascot; the voice always last. Each round ends your turn. Nothing
+but free reads runs until the intake is done. Hands-off: ask nothing, use the defaults, name
+the voice in one line.
 
-> Two quick picks:
-> 1. Look: 1) Oil painting (recommended for history) 2) Paper collage 3) Realistic photos
-> 2. Pictures: 1) Moving scenes (recommended) 2) Still pictures, no motion, costs less 3) Stock footage
->
-> Defaults: 30 seconds, narrated by <voice name> in English, captions on.
+**3. Research and write the script (free).**
 
-"Just do it" or a full brief: ask nothing, decide, and say what you chose in the plan.
-
-**3. Write the script (free).** Use [formats.md](references/formats.md): beats with a time, the
-narration line and the picture for each. Research facts first for history and explainers (same
-file, section 10). Pick the look's style line (one sentence, pasted word for word into every
-picture brief, [visual-style.md](references/visual-style.md)) and the narrator voice
-(`list_voices` with a `search` such as `deep storyteller`, only when the brand has no voice or
-the person wants another). Stock footage: find a clip for each beat now
-([narration-and-assembly.md](references/narration-and-assembly.md), section 9); a beat no clip
-fits gets an AI picture, and only those beats go through steps 5 and 6.
+1. Research real-world facts first ([formats.md](references/formats.md), section 11).
+2. Choose the thread object, then write the arc as N blocks of 10 seconds
+   ([formats.md](references/formats.md), sections 2 and 3): each block one narration line of 20
+   to 23 words, its arc role, its place, and (Animated, Stock footage) 5 shots of 2 seconds,
+   each with a size, an angle and the assets it uses. Picture story: one continuous narration.
+3. List the roster: figures (one line each), places with their second angles, props, the
+   thread's prop ([visual-style.md](references/visual-style.md), section 4).
+4. Run the script check and the rewrite pass ([checks.md](references/checks.md), sections 2
+   and 3); fix only what they flag.
 
 **4. Price the whole video, one yes.** Quote every part before anything starts
-([narration-and-assembly.md](references/narration-and-assembly.md), section 4):
+([narration-and-assembly.md](references/narration-and-assembly.md), section 4), then ONE message
+with the script and the price, so both are approved at once. Always show every block:
 
-- the opening picture: `create_generation` with `tool: "text-to-photo"`, `brand_id`, the
-  opening brief and `count: 3`, WITHOUT `confirm`;
-- one other picture the same way with `count` left out; the rest cost the same (Still pictures:
-  `count: 2` per beat and `params: { resolution: "2K" }`);
-- Moving scenes: `estimate_generation_cost` with `tool: "photo-to-video"` and
-  `params: { duration: <seconds>, generate_audio: false }` for each scene length (section 3 of
-  that file says how long);
-- narration: `get_video_guide` `credits.voiceover` times the number of beats;
-- captions and export: `credits.captions` and `credits.export`.
-
-Then ONE message with the script and the price, so the person approves both at once:
-
-> | # | Time | Narration | Picture |
-> |---|---|---|---|
-> | 1 | 0-3 s | "This lighthouse never went dark. Not once." | A lighthouse on black rocks in a storm |
+> | Block | Narration | Shots | Place | Role |
+> |---|---|---|---|---|
+> | 1 | "This lighthouse never went dark. Not once, in a hundred and twelve winters of storms..." | wide, low: the tower in a storm · close: the lamp ... | The rock | Cold open |
 >
-> Oil-painting look, six moving scenes, narrated by <voice name>, captions on.
-> - Pictures: <a> credits. Motion: <b>. Narration: <c>. Captions and export: <d>.
+> Thread: the keeper's logbook, filling page by page, closed on the last night.
+> Editorial collage look, six blocks, thirty animated shots, narrated by <voice name>,
+> captions on, a cover.
+> - Pictures: <a> credits. Motion: <b>. Narration (with two retakes if needed): <c>.
+>   Captions, export and cover: <d>.
 >
-> Total <N> credits; you have <M>. Go ahead, or change any line first?
+> Total <N> credits at most; you have <M>. Go ahead, or change any line first?
 
-A changed line is free; a change that adds beats or seconds is quoted again. Short balance:
-offer Still pictures, fewer beats or Stock footage.
+A changed line is free; more blocks or another look are quoted again. Short balance: offer
+Picture story (about a third to a half of Animated), fewer blocks, or Stock footage.
 
-**5. The opening picture.** On yes, call the same `create_generation` with `confirm: true`.
-`get_generation` with `wait_seconds: 30` until `succeeded`. Show the three options as links,
-one line each, and ask which look to keep (recommend one). This pause is a creative pick, not a
-new price. Hands-off: pick the best yourself and say which. A different look is a new run: quote
-it and ask.
+**5. The look reference and the roster** (not for Stock footage). On yes: the look reference
+first (`text-to-photo`, `aspect_ratio: "2:3"`, [visual-style.md](references/visual-style.md),
+section 3); `get_generation` with `wait_seconds: 30` until it is done. Then every roster picture
+(`photo-edit`, `include_avatar: false`, the look reference attached, section 4), started one
+after another without waiting, at most 6 at a time, then waited on.
 
-**6. The other pictures.** Start every remaining picture with `confirm: true`, each brief with
-the same style line, without waiting between them. Then `get_generation` with
-`wait_seconds: 30` on each until done; a run past the workspace's parallel limit shows `queued`
-and starts by itself. Look at them with `preview_assets` (up to 8 ids a call, free). A picture
-that is off the look, shows letters, or puts a face where a figure should be anonymous gets one
-fix: quote it, ask, redo ([visual-style.md](references/visual-style.md), section 10).
+**6. The pictures.** Animated: every shot picture
+([visual-style.md](references/visual-style.md), section 6), started in waves the same way.
+Stock footage: pick the stock shots instead (section 12 of the same file). Picture story: go
+to step 7; its frames come after the narration. Look at them with `preview_assets` (8 ids a
+call, free) against [visual-style.md](references/visual-style.md), section 13.
 
-**7. Start the motion** (Moving scenes only). For each scene: `create_generation` with
-`tool: "photo-to-video"`, `brand_id`, `inputs: { image_url: <the scene's picture asset_id> }`,
-a motion brief (what moves, one camera move) and
-`params: { duration: <the quoted seconds>, generate_audio: false }`, `confirm: true`. Do not wait
-for them: they render while you build and narrate.
+**Review stop 1 (interactive, Animated and Stock footage).** List the pictures as links, one
+line per block (`Block 1: [shot 1](<url>) · [shot 2](<url>) ...`), say the look reference may
+look odd because it is only a sample of the look, and ask: "Continue to the narration?" with
+two options, Continue (recommended) and Stop here. End your turn. Hands-off runs never stop.
 
-**8. Build the video (free).** `create_video` with `brand_id`, a `title`, and `operations`: one
-`add_clip` per picture in beat order with your own ids (`s1`, `s2`, ...) and a first `duration`
-from the script's times, then `{ "op": "set_all_clips_sound", "sound": false }`. Stock footage:
-`add_clip` with `stock_id` instead (section 9 of the assembly file).
+**7. Build and narrate.** Animated: the still cut from the shot pictures, 2 seconds each, all
+muted (narration-and-assembly.md, section 5). Then `add_voiceover` per block at the block's
+start, measure every take, retake what fails, and centre each line in its block (section 6).
+Picture story: the placeholder cut and the one continuous narration (section 8, steps 1 to 3).
+Stock footage: the stock cut (section 9), then the same narration steps.
 
-**9. Narrate, beat by beat.** For every beat: `add_voiceover` with `video_id`, `text` (the
-line, exactly as it should be said), `voice_id`, `over: "s<n>"`, `wait_seconds: 0`,
-`confirm: true`. Keep each `voiceover_id`. Then `get_video` every 10-20 s until every voiceover
-is `ready`. Fit the pictures to the lines in two `edit_video` calls: first each clip's length to
-its line, then each voiceover back to its clip's start
-([narration-and-assembly.md](references/narration-and-assembly.md), section 6). Read every time
-from the answers; never add them up yourself.
+**Review stop 2 (interactive only).** Each block's line with its measured length, and the
+studio link to listen (`[Open in Creatorline](<studio_url>)`). Ask: "Continue to the motion?"
+(Picture story: "Continue to the pictures?"; Stock footage: "Finish the video?", then skip
+step 8 and stop 3). End your turn.
 
-**10. Put the motion in** (Moving scenes only). `get_generation` with `wait_seconds: 45` on
-each motion run. Each finished one goes in with `edit_video`
-`{ "op": "replace_clip", "id": "s<n>", "asset_id": <its output asset_id> }`: the clip keeps its
-place and its length. If an `applied` note says the new media is shorter, or any voiceover no
-longer starts on its clip, fix it (same file, section 7). A failed motion run keeps its still.
+**8. The motion, or the frames.** Animated: one `photo-to-video` run per shot
+([visual-style.md](references/visual-style.md), section 10), all started, then each put in with
+`replace_clip` as it finishes (narration-and-assembly.md, section 7). Picture story: the caption
+timeline, the frame slots, the frames in waves, then the assembly (section 8, steps 4 to 8).
 
-**11. Texts, then look.** A title of 3-6 words over the first scene, top; top-N labels; an
-ending line over the last scene if the person wants a call to action. Then `preview_video` with
-`show_safe_area: true` and fix what you see. Free; repeat until right.
+**Review stop 3 (interactive only).** The cut, by the studio link and `preview_video` frames
+(Picture story: the frames as links, a line per stretch of narration). Ask: "Finish the video?"
+(captions, cover, export). End your turn.
 
-**12. Captions.** `write_captions` with the format's `style` and `position: "auto"`,
-`confirm: true`. `get_video` every 20 s until `captions.status` is `ready`. Read the lines; fix
-names and numbers with `{ "op": "edit_caption", "index": <n>, "text": "..." }`.
+**9. Texts, then look.** A title of 3 to 6 words over the first shot, top; top-N labels; a call
+to action over the last shot if wanted (section 10). `preview_video` with
+`show_safe_area: true`; fix what you see. Free; repeat until right.
 
-**13. Export.** `get_video`: `ready_to_export` true and no `warnings`. `export_video` with
-`confirm: true`, then `get_video` every 15 s until `export.status` is `done`.
+**10. Captions.** `write_captions` with the look's `style`, `position: "auto"`,
+`confirm: true`; `get_video` every 20 seconds until `ready`. Read every line against the script:
+fix words with `edit_caption`, and catch a take that said the wrong line or paused (section 11).
 
-**14. Show it** (below), then offer next steps.
+**11. Export and cover.** The last look ([checks.md](references/checks.md), section 8), then
+`export_video` with `confirm: true` and `get_video` every 15 seconds until `export.status` is
+`done`. The cover, when chosen, from this run's look reference (section 12).
 
-Narrate the wait in one line between calls: "Painting the six scenes now." "Recording the
-narration." "Bringing the scenes to life: the slowest part, a few minutes." "Writing the
-captions." The whole run is often 8-15 minutes; say so when it starts. Runs that sit in
-`queued` mean the workspace makes fewer at once: say it will take longer. If it will clearly run
-past your turn, say what is left and what to ask ("ask me if it's done in five minutes"), then
-pick it up from `get_video` and `get_generation`. Never start a run twice.
+**12. Show it**, then offer next steps.
+
+Narrate the waits in one line each: "Drawing the look and the cast." "Composing the thirty
+shots." "Recording the narration." "Bringing the shots to life: the slowest part." "Writing
+the captions." Say at the start that a whole run often takes 10 to 25 minutes. `queued` runs
+wait for a free slot: say it will take longer. If it will clearly run past your turn, say what
+is left and what to ask, then pick it up from `get_video` and `get_generation`. Never start a
+run twice.
 
 ## Craft
 
-The full know-how is in the references; these are the rules that make or break it.
+The know-how is in the references; these are the rules that make or break it.
 
-- **Hook in the first 2-3 seconds.** A line of 8 words or fewer that states the surprising thing
-  flat, over the strongest picture. No greeting, no "in this video", no title card first.
-- **One idea per beat, escalating.** Every beat has a concrete thing (a number, a date, a place,
-  a named object). Swap two middle beats: if nothing breaks, it is a list. Link them with "but",
-  "so", "which meant".
-- **The turn and the payoff.** At about two thirds, one line flips what the viewer assumed. The
-  last line answers the hook and, at best, returns to its picture or number.
-- **Speech budget.** About 2.3 words per second plus a breath between beats: 30 s holds 60-70
-  words, a beat of 4-5 s holds 9-11. Lines are written for the ear, in the brand's language:
-  short, few commas, contractions.
-- **One look.** Pick the style line once and paste it word for word into every picture brief.
-  Never mix looks inside one video.
-- **Faceless means anonymous.** People appear from behind, in silhouette, far away, or as hands.
-  Real people, historical figures included, are named in the narration only, never shown with a
-  likeness. The server's picture writer knows the brand's avatar: describe every figure fully so
-  none comes out looking like it.
-- **No words inside pictures.** Models spell badly. Labels, numbers and titles go on as Video
-  Studio text; describe signs and pages as plain or blank.
-- **Keep it moving.** A new picture every 3-5 s in Moving scenes, every 1.5-3 s in Still pictures.
-  The subject sits in the upper middle; the lower third is for captions.
-- **Narration carries the sound.** Clips stay muted. A music track from the library is turned
-  down by itself while the voice speaks; pick a calm instrumental.
+- **One look, two anchors, every call.** The 80-100 word style line first in every brief, and
+  the look reference attached to every picture. Never mix looks. AI pictures are always
+  illustrated: real-looking footage comes only from stock or the brand's own clips.
+- **The grid.** 10-second blocks, one narration line each, 5 shots of 2 seconds. No shot over
+  2.5 seconds: a longer hold reads as a slideshow. The video is exactly N x 10 seconds.
+- **Every shot changes size AND angle** from the one before. A wide shot only opens a new place;
+  at most 2 blocks in one place.
+- **The thread.** One object in every block, changing in one direction, resolved in the payoff.
+- **The cold open.** Block 1 opens on a sentence of 8 words or fewer: the surprising thing,
+  flat. No greeting, no "in this video".
+- **Lines of 20 to 23 words**, few stops, numbers in words, measured at 7.8 to 9.5 seconds and
+  centred in their block. A line that does not fit is rewritten, never the video cut to it.
+- **Build, turn, payoff.** Each block escalates; the turn (usually block N-1) changes what the
+  viewer believed; the kicker returns to the hook's image or number.
+- **Motion is choreography.** Things arrive one after another, land with a verb, one camera
+  move per shot, at least one impact per block, moving from the first frame.
+- **Faceless means anonymous.** Figures from behind, in silhouette, far away or as hands; real
+  people named in the narration only; never a young person; the avatar never in a picture.
+- **No words inside pictures.** Labels and numbers are Video Studio text; word beats become
+  bars, circles, ribbons and symbols.
+- **Narration carries the sound.** Clips stay muted; a library track sits under the voice, quiet.
 
 ## Check before you show it
 
-- The facts: every number, date and name in the script came from a source you can link, or you
-  told the person which ones to double check.
-- The pictures share one look, show no letters, and no figure has a clear, recognizable face.
-- The hook line is spoken in the first 3 seconds; the video runs within a few seconds of the
-  length promised.
-- `get_video`: no `warnings`, every voiceover `ready`, `captions.status` `ready`, each voiceover
-  starting on its own clip.
-- `preview_video` with `show_safe_area: true`: titles and labels clear of the covered bands and
-  of the captions row.
-- The caption lines spell names and numbers right.
+The full list is [checks.md](references/checks.md), section 8. At least:
+
+- the facts: every number, date and name has a source you can link, or the person was told
+  which lines to check;
+- one look across every shot, figures matching the roster, no letters, no recognizable face;
+- the length is N x 10 seconds (Picture story: the narration's length), every block has its
+  line, centred, one voice;
+- `get_video`: no `warnings`, every voiceover `ready`, `captions.status` `ready`, captions
+  spelled like the script;
+- `preview_video` with `show_safe_area: true`: texts clear of the covered bands and the captions;
 - `export.status` is `done` and `export.up_to_date` is true.
 
 ## If it goes wrong
 
 | Problem | Fix |
 |---|---|
-| Pictures drift in look | Redo the odd one with the chosen opening picture as a reference ([visual-style.md](references/visual-style.md), section 7). Quote first. |
-| A picture shows garbled letters | Redo it describing signs and pages as plain; or, if small, cover it with a Video Studio text. |
-| A figure looks like the brand's avatar, or shows a clear face | Redo it with the figure from behind or in silhouette, fully described. |
-| A motion run warps the scene or adds people | Keep the still for that beat (it costs nothing more), or redo with a smaller move and a locked camera. Ask before paying again. |
-| A line runs longer than its scene | Lengthen the clip: a picture with `update_clip` `duration`, a moving scene with `update_clip` `speed` (not below 0.75). Then realign the voiceovers. |
-| A line sounds wrong or mispronounces a name | `add_voiceover` with `replace_id` and the fixed words (a new paid take: ask). Spell a hard name as it sounds; correct the caption with `edit_caption`. |
-| A warning says a voiceover runs past the video's end | Lengthen the last clip with `update_clip`. |
-| A warning says nothing is heard | The voiceovers are missing or failed: read `get_video`, add them again. |
-| `captions.status` is `out_of_date` | Clips changed after captions: `write_captions` again when the cut is final (free). |
-| Export refused | Read the reason and `warnings`: something is still generating or captions are being written. Wait, then export. |
-| A run failed | It was refunded. Say what failed in plain words, change one thing, quote the retry, ask. |
-| A run stays `queued` | It waits for a free slot and starts by itself. Say so. |
-| `create_video` failed and you retry | Check `list_videos` first: a retry that succeeded twice makes two videos. |
+| A picture drifts off the look | Redo it with the style line and the look reference, the palette line stated again; only that picture. A redo of a picture that succeeded is quoted first |
+| A picture shows letters, or a recognizable face | Redo it with signs described as plain, the figure from behind or in silhouette |
+| A figure looks like the brand's avatar | Check `include_avatar: false`; describe the figure fully; redo |
+| A run fails or is refused | The retry ladder ([checks.md](references/checks.md), section 6): same call twice, then reworded, then restaged, up to about 8; references never dropped |
+| A shot cannot be made after the ladder | It drops out; its block becomes 4 shots of 2.5 seconds |
+| The look reference cannot be made | Stop: nothing else runs without it. Offer another look |
+| A line runs over 9.5 or under 7.2 seconds | Rewrite and retake it, at most 3 tries (narration-and-assembly.md, section 6) |
+| A caption line shows another block's words | That take said the wrong line: retake it |
+| A gap of 0.8 s or more inside a line | Rewrite it with fewer stops and retake |
+| Picture story frames look like separate photos | Roster pictures were attached to variations: make them again as edits of the frame before |
+| Frames play out of order | Re-add them by slot number, `f001` upward |
+| `captions.status` is `out_of_date` | `write_captions` again when the cut is final (free) |
+| Export refused | Read the reason and `warnings`: something is still generating. Wait, then export |
+| A run sits unchanged for 20 minutes | Stop waiting; tell the person which part is stuck |
+| `create_video` failed and you retry | Check `list_videos` first: a retry may have made two |
 
 ## Show the result
 
 ```
-**The lighthouse that never went dark**: a 32-second faceless history short, oil-painting
-look, six moving scenes, narrated by <voice name>, captions on.
-[Watch the video](<export.url>) · [Open in Creatorline](<studio_url>)
+**The lighthouse that never went dark**: a 1-minute faceless history video, Editorial
+collage look, six blocks, narrated by <voice name> in English, captions on.
+[Watch the video](<export.url>) · [Open in Creatorline](<studio_url>) · [Cover](<cover url>)
 Used <N> credits. <M> left.
 Sources: [<source title>](<url>), [<source title>](<url>)
 
 What next?
 1. Post it: I'll write the caption and put it in your review queue.
-2. A cover in the same painted look.
-3. Part two, same look and voice.
+2. Part two, same look and voice.
+3. A carousel from the shots.
 ```
 
-Credits used: add up the `credits_charged` of every run you started, minus any run that failed
-(those were refunded). Credits left: `get_credit_balance`, called once at the end (the Video
-Studio answers do not carry the balance). The MP4 link expires; the studio link does not. Add
-the sources line for history and explainers. Keep the rest for when they ask.
+Name the length, the look, the narrator and language, and whether captions are on. Credits
+used: the `credits_charged` of every run started, minus the failed ones (refunded). Credits
+left: `get_credit_balance`, called once at the end. The MP4 link expires; the studio link does
+not. Add the sources line for anything researched; keep job details and loose links to yourself
+unless asked. One line for anything that went differently ([checks.md](references/checks.md),
+section 9).
 
 ## Next steps to offer
 
@@ -261,23 +256,28 @@ Pick the two or three that fit, one line each:
 
 - **Post it**: caption and hashtags in the brand's voice, then `create_post` with
   `export.asset_id` and `made_with_ai: true` into the review queue (`creatorline-publish`).
-- **A cover**: a 9:16 cover in the same look with a few words on it (`creatorline-cover-image`).
-- **A carousel from the pictures**: the stills already exist; `create_post` with 2-10 of their
-  asset ids in order posts them as a carousel (`creatorline-publish`).
-- **Part two or a series**: same style line, same voice, same format; only the topic changes.
-- **Another language**: new lines with `add_voiceover` `replace_id` per beat, refit, then
-  `write_captions` again (free on the same video) and a new export. Quote the voiceovers and the
-  export first; the first MP4 stays in the library.
-- **Edit by hand**: the person opens the studio link; or ask for changes (`creatorline-video-studio`).
+- **Part two or a series**: same look reference, style line and voice; only the topic changes.
+- **A carousel from the shots**: the pictures exist; `create_post` with 2-10 of their asset ids
+  in order posts them as a carousel (`creatorline-publish`).
+- **Another language**: new lines per block with `add_voiceover` `replace_id`, measured and
+  centred, `write_captions` again (free) and a new export. Quote the voiceovers and the export
+  first.
+- **Make it weekly**: the same pipeline saved as a workflow (`creatorline-workflows`).
+- **Edit by hand**: the studio link; or ask for changes (`creatorline-video-studio`).
 
 ## References
 
-- [formats.md](references/formats.md): the six formats, beat maps, tone, voice, captions,
-  facts and sources, family-friendly rules.
-- [visual-style.md](references/visual-style.md): the looks, the style line, picture and motion
-  briefs, anonymity, consistency fixes, stock and realistic footage.
-- [narration-and-assembly.md](references/narration-and-assembly.md): narration lines, scene
-  lengths, pricing calls, the Video Studio operations, fitting and realigning, Still pictures,
-  Stock footage and the in-studio route, pitfalls.
-- Shared: [house-rules.md](references/house-rules.md),
-  [asking.md](references/asking.md), [video-briefs.md](references/video-briefs.md).
+- [intake.md](references/intake.md): interactive or hands-off, the round order, looks named in
+  the message, what is never asked, hands-off defaults, picking a topic, titles, a series.
+- [formats.md](references/formats.md): the formats, the arc, block maps by length, tone, voice
+  and caption per format, family-friendly, facts and sources.
+- [visual-style.md](references/visual-style.md): the style line and look reference, the
+  fourteen looks, the roster, shot pictures, shot variety, anonymity and safe staging, motion briefs,
+  Picture story frames, stock footage, checking pictures.
+- [narration-and-assembly.md](references/narration-and-assembly.md): the block grid, narration
+  lines, the voice, pricing, building each mode, measuring and centring, captions, export,
+  the cover, pitfalls.
+- [checks.md](references/checks.md): the gates, the script check, the retry ladder, Picture
+  story checks, the last look, saying what went differently.
+- Shared: [house-rules.md](references/house-rules.md), [asking.md](references/asking.md),
+  [video-briefs.md](references/video-briefs.md).

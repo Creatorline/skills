@@ -52,6 +52,14 @@ refused with the list, before anything is charged.
 - A colour, font or size the looks do not have (red captions, a script font, bigger words):
   say in one line that captions come in these six looks, and offer the nearest. Free-form
   styling belongs to texts in Video Studio (`creatorline-video-studio`), not to captions.
+- A handwritten, storybook or torn-paper look does not exist here: say so in one line and offer
+  Sticker (playful) or Minimal (soft).
+- A request that would hurt reading (captions over the face, on the hook's row, or a long
+  block of words): decline it in one line with the nearest that reads ("they'd cover your
+  face; I'll keep them at the bottom").
+- No emoji in captions: they are the words said.
+- Karaoke is never the default; use it when it is named or the video is a storytime or a
+  narrated faceless video.
 
 ## 3. The brand's look
 
@@ -64,11 +72,34 @@ refused with the list, before anything is charged.
   `style` (and its `position`, when it is `top`, `middle` or `bottom`) is the brand's look.
   `custom` means someone dragged them in the studio: use `auto`. Its hook texts give the hook
   look and size.
-- No captioned video yet: `hormozi`, named in the plan with the others once, so the person can
-  pick a different one before the first video sets it.
+- No captioned video yet, and the person is there to answer: ask the look question below, with
+  the intake, before anything is priced.
+- No captioned video yet, and nobody to ask (another skill called this one, a batch, "just do
+  it"): `hormozi`, said in one line.
 - The person changes it: use the new look, and say it is the brand's look from now on.
 - Route B results are not Video Studio videos, so they cannot be read back this way. When a
-  brand only ever used route B, ask nothing: use `hormozi` unless the person says otherwise.
+  brand only ever used route B, ask the look question once; the person's answer is the brand's
+  look for the rest of the conversation.
+
+**The look question.** At most two quick questions, each with the recommended one first, and
+none when the look was named, the brand has one, or nobody is there to answer.
+
+> 1. Which caption look?
+>    1. Hormozi: big capitals, the spoken word in yellow (recommended)
+>    2. TikTok: small white words, like the app's own
+>    3. Karaoke: each word fills with yellow as it is said
+>    4. Sticker: black words in a thick white edge
+
+Only when TikTok is picked, a second question:
+
+> 2. Its edge?
+>    1. A thin black edge (recommended)
+>    2. A heavier black edge, for busy or bright footage (Bold)
+>    3. No edge, a soft shadow only, for calm or dark footage (Minimal)
+
+Never a second question after Hormozi, Karaoke or Sticker: they have no variants. A request
+that already says the look ("clean captions", "big yellow ones") is the answer: map it
+(section 2) and ask nothing.
 
 ## 4. The frame and the safe area
 
@@ -89,6 +120,11 @@ parts of it; the stricter of the two on each side:
   `preview_video` and `show_safe_area: true`.
 - A wide clip fills the frame and loses its sides. Words burned into the sides of a wide
   source are cut off with them.
+- A common rule for vertical video keeps captions clear of the bottom 16.7 % of the height and
+  11 % of the width at each side (17 % and 7.5 % on a wide frame). Video Studio's bottom row
+  sits above the 420 px band (21.9 %), clear of it. Route B burns about 18 to 20 % up from the
+  bottom, also clear. The sides are the part to check, with `preview_video`
+  (checking-captions.md, section 5).
 
 ## 5. Caption rows
 
@@ -137,4 +173,8 @@ than Video Studio's bottom row, partly inside the band the apps cover, and canno
 - The hook in two lines at most, readable at phone size in `preview_video`.
 - No words inside the covered bands (`show_safe_area: true`).
 - Captions never cover the product while it is being shown: move them to `middle` for that
-  video.
+  video. Never over the face.
+- Captions stay small and out of the way: one look size for the whole video, a few words at a
+  time, never a block of lines.
+- Letters the look may not draw, and Turkish capitals in Hormozi: checking-captions.md,
+  section 6.

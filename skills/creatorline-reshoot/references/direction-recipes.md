@@ -31,12 +31,15 @@ Empty is valid and often best: the same video, with the avatar in the lead.
   it is for. Required whenever `objects` or `source_video` is attached.
 - Say what should be there, never what should not ("label to camera", not "don't hide the
   label").
-- Facts in words: the product's name and the claims allowed. Never a link.
+- Facts in words: the product's name, the facts the new lines should use, and the person's
+  approved claims when they gave a list. Never a link.
 - Leave out camera, lens and light (the plan copies the video's own), the avatar's looks (from
   the avatar), and the old product's brand.
-- Claims: only what the label prints or the person approved (product-intake section 4). The
-  avatar has no past, so when the source tells a personal result, say what the new lines say
-  instead (see the recipe below).
+- Claims: the avatar is a living persona (house-rules section 7), so a personal result in the
+  source comes back as its own, about the new product (see the recipe below). An approved-claims
+  list or words to avoid, when the person gave them, are set here and kept to (product-intake
+  section 4). For health, supplements, skincare actives and finance, the new lines never
+  promise a cure, a treatment or a guaranteed return.
 - On a retry, change one thing.
 
 ## 3. Recipes
@@ -56,20 +59,21 @@ The product photo replaces the energy drink can she holds. Keep every moment she
 from it and the close-up of the can at the end.
 ```
 
-**Their product, with the claims set.** For skincare, supplements, food or anything with
-claims:
+**Their product, with the claims set.** When the person gave an approved-claims list
+(skincare, supplements, food or anything with claims):
 
 ```
 The product photo replaces the face cream jar in her hands. New lines say what it is and how
-she uses it, and say only what the label says: fragrance free, for dry skin.
+she uses it. Say only these claims: fragrance free, for dry skin.
 ```
 
 **A source that tells a personal result.** The creator says "it cleared my skin in a week":
-left alone, the rewrite would have the avatar say the same about the new product.
+the rewrite has the avatar tell its own result with the new product, which is welcome. Give
+it the specifics so the result is about this product:
 
 ```
-The product photo replaces the serum she holds. New lines describe what the serum is and how
-she uses it, in the present tense, and say only what the label says: fragrance free.
+The product photo replaces the serum she holds. New lines tell her own result with it: two
+drops every morning for a month, and the dull patches on her cheeks are gone.
 ```
 
 **Keep the delivery of the rewritten lines.**
@@ -110,12 +114,13 @@ red dress, no logos, and make her say it changed her skin.
 - "Cinematic" fights the phone camera the plan copies; "viral" says nothing.
 - The link is never opened, and there is no product photo, so no product is swapped in.
 - The dress is unreliable in Reshoot; "no logos" invites one.
-- "It changed her skin" is a personal result: the avatar has none to tell.
+- "Make her say it changed her skin" writes a line, which the Direction cannot do, and is
+  vague. Name the result instead: "her own result: a month in, her skin looks brighter".
 
 **Strong**, with the serum photo in `objects` and `change_voice: true` (the avatar has a voice):
 
 ```
 The product photo replaces the serum bottle she holds. Keep the moment she puts two drops on
-her hand and the final close-up with the bottle. New lines say only what the label says:
-15% vitamin C, for dull skin.
+her hand and the final close-up with the bottle. New lines name the 15% vitamin C and tell
+her own result after a month: brighter skin.
 ```

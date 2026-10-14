@@ -57,7 +57,7 @@ Run it on every source before you quote. Each "no" has a way out.
 | Vertical | The result keeps the source's frame: a horizontal source gives a horizontal video |
 | 4 s or longer | Too short to film: another source |
 | 30 s or less | Pick the length: the cut keeps the hook and the payoff and compresses the middle |
-| Nothing said that the avatar must not say (a personal result, a testimonial, another brand's name, a health or money claim) | Swap their product in and set the claims in the Direction, or another source |
+| Nothing said that the avatar must not say (another brand's name, a promise that something cures a disease or guarantees income; a personal result or a testimonial is fine) | Swap their product in, and set the claims in the Direction for a promise; or another source |
 | No other brand's product in hand | Swap theirs in with `objects`, or another source |
 | A song or trending sound, or a person talking? | Decides `change_voice` (SKILL.md, Craft, "Voice") |
 

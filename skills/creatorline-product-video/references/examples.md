@@ -13,22 +13,28 @@ up.
 3. [Path B: a still, then one take](#3-path-b-a-still-then-one-take)
 4. [Path C: the avatar's hands in a car](#4-path-c-the-avatars-hands-in-a-car)
 5. [One voice over a joined clip](#5-one-voice-over-a-joined-clip)
-6. [Path D: 24 s under one voiceover](#6-path-d-24-s-under-one-voiceover)
+6. [Path D: one voiceover over several clips](#6-path-d-one-voiceover-over-several-clips)
 
 ## 1. Path A: hands only, 8 s
 
 The person: "Make a video of my hair oil, no face, just hands." The photo is in their library;
-a bathroom shelf photo is too.
+a bathroom shelf photo is too. 8 s holds two shots: intro into use, then second use into result.
 
 Product card (written once, reused):
 
 ```
 Product: Velra Rice Water Hair Oil
 What it is: a light hair oil
-How it is used: two presses of the pump into the palm, palms rubbed together, worked through the ends
+Category: hair oil
+Opens by: the pump is ready to press; nothing to remove
+Used by: two presses of the pump into the palm, palms rubbed together, worked through the ends
 Looks: clear glass bottle, matte black pump, pale gold oil, white label
+Tier: premium
 Size: fits in one hand, about 13 cm tall
+Mechanism: the pump sits on top, presses straight down, the oil comes out of the short spout facing front
+Has only: a smooth glass body; the pump is the only moving part
 Label: "VELRA", "Rice Water Hair Oil", 50 ml
+Detail: a faint fingerprint on the glass
 Claims: none given
 ```
 
@@ -42,7 +48,7 @@ Call:
   "include_avatar": false,
   "inputs": { "image_urls": ["<hair oil asset id>", "<bathroom shelf asset id>"] },
   "params": { "duration": 8 },
-  "prompt": "Format: a phone video of a hair oil, hands only: only the bottle and a pair of hands are in frame. A woman's voice speaks off screen, warm and quick.\nProduct: Velra Rice Water Hair Oil (@Image1): clear glass bottle, matte black pump, pale gold oil, white label reading VELRA, fits in one hand, about 13 cm tall. Use: two presses of the pump into the palm, palms rubbed together.\nSetting: @Image2, a bathroom shelf by a frosted window, morning light, a wide-tooth comb and a rolled towel beside the bottle.\nShots: 1 first person: a hand takes the bottle off the shelf and presses the pump twice into the other palm. 2 medium, from behind: both hands work the oil through the ends of long dark hair.\nVoiceover, word for word: \"Two pumps, warmed in your palms. Then the ends only, never the roots. Rice water and oil, one bottle.\"\nEnding: the hands smoothing the ends, the bottle back on the shelf behind them, label to the camera.\nSound: voice and room sound only, with the pump's click and the soft rub of palms.\nLanguage: English."
+  "prompt": "Format: a casual iPhone video of a hair oil, hands only: only the bottle and an adult woman's hands are in frame, real texture, nothing retouched. A woman's voice speaks off screen with an American accent, warm and quick.\nIdea: the oil comes off the shelf, goes into the palms, and ends up in the ends of the hair.\nProduct: exactly one hair oil bottle in frame. Velra Rice Water Hair Oil (@Image1): clear glass bottle, matte black pump, pale gold oil, white label reading VELRA, fits in one hand, about 13 cm tall, a smooth glass body with the pump as its only moving part. Use: the pump presses straight down and the oil comes out of the short spout facing front.\nSetting: @Image2, a bathroom shelf by a frosted window, neutral morning daylight, a wide-tooth comb and a rolled towel beside the bottle.\nShots: 1 propped at shelf height, medium: the bottle stands on the shelf, light on the glass; a hand lifts it and presses the pump twice into the other palm, the pump clicking, both hands cropped at the forearms. 2 close, from behind: both palms rub together and work the oil through the ends of the hair, the strands catching the light, the bottle back on the shelf behind them.\nVoiceover, word for word: \"Two pumps, warmed in your palms. Then the ends only, never the roots. Rice water and oil, one bottle.\"\nEnding: the hands smoothing the ends, the bottle behind them, label to the camera.\nSound: voice and room sound only, with the pump's click and the soft rub of palms.\nLanguage: English."
 }
 ```
 
@@ -53,9 +59,12 @@ Price message:
 > in your palms. Then the ends only, never the roots. Rice water and oil, one bottle."
 > <N> credits; you have <M>. Go ahead?
 
+19 words: the band up to 10 s is 12-20.
+
 ## 2. Path A: the product alone
 
-The person: "Just the candle, nobody in it, cosy evening vibe."
+The person: "Just the candle, nobody in it, cosy evening vibe." Their "evening" beats the
+daylight default.
 
 ```json
 {
@@ -65,11 +74,12 @@ The person: "Just the candle, nobody in it, cosy evening vibe."
   "include_avatar": false,
   "inputs": { "image_urls": ["<candle asset id>"] },
   "params": { "duration": 8 },
-  "prompt": "Format: a phone video of a candle: only the candle and the room are in frame, the phone held low and steady. A man's voice speaks off screen, low and calm.\nProduct: Fernmoor Fig & Cedar candle (@Image1): amber glass tumbler with a wooden wick and a black lid, fits in one palm, about 9 cm tall, label reading FERNMOOR.\nSetting: a living room in early evening, one floor lamp on, a throw blanket on the sofa behind, a stack of two books beside the candle. The side table holds only the candle, its lid and the books.\nShots: 1 medium: the candle already lit, the flame steady, the wooden wick crackling. 2 wide, on a cut: the whole room, the candle glowing on the side table.\nVoiceover, word for word: \"Fig and cedar. A wooden wick, so you hear it crackle. Lid off, lamp low, that's the whole evening.\"\nSound: voice and room sound only, with the wick's crackle.\nLanguage: English."
+  "prompt": "Format: a casual iPhone video of a candle: only the candle and the room are in frame, held low and steady, real texture. A man's voice speaks off screen with an American accent, low and calm.\nIdea: an evening room with one lit candle, seen close, then from across the room.\nProduct: exactly one candle in frame. Fernmoor Fig & Cedar candle (@Image1): amber glass tumbler with a wooden wick, fits in one palm, about 9 cm tall, label reading FERNMOOR.\nSetting: a living room in early evening, one floor lamp on, a throw blanket on the sofa behind, a stack of two books beside the candle. The side table holds only the candle, its black lid and the books.\nShots: 1 close: the candle already lit, the flame steady, the wooden wick crackling, a thin thread of smoke. 2 wide: the whole room, the candle glowing on the side table, the blanket's folds in the lamp light.\nVoiceover, word for word: \"Fig and cedar. A wooden wick, so you hear it crackle. Lid off, lamp low, that's the whole evening.\"\nSound: voice and room sound only, with the wick's crackle.\nLanguage: English."
 }
 ```
 
-The lit flame stays one size in both shots: one state per shot (shot grammar, section 10).
+The lit flame stays one size in both shots, and the lid stays off the candle in both: one state
+per prop (shot grammar, section 8).
 
 ## 3. Path B: a still, then one take
 
@@ -87,7 +97,7 @@ Step 1, the still (2 to choose from):
   "count": 2,
   "inputs": { "other_elements": ["<cold brew bottle asset id>"] },
   "params": { "aspect_ratio": "9:16" },
-  "prompt": "A casual phone photo in morning window light: the cold brew concentrate bottle from the reference stands on a light wood kitchen counter, label to the camera, beside a tall glass full of ice and a small jug of milk. Shot from counter height, everything in focus, a tea towel at the edge of the frame."
+  "prompt": "A casual phone photo in neutral morning daylight: the cold brew concentrate bottle from the reference stands on a light wood kitchen counter, label to the camera, beside a tall glass full of ice and a small jug of milk. Shot from counter height, everything in focus, a tea towel at the edge of the frame."
 }
 ```
 
@@ -102,7 +112,7 @@ again.
   "brand_id": "<brand id>",
   "inputs": { "image_url": "<the picked still's asset id>" },
   "params": { "duration": 8 },
-  "prompt": "One continuous phone take from the start frame, the phone propped and still. A hand comes in from the right, lifts the bottle and pours a dark stream over the ice; the ice cracks and settles. The hand sets the bottle back, label to the camera, and the frame holds on the glass. A man's voice speaks off screen, easy and dry: \"Two fingers of this over ice, milk if you like. That's the whole recipe.\" Sound: voice and room sound only, with the pour and the ice cracking."
+  "prompt": "One continuous take from the start frame, locked and still. A man's hand comes in from the right, lifts the bottle and pours a dark stream over the ice; the ice cracks and settles, the coffee swirling down through it. The hand sets the bottle back, label to the camera, and the frame holds on the glass. A man's voice speaks off screen with an American accent, easy and dry: \"Two fingers of this over ice, milk if you like. That's the whole recipe.\" Sound: voice and room sound only, with the pour and the ice cracking."
 }
 ```
 
@@ -122,7 +132,8 @@ Notes:
 ## 4. Path C: the avatar's hands in a car
 
 The person: "Use Mia's hands, show my phone mount in her car, no face." The avatar goes in by
-itself; the brief keeps her face out of the frame.
+itself; the brief keeps her face out of the frame. 10 s holds two shots of about 5 s: the intro
+into the use, then the second use into the result.
 
 ```json
 {
@@ -131,12 +142,14 @@ itself; the brief keeps her face out of the frame.
   "avatar_id": "<Mia's avatar id>",
   "inputs": { "objects": ["<mount asset id>"], "location": ["<car interior asset id>"] },
   "params": { "duration": 10 },
-  "prompt": "Format: a phone video in a parked car. The camera is a phone propped on the passenger seat, looking at the dashboard and @Avatar1's hands and forearms; her face stays above the top of the frame the whole time. Her voice is heard off screen, relaxed and dry.\nProduct: Clipwell vent mount (@Object1): a matte black magnetic disc about 6 cm wide on a short arm with a vent clip. Use: the clip slides onto the air vent, then a phone snaps onto the disc.\nSetting: @Location1, daylight through the windscreen, sunglasses on the dash, keys in the cupholder.\nShots: 1 @Avatar1's right hand holds @Object1 open-palm toward the camera. 2 her right hand slides the clip onto the vent. 3 close: a second phone in her hand snaps onto the disc; she lets go and it holds, screen dark.\nVoiceover, word for word: \"Clip it on the vent. Then the phone, right onto the magnet. Let go, and it stays put. That's the whole setup.\"\nSound: voice and room sound only, with the clip's snap.\nLanguage: English."
+  "prompt": "Format: a casual iPhone video in a parked car, seen from the passenger seat, low and steady, looking at the dashboard and @Avatar1's hands and forearms; her face stays above the top of the frame the whole time, real texture. Her voice is heard off screen, relaxed and dry.\nIdea: the mount goes onto the vent, a phone snaps onto it, and it holds.\nProduct: exactly one mount in frame. Clipwell vent mount (@Object1): a matte black magnetic disc about 6 cm wide on a short arm with a vent clip; the disc and the clip are its only parts. Use: the clip slides onto the air vent, then a phone snaps onto the disc.\nSetting: @Location1, neutral daylight through the windscreen, sunglasses on the dash, keys in the cupholder.\nShots: 1 medium: @Object1 rests on the passenger seat; @Avatar1's right hand picks it up and slides the clip onto the vent, the plastic flexing as it seats, her left hand resting on her knee. 2 close: a phone in her right hand snaps onto the disc with a click; she lets go and it holds, screen dark.\nVoiceover, word for word: \"Three months on my vent, potholes and all. Clip it on, phone to the magnet. Let go, it stays.\"\nSound: voice and room sound only, with the clip's snap.\nLanguage: English."
 }
 ```
 
-Check the cover with `preview_assets`: if her face shows, offer to keep it as a talking video or
-take it again on path A.
+19 words. The three months are Mia's own: the voice is her living persona (voiceover.md,
+section 5), and the story is spoken, so it needs no shot. Check the cover with
+`preview_assets`: if her face shows, offer to keep it as a talking video or take it again on
+path A.
 
 ## 5. One voice over a joined clip
 
@@ -154,23 +167,26 @@ one voice after it succeeds. Price this step with the clip, under the same yes
 }
 ```
 
-No brand voice: pick one with `list_voices` (`search: "warm female narrator"`) and pass its id.
-The result is a new video with its own `generation_id`: wait for it with `get_generation`, and
-show only the re-voiced clip.
+No brand voice: pick one with `list_voices` (`search: "warm female narrator"`) and pass its id,
+of the same gender as the voice in the clip. The result is a new video with its own
+`generation_id`: wait for it with `get_generation`, and show only the re-voiced clip.
 
-## 6. Path D: 24 s under one voiceover
+## 6. Path D: one voiceover over several clips
 
-Three path A clips of 8 s each (intro and use, the close mechanism, the result), filmed with
-`"generate_audio": false` in `params` so only the voiceover speaks. Their briefs carry no
-Voiceover and no Sound line. Price all of it first: the three clips (`create_generation` without
-`confirm`, each), plus the voiceover and the export from `get_video_guide` `credits` (captions
-too, if wanted). One yes for the total:
+24 s here: three path A clips of 8 s each. The first holds the intro and the first use; the
+second a new use at a new distance; the third one more use and the result, each opening where
+the last ended. They are filmed with `"generate_audio": false` in `params` so only the voiceover
+speaks; their briefs carry no Voiceover and no Sound line. About 45 s works the same way with
+more clips. Write all the briefs first, then price all of it: the clips (`create_generation`
+without `confirm`, each), plus the voiceover and the export from `get_video_guide` `credits`
+(captions too, if wanted). One yes for the total:
 
-> A 24-second hands-only video in three parts: the serum on the counter and the first drops, a
-> close look at the dropper, the bottle back in place. One voiceover over all of it, in your
-> brand's voice: "<the 45 to 55 words>"
+> A 24-second hands-only video in three parts: the serum on the counter and the first drops, the
+> drops pressed into the back of the hand, the bottle back in place. One voiceover over all of
+> it, in your brand's voice: "<36 to 60 words>"
 > Three clips: <N1> credits. Voiceover: <N2>. Export: <N3>. <N> in all; you have <M>. Go ahead?
 
+A clip that fails is refunded and re-filmed alone (a new quote); the clips already done are kept.
 When the clips are done, build the video (free):
 
 ```json
@@ -186,7 +202,7 @@ When the clips are done, build the video (free):
 }
 ```
 
-Then:
+The clips join on plain cuts: no transitions. Then:
 
 1. `add_voiceover` with `video_id`, `text` (the whole voiceover, word for word as quoted) and
    `over: "c1"`; then `confirm: true`, which the yes already covered. The brand's own voice is

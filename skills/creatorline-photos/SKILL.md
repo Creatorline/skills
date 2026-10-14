@@ -1,6 +1,6 @@
 ---
 name: creatorline-photos
-description: "Makes phone-style photos of the brand's AI avatar and photo carousels: photoshoots, photo dumps, lifestyle, product in hand, outfits, mirror selfies, flat lays and product shots, in one look. Use for 'photoshoot', 'photo dump', 'carousel', 'photos with my product'. Not for one plain photo: use creatorline. A cover with big words: creatorline-cover-image."
+description: "Makes photos of the brand's AI avatar and its products, and photo carousels: photoshoots, photo dumps, lifestyle, product in hand, outfits, packshots, pins, banners, ad images and restyles, in one look. Use for 'photoshoot', 'product photos', 'carousel'. Not for one plain photo: use creatorline. A cover with big words: creatorline-cover-image."
 license: MIT
 metadata:
   author: creatorline
@@ -25,6 +25,10 @@ across the set, a price before anything is made, and nothing public without the 
   view, food, a background).
 - A trending photo carousel recreated with the avatar (from screenshots of it).
 - The avatar placed into a photo of a real place, or in place of a person in a photo.
+- A product photoshoot: a studio shot for a shop, a lifestyle scene, a close-up with hands, a
+  Pinterest pin, a website banner, a pack of ad images, a floating or splash concept shot, or
+  an existing image restyled for a season or an aesthetic
+  ([references/product-modes.md](references/product-modes.md)).
 
 ## Not for
 
@@ -49,10 +53,10 @@ across the set, a price before anything is made, and nothing public without the 
 | Avatar | The brand's default avatar, or the one the person names (found by name in `list_avatars`, passed as `avatar_id`). The brand has none: products and scenes still work; the avatar is made in the app (If it goes wrong). |
 | How many | One photo: 1. A shoot: 4 frames. A carousel: 6. A photo dump: 8. State it; the price follows it. |
 | Theme and place | From the ask; with nothing to go on, one of the brand's content angles (`brand_voice.content_angles` from `get_brand`). State it. |
-| Frame | `3:4` for everything (Frames and models below). `9:16` only for a story or a still to animate. |
-| Look | Casual phone photo, natural light. Polished only when asked. |
+| Frame | `3:4` for everything (Frames and models below). `9:16` only for a story or a still to animate. A product-shoot mode takes its own frame (Pick the tool). |
+| Look | Casual phone photo, natural light. Polished only when asked, or in a product-shoot mode that is polished by nature (studio, pin, banner, concept, ad pack). |
 | Size | `resolution: "2K"`. Never `4K`. |
-| Options per frame | 1. `count` 2 to 4 only for a hero frame or when they want to pick. |
+| Options | Options to pick from are different briefs (another light, angle, setting or palette each). `count` 2 to 4 only for several takes of one hero frame. |
 | Words in the picture | None, unless asked. A carousel may carry a hook of up to 6 words on its cover when the person wants one (Craft). |
 | Posting | Only when they ask. A carousel goes to the review queue, never straight out. |
 
@@ -70,6 +74,19 @@ across the set, a price before anything is made, and nothing public without the 
 - **A real product is never drawn from words.** No photo of it: name it in the caption and keep
   it out of the picture, or ask for the photo.
 
+**Product shoots** have ten modes. Pick by what the person wants, and the more specific mode
+wins (a pin of the product in a kitchen is a Pin; a banner of it in use is a Banner; a carousel
+of it in scenes is a Carousel). Modes, frames, the interview, brief words and recipes:
+[references/product-modes.md](references/product-modes.md).
+
+| Mode | Frame | Mode | Frame |
+|---|---|---|---|
+| Studio shot | `1:1` (`4:5` for Instagram) | Carousel | `3:4` |
+| Lifestyle scene | `3:4` | Ad pack | `1:1`, `4:5`, `9:16` |
+| Close-up with a person | `3:4` or `4:5` | Try-on | `3:4`, `2:3` for one full body |
+| Pin | `2:3` | Concept (floating, splash) | `4:5` or `1:1` |
+| Banner | `16:9` | Restyle | the image's own |
+
 ## Frames and models
 
 Leave `model` out unless the frame needs one of the others. Values are exact; check them with
@@ -79,6 +96,7 @@ Leave `model` out unless the frame needs one of the others. Values are exact; ch
 |---|---|---|
 | The avatar's face at its best (default) | leave out (`nano-banana-pro-edit`) | `aspect_ratio: "3:4"` (also `4:5`, `2:3`, `1:1`), `resolution: "2K"` |
 | Readable words in the picture | `gpt-image-v2-edit` | `aspect_ratio: "3:4"` or `"9:16"`, `resolution: "2K"`, `quality: "Medium"` |
+| A product shot with nobody in it (studio, pin, banner, concept, ad pack) | `gpt-image-v2-edit` | the mode's `aspect_ratio`, `resolution: "2K"`, `quality: "Medium"`; a `4:5` frame, or a frame inside a set of avatar photos, stays on the set's model |
 | A full 9:16 screen: a story, a frame to animate | `bytedance-seedream-v4-5-edit` | `image_size: "portrait_16_9"` (it takes no `aspect_ratio` or `resolution`) |
 | A scene with nobody and nothing real in it | leave out on `text-to-photo` | `aspect_ratio` as the rest of the set, `resolution: "2K"` |
 
@@ -89,9 +107,10 @@ Leave `model` out unless the frame needs one of the others. Values are exact; ch
   frame on another model.
 - On the default model `2K` costs the same as `1K`. Never `4K`, never `auto_4K`.
 - `gpt-image-v2-edit` at `Medium` costs about twice the default and softens skin a little: use
-  it only for words. `High` costs several times `Medium`. Seedream costs about half the
+  it for words and for product shots with nobody in them. `High` costs several times `Medium`. Seedream costs about half the
   default and keeps skin texture, but may hold the face a little less closely than the default.
-- Do not use `nano-banana-2-edit`: no `4:5`, and at `2K` it costs what the default does.
+- `nano-banana-2-edit` only for a styled frame (a cartoon, anime, clay or illustrated avatar,
+  shot types section 13), the job it is proven at; it has no `4:5`, so a styled set is `3:4`.
 - `list_models` also shows a `num_images` param. Leave it out: `count` sets the number of
   options and the server overwrites `num_images` with it.
 - Per-model values and the slot tokens: [references/models-and-frames.md](references/models-and-frames.md).
@@ -102,10 +121,12 @@ Leave `model` out unless the frame needs one of the others. Values are exact; ch
    `creatorline-photos`. Orient as house-rules.md section 1 says: brand, `get_brand` (its voice
    and `language`), the avatar, the balance.
 2. **Read the ask.** Which job (one photo, a shoot, a carousel, product only, a scene) and
-   which shot types ([references/shot-types.md](references/shot-types.md)). Several shot types
-   in one ask are normal: a photo dump mixes selfies, details and views.
-3. **Intake.** One message, only hard gaps (asking.md). Usually just the product photo, or
-   nothing. A request with no gap goes straight to the plan. Example:
+   which shot types ([references/shot-types.md](references/shot-types.md)), or, for a product
+   shoot, which mode (product-modes.md, section 2). Several shot types in one ask are normal: a
+   photo dump mixes selfies, details and views.
+3. **Intake.** One message, only hard gaps (asking.md), with labelled options; for a product
+   shoot, the questions of its situation (product-modes.md, section 3). Usually just the
+   product photo, or nothing. A request with no gap goes straight to the plan. Example:
 
    > Love it. One thing first, the serum:
    > 1. Send a link to a photo of it (the image itself, not the shop page)
@@ -171,13 +192,14 @@ Product in hand (the product card line comes from product-intake.md):
  "params": {"aspect_ratio": "3:4", "resolution": "2K"}}
 ```
 
-Product only, nobody:
+Product only, nobody (a product-shoot mode, so the product model):
 
 ```json
 {"tool": "photo-edit", "brand_id": "<brand id>", "include_avatar": false,
+ "model": "gpt-image-v2-edit",
  "inputs": {"other_elements": ["<product 1>", "<product 2>", "<product 3>"]},
  "prompt": "Shot straight down: a flat lay on a white marble counter. @Input1, @Input2 and @Input3 in a loose diagonal, labels up and readable, a folded linen towel and a sprig of eucalyptus beside them. Soft daylight from the top left, gentle shadows. Every product exactly as in its photo.",
- "params": {"aspect_ratio": "3:4", "resolution": "2K"}}
+ "params": {"aspect_ratio": "3:4", "resolution": "2K", "quality": "Medium"}}
 ```
 
 A scene with nothing real in it:
@@ -217,6 +239,15 @@ words, in this order, because the front weighs most:
 - **A person only when asked.** A brief about a product, a place or food comes out with nobody
   in it. Say "@Avatar1" whenever the avatar should be there; for a frame with nobody, also pass
   `include_avatar: false` so the avatar's image is not sent at all.
+- **The brief stays yours.** Never paste it back to the person unless they ask: they want the
+  photos.
+
+**Picking the model.** Only the models in the tables above are picked without being asked. A
+model or a look the person names ("the sharper one", "the cheaper one") stays for every
+follow-up on the same work. Never drop to another model because its values look simpler; when
+the frame forces a switch, say what changes in one line ("this frame uses the model that draws
+words; skin comes out a little smoother"). A cheap draft first (Seedream, about half) only when
+the person asks for one; then the final on the right model.
 
 **Phone-real grammar** (detail and every shot type in
 [references/shot-types.md](references/shot-types.md)):
@@ -249,8 +280,9 @@ Look: <outfit in one line> · <place> · <light and time of day> · <palette: 2 
 **The product in frame.** Hold it the way it is really held (a bottle by its body, a jar in the
 palm, a bag on the shoulder), at its true size from the card, label to the camera, fingers
 below the label, one product per hand. Warn once about a large logo (product-intake.md, section
-5). Never show a result on the avatar (clear skin, a smaller waist, a before and after): the
-claim floor holds in photos too (house-rules.md, section 7).
+5). A result on the avatar (clearer skin, a smaller waist) is welcome: it is a living persona
+(house-rules.md, section 7). A before and after is two frames of a set, the same look card with
+one thing changed: one picture shows one moment.
 
 **Clothes.** The wardrobe line, written once and reused: colour, fabric, cut, length,
 neckline, closures, the one detail it sells on. "Sage green linen midi dress, square neckline,
@@ -276,7 +308,7 @@ slides editor.
 - words spelled exactly as written;
 - one person unless more were asked; a mirror shows one reflection;
 - a set shares the outfit, the place, the light and the frame;
-- nothing breaks the claim floor.
+- nothing crosses a fixed line (house-rules.md, section 7).
 
 Give each frame a verdict: keep, redo with one change (a paid run: ask), or drop. A carousel
 can drop a weak frame instead of paying for it again. Say plainly what is off.
@@ -298,6 +330,9 @@ can drop a weak frame instead of paying for it again. Say plainly what is off.
 | `create_post` says a platform does not support the format | A carousel goes to Instagram, TikTok or Telegram; one photo to Instagram or Telegram. Pass `channels` (carousels.md, section 8) |
 | The brand has no avatar yet | It is made in the app at https://app.creatorline.io/avatars/new. Meanwhile offer product shots and scenes with nobody in them |
 | They want their own face, not an avatar | Their own avatar, made from their photo at https://app.creatorline.io/avatars/new; every shot here then works with it |
+| `get_generation` still running after a long wait | A slow model | `get_generation` again on the same id; never start the run a second time, which charges twice |
+| A model id refused as unknown | It is not in the catalog | Only ids from `list_models`; never one made up or remembered |
+| Product-shoot options all look alike | Several takes of one brief (`count`) | Different briefs: another light, angle, setting or palette each (product-modes.md, section 5) |
 
 After three paid tries at the same frame, stop and offer the best take, another shot type, or
 dropping the frame (house-rules.md, section 5).
@@ -346,6 +381,9 @@ Pick the 2 or 3 that fit, one line each:
   with a brief to start from.
 - [references/carousels.md](references/carousels.md): planning a carousel, recipes,
   consistency, order, posting.
+- [references/product-modes.md](references/product-modes.md): the ten product-shoot modes,
+  picking one, the interview, brief words per mode, options that differ, restyles, an ad pack,
+  a launch set.
 - [references/models-and-frames.md](references/models-and-frames.md): each photo model's exact
   values, slots and tokens, and what changes the price.
 - [references/house-rules.md](references/house-rules.md): session, consent, waiting, results,

@@ -153,8 +153,9 @@ The long form, with tables and examples, is [planning](references/planning.md).
 - **Mix formats, never repeat one two days running.** Talking videos carry trust, re-filmed
   trends carry reach, carousels get saved, product pieces show the thing working.
 - **Write every hook now**, specific and already in motion: a number, a mistake, a hot take, a
-  question the audience asks, the result shown first. Rotate the type through the week. Hooks
-  obey the claim floor: the avatar has no past, so no "I've used it for months".
+  question the audience asks, the result shown first, the avatar's own result. Rotate the type
+  through the week. The avatar is a living persona, so "I've used it for months" and a purchase
+  story make strong hooks (house rules, section 7).
 - **Value before the sell.** Open the week with something easy to watch; the product shows up
   from the second post, and a launch week builds tease, reveal, demo, how to use, questions.
 - **Fewer, better posts.** Three to five a week beats one, and quality beats daily for most
@@ -174,7 +175,7 @@ The long form, with tables and examples, is [planning](references/planning.md).
 - every row's inputs exist or are asked for in the intake (product photo, trend link, screens);
 - every row's format suits its accounts: YouTube takes video only, TikTok takes no single
   photo, a carousel holds 2 to 10 images;
-- hooks pass the claim floor and the brand's don'ts.
+- hooks stay inside the fixed lines (house rules, section 7) and the brand's don'ts.
 
 **The week as a set**, before you file the last post:
 

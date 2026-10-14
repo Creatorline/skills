@@ -34,6 +34,7 @@ three wordings of it.
 | Question | Asks what the viewer is already wondering | "Why does your serum stop working?" |
 | How-to | Promises a method the video shows | "How to make your serum actually work" |
 | Look at this | Points at what the first frame shows | "Watch how fast this sinks in" |
+| Personal result | The presenter's own result, with the time it took | "Three weeks in and I ditched foundation" |
 
 Pick 3 to 5 that fit the video and the brand. The brand's content angles and tone from
 `get_brand` come first; a brand "don't" rules an angle out.
@@ -44,8 +45,10 @@ Pick 3 to 5 that fit the video and the brand. The brand's content angles and ton
   about 20 at `l`; two short lines read, a sentence does not.
 - Plain words and basic punctuation. No emoji, no hashtags.
 - The video must answer the hook. A hook the video does not pay off loses the viewer at second 4.
-- The claim floor (house-rules.md, section 7): no personal results, no before and after the video
-  does not show, no numbers that are not on the label or the approved claims list.
+- The presenter is a living persona (house-rules.md, section 7): its own result, how long it
+  has used the product or a purchase story ("I caved and bought the big one") make strong
+  hooks. A before and after the hook promises to show is in the video. When the person gave
+  approved claims, keep to them.
 - The brand's language, unless the test is about language.
 - The same line never repeats what is said in the first seconds word for word; it adds to it.
 - Write the set as a list first and check that no two share an angle.
@@ -82,6 +85,6 @@ An opener is a 2 to 3 second clip placed before the video, with the hook line ov
 ## 6. Spoken hooks
 
 What the avatar SAYS first is not a text hook: changing it is a lines version (new speech in the
-avatar's voice, lip-synced to the original picture: variant-recipes.md, section 10). A text hook
+avatar's voice, lip-synced to the original picture: variant-recipes.md, section 11). A text hook
 must not contradict the spoken first line. When the person wants to test the spoken opening,
 plan it as L rows, not H rows.

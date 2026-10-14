@@ -17,18 +17,22 @@ The operation lists for building, timing and finishing an episode. Every list go
 9. [Look, then export](#9-look-then-export)
 10. [A teaser from the episode](#10-a-teaser-from-the-episode)
 11. [Patching one line](#11-patching-one-line)
+12. [Changing a delivered episode](#12-changing-a-delivered-episode)
 
 ## 1. Order of work
 
-1. `create_video` with the parts in order (the spine).
+1. `create_video` with the parts in order (the spine). Send the person the `studio_url` in one
+   line as a rough cut they can watch, and carry on without waiting for an answer.
 2. Voice match on every part.
 3. `write_captions` (charged once per video) and wait until `ready`.
 4. Read `captions.lines`. All trims at the seams in one call. Then `write_captions` again
    (free, no price step) and wait.
 5. Only for a split screen: cut at the NEW caption times and set it (section 6). If
    `captions.status` is then `out_of_date`, write them again (free) and wait.
-6. Cutaways, cards and texts, timed from the latest caption lines.
-7. `preview_video`, fix, look again.
+6. The picture plan (picture-plan.md): cutaways, cards and texts in one call, timed from the
+   latest caption lines.
+7. Read it back against the plan, then the frame review (review.md, sections 7 and 8). Fix,
+   look again.
 8. Checklist (SKILL.md), then `export_video`.
 
 Why this order: captions are tied to the cut they were heard from. Any change to the clips
@@ -86,10 +90,14 @@ already matched):
 `captions.lines` holds every line with its `start` and `end` on the timeline. Use them:
 
 - to check the words against the script: a misheard word is fixed with
-  `{ "op": "edit_caption", "index": 7, "text": "<right words>" }`; a word the host really
-  said wrong needs a re-take or a patch (section 11);
+  `{ "op": "edit_caption", "index": 7, "text": "<right words>" }`, never by changing the script
+  and never by re-filming; a word the host really said wrong or left out needs a re-take or a
+  patch (section 11);
 - to find where each part's speech starts and ends (section 5);
-- to time every cutaway, label and card on the word it belongs to (sections 6 and 7).
+- to time every cutaway, label and card on the line that holds its words (sections 6 and 7).
+
+Lines are the finest timing there is: no tool gives the time of a single word. A phrase that
+comes twice is found by its place in the script, not by the first match.
 
 Style per the series bible. With a split screen anywhere, captions sit in the middle row.
 
@@ -102,6 +110,9 @@ For each part, from the caption lines inside it:
 - **Tail**: the clip's `end` minus the last line's `end`. Over 0.6 s: new `trim_end` = the old
   `trim_end` (or `source_duration`) - tail + 0.3.
 - The sign-off keeps about 0.8 s after its last word for the held smile.
+- Every trim keeps 0 ≤ `trim_start` < `trim_end` ≤ `source_duration`, with all of the part's
+  words inside. Trim only idle air at the ends: keep the first sound, the tail of the last word
+  and the pauses inside. Never change a clip's `speed` to make the episode fit.
 
 All trims in one call, and nothing else in it:
 
@@ -190,12 +201,14 @@ With a split screen, `position: "auto"` captions move to the middle row by thems
 
 ## 8. Sound
 
-- No music by default. `set_sound` puts one audio file from the library under the whole video
-  at its own level; it is turned down only under voiceovers, not under the host's own speech.
-  A normal music track buries the words.
+- No music by default, and the delivery says so. `set_sound` puts one audio file from the
+  library under the whole video at its own level; it is turned down only under voiceovers, not
+  under the host's own speech. A normal music track buries the words.
 - If the person gives a quiet instrumental and wants it: `{ "op": "set_sound", "asset_id":
-  "<audio>" }`. Say once that you cannot hear the mix and ask them to listen in the studio.
-- Cutaways and cards stay silent (`sound: false`).
+  "<audio>" }`. Say once that you cannot hear the mix and ask them to listen in the studio
+  (supplied-media.md, section 8).
+- Cutaways and cards stay silent (`sound: false`). A supplied clip that must be heard plays
+  as its own clip between parts, sound on.
 
 ## 9. Look, then export
 
@@ -257,5 +270,26 @@ fixed line plays, so lips never mismatch.
    longer than the one it replaces, or it runs into the next words.
 5. `write_captions` again (free), then check the words, preview, and export.
 
-Use it for one line. More than one wrong line in a part: re-film the part (SKILL.md, "Fix one
-part later").
+Use it for one line. More than one wrong line in a part: re-film the part (section 12).
+
+## 12. Changing a delivered episode
+
+The Video Studio project is the episode's editable source. Change only what was asked, in
+place.
+
+1. Find it: `list_videos` (by its title), then `get_video`. Read it first, every time: the
+   person may have edited it in the studio since. Never rebuild the episode over their edits.
+2. Quote the change as one batch: a new take of the part (the same brief with the one change),
+   its voice match, and a new export (every export is charged). One yes for the total.
+3. Re-film the part. `edit_video` `[{op: "replace_clip", id: "p2", asset_id: "<new take>"}]`:
+   same place, same length when the new take is long enough.
+4. Voice match that clip, then `write_captions` again (free).
+5. Re-time the texts and cutaways that sat over it (`update_text`, `update_layer`). Look only at
+   the changed stretch and the seams on both sides of it, then export.
+6. Deliver the new MP4 and the same Video Studio link, with one line on what changed.
+
+Only an MP4, no project (an episode made elsewhere, or a project deleted): say that parts
+cannot be swapped cleanly, then offer to bring the MP4 in (`import_asset`), make a project
+with it as one clip, cut out the part's stretch (`split_clip` at its caption times) and put
+the new take in its place (`replace_clip` on the middle piece). The MP4's captions and texts
+are burned in, so the new stretch will not match them exactly: say so before quoting.

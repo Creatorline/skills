@@ -1,175 +1,197 @@
 # Formats
 
-The six faceless formats, how a script for each is built, and the facts rule. Every format runs
-on the same production steps (SKILL.md); what changes is the beat map, the narrator, the look
-and the captions.
+The faceless formats, the arc every script follows, how each format bends it, and the facts
+rule. Every format runs on the same production steps (SKILL.md) and the same block grid
+([narration-and-assembly.md](narration-and-assembly.md), section 1): a video is N blocks of 10
+seconds, each with one narration line. What changes per format is the arc, the tone, the voice
+and the look.
 
 ## Contents
 
 1. [Choosing the format](#1-choosing-the-format)
-2. [Lengths and beats](#2-lengths-and-beats)
-3. [The beat sheet every format follows](#3-the-beat-sheet-every-format-follows)
-4. [Story](#4-story)
+2. [The arc every script follows](#2-the-arc-every-script-follows)
+3. [Block maps by length](#3-block-maps-by-length)
+4. [Explainer](#4-explainer)
 5. [History](#5-history)
-6. [Explainer](#6-explainer)
-7. [Top-N list](#7-top-n-list)
-8. [Motivational](#8-motivational)
-9. [Family-friendly](#9-family-friendly)
-10. [Facts and sources](#10-facts-and-sources)
+6. [Fairy tale and myth](#6-fairy-tale-and-myth)
+7. [Story](#7-story)
+8. [Top-N list](#8-top-n-list)
+9. [Motivational](#9-motivational)
+10. [Family-friendly, and why nothing is made for children](#10-family-friendly-and-why-nothing-is-made-for-children)
+11. [Facts and sources](#11-facts-and-sources)
 
 ## 1. Choosing the format
 
-| The person says | Format | Default look | Narrator search (`list_voices`) | Caption `style` |
+| The person says | Format | Default look | Narrator to recommend (`list_voices` search) | Caption `style` |
 |---|---|---|---|---|
-| a story, a legend, a myth, "what happened when", a twist | Story | Storybook watercolor (Oil painting for eerie stories) | `storyteller` | `karaoke` |
-| a past event, a person, a place's past, "the history of" | History | Oil painting or Paper collage | `deep narrator` | `minimal` |
-| how or why something works, "explain", a science or money idea | Explainer | Flat vector | `conversational` | `hormozi` |
-| "top 5", "3 things", a ranking, a countdown | Top-N list | Realistic photos or Flat vector | `energetic` | `hormozi` |
-| motivation, discipline, mindset, quotes, "stock footage with a voiceover" | Motivational | Stock footage or Silhouettes | `deep calm` | `bold` |
-| "family friendly", "kids-safe", "all ages", "clean", a gentle fable or animal fact | Family-friendly | Toy 3D or Storybook watercolor | `warm friendly` | `sticker` |
+| how or why something works, "explain", science, money, the body | Explainer | Editorial collage | a casual, conversational voice (`conversational`) | `tiktok` |
+| a past event, a person's deeds, "the history of" | History | Editorial collage | a deep male storyteller (`deep storyteller`) | `tiktok` |
+| a fairy tale, a myth, a legend, folklore, a fable | Fairy tale and myth | Storybook | a deep male storyteller (`deep storyteller`) | `sticker` |
+| an original story, "what happened when", a twist | Story | Storybook or Watercolor | matched to the story's mood (`storyteller`) | `sticker` |
+| "top 5", "3 things", a ranking, a countdown | Top-N list | Flat vector | a brisk, upbeat voice (`energetic`) | `hormozi` |
+| discipline, mindset, comebacks, "stock footage with a voiceover" | Motivational | Stock footage, or Silhouettes | a low, calm voice (`deep calm`) | `hormozi` |
+| "family friendly", "all ages", "clean", animal facts, gentle fables | Family-friendly | Studio 3D | a warm, bright voice (`warm friendly`) | `sticker` |
 
-Family-friendly means safe for a family to watch together, made for a general audience. It is
-never content made FOR children (toddler learning, nursery songs, "for my kids' channel"):
-Creatorline does not make child-directed content and marks every YouTube post as not made for
-kids. When the person asks for that, say so in one line and offer the family-friendly version
-(section 9).
+- A Picture story (frame-by-frame stills) is a way of making any of these, not a format: its
+  default look is Cut-paper collage and its narrator matches the topic's tone.
+- The brand's own voice is always offered first ([intake.md](intake.md), section 3). Pick
+  others from `list_voices` by their own `name` and `description`; never invent what a voice
+  sounds like.
+- The caption style follows the look: the clean `tiktok` style by default, the label-like
+  `sticker` for storybook looks, the bold `hormozi` caps for punchy lists and motivation.
 
-The looks are in [visual-style.md](visual-style.md), section 2. When the brand has its own
-voice (`get_brand` `voice_id`), it narrates every format unless the person asks for another.
-Pick from `list_voices` by its own `name` and `description`; never invent what a voice sounds
-like.
+## 2. The arc every script follows
 
-## 2. Lengths and beats
+The failure of a faceless script is a list: fact, fact, fact. Build an arc instead.
 
-A beat is one narration line and the picture (or pictures) under it. Narration runs at about 2.3
-words a second with a short breath between beats.
+1. **Cold open (block 1).** The line's first sentence is 8 words or fewer: the raw surprising
+   fact, stated flat, then the line fills to normal length. No greeting, no "in this video",
+   no wind-up clause. A sharp question of 8 words or fewer is allowed if its answer is held
+   back to the payoff.
+2. **Stakes (block 2).** Why it matters to this viewer: a misconception they hold, or how
+   close it sits to their life this week.
+3. **Build (the middle blocks).** One idea per block, each pinned to a concrete thing: a
+   number, a date, a place, a named object, a comparison. Each block raises the stakes on the
+   one before. **Reorder test:** if two build blocks could swap places with nothing lost, they
+   do not escalate: rewrite them.
+4. **Turn (usually block N-1).** One line that changes what the viewer believed. A summary is
+   not a turn.
+5. **Payoff (block N).** The kicker repeats the hook's picture or number with a new meaning
+   and resolves the thread (below). Say it and stop.
 
-| Length | Beats | Words spoken | Good for |
-|---|---|---|---|
-| 20 s | 4-5 | 40-46 | One fact, one motivational idea |
-| 30 s (default) | 6 | 60-70 | Most videos |
-| 45 s | 8-9 | 95-105 | Stories, history, a top 5 |
-| 60 s | 10-12 | 125-140 | A longer story, a two-part history |
+**The thread.** Before block 1 is written, choose ONE physical object or process that is in
+every block and grows in one direction (a fuse burning down, a stack rising until it blocks a
+door, a map filling with dots). The payoff resolves it. It must be drawable in the chosen look,
+and it gets its own prop picture so it never changes shape
+([visual-style.md](visual-style.md), section 5). If the payoff cannot resolve it, pick another
+object.
 
-- The hook beat is short: 2-3 seconds, 8 words or fewer.
-- Other beats run 3-6 seconds: 7-14 words. A line that needs more becomes two beats.
-- Over 60 seconds, say before the price that it takes longer and costs more, and suggest a
-  two-part series instead. The Video Studio exports up to 180 seconds.
+**Humor that works in narration**: a deadpan setup followed by an absurd punch; a line that
+fits everyone and sounds personal; a gag on the viewer's confirmation bias. Never at the
+expense of real victims.
 
-## 3. The beat sheet every format follows
+**A call to action** ("follow for part two") is Video Studio text over the last scene or a
+line in the post caption, never a narration line.
 
-1. **Hook (0-3 s).** The most surprising thing, stated flat and short. A fact, an outcome, a
-   question whose answer is held back. No greeting, no "in this video", no "did you know" unless
-   the fact after it is strong.
-2. **Stakes.** Why it matters to this viewer, or what is at risk. One line.
-3. **Build.** One idea per beat, each with something concrete: a number, a date, a place, a
-   named object, a comparison. Each beat follows from the one before ("but", "so", "which
-   meant"). Test: swap two build beats. If nothing breaks, you wrote a list, not a story.
-4. **Turn (at about two thirds).** One line that flips what the viewer assumed. A recap is not
-   a turn.
-5. **Payoff (last beat).** Answers the hook. The best endings return to the hook's picture or
-   number, now understood differently. Say it and stop.
+## 3. Block maps by length
 
-- A call to action ("follow for part two") goes on screen as Video Studio text over the last
-  scene, or in the post caption. Not in the narration.
-- **A thread through the scenes** makes a video feel built, not listed: one object or process
-  that is in every picture and changes as the story moves (a candle burning down, a map filling
-  with marks, a jar filling up). The payoff resolves it. Give it the same words in every picture
-  brief ([visual-style.md](visual-style.md), section 5).
+N = the length in seconds divided by 10, rounded half up, at least 3. Each block carries one
+narration line of 20-23 words ([narration-and-assembly.md](narration-and-assembly.md), section
+2).
 
-## 4. Story
+| Length | Blocks | Arc |
+|---|---|---|
+| 30 s | 3 | 1 cold open and stakes · 2 build and turn · 3 payoff |
+| 1 min | 6 | 1 cold open · 2 stakes · 3-4 build · 5 turn · 6 payoff |
+| 2 min | 12 | 1 cold open · 2 stakes · 3-10 build · 11 turn · 12 payoff |
+| 3 min | 18 | 1 cold open · 2 stakes · 3-16 build · 17 turn · 18 payoff |
+
+From 2 minutes on, give the build a small midpoint jolt (a new location, a quantity shown as a
+comparison, a reversal) so the middle does not sag, and keep every build block escalating.
+Video Studio holds 180 seconds, so 3 minutes is the longest; a longer story becomes a series.
+
+## 4. Explainer
 
 | | |
 |---|---|
-| Fits | Original short fiction, legends, myths, folk tales, a story the person wrote |
-| Beat map, 30 s | 1 Hook: the moment of tension. 2 Who, where, what they want. 3 The obstacle. 4 It gets worse, or a clue appears. 5 The twist. 6 The ending that answers the hook. |
-| Narrator | Measured and close, like telling it across a table. One `[whispers]` for a secret or one `[pauses]` before the twist, at most. |
-| Pictures | The same main figure in every scene, always from behind or in silhouette, with the same described clothes. One place per two beats at most; a new place moves the story. |
-| Watch for | A story from someone else's book, film or post: retell it only when it is public domain or the person wrote it; otherwise write an original story on the same idea. |
+| Fits | How or why something works: science, the body, money, technology, everyday mysteries |
+| Arc, 1 min | 1 The fact that sounds wrong, or the question. 2 Where the viewer meets it ("every time you..."). 3 How it works, with an everyday comparison. 4 The next step of the mechanism, at a bigger scale. 5 Turn: the part most people miss. 6 Payoff: the answer in one line, back to the hook's image |
+| Tone | Casual second person, deadpan; the hook makes a promise; fast cuts |
+| Pictures | Show the thing, not a diagram with words. Rotate devices: the object, the mechanism up close, a comparison scene, a map, a quantity shown as stacks or rows |
+| Watch for | Health, money and law: never promise that something cures, treats or prevents a disease, or guarantees income or a return (house rules, section 7) |
 
-Example hook lines: "She opened the letter forty years too late." "The village had one rule:
-never answer the third knock."
+Hook examples: "Your phone battery hates being full." "Planes never fly the straight line."
 
 ## 5. History
 
 | | |
 |---|---|
-| Fits | A real event, place, invention, ship, building, a person's deeds |
-| Beat map, 30 s | 1 Hook: the outcome or the number first. 2 The rewind: when and where, and what was at stake. 3 The cause. 4 The escalation, with a number. 5 The turn: what most people get wrong, or the consequence nobody expected. 6 Payoff: what it changed, echoing the hook. |
-| Narrator | Warm, a little dry, confident. A wry aside is welcome; sarcasm about real victims is not. |
-| Pictures | The period's clothes, tools and buildings. People are anonymous figures (section 10 of this file and visual-style.md section 4): a named king is a crowned figure from behind, never a portrait likeness. One map or object close-up every few beats keeps it varied. |
-| Watch for | Research first (section 10). Dates and numbers spelled the way they should be read. Tragedies: plain and respectful, no gore in pictures. |
+| Fits | A real event, a place, an invention, a ship, a building, a person's deeds |
+| Arc, 1 min | 1 The outcome or the number first. 2 The rewind: when, where, what was at stake. 3 The cause. 4 The escalation, with a number. 5 Turn: what most people get wrong, or the consequence nobody expected. 6 Payoff: what it changed, echoing the hook |
+| Tone | A witty, slightly sarcastic storyteller who enjoys a modern comparison ("the medieval equivalent of a group chat"). Wry about the powerful, never about victims |
+| Pictures | The period's clothes, tools and buildings. People are anonymous figures ([visual-style.md](visual-style.md), section 8). At least one map beat, and a quantity beat whenever money, armies or years come up |
+| Watch for | Research first (section 11). Dates and numbers written as they are said. Tragedies: plain and respectful, no gore in pictures |
 
-Example hook lines: "This lighthouse never went dark. Not once." "The war lasted thirty-eight
+Hook examples: "This lighthouse never went dark. Not once." "The war lasted thirty-eight
 minutes."
 
-## 6. Explainer
+## 6. Fairy tale and myth
 
 | | |
 |---|---|
-| Fits | How or why something works: science, the body, money, technology, everyday mysteries |
-| Beat map, 30 s | 1 Hook: the question, or the fact that sounds wrong. 2 Stakes: where the viewer meets it ("every time you..."). 3 How it works, part one, with an everyday comparison. 4 Part two. 5 Turn: the part most people miss. 6 Payoff: the answer in one line, echoing the hook. |
-| Narrator | Casual second person, quick, plain words. Deadpan humor works. |
-| Pictures | Show the thing, not a diagram with words: arrows, highlights and labels go on as Video Studio text. Vary the device: the object, a close-up of the mechanism, a comparison scene, a map. |
-| Watch for | Health, money and legal topics: explain, never advise; no promises of results (house rules, section 7). |
+| Fits | Fairy tales, myths, legends, fables, folklore, retold |
+| Length | 2 min (recommended) or 3 min: the tale needs room to breathe |
+| Arc, 2 min | 1 Cold open on the moment of enchantment or danger. 2 The world and its rule. 3-4 Who wants what. 5-8 The trials, each harder. 9-10 The darkest point, the price of the rule. 11 Turn: the rule is used or broken. 12 Payoff: the tale's ending, its image echoing the first |
+| Tone | Hushed, warm, mysterious, mythic. No jokes. Slower: lines at the low end of the word band |
+| Pictures | Storybook look by default. Creatures and gods are drawn as shapes and silhouettes; grim images become architecture, light and nature (visual-style.md, section 9) |
+| Music | A calm, mysterious instrumental from the brand's library suits it (narration-and-assembly.md, section 11). None: say so in one line |
+| Watch for | Retell old tales freely. A recent book or film: write an original tale on the same idea |
 
-Example hook lines: "Your phone battery hates being full." "Planes don't fly the straight line.
-On purpose."
+## 7. Story
 
-## 7. Top-N list
+| | |
+|---|---|
+| Fits | Original short fiction, a story the person wrote, a personal story they tell |
+| Arc, 1 min | 1 The moment of tension. 2 Who, where, what they want. 3 The obstacle. 4 It gets worse, or a clue appears. 5 The twist. 6 The ending that answers the hook |
+| Tone | Follows the story. Measured and close, as if told across a table |
+| Pictures | The same main figure in every scene, kept anonymous, with the same described clothes |
+| Watch for | A personal story the person tells is their life: use only the details they gave and keep them as the hero. A story the narrator persona tells as its own is welcome and written freely. Someone else's book, film or post: only public domain, or an original story on the same idea |
+
+## 8. Top-N list
 
 | | |
 |---|---|
 | Fits | Rankings, countdowns, "3 things", "5 places", "4 mistakes" |
-| Beat map, 30 s (3 items) | 1 Hook: the list's promise with its number. 2 Item 3: its name and one surprising concrete. 3 Item 2. 4 Item 1, the strongest, with the biggest surprise. 5 Payoff: one line on what they share, or the twist about number one. A top 5 needs 45 s. |
-| Narrator | Brisk and upbeat. Each item gets the same sentence shape so the rhythm carries the list. |
-| Pictures | One scene per item, plus the hook. Same look for every item. |
-| On-screen text | A label over each item's scene, top row, the same `look` and `size` on every one (`"3. The Sahara"`, `tiktokHighlight`, `m`). |
-| Watch for | Count down, best last. Never end on "and that's the list". Rankings of real products or companies: facts only, no claims you cannot source. |
+| Arc | Block 1: the promise with its number. One item per block, counted down, the strongest last. The last block: the twist about number one, or what they share. A top 3 fits 1 min (hook, 3 items, a turn block, payoff); a top 5 needs 1 min with two items per block, or 2 min |
+| Tone | Brisk and upbeat. Every item gets the same sentence shape, so the rhythm carries the list |
+| On-screen text | A label per item, top row, the same `look` and `size` each time (`"3. The Sahara"`) |
+| Watch for | Never end on "and that's the list". Real products or companies: facts only |
 
-Example hook lines: "Three places that still have no roads." "Five foods that never go bad."
-
-## 8. Motivational
+## 9. Motivational
 
 | | |
 |---|---|
 | Fits | Discipline, habits, mindset, comebacks, morning routines |
-| Beat map, 30 s | 1 Hook: a hard truth in the second person. 2 A concrete everyday scene of the struggle. 3 The reframe. 4 One small action they can take today. 5 The long view: what it adds up to. 6 Payoff: a short line that lands, echoing the hook. |
-| Narrator | Low, calm, unhurried. Space between beats; one `[pauses]` before the payoff. |
-| Pictures | Stock footage (people training, walking, working, at the beach or in the city) or a Silhouettes look. Stock people are strangers filmed for stock: never present one as the narrator or a real customer. |
-| Watch for | No quotes credited to famous people unless the person supplies a verified attribution: write original lines. No promises of money, health or results. |
+| Arc, 1 min | 1 A hard truth, second person. 2 A concrete everyday scene of the struggle. 3 The reframe. 4 One small action for today. 5 The long view: what it adds up to. 6 A short line that lands, echoing the hook |
+| Tone | Low, calm, unhurried |
+| Pictures | Stock footage (people training, walking, working) or the Silhouettes look. Stock people are real strangers filmed for stock: never present one as the narrator or a named customer, which puts a real person's face on words they never said (house rules, section 7, Real people) |
+| Watch for | No quotes credited to famous people unless the person gives a verified source: write original lines. Never promise guaranteed income or a return, or that something cures, treats or prevents a disease |
 
-Example hook lines: "Nobody is coming to save you. Good." "You don't need more time. You need
-fewer exits."
+## 10. Family-friendly, and why nothing is made for children
 
-## 9. Family-friendly
-
-Videos for a general audience that nobody would skip past with a family in the room. Not
-child-directed content (section 1).
+**Family-friendly** is a video for a general audience that nobody would skip with a family in
+the room. It is never content made FOR children (toddler learning, nursery songs, "for my
+kids' channel"): Creatorline does not make child-directed content and marks every YouTube post
+as not made for kids. When that is asked, say so in one line and offer the family-friendly
+version.
 
 | | |
 |---|---|
 | Fits | Animal facts, nature, "how does it work", gentle fables, kindness stories, told for all ages |
-| Beat map, 30 s | 1 Hook: a surprising fact about something familiar, said plainly. 2 Show it happening. 3-4 Add one fact per beat, each building on the last. 5 Make the size or speed real with a comparison to an everyday thing ("heavier than a fridge"). 6 Payoff: come back to the hook's fact with what the viewer now knows. |
-| Narrator | Warm, bright, unhurried. Excitement in the words, not in shouting. `[cheerfully]` or `[excited]` once at most. |
-| Words | One idea per sentence, everyday words, small numbers said as words, no scary or sad turns, no unkind jokes. |
-| Pictures | Animals, toys, friendly creatures, objects and places, or adults. Never a child in a picture, not even in the background. Bright, soft, round shapes; nothing scary, dangerous or gross. |
-| Watch for | The caption and hashtags speak to everyone, never "for kids" or "for toddlers". Creatorline marks every YouTube post as not made for kids, which is only right for content that is not aimed at children. |
+| Arc, 1 min | 1 The question as anyone would ask it, answered in the same breath. 2 One concrete thing you can see doing it. 3-4 One new idea per block, in the order people ask (what is it, where is it, what does it do). 5 The size or speed made real with something you can hold ("as long as a school bus"). 6 One wow number in words, then a short line that answers the opening question again |
+| Words | One idea per sentence, at most two sentences per line, everyday words. Say what a thing does before naming it, and name it once. Small counts in words; no decimals, percentages or dates; no stacked adjectives. Read it aloud at a kitchen table |
+| Pictures | Each block shows one visible action with a before and an after (the lid comes off, the seed cracks open), and the thread object looks different by the end. **Verb test:** a block whose shots can be described without a verb is decoration; rewrite it. Animals, toys, friendly creatures, objects and adults only: never a young person in a picture |
+| Tone | Warm and bright. Excitement lives in the words and the energy, never in long pauses or baby talk; at most one `[excited]` or `[cheerfully]` |
+| Watch for | Captions and hashtags speak to everyone, never "for kids" |
 
-## 10. Facts and sources
+## 11. Facts and sources
 
-For History, Explainer and any Top-N about the real world:
+For History, Explainer, Top-N and any real-world claim:
 
-- **Research before you write.** With a web search tool: find the hook fact, three to five
-  concrete facts the pictures can show, and the turn. Check every number, date and name in a
-  second source. Keep two to four source links for the delivery.
-- **No web tool:** use only well-known facts, round the numbers, and tell the person which lines
-  to double check before posting.
-- **Never invent** a quote, a date, a name, a number or an event. Where sources disagree, say so
-  in the line ("most accounts say").
-- **Real people** are named in the narration only. On screen they are anonymous figures: from
-  behind, in silhouette, far away. This holds for historical figures too.
-- **Copyright:** no song lyrics, no long passages from books, no retelling of a recent film or
-  book scene by scene. Myths, folk tales and very old classics are free to retell.
+- **Research before you write**, with the host's web search when it has one: the hook number
+  that stops the scroll, 3 to 5 concrete facts, the counterintuitive turn, and physical details
+  the pictures can stage. Check every spoken number in a second source. Keep the source links
+  (full URLs) for the delivery.
+- **No web tool:** use only well-known facts, round the numbers, and tell the person which
+  lines to check before posting.
+- **A document the person gave** is read first and is the source; say so.
+- **Fantasy and fairy tales** need no research, but must not state anything false about the
+  real world.
+- **Never invent** a quote, a date, a name, a number or an event. Where sources disagree, say
+  so in the line ("most accounts say").
+- **Real people** are named in the narration only; on screen they are anonymous figures
+  ([visual-style.md](visual-style.md), section 8). This holds for historical figures too.
+- **Copyright:** no song lyrics, no long passages from books, no scene-by-scene retelling of a
+  recent film or book. Myths, folk tales and old classics are free to retell.
 - **Sensitive topics** (health, money, law, disasters): facts only, no advice, no promises, no
   graphic pictures (house rules, section 7).

@@ -2,269 +2,132 @@
 
 How to turn "show how to use it" into steps a viewer can copy, labels that read at a glance,
 lines that fit the seconds, and a brief the server's writer can film. The general brief rules
-are in video-briefs.md; this file adds what a tutorial needs on top.
+are in video-briefs.md. How hands, products and props behave on camera is in
+hands-and-props.md. This file adds what a tutorial needs on top.
 
 ## Contents
 
-1. [Where the steps come from](#1-where-the-steps-come-from)
-2. [Good steps](#2-good-steps)
-3. [How products are used by hand](#3-how-products-are-used-by-hand)
-4. [Where it goes on the body](#4-where-it-goes-on-the-body)
-5. [Keeping the state straight](#5-keeping-the-state-straight)
-6. [Objects and props](#6-objects-and-props)
+1. [How detailed the ask is](#1-how-detailed-the-ask-is)
+2. [Where the steps come from](#2-where-the-steps-come-from)
+3. [How many steps](#3-how-many-steps)
+4. [What each step is for](#4-what-each-step-is-for)
+5. [The camera per step](#5-the-camera-per-step)
+6. [Face, outfit and setting](#6-face-outfit-and-setting)
 7. [The labels](#7-the-labels)
 8. [The spoken lines](#8-the-spoken-lines)
-9. [Hook and ending](#9-hook-and-ending)
-10. [Timing](#10-timing)
+9. [Opening and ending](#9-opening-and-ending)
+10. [Claims](#10-claims)
 11. [The brief: one take](#11-the-brief-one-take)
 12. [The brief: step takes](#12-the-brief-step-takes)
-13. [Settings by category](#13-settings-by-category)
+13. [Check the brief before you price it](#13-check-the-brief-before-you-price-it)
 14. [Worked example](#14-worked-example)
 
-## 1. Where the steps come from
+## 1. How detailed the ask is
+
+Read the whole ask once and sort it before you plan anything:
+
+| Tier | The person gave | You do |
+|---|---|---|
+| Auto | 1 to 5 words, or only the product's name | Work out 4 real steps from how the product is used (section 2) |
+| Guided | 1 to 3 sentences | Keep their tone and any step they name; build the rest yourself |
+| Director | 4 or more sentences, or a list of steps | Map their steps one to one, in their order, with their words. Change only an action that is unsafe or cannot be filmed, and say which |
+
+A list the person wrote keeps its count: five steps stay five, and the length follows them
+(section 3). So does a number they name ("three steps"). Every other plan uses the counts in
+section 3.
+
+## 2. Where the steps come from
 
 Trust these in order:
 
-1. **The person's own steps or script.** Keep their order and their words. Change only what
-   cannot be filmed or breaks the claim floor, and say what you changed.
+1. **The person's own steps, instructions, manual or usage notes.** These are the real
+   sequence.
 2. **The label, the printed instructions or the product page.** Read what you can reach. Put
    the page URL in the brief too: the writer reads it for facts.
-3. **How the category is really used** (section 3).
+3. **How the category is really used** (hands-and-props.md, sections 2 and 3).
 
 Never invent a step the product cannot do, and never a feature the photo, the label or the
 page does not show. When you cannot tell how it opens or works (a machine, a device, a kit
 with several parts), ask for the steps in the one intake message.
 
-## 2. Good steps
+## 3. How many steps
 
-- **3 to 5 steps.** Only two real ones: open with a true preparation step (start on dry
-  skin, shake the bottle, rinse the cup) or close on the finished result. Six or more: fold
-  small actions that sit next to each other into one step.
-- **One visible action per step**, with one product interaction: one press, one scoop, one
-  swipe, one pour. A small gesture beside it is fine; a second action is not.
-- **A state can change across a cut.** Closing a bottle, setting a tool down or a pan heating
-  up can happen between two steps; the next step starts in the new state.
-- **Every step changes something the camera sees.** A step that only talks is not a step.
-- **In the order the product is used.**
-- **The proof step gets more time.** The step where the product visibly works (the foam
-  rising, the drops landing, the machine pouring) gets a second more than the others.
-- **Waiting is said, not shown.** "Leave it for ten minutes" becomes a line over the next
-  action, never a shot of someone waiting.
+Steps come in sets of four: four for every 15 seconds. Offer the length as one of these when
+the person has not given one:
 
-## 3. How products are used by hand
+| Length | Steps | Seconds per step | Words spoken in all |
+|---|---|---|---|
+| 10 s | 3 | about 3, 3.5, 3.5 | 12 to 20 |
+| 15 s (recommended) | 4 | about 3.5, 4, 4, 3.5 | 28 to 35 |
+| 30 s | 8: two sets of four | about 3.5, 4, 4, 3.5 in each set | 56 to 70 |
+| 45 s | 12: three sets of four | about 3.5, 4, 4, 3.5 in each set | 84 to 105 |
 
-Write the hands' sequence into each step's action. One row's sequence may spread over two
-steps; never pack two rows into one step.
+- Four steps share 15 s evenly, a little more for the two middle ones. A step with a hard
+  action may take a second more from a neighbour; no step goes under 3 s.
+- **10 s holds 3 steps, not 4.** Four steps in 10 s would be 2.5 s each, and our video model
+  merges or drops any shot under 3 s, so a label would fall on the wrong moment.
+- Another length (20 s, 25 s): one step per 3.5 to 4 s.
+- The person's own list of N steps, or N steps they asked for: about 3.75 s a step, rounded to
+  whole seconds (three steps: 11 s; five: 19 s).
+- Number the steps across the whole video: the second set is steps 5 to 8, the third 9 to 12.
+- Up to 30 s is one take. 45 s is still one call: the server films it as joined takes, and
+  each join is a fresh render where the face can drift a little (section 6 says how to hold it).
+- The real sequence is shorter than the count: add a true preparation step at the start
+  (clean, dry skin; shake the bottle; rinse the cup) or a finishing step at the end (the
+  result, the clean-up). Longer: merge small actions that sit next to each other into one step.
 
-| Product | What the hands do |
+## 4. What each step is for
+
+Each set of four has default jobs, in this order:
+
+| Step in the set | Job |
 |---|---|
-| Dropper bottle | Unscrew the top; the dropper comes up with it. Squeeze the bulb once. Drops land on the fingertips. Press into the skin. |
-| Pump bottle | Lift the cap off if there is one. One press down into the palm. |
-| Jar | Twist the lid off and set it down. One fingertip scoops. Smooth it on. |
-| Squeeze tube | Flip the cap open. Squeeze a short line onto one fingertip. |
-| Spray or mist | Lift the cap straight off. One press, aimed at the target. |
-| Lipstick or balm stick | Pull the cap off. Twist the base up. One swipe. |
-| Wand (mascara, gloss) | Unscrew. Draw the wand out slowly. One sweep. |
-| Compact or palette | Open the hinged lid; it stays attached. Tap the brush. One sweep. |
-| Sheet mask or sachet | Tear at the notch. Unfold. Lay it on and smooth it flat. |
-| Powder with a scoop | Open the lid. One level scoop. Tip it into the glass or shaker. |
-| Can or bottled drink | Open it in one motion. One sip. |
-| Kitchen appliance | Set it on the counter (two hands when heavy). Load it. Press one button. Show what comes out. |
-| Gadget or device | Hold it. Point to the part that matters. Press one button. Leave out cables and small connectors: they draw badly. |
-| Scarf, belt, laces | One fold, loop or pull per step, both hands, slow. |
+| 1 | Setup or first contact: the product in hand or on the counter, the start state |
+| 2 | The core action: open, dispense, switch on, measure, pour |
+| 3 | Use or application, often close on the mechanism |
+| 4 | Wrap-up or the result |
 
-Weight: a heavy item (an appliance, a big bottle) is lifted with both hands and a little
-effort; a light one with one relaxed hand; a tiny one is pinched between two fingers near the
-camera. A pair (earrings, two shoes) is one per hand, never both balanced on one palm.
+The product's real order always wins over these jobs. A pod coffee machine is: set the cup,
+load the pod, press the button, drink.
 
-## 4. Where it goes on the body
+- One visible action per step and one product interaction: one press, one scoop, one swipe,
+  one sip. A small gesture beside it is fine; a second action is not.
+- Every step changes something the camera sees. A step that only talks is not a step.
+- Waiting is said, not shown. "Leave it for ten minutes" is a line over the next action.
 
-| Product | Goes on |
-|---|---|
-| Fragrance | The inside of the wrist or the side of the neck |
-| Serum, cream, lotion | The fingertips first, then the cheeks and forehead, pressed or smoothed |
-| Lipstick, balm, gloss | The lips |
-| Blush, bronzer, highlighter | The cheekbones, with a brush |
-| Mascara | The lashes |
-| Eyeliner | The lash line |
-| Hair oil, cream, spray | The mid-lengths to the ends |
-| Food and drink | The mouth: one bite or one sip |
+## 5. The camera per step
 
-If the person names a wrong spot (perfume on the palm), use the right one in the brief and say
-so in one line.
+Most steps need both hands, so the phone is propped by default. Write each step's camera and
+distance into its line of the brief:
 
-## 5. Keeping the state straight
-
-- The cap comes off as its own action before anything comes out. Once off, it stays off, set
-  on the counter, until a step puts it back or the next step opens with it closed (a change
-  across a cut).
-- An opened product is never shown with its factory seal again.
-- Write each step's starting state into its action: "the bottle already open in the left
-  hand, the cap on the counter".
-- One hero product in the frame. No look-alikes and no second bottle of it.
-- When both hands are busy, say which hand holds what. The phone is propped, so both hands are
-  free.
-- No repeat-motion words in an action: again, keeps, repeatedly, back and forth, over and
-  over. They read as a loop. A quantity belongs in the line ("two drops") while the action
-  shows one squeeze.
-- No fingers held up to count the steps. The labels count.
-- No mirror in the setting. The avatar looks into the phone as if it were the mirror.
-- The product keeps the size the product card gives it against a hand. To make the label
-  readable, bring the camera closer; never grow the product.
-
-## 6. Objects and props
-
-The server's writer puts in the frame only what the inputs show. A cup, a towel, a brush or a
-shaker that a step needs must come in as a photo:
-
-- in `objects`, after the product. Say in the brief what each one is for: "@Object2 is the
-  glass the powder goes into".
-- or in `location`: a photo of the place where the object already stands.
-
-No photo of it:
-
-- build the step around the product and the hands only (the usual answer); or
-- offer to make a plain photo of the object with `create_generation`, tool `text-to-photo`,
-  nothing branded on it. It is one more paid run in the same batch: price the photo with
-  `create_generation` without `confirm`, and the video that will use it with
-  `estimate_generation_cost` (same `tool` and `params`; the photo does not exist yet). One
-  yes covers both. Make the photo first and put its `asset_id` in `objects`. Then call
-  `create_generation` for the video without `confirm` once more: the same price, start it;
-  a different one, ask.
-
-A garment the avatar only wears (an apron) is wardrobe: write it in a Wardrobe line. A garment
-that is the product being shown (the scarf being tied) is a product: its photo goes in
-`objects`, and the brief says the avatar wears it. Never another brand's product or logo as a
-prop.
-
-## 7. The labels
-
-- **Format:** `Step 1: Heading`. A colon after the number, never a dash. For alternatives
-  ("3 ways to tie a scarf"): `Way 1: Heading`.
-- **Heading:** 1 to 3 words, a verb or the amount first: "Shake well", "Two drops", "Pat in",
-  "Press start", "Loop and pull".
-- **Names what to do, never a result or a claim:** "Pat in", not "Instant glow".
-- **One line:** at most 26 characters for the whole label at size `m`. Shorten the heading
-  rather than wrap it.
-- **The spoken language:** "Adım 2: İki damla", "Paso 2: Dos gotas".
-- **The same look and size on every label.**
-- **Title:** what the viewer learns, at most two short lines at size `l` (about 20 characters
-  a line): "Glow C serum\nin 4 steps". No claim in it.
-- **End text:** the brand's `call_to_action` from `brand_voice` when it fits in 26 characters,
-  else "Save this for later".
-- Words that must be exact (a product name, an amount) go in labels and captions, never in the
-  generated picture.
-
-## 8. The spoken lines
-
-- **You write them**, one per step, and pass them quoted with "say these lines as written, in
-  this order". The person reads them in the plan, and the captions later find each step by
-  its first word.
-- **Each step's line opens with its own order word**, all different: First, Then, Next, Last.
-  Five steps: First, Then, Next, After that, Last. In another language, that language's own
-  order words. Keep those words out of every other line (the hook, the verdict, the middle of
-  a step's line): a stray "then" makes a label jump early.
-- **Calm and clear**, like showing a friend across the counter: the instruction plus one
-  specific (how much, how long, where, which finger). "Then two drops on your fingertips,
-  not your palm."
-- **Word budget while the hands work:** 3 s holds 7 to 9 words, 4 s 9 to 12, 5 s 12 to 16.
-  Too few leaves silence; too many gets rushed.
-- **Amounts and times only from the label or the instructions.** No results, no history, no
-  "I've used this for months" (the claim floor in house-rules.md).
-- Contractions and short sentences. No filler ("literally", "game changer").
-
-## 9. Hook and ending
-
-The hook is the first 3 s: already in motion, no greeting, no intro. Hooks that work for a
-how-to:
-
-| Kind | What it looks and sounds like |
-|---|---|
-| The result first | The finished latte held up to camera: "Café foam from a jar and a whisk. Here's how." |
-| The step people skip | "The second step is the one everyone skips." |
-| Count and time | "Four steps, about a minute." Only when it is true. |
-| The problem | "Serum just sitting on your skin? Put it on in this order." |
-
-Open by naming the count when the video is over 20 s ("four steps"), so the viewer knows how
-long the road is.
-
-The ending is the last 2 to 3 s: the result on camera, chest-up, and a calm verdict on what was
-shown. "That's the whole routine, start to finish." No new claim, no spoken call to action:
-the end text and the post caption carry it.
-
-## 10. Timing
-
-**One take.** Plan one shot per step; every shot needs 3 s or more.
-
-| Steps | Length | Hook | Each step | Ending | Words in all |
-|---|---|---|---|---|---|
-| 3 | 15 s | 3 s | 3 s | 3 s | 30 to 40 |
-| 4 | 20 s | 3 s | 3.5 s | 3 s | 45 to 55 |
-| 5 | 26 s | 3 s | 4 s | 3 s | 55 to 65 |
-
-- Up to 30 s fits one take. Over 20 s the writer builds the video in short sections joined
-  by a spoken hand-off; your quoted lines keep the order words in place.
-- The writer lands each cut near the planned second, not on it. That is why the labels follow
-  the captions, not the plan.
-
-**Step takes.** Each take is whole seconds and at least 4 s.
-
-| Take | Length | Holds |
+| Step in the set | Camera | Distance |
 |---|---|---|
-| Hook | 4 s | The finished result and the hook line |
-| Each step | 4 to 5 s | One step and its line |
-| Last step | 5 to 6 s | The last step, then the verdict |
+| 1 | Propped phone, locked | Medium: face and torso, the product in frame |
+| 2 | Propped phone, locked | Medium close-up |
+| 3 | Propped phone, locked, close | Close on the hands and the product |
+| 4 | Arm's-length selfie | Chest-up, the face again with the product, or a wider three-quarter shot when the step needs both hands |
 
-## 11. The brief: one take
+- A step that is naturally one-handed (a spray, a lipstick swipe) may be a selfie anywhere.
+- The four distances all differ, and together they hold one close, one middle and one wide
+  shot. When step 4 is the chest-up selfie, make step 1 a looser medium (waist up) so a wide
+  shot is still there.
+- Every camera or distance change sits on a step boundary. Neighbouring steps never share a
+  distance: our writer cuts on a change of framing, and two steps in one framing run together.
+- Locked means the phone does not move; the body still does.
 
-Plain sentences in this order, in English; the quoted lines in the spoken language.
+## 6. Face, outfit and setting
 
-```
-Idea: A step-by-step how-to. @Avatar1 shows how to <goal> with <product> (@Object1) in <N> steps at <place>. Each step is one clear hand action the viewer can copy.
-Hook: <what the first 3 s show>. Line: "<hook line>"
-Steps, in order, one shot each:
-1. <the action, which hand, the state it starts in>. Line: "First, ..."
-2. <...>. Line: "Then, ..."
-3. <...>. Line: "Next, ..."
-4. <...>. Line: "Last, ..."
-Ending: <the result on camera, chest-up>. Line: "<verdict>"
-Lines: say the quoted lines as written, in this order.
-Product: <the product card from product-intake.md>. Page: <url, when there is one>
-Other objects: <@Object2 is ..., only when given>
-Setting: <place, light>, the phone propped at chest height so both hands are free.
-Wardrobe: <only when it matters>
-Language: <spoken language>
-Sound: voice and room sound only. The picture stays clean: step labels and captions are added in the edit.
-```
-
-`params`: `ugc_style: "Auto"`, `duration` from section 10, `aspect_ratio: "9:16"`,
-`resolution: "720p"`. `1080p` only when the person asks for sharper; it costs about 2.5 times
-as much.
-
-## 12. The brief: step takes
-
-Every take is a fresh render. Only the words hold the room and the clothes together, so the
-Product, Setting and Wardrobe lines are the same in every take, word for word. Open every take
-on the avatar's face with the product in frame, then go to the hands: a take that is only
-hands loses the face and the outfit first.
-
-```
-Idea: Step <k> of <N> of a how-to for <product> (@Object1). @Avatar1, chest-up with @Object1 in frame, then <the action, which hand>. It continues from the step before: <the state at the start>.
-Line: "<the step's line>" Say it as written.
-Product: <the same product card>
-Setting: <the same words in every take>
-Wardrobe: <the same words in every take>
-Ending: the action finished, <the state it ends in>.
-Language: <spoken language>
-Sound: voice and room sound only. The picture stays clean: step labels and captions are added in the edit.
-```
-
-- The hook take: "Idea: The opening of a how-to for <product>. @Avatar1 holds <the finished
-  result> to the camera." plus the hook line.
-- The last take adds the verdict after the last step's line.
-- `duration` per take from section 10; the other `params` as in section 11.
-
-## 13. Settings by category
+- **The face anchors the video.** Step 1 shows the avatar's face and torso with the product in
+  frame. A first step that shows only hands lets the face, the outfit and the product drift in
+  every step after it. Show the face again in the last step. In a 30 or 45 s video, the first
+  step of every set of four shows the face too: that is where a join may fall.
+- A first step that needs no product (wash your hands) keeps the product standing on the
+  counter in frame, not in hand.
+- **Say the outfit, and say it stays.** Write a Wardrobe line in every brief, and say the
+  outfit is the same in every shot. Left out, clothing changes colour between steps.
+- Keep the avatar covered for a close tutorial: a robe tied shut, a tank top only under an open
+  shirt, a neckline at the collarbone or higher.
+- **Setting by category**, always with neutral daylight and the phone propped at chest height:
 
 | Category | Setting |
 |---|---|
@@ -275,32 +138,182 @@ Sound: voice and room sound only. The picture stays clean: step labels and capti
 | Fashion techniques (tying, folding) | A bedroom against a plain wall, daylight |
 | Cleaning products | The surface being cleaned, daylight |
 
-Always: the phone propped at chest height, no mirror in the frame, available light. Never a
-studio set or film words (video-briefs.md, section 5).
+  Never golden-hour light, a studio set or film words (video-briefs.md, section 5). No mirror
+  in the frame: the avatar looks into the lens as if it were the mirror.
+
+## 7. The labels
+
+- **Format:** `Step 1 – Heading`: the word Step, the number, a space, an en dash, a space, the
+  heading. Alternatives ("3 ways to tie a scarf") read `Way 1 – Heading`.
+- **Heading:** 1 to 4 words in Title Case, a verb or an amount first: "Shake Well", "Two
+  Drops", "Pat In", "Press Start", "Loop and Pull". Fitness and supplements: the whole label
+  in capitals ("STEP 2 – ONE SCOOP").
+- **It names what to do, never a result:** "Pat In", not "Instant Glow". A label marks a step;
+  a result belongs in the lines.
+- **One line where you can.** About 26 characters fit on a line at size `m`, so a heading of
+  up to 17 characters keeps the label on one line. When any label needs two lines, break every
+  label at the same place, after the dash (`Step 1 –\nTwo Drops`), so they all wrap alike.
+- **The spoken language,** in that language's own title case: "Adım 2 – İki Damla".
+- **One look, one size, one place for every label** (the look by category is in assembly.md,
+  section 3).
+- **One label per step, and no other text on the picture.** Words that must be exact (a product
+  name, an amount) go in labels or captions, never in the generated picture.
+
+## 8. The spoken lines
+
+- **You write them**, one per step, and pass them quoted with "say these lines as written, in
+  this order". The person reads them in the plan, and the captions later find each step by
+  them.
+- **Budget:** the totals in section 3, about 2 words a second, so 7 to 9 words for a 3.5 to 4 s
+  step. Count before you price.
+- **Protect the mouth.** Every step leaves one quiet beat, lips together, while the hands work.
+  Too many words: cut words from a line, never ask for faster speech. Short of room, shorten an
+  instruction rather than drop a step.
+- **Each step after the first carries a cue word** found in no other line, so the captions can
+  find where the step starts. Up to five steps: its order word (Then, Next, After that, Last).
+  More steps: the step's own distinct word, the thing or the action it names ("the pod", "the
+  whisk"). Keep those words out of every other line: a stray "then" makes a label jump early.
+- **Calm and measured.** A tutorial is shown like a friend across the counter, never pitched.
+- **Mechanics and outcomes, in numbers.** How many presses, press with the finger pads instead
+  of rubbing, how long to wait before the next step. A number or a time instead of praise; the
+  step's amounts come from the label or the instructions, so the viewer copies them right.
+- **Later sets open mid-thought.** The first step of the second or third set goes straight into
+  the action ("Now the pump, one press into your palm."), never a greeting or a recap.
+- **The persona's own use is welcome.** A step can carry its history or its result: "I've done
+  it this way every morning for months", "pressing instead of rubbing is what stopped the pilling
+  for me" (the persona, house-rules.md, section 7). It rides on a step's action inside the word
+  budget; a result the viewer is told to look at needs a step that shows it. Contractions and
+  short sentences. No filler ("literally", "game changer").
+- Sounds (a soft exhale, a small laugh) go in the step's action, never inside a quoted line
+  where they would be read aloud: at most three in the whole video, all in the first set.
+
+## 9. Opening and ending
+
+**Opening.** Step 1 is the hook: its label is up from the first frame and the avatar is already
+mid-action. Three ways in:
+
+| Way in | What it sounds like |
+|---|---|
+| Straight into step 1 (default) | "Start on skin that's completely dry." |
+| A friction line, then step 1 | "Most people use way too much of this. Start on dry skin." |
+| A personal story, then step 1 | "I almost returned this. Then I tried it on dry skin." |
+
+- Friction beats excitement. A general truth, an opinion or the persona's own story all work:
+  the persona has a past, and "I almost returned this" is a proven opener (house-rules.md,
+  section 7).
+- The first word or sound lands within 0.4 s. No greeting, no intro, no title card.
+
+**Ending.** The last step of the video shows the result with the face, then a call-to-action
+tail inside that step's own seconds:
+
+- In the last 0.5 to 1 s, chest-up, the free hand makes one quick point down toward the bottom
+  of the frame.
+- The call to action itself is end text over that last second (assembly.md, section 2), not a
+  spoken line: our writer turns a spoken call to action into a verdict, and the post caption
+  repeats it.
+- Only the last step of the video has the tail, and only one call to action. Never lengthen the
+  video for it: take words out of the last line instead.
+
+## 10. Claims
+
+- **The brand is responsible for its claims.** The persona's own history and results are
+  welcome (section 8; house-rules.md, section 7).
+- **The steps' numbers come from a source.** An amount, a time or a count the viewer copies
+  (two drops, ten minutes) comes from the label, the instructions or the person; so do the
+  product's own facts (a price, availability). Step numbers are structure, not claims.
+- **An approved-claims list is an option, never a condition.** When the person gives one, keep
+  to it: each claim word for word, never stronger, never joined to another, never turned into a
+  number. Before you price, read the lines, the labels, the hook text and the end text against
+  it, and delete what is not on it. Never put a new claim in the place of one you deleted.
+- **The fixed lines** (house-rules.md, section 7): no promise that a product cures, treats or
+  prevents a disease, and no guaranteed income or return. Drop an unsafe clause rather than
+  reword it.
+- No other brand's product, logo or character in the frame: it renders garbled and reads as
+  that brand speaking.
+
+## 11. The brief: one take
+
+Plain sentences in this order, in English; the quoted lines in the spoken language. One brief
+covers 10, 15, 30 and 45 s.
+
+```
+Idea: A step-by-step how-to. @Avatar1 shows how to <goal> with <product> (@Object1) in <N> steps at <place>, calm and clear, like showing a friend across the counter. Each step is one shot with one hand action the viewer can copy.
+Steps, in order, one shot each:
+1. About 3.5 s. Propped phone, medium shot: @Avatar1's face and torso with @Object1 in frame. <the action, which hand, the state it starts in>. Focused. Line: "<line>"
+2. About 4 s. Propped phone, medium close-up. <...>. Explaining as she goes. Line: "Then ..."
+3. About 4 s. Propped phone, close on her hands and @Object1. <...>. Focused on the hands. Line: "Next ..."
+4. About 3.5 s. Arm's-length selfie, chest-up, @Avatar1's face again with @Object1. <the result>. Satisfied. Line: "Last ..." In the last second her free hand points down toward the bottom of the frame.
+Lines: say the quoted lines as written, in this order, calmly, with a quiet closed-mouth beat while the hands work in each step.
+Product: <the product card, with How it is used and Size>. Page: <url, when there is one>
+Other objects: <@Object2 is ..., only when given>
+Setting: <place>, neutral daylight, the phone propped at chest height so both hands are free.
+Wardrobe: <the outfit>, the same in every shot.
+Language: <spoken language>
+Sound: voice and room sound only, recorded on the phone. The picture stays clean: step labels are added in the edit.
+```
+
+- 30 and 45 s: the same list continues with steps 5 to 8 (and 9 to 12). Steps 5 and 9 open on
+  the face like step 1, mid-thought, no greeting. The pointing tail goes on the last step only.
+- `params`: `ugc_style: "Auto"`, `duration` from section 3, `aspect_ratio: "9:16"`,
+  `resolution: "720p"`. `1080p` only when the person asks for sharper; it costs about 2.5
+  times as much.
+- Optional devices (an opener moment, an off-screen sound, a set-down): hands-and-props.md,
+  section 9. At most one of each.
+
+## 12. The brief: step takes
+
+For a step that happens somewhere else, or when the person wants each step filmed on its own
+(assembly.md, section 7). Every take is a fresh render: only the words hold the room and the
+clothes together, so the Product, Setting and Wardrobe lines are the same in every take, word
+for word, and every take opens on the face with the product in frame before the hands.
+
+```
+Idea: Step <k> of <N> of a how-to for <product> (@Object1). @Avatar1, chest-up with @Object1 in frame, then <the action, which hand>. It continues from the step before: <the state at the start>.
+Line: "<the step's line>" Say it as written.
+Product: <the same product card>
+Setting: <the same words in every take>
+Wardrobe: <the same words in every take>, the same in every shot.
+Ending: the action finished, <the state it ends in>.
+Language: <spoken language>
+Sound: voice and room sound only, recorded on the phone. The picture stays clean: step labels are added in the edit.
+```
+
+`duration` per take: 4 to 5 s; the last step 5 to 6 s for its tail. Other `params` as in
+section 11.
+
+## 13. Check the brief before you price it
+
+- Each step: one action, one product interaction, the right hand named, the right place on the
+  body (hands-and-props.md, section 3), no repeat-motion words (section 5 there).
+- The camera and the distance change at every step and match section 5.
+- Step 1 and the last step show the face; in long videos, every fourth step from 1 too.
+- The Wardrobe line is there and says the outfit stays the same.
+- Every line is inside its word budget, carries its cue word, and no cue word appears twice.
+- The tail is on the last step only, with no spoken call to action.
+- The claims pass section 10.
 
 ## 14. Worked example
 
-The ask: "Show how to use our Glow C serum, step by step." Mia is the default avatar; the serum
-photo is in the library.
+The ask: "Show how to use our Glow C serum, step by step." Auto tier (a product name and a
+verb). Mia is the default avatar; the serum photo is in the library; the person picked 15 s.
 
-Plan: 4 steps, 20 s, one take, `ugc_style: "Auto"`, the serum photo in `objects`.
+Plan: 4 steps, 15 s, one take, `ugc_style: "Auto"`, the serum photo in `objects`.
 
 ```
-Idea: A step-by-step how-to. @Avatar1 shows how to put on Glow C Serum (@Object1) in 4 steps at her bathroom sink. Each step is one clear hand action the viewer can copy.
-Hook: @Avatar1 faces the camera, the serum already in her right hand, label to camera. Line: "Here's the order to put your serum on. Four steps."
+Idea: A step-by-step how-to. @Avatar1 shows how to put on Glow C Serum (@Object1) in 4 steps at her bathroom sink, calm and clear, like showing a friend across the counter. Each step is one shot with one hand action the viewer can copy.
 Steps, in order, one shot each:
-1. Her face bare and dry, she unscrews the dropper top from the bottle in her right hand. Line: "First, start with clean skin that's completely dry."
-2. The dropper already out, she squeezes the bulb once and drops land on the fingertips of her left hand. Line: "Then two drops on your fingertips, not your palm."
-3. The closed bottle stands on the counter; she presses her fingertips into her cheeks and forehead. Line: "Next, press it into your cheeks and forehead, gently."
-4. She picks the bottle up from the counter and holds it beside her face, label to camera. Line: "Last, give it a minute before your moisturizer."
-Ending: @Avatar1 chest-up, the bottle beside her face, a calm smile. Line: "That's the whole routine, start to finish."
-Lines: say the quoted lines as written, in this order.
-Product: Glow C Serum. A vitamin C face serum in an amber glass dropper bottle that fits in one palm, white label on the front. Opens with a screw-top dropper.
-Setting: a bright bathroom sink in morning daylight, the phone propped at chest height so both hands are free.
+1. About 3.5 s. Propped phone, waist-up medium shot: @Avatar1's face and torso, @Object1 in her right hand, label to camera. She touches her dry cheek with her left fingertips. Focused. Line: "Start on skin that's completely dry."
+2. About 4 s. Propped phone, medium close-up. Holding the bottle's base in her right hand, she turns the dropper top counterclockwise and lifts it out. Explaining as she goes. Line: "Then lift the dropper straight out."
+3. About 4 s. Propped phone, close on her hands and @Object1. One squeeze of the bulb; drops land on her left fingertips. Focused on the hands. Line: "Next, two drops on your fingertips, not your palm."
+4. About 3.5 s. Arm's-length selfie, chest-up, @Avatar1's face again, @Object1 open on the counter beside her. Her left finger pads press the serum into her cheek. Satisfied. Line: "Last, press it in. Don't rub." In the last second her free hand points down toward the bottom of the frame.
+Lines: say the quoted lines as written, in this order, calmly, with a quiet closed-mouth beat while the hands work in each step.
+Product: Glow C Serum. A vitamin C face serum in an amber glass dropper bottle about 9 cm tall that fits in one palm, white label on the front. Opens with a screw-top dropper: turn it counterclockwise and lift.
+Setting: a bright bathroom sink, neutral morning daylight, the phone propped at chest height so both hands are free.
+Wardrobe: a white cotton robe tied shut, the same in every shot.
 Language: English.
-Sound: voice and room sound only. The picture stays clean: step labels and captions are added in the edit.
+Sound: voice and room sound only, recorded on the phone. The picture stays clean: step labels are added in the edit.
 ```
 
-Labels: `Step 1: Dry skin`, `Step 2: Two drops`, `Step 3: Press in`, `Step 4: Let it settle`.
-Title: `Glow C serum\nin 4 steps`. End text: "Save this for later". Look: skincare reads calm,
-so `tiktokTranslucent` labels and `minimal` captions (assembly.md, section 3).
+Words: 31. Labels: `Step 1 – Dry Skin`, `Step 2 – Lift the Dropper`, `Step 3 – Two Drops`,
+`Step 4 – Press In`. Skincare reads refined, so the `instagram` look (assembly.md, section 3).
+End text: the brand's call to action, or "Link in bio".

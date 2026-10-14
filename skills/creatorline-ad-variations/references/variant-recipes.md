@@ -1,6 +1,6 @@
 # Variant recipes
 
-The exact calls for each row of the experiment matrix, how to price it, and what to watch for.
+The exact calls for each row of the version table, how to price them, and what to watch for.
 
 ## Contents
 
@@ -13,20 +13,22 @@ The exact calls for each row of the experiment matrix, how to price it, and what
 7. [Avatar](#7-avatar)
 8. [Outfit](#8-outfit)
 9. [Product](#9-product)
-10. [New speech: lines or language](#10-new-speech-lines-or-language)
-11. [Voice](#11-voice)
-12. [Language, voiceover-led](#12-language-voiceover-led)
-13. [Caption look](#13-caption-look)
-14. [The same finishing on every version](#14-the-same-finishing-on-every-version)
-15. [Getting the words of a video](#15-getting-the-words-of-a-video)
-16. [Cutting a long source](#16-cutting-a-long-source)
+10. [Background, colour and words in the picture](#10-background-colour-and-words-in-the-picture)
+11. [New speech: lines or language](#11-new-speech-lines-or-language)
+12. [Voice](#12-voice)
+13. [Language, voiceover-led](#13-language-voiceover-led)
+14. [Caption look](#14-caption-look)
+15. [The same finishing on every version](#15-the-same-finishing-on-every-version)
+16. [Getting the words and times of a video](#16-getting-the-words-and-times-of-a-video)
+17. [Cutting a long source](#17-cutting-a-long-source)
 
 ## 1. Before any recipe
 
-- `<source>` below is the winner's asset id, from `list_assets` or `import_asset`. A TikTok or
+- `<source>` below is the original's asset id, from `list_assets` or `import_asset`. A TikTok or
   Instagram post link also works in a generation's video slot; Video Studio needs an asset id,
-  so import the link first.
+  so import the link first. Bring the source in once; every version uses the same id.
 - `<S>` is the source's `duration_sec`, rounded down: 4 to 30 for swaps and reshoots.
+  `video-edit` needs no length: it keeps the source's own.
 - The first time you use a tool in a conversation, read its slots and allowed values with
   `list_models` and `tool`. The keys below match today's catalog; the catalog wins if they differ.
 - Leave `model` out unless the recipe names one.
@@ -37,16 +39,21 @@ The exact calls for each row of the experiment matrix, how to price it, and what
   for a different voice (`list_voices`). An avatar with no `voice_id` in `get_avatar` is read in
   a stock voice: say so before you plan speech rows for it.
 - Every version starts from `<source>`. Never feed one version into another.
+- **`video-edit` takes AI faces only.** A source with a real person's face is refused (and
+  refunded). Its sources are the brand's own creations and footage with no face in it.
 
 ## 2. Pricing the set
 
 | Row | How to get its price |
 |---|---|
 | Video Studio rows (hook line, opener, end text, caption look, voiceover language) | `get_video_guide`, `credits`: `export` per export, `captions` once per project that gets captions, `voiceover` per voiceover |
-| `hook-captions`, `character-swap`, `reshoot`, `change-voice` on the source | `create_generation` with the exact arguments and no `confirm`: the `needs_approval` answer's `credits` |
+| `video-edit`, `hook-captions`, `character-swap`, `reshoot`, `change-voice` on the source | `create_generation` with the exact arguments and no `confirm`: the `needs_approval` answer's `credits` |
 | An avatar row's re-voice (section 7) | `estimate_generation_cost` with `tool: "change-voice"` and `inputs: {video_url: <source>}` |
-| New speech (section 10) | `create_generation` without `confirm` for `text-to-speech` with the exact words, plus `estimate_generation_cost` with `tool: "lipsync"` and `inputs: {video_url: <source>}` (billed by the video's seconds) |
+| New speech (section 11) | `create_generation` without `confirm` for `text-to-speech` with the exact words, plus `estimate_generation_cost` with `tool: "lipsync"` and `inputs: {video_url: <source>}` (billed by the video's seconds) |
+| Captions used only to find times (section 16) | `credits.captions` from `get_video_guide`, once per source |
 
+- `video-edit` is priced on the source's seconds and the resolution, so every edit of one
+  source at one resolution costs the same: quote each anyway, with its own prompt and images.
 - Add every row up and ask one yes for the total, with the balance (`get_credit_balance`).
 - Build the Video Studio rows after the yes. Their prices are fixed, so the yes covers
   `export_video`, `write_captions` and `add_voiceover` with `confirm: true` as quoted.
@@ -129,7 +136,7 @@ create_generation {
 - No speech in the video: the hook shows as a title card. No speech and no hook: the run fails
   (refunded).
 - The words cannot be corrected afterwards. When brand names or numbers must be exact, use Video
-  Studio (sections 3 and 13).
+  Studio (sections 3 and 14).
 
 ## 6. End text
 
@@ -143,11 +150,12 @@ edit_video { video_id: <video>, operations: [
 ] }
 ```
 
-Same place, size and times on every row. A spoken call to action is a lines row (section 10).
+Same place, size and times on every row. A spoken call to action is a lines row (section 11).
 
 ## 7. Avatar
 
-Another avatar in the same video: same moves, words, cuts, clothes and set.
+Another avatar in the same video: same moves, words, cuts, clothes and set. Any change to who a
+person is goes here, never to `video-edit` ([edit-mapping.md](edit-mapping.md), section 7).
 
 ```
 create_generation {
@@ -186,7 +194,27 @@ create_generation {
 
 ## 8. Outfit
 
-The same avatar in other clothes, everything else kept. For fashion and accessory brands.
+The same person in other clothes, everything else kept. Two ways; pick by
+[edit-mapping.md](edit-mapping.md), section 8.
+
+**One garment, the source shows an AI face: `video-edit`.**
+
+```
+create_generation {
+  tool: "video-edit", brand_id: <brand>,
+  prompt: "<DETAILED, one REPLACE of the garment>",
+  inputs: { source_video: <source>, image_urls: [<garment photo>] },
+  params: { resolution: "720p" }
+}
+```
+
+- The edit names only that garment: "Replace only the denim jacket she wears in @Video1 with
+  the jacket from @Image1, worn the same way, open over the same white top." The rest of the
+  look stays. A colour or a material is a MODIFY with no image.
+- A worn garment is always the DETAILED template ([edit-contract.md](edit-contract.md),
+  section 9).
+
+**A whole outfit, or a real person in the source: Character Swap Replace.**
 
 ```
 create_generation {
@@ -207,7 +235,36 @@ create_generation {
 
 ## 9. Product
 
-The same video filmed again with another product: same avatar, structure and beats.
+Another product in the same video. Two ways:
+
+| | `video-edit` | Reshoot with the product |
+|---|---|---|
+| What happens | The footage is kept: only the product changes, frame by frame | Every frame is filmed again with the same avatar, structure and beats |
+| The source | An AI face or no face (the brand's own creations, product footage) | One main person. A real person is filmed again as the avatar: a second change, so say so |
+| The new product | The same kind, size and handling as the old one (a bottle for a bottle) | Any kind: the moves are filmed again around it |
+| Spoken lines | Kept as they are: a line that names the old product still names it | Lines and on-screen text that name the old product are rewritten to the same length |
+| Pick it when | The take must stay exactly; the lines do not name the product | A source with a real face, lines that name the product, or another kind of product |
+
+**`video-edit`:**
+
+```
+create_generation {
+  tool: "video-edit", brand_id: <brand>,
+  prompt: "<the edit, edit-contract.md>",
+  inputs: { source_video: <source>, image_urls: [<product photo>] },
+  params: { resolution: "720p" }
+}
+```
+
+- A held product is always the DETAILED template. The worked prompt is
+  [edit-contract.md](edit-contract.md), section 11.
+- Another kind of product: the five rules in edit-contract.md, section 5, or Reshoot.
+- Add a product ("on the counter to her left") or remove one ("the cup on the table"): the ADD
+  and REMOVE sentences (edit-contract.md, section 3).
+- A product photo per version, from product-intake.md. Text on its label shows as the photo
+  shows it.
+
+**Reshoot:**
 
 ```
 create_generation {
@@ -240,18 +297,39 @@ bottle that fits in one palm, 15% vitamin C printed on the label.
   test's control, named `<base>_00_reshoot`.
 - An avatar made from a real person's photo needs `model: "reshoot-seedance-2-0"` (up to 15 s).
 
-## 10. New speech: lines or language
+## 10. Background, colour and words in the picture
+
+All `video-edit`, the same call as section 9 with the images the version needs (none when the
+change is described in words).
+
+| Row | The sentence (edit-contract.md, section 3) | Image |
+|---|---|---|
+| B, a new place | "Replace only the kitchen wall behind the woman in @Video1 with <the place, described>" | Optional: a photo of the place, "from @Image1" |
+| C, a colour or material | "Modify only her sweater in @Video1 so that it is deep forest green; its fabric, fit and folds stay as they are." | None |
+| C, a season | "Modify only the view through the window in @Video1 so that it shows a snowy winter street." | None |
+| C, the time of day | "Modify only the light in the room in @Video1 so that it is early evening: warm lamp light, a dark blue window." | None |
+| W, words in the picture | "Modify only the price on the shelf tag in @Video1 so that it reads $24; its font, colour, size and place stay as they are." | None |
+
+- A background in one shot, behind the people, nothing held changed: COMPACT. The worked
+  prompt is edit-contract.md, section 12. Several shots, or seen in a mirror: DETAILED.
+- Keep the same wording for every version of a set and change only the value ("deep forest
+  green", "burgundy", "camel"), so the value is the only difference.
+- Words Video Studio put on (a hook, captions) are changed in Video Studio, not here.
+- A sign, a label or a logo: only the brand's own words and marks (house-rules.md, section 7).
+
+## 11. New speech: lines or language
 
 The same picture with new speech, lips matched. Two runs. Use it for a new offer, angle or spoken
 call to action (L rows) and for another language (T rows). Reshoot cannot do this: it only
 rewrites lines when the product changes.
 
-1. Get the exact words (section 15).
+1. Get the exact words (section 16).
 2. Write the new script:
    - L rows: change only the line under test; keep the rest word for word.
    - T rows: translate for speech, not word for word.
    - Spoken, it must be no longer than the original: about 2.5 words per second
-     (video-briefs.md, speech budget). The claim floor holds for every line.
+     (video-briefs.md, speech budget). A new line may tell the persona's own story; only the
+     fixed lines limit it (house-rules.md, section 7).
 3. The speech:
 
 ```
@@ -284,10 +362,12 @@ create_generation {
   changes too. For a clean read, make a control the same way with the original words, named
   `<base>_00_revoiced`.
 - Text burned into the picture stays in the old language. Caption a T row in its new language
-  (section 13, or section 5 with `hook_mode: "off"`).
+  (section 14, or section 5 with `hook_mode: "off"`).
+- A `video-edit` product version whose lines still name the old product: this recipe on that
+  version, as a second step, fixes the words.
 - A real person on camera: only with their permission (house-rules.md, section 7).
 
-## 11. Voice
+## 12. Voice
 
 The same video, the same words and timing, another voice.
 
@@ -303,9 +383,9 @@ create_generation {
   `voice_id` from `get_avatar`; `scope: "library"` with `language` for a native speaker.
 - `remove_background_noise: true` when the source is noisy.
 - Only for one clear voice with no music under it. Music or two voices come out distorted: use
-  section 10 with the music added back instead.
+  section 11 with the music added back instead.
 
-## 12. Language, voiceover-led
+## 13. Language, voiceover-led
 
 For a video whose speaker is not on camera (a product video, a narrated piece).
 
@@ -328,7 +408,7 @@ create_video {
    `captions.status` is `"ready"`; fix a wrong word with `edit_caption`.
 4. Export as in section 3.
 
-## 13. Caption look
+## 14. Caption look
 
 The same video in each caption look, everything else equal. Needs a source with no captions
 burned in. Captions are charged once per project, so make every look from ONE project:
@@ -358,27 +438,32 @@ create_video { brand_id: <brand>, title: "glow-serum_S_captions",
 The same position on every look. One-pass alternative: section 5 with `hook_mode: "off"` and each
 `caption_style` (one flat run per look; the words cannot be corrected).
 
-## 14. The same finishing on every version
+## 15. The same finishing on every version
 
-When the change is made by a generation (avatar, outfit, product, speech, voice) and the versions
-should carry a hook line or captions, finish every version AND the control the same way in Video
-Studio: one project each with the same text, look, size and times, the same caption style and
-position, then an export each. Price these rows with the set.
+When the change is made by a generation (an edit, avatar, outfit, product, speech, voice) and the
+versions should carry a hook line or captions, finish every version AND the control the same
+way in Video Studio: one project each with the same text, look, size and times, the same caption
+style and position, then an export each. Price these rows with the set.
 
-## 15. Getting the words of a video
+## 16. Getting the words and times of a video
 
-Needed for speech rows and to keep new lines the same length.
+Needed for speech rows, to keep new lines the same length, and to time an edit to a moment.
 
 1. The person's script: best. Ask once, inside the intake.
 2. A Creatorline creation: its `prompt` in `list_assets` is the brief it was made from, not always
    the exact words. Use it for the idea, not for timing.
 3. Otherwise: a Video Studio project with the source and `write_captions` (paid once; price it
    with the set). `captions.lines` in `get_video` is the transcript, with times. That project can
-   also be the captioned control.
+   also be the captioned control. Re-captioning after a clip change is free.
 
-## 16. Cutting a long source
+There is no tool that reads a video's cuts or scenes. Times of things seen, not said, come from
+the person or from `preview_video` frames that say `exact: true`
+([edit-mapping.md](edit-mapping.md), section 10).
 
-Swaps and reshoots take up to 30 seconds. For a longer winner:
+## 17. Cutting a long source
+
+`video-edit`, swaps and reshoots take up to 30 seconds. Never cut a source on your own: offer
+it, and let the person pick the part. Then:
 
 ```
 create_video { brand_id: <brand>, title: "glow-serum_cut-30",
@@ -387,5 +472,6 @@ create_video { brand_id: <brand>, title: "glow-serum_cut-30",
 
 `trim_start` and `trim_end` are seconds of the source itself. Export it (one more paid row) and
 use `export.asset_id` as `<source>` for every version, the control included, so all of them show
-the same 30 seconds. When the first 30 seconds are the ones to keep, skip this: a swap cuts the
-source to its `duration` by itself.
+the same 30 seconds. For a swap, when the first 30 seconds are the ones to keep, skip this: a
+swap cuts the source to its `duration` by itself. `video-edit` never cuts: it refuses a longer
+source.

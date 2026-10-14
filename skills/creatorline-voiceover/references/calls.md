@@ -69,9 +69,11 @@ sound stays at full level.
 - Still `generating` when the call returns: read `get_video` again in a few seconds.
 
 **Several voiceovers.** One take reads the whole script at one price, so prefer one. Use
-several only when lines must start on clips that cannot move, or the script is over 2000
-characters: place each with `over` on its clip, or `start` at the previous one's `end` plus
-0.2 s. Quote them all before the first one runs.
+several only when lines must start on clips that cannot move (one per window,
+fitting-takes.md, section 2), or the script is over 2000 characters: split it at paragraph ends
+into as few parts as possible (about 1800 characters each) and place each part at the previous
+one's `end`. Every take has the same `voice_id` and the same opening tag. Quote them all before
+the first one runs.
 
 **Changing one** (free unless it is a new take):
 
@@ -110,8 +112,10 @@ so export once, at the end.
 - `params.voice_id`: always pass it. Left out, it is a stock voice.
 - `params.model_id`: leave it out. The default, `eleven_v3`, performs feeling tags and speaks
   the language the words are written in. `eleven_multilingual_v2` takes `params.speed` (0.7
-  to 1.2) but reads tags out loud: use it only when the person needs a set pace and the words
-  carry no tags. `speed` does nothing on `eleven_v3`.
+  to 1.2) but reads tags out loud: use it only when the person asks for a set pace and the
+  words carry no tags. Never use `speed` to make words fit a window: change the words
+  (fitting-takes.md, section 4). `speed` does nothing on `eleven_v3`. All the lines of one job
+  use the same `model_id`.
 - The output is an audio file (`output[].url`, `asset_id`). It can go to a lip sync
   (`audio_url`), or under a Video Studio project (`set_sound`: plays from 0 s, is not
   captioned). Over a video, prefer a voiceover (section 1).
@@ -277,7 +281,10 @@ sync when the take is short.
 | Captions, export | `get_video` every 10 to 20 s | About a minute; one to a few |
 
 A run over the workspace's parallel limit stays `queued` and starts by itself: say it is
-waiting for a free slot. Never start a job a second time.
+waiting for a free slot. Never start a job a second time, and never send a call again only
+because its answer was lost: read `get_video` or `get_generation` first. A job whose status has
+not changed for 20 minutes: stop waiting, tell the person what is still pending, and do not
+start it again.
 
 ## 9. Limits
 
@@ -292,3 +299,4 @@ waiting for a free slot. Never start a job a second time.
 | `stability` (dialogue) | 0, 0.5 or 1 |
 | `sync_mode` (`sync-lipsync-v2-pro` only) | `cut_off`, `loop`, `bounce`, `silence`, `remap` |
 | Audio file brought in by `import_asset` | 50 MB |
+| One audio file of speech | 2000 characters: a longer script comes back as several files, in order |

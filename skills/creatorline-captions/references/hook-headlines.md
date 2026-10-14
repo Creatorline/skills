@@ -6,11 +6,11 @@ read with the sound off, in about a second, over a picture that is moving.
 ## Contents
 
 1. [What the headline does](#1-what-the-headline-does)
-2. [Seven patterns](#2-seven-patterns)
+2. [Eight patterns](#2-eight-patterns)
 3. [Hooks by format](#3-hooks-by-format)
 4. [Weak to strong](#4-weak-to-strong)
 5. [Writing it from what is said](#5-writing-it-from-what-is-said)
-6. [Words on screen and the claim floor](#6-words-on-screen-and-the-claim-floor)
+6. [Words on screen and the persona](#6-words-on-screen-and-the-persona)
 7. [Size, lines and time](#7-size-lines-and-time)
 8. [Testing hooks](#8-testing-hooks)
 
@@ -24,7 +24,7 @@ read with the sound off, in about a second, over a picture that is moving.
   spoken line says "so I packed seven days into this", the headline says "a week in one
   carry-on".
 
-## 2. Seven patterns
+## 2. Eight patterns
 
 | Pattern | Shape | Example | Fits |
 |---|---|---|---|
@@ -35,6 +35,7 @@ read with the sound off, in about a second, over a picture that is moving.
 | POV | Puts the viewer in the scene | "POV: the carry-on actually fits" | Lifestyle, try-on, unboxing |
 | Question | A question the viewer wants answered | "is this serum worth it?" | Reviews, comparisons |
 | Shown result | Points at what the video demonstrates | "watch the stain lift in one wipe" | Demos, only when it is on camera |
+| Personal result | The presenter's own result, with the time it took | "3 weeks in and my skin calmed down" | Reviews, talking videos, storytime |
 
 Front-load the word that carries it ("3", "stop", "POV", the product's category). The rest can
 be small.
@@ -63,7 +64,7 @@ be small.
 | "you won't believe what happens" | A promise with nothing in it | "watch the stain lift in one wipe" |
 | "follow for more tips" | A sign-off, not an opener | "3 settings to change first" |
 | "hi guys, today I'm going to show you" | Words that waste the first second | "a week in one carry-on" |
-| "the best moisturizer in the world" | A claim nobody can back | "the moisturizer that sits under makeup" |
+| "the best moisturizer in the world" | Vague: every brand says it | "the moisturizer that sits under makeup" |
 | A 14-word sentence | Unreadable in a second | Cut it to the 4 words that carry it |
 
 ## 5. Writing it from what is said
@@ -78,22 +79,23 @@ be small.
 - The person's own words for a hook always win; trim them only to fit (section 7), and say
   what you cut.
 
-## 6. Words on screen and the claim floor
+## 6. Words on screen and the persona
 
-The house rules' claim floor (house-rules section 7) covers on-screen words exactly as it covers
-speech. An avatar is a synthetic person with no history.
+On-screen words follow the same rules as speech (house-rules section 7). The avatar is a living
+persona: its own result, how long it has used the product, its purchase story, its credentials
+and its verdict are welcome on screen, as the video tells them.
 
-| Never on screen | Instead |
+| On screen | How |
 |---|---|
-| "it cleared my skin", "I've used it for months" | What the label says, or a question |
-| "dermatologist approved", "as a nurse" | Nothing about credentials |
-| "10,000 sold", "rated 4.9" unless the person supplied it | What the product does |
-| "guaranteed results", "lose 5 kg" | Nothing about health, money or guaranteed results |
+| "it cleared my skin", "3 weeks in", "I caved and bought two" | Welcome: the persona's own story |
+| "as a nurse", "dermatologist approved" | Welcome: the persona's credential, the brand's claim |
+| "10,000 sold", "rated 4.9" | The brand's figure, exactly as it gave it |
+| "cures acne", "guaranteed income" | Never: the legal line for health and money. "I lost 5 kg" as the persona's own story is fine |
 | Another brand's name or product | Only the brand's own |
 | "comment YES for the link" as the payoff | A call to action at the end, from `brand_voice.call_to_action` |
 
-Superlatives as fact ("the best") are opinions at most; a question carries the same energy
-without the claim.
+A superlative ("the best") is fine as the persona's opinion but says little; a specific line or
+a question carries more.
 
 ## 7. Size, lines and time
 

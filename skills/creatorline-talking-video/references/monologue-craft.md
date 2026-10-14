@@ -1,9 +1,10 @@
 # Monologue craft
 
-What the avatar says and does in a talking video. The server's writer turns your brief into
-shots, lines and camera work; this file is about the parts only you can give it: the aim, the
-hook, the words and a few performance cues. The brief template, the speech budget and the
-templates are in video-briefs.md: apply them, do not restate them in the brief.
+What the avatar says and how it plays. You write every line of a talking video yourself unless
+the person gave them, show them with the price, and send them under `Lines:` with "Use these
+lines as written." The server's writer keeps given words and builds the shots, the camera and
+the timing around them. Staging is in staging.md; the brief template and the general speech
+budget are in video-briefs.md.
 
 ## Contents
 
@@ -12,12 +13,12 @@ templates are in video-briefs.md: apply them, do not restate them in the brief.
 3. [The hook](#3-the-hook)
 4. [Middle, payoff, ending](#4-middle-payoff-ending)
 5. [Lines that sound said](#5-lines-that-sound-said)
-6. [Word density by format](#6-word-density-by-format)
+6. [How many words](#6-how-many-words)
 7. [The person's own lines](#7-the-persons-own-lines)
-8. [A performance that looks alive](#8-a-performance-that-looks-alive)
-9. [Staging that renders](#9-staging-that-renders)
-10. [The claim floor, format by format](#10-the-claim-floor-format-by-format)
-11. [Check before you quote](#11-check-before-you-quote)
+8. [Register and energy](#8-register-and-energy)
+9. [A performance that looks alive](#9-a-performance-that-looks-alive)
+10. [Accents and quirks](#10-accents-and-quirks)
+11. [The persona, format by format](#11-the-persona-format-by-format)
 
 ## 1. Start from the viewer
 
@@ -26,7 +27,9 @@ write the whole clip toward it.
 
 | Format | The avatar is trying to |
 |---|---|
+| Story mode | keep you to the end of the scenario |
 | Review or demo | show you it works, so you stop wondering |
+| Testimonial | make you believe it worked for someone like you |
 | Hot take | get you to agree, or to argue |
 | Storytime | keep you to the last line |
 | Tips | hand you something you can use today |
@@ -36,38 +39,61 @@ write the whole clip toward it.
 | Day in the life | make you want the avatar's day, or one thing in it |
 | Before and after | make the change feel earned |
 
-A clip with no aim looks like someone reading a script. The aim goes into the brief's Idea line.
-
 ## 2. One idea, one takeaway
 
 - One idea per clip. A second idea is the next video: offer it as a next step.
-- Write the takeaway first: the actual tip, number, phrase, setting or demonstration, in full.
-  "This app fixes it" is not a takeaway; what the app did is.
+- Write the takeaway first: the actual tip, phrase, setting or demonstration, in full. "This app
+  fixes it" is not a takeaway; what the app did is.
 - Then write the hook that earns that takeaway.
 
 ## 3. The hook
 
-The first three seconds decide whether the rest is seen. Open on the most specific moment of
-the clip, already in motion.
+**The 0.4-second rule.** Shot 1 opens in motion, and the first word lands within 0.4 seconds of
+the first frame. Only two hooks may wait: the freeze-reaction (H4) and the product cold open
+(H8). In a quiet or silent clip, the first named sound lands within 0.4 seconds instead.
 
-| Pattern | What the first seconds show | Example line | Fits |
-|---|---|---|---|
-| Bold opinion | The take at full strength | "Your skincare routine has three steps too many." | Hot take, tips |
-| Mid-thought | A sentence already under way, as if the camera caught the avatar talking | "...and that's the part nobody reads on the label." | Hot take, GRWM, review |
-| Mechanism first | The product already doing its thing; the first word over it | (the pump clicks) "Two drops. That's the whole step." | Review |
-| The problem | One relatable frustration, said fast | "If your coffee tastes burnt, it's not the beans." | Review, tips |
-| Already reacting | The face mid-reaction, a beat, then the line | "No. Absolutely not." | Reaction |
-| The question | The question, then straight into the answer | "What's one app you'd delete forever?" | Street interview, podcast clip |
-| The promise | The count and what it fixes | "Three settings, and your food photos stop looking flat." | Tips |
-| Interrupted task | The hands stop mid-task as the line lands | (stops stirring) "Nobody tells you this about cold brew." | GRWM, day in the life |
-| POV | The viewer dropped into the situation | "POV: you show up to the interview a day early." | Storytime |
+**Pick ONE hook pattern per video** and write it into the brief as one plain sentence of staging,
+never as its letter and number.
 
-- The first word comes at once: no greeting, no "hi guys", no name, no logo, no walk into frame.
-- Never open on a warm-up word: "So", "Okay", "Alright", "Um", "Like", "Wait", "Hey guys",
-  "Let me tell you", "Stop scrolling", "Story time". The viewer leaves during warm-up. Later
-  in a sentence they are fine.
+| Pattern | The first second | Watch for |
+|---|---|---|
+| H1 Impact action | Something physical at its peak; the first word lands during it | One action, already moving |
+| H2 Mid-sentence confession | Starts as if on the fourth word, at confiding volume | A confession: a thought, or something it did ("I almost returned this") |
+| H3 Pattern interrupt | One thing in the frame is visibly off; the voice ignores it | One oddity, never mockery |
+| H4 Freeze-reaction | The face already in full reaction, up to 0.7 s of held silence, then the line | The only performed pause |
+| H5 Hostile open | A challenge to the viewer, a finger toward the lens | Never at a real person or brand |
+| H6 Quirk first | The avatar's opted-in quirk opens the clip | Only with a quirk (section 10) |
+| H7 Mechanism first | The product's action already under way | The action the product really does |
+| H8 Product cold open | Shot 1 is the product alone with hands, no face; the avatar comes in mid-reaction on the cut into shot 2, where the first line lands | Shot 1 is 3 s or more with our writer; never framed as found or reposted footage |
+
+**Openers for the first shot of a full arc:**
+
+| Opener | When |
+|---|---|
+| Natural and engaged: a grin already breaking, a lean-in as if she just noticed something | The default |
+| Peak shock, a scream | Hyped register only |
+| Classic talking head, the product held at arm's length | Warm, restrained briefs; review mode |
+| Straight in mid-action: mid-bite, mid-sip, mid-sentence | Food, drink, routines |
+| Sustained passive | Calm register: goth, deadpan, clinical |
+
+**Format openers** that also work: the question (street interview, podcast clip), the promise
+with its count (tips: "Three settings, and your food photos stop looking flat."), the problem
+in one breath, the POV ("POV: you show up a day early.").
+
+**Camera-arrival devices** (optional, at most one, only on a selfie first shot, never on a
+propped one): a drop and a catch, a sleeve wiping the lens, starting in a pocket, walking in and
+dropping into a seat, a zoom-out that reveals one odd detail, a light switched on from near-dark,
+the focus hunting and landing on the key word. Write it as what the frame does ("the frame
+tumbles and settles on her face"), never as what she does with the phone. It settles within about
+1.5 s and counts as that shot's one camera move; its sound goes in the Sound line.
+
+**First words, never.** The viewer leaves during a warm-up. The clip never starts with these,
+and neither does the second section of a 30 s clip: OK, Okay, Okay so, Alright, So, Yeah so,
+Right so, Um, Well, Like, Wait, Wait what, Hold on, OMG, Hey guys, Guys, So basically, Story
+time, Stop scrolling, Let me tell you about. Later in the clip they are fine.
+
 - The hook and the rest are about the same thing, and a later line comes back to it.
-- A question the clip answers beats a claim the clip cannot show.
+- A question the clip answers beats a promise the clip cannot show.
 
 ## 4. Middle, payoff, ending
 
@@ -75,126 +101,160 @@ the clip, already in motion.
   beat that only teases the hook again is dead time.
 - **Payoff**, at half to three quarters of the way in: the answer to the hook, with something not
   said yet. It gets its own held shot.
-- **Ending**, the last 2 to 3 seconds: a verdict on what was shown, the way the avatar would say it
-  ("Yeah. That one stays."). No new fact, no "link in bio", no "follow for part two": the writer
-  turns a spoken call to action into a verdict anyway. The call to action goes in the caption
-  (`creatorline-publish`) or as on-screen text (`creatorline-video-studio`).
-- A loop-friendly ending (the last line runs into the first) helps hot takes and reactions,
-  never at the cost of a clear verdict.
+- **Ending**, the last 2 to 3 seconds: a verdict on what was shown, the way the avatar would say
+  it ("Yeah. That one stays."). No new fact, no "link in bio", no "follow for part two": the
+  writer turns a spoken call to action into a verdict anyway. The call to action goes in the
+  caption or as Video Studio text.
+- **The loop** is visual: the last shot ends in motion so a replay runs on. Never repeat a line
+  to make a loop (story-mode.md, section 8).
 
 ## 5. Lines that sound said
 
 - Contractions, short sentences, one thought per sentence.
-- One stressed word per line at most.
+- One or two words per line in capitals for volume, at most. One broken sentence at the peak.
+  A whisper may jump to a spike. Across the clip: flat, then a spike, then it settles.
+- Never write a dramatic pause. Never stretch or respell a word ("sooooo", "amaaazing"): it
+  breaks the lip sync. A pronunciation shown on purpose is written slowly ("comf... ter...
+  bull"), never as a respelling.
 - One bit of real-speech mess per clip: a restart ("It's... no, it's simpler than that."), a
   half-laugh. Perfect sentences sound read off a card.
-- The avatar's own register: its `tone` and `bio` from `get_avatar`, the brand's do's and
-  don'ts from `get_brand`. A don't is a hard rule.
-- Leave out slogans, lines that would fit on the packaging, three-part "no" lists ("No sugar. No
-  chalk. No guilt."), and filler the writer strips anyway ("literally", "game changer",
-  "obsessed").
-- Numbers the way they are said out loud.
-- A pronunciation shown in a line is written the way it is said slowly ("comf... ter...
-  bull"), never as a respelling, which is read as the plain word.
-- Never put a token such as `@Object1` inside quoted speech: the avatar would say it. Name
-  the thing.
+- Two lines that say the same thing: keep the shorter one.
+- The avatar's register: its `tone` and `bio` from `get_avatar`, the brand's do's and don'ts
+  from `get_brand`. A don't is a hard rule.
+- Numbers the way they are said out loud ("fifteen percent").
+- Never put a token such as `@Object1` inside quoted speech: the avatar would say it. Name the
+  thing.
+- **Sounds before the first word**: the opening of the first section may start with one to three
+  non-verbal sounds, written in brackets: a small bright laugh, a soft gasp, a delighted "oh", an
+  "ooooh", an open-mouthed exhale, a laugh that catches, an incredulous scoff. Bigger ones only in
+  the hyped register. None in the calm register, and none later in the clip.
 
-## 6. Word density by format
+**Words that mark a line as machine-written or as an ad.** Cut them: obsessed (any form), you
+have to try, you need this, amazing, incredible, so good, unreal, game changer, game-changing,
+trust me, 10/10, 100%, literally (as filler), holy grail, changed my life, hits different, "and
+honestly?", elevate, seamless, effortless, leverage, revolutionary, and any "This is X, not Y"
+line. Also slogans, lines that would fit on the packaging, and three-part "no" lists ("No sugar.
+No chalk. No guilt."). Swap a vague word for something the camera shows: a place on the body, a
+surface, a sound, a label fact.
 
-Video briefs, section 7 gives the word band for each length. Where to aim inside it:
+## 6. How many words
 
-| Format | Aim | Why |
+Two bands, by what the clip is made of:
+
+| Clip | Band | Formats |
 |---|---|---|
-| Hot take, tips, review | The top of the band | Creators talk fast; silence loses the viewer |
-| Storytime | The middle, with one held pause before the turn | The pause is the tension |
-| GRWM, day in the life, before and after | About two words fewer per shot | The hands are busy |
-| Reaction | The bottom of the band | The face is the content |
-| Podcast clip, street interview | Split between the speakers, one speaker per shot | The lips stay in sync with one face at a time |
+| Talk-led: the words carry it | video-briefs.md, section 7 (10 s 22-30, 15 s 30-45, 30 s 65-90) | Hot take, tips, storytime, podcast clip, street interview |
+| Action-led: the hands work, the product is used | Up to 10 s: 12-20 words. 11-12 s: 20-28. 13-15 s: 28-35. 30 s: the 15 s band per section, 56-70 | Story mode, review or demo, GRWM, day in the life, before and after, reaction |
 
-- A line of six words or fewer in a shot of four seconds or more leaves a gap the model fills
-  with babble or a repeat. Lengthen the line or shorten the clip.
-- Over the band: cut adjectives first, then a beat, then add seconds. Tell the person what you
-  did: "I trimmed your second line to fit 12 seconds", or offer 15 seconds with its new price.
+- Quiet process-led: at most 20 words per 15 s. ASMR: at most 15. Silent flex: none.
+- The lips are the model's weakest spot. Lips that smear or double: cut words first, before any
+  other change. That is why action-led clips sit lower.
+- A talk-led line of six words or fewer in a shot of four seconds or more leaves a gap the model
+  fills with babble or a repeat. Lengthen the line or shorten the clip.
+- Over the band: cut adjectives first, then a beat, then add seconds. Tell the person: "I trimmed
+  your second line to fit 15 seconds", or offer 30 seconds with its new price.
+- Every clip has at least one beat with the mouth closed: a held look, a listen, a sip. It gives
+  the lips a rest and reads as real.
 
 ## 7. The person's own lines
 
-- Quote them in the brief and add "use these lines as written". The writer keeps given words.
+- Quote them under `Lines:` with "Use these lines as written." Given words are kept.
 - Keep their order and their beats. If they gave beats, label each line with its beat.
-- Count them against the length. Trim only with a word to the person, or lengthen and quote
-  again.
-- Change a line only for the claim floor or the house rules, and say what changed and why.
+- Count them against the band. Trim only with a word to the person, or lengthen and quote again.
+- Change a line only for the gate (truth-and-safety.md, sections 1 and 2) or a fixed line of
+  house-rules.md, section 7, and say what changed and why.
 - In another language: the lines in that language, the rest of the brief in English, and a
   `Language:` line.
 - A script longer than 30 seconds of speech is an episode: `creatorline-ai-host`.
+- Keep the final lines and the hook headline (at most 6 words) for captions: the captions are
+  checked against them.
 
-## 8. A performance that looks alive
+## 8. Register and energy
+
+A flat, neutral brief comes back as a wooden presenter. The energy is chosen, then written as
+what shows.
+
+| Register | When | What it looks like |
+|---|---|---|
+| Natural | The default | Warm, engaged, one honest human-sized peak; never screaming |
+| Hyped | Only on the person's words: hyped, energetic, explosive, high-energy, viral energy | Bigger peaks, faster lines, the bigger opening sounds |
+| Calm | Only on the person's words: goth, deadpan, clinical, refined, luxury, minimal, somber, dark, quiet, GRWM, routine, process | Low and even, a dry peak or none |
+
+**Expression patterns**, one per clip:
+
+| Pattern | Shape |
+|---|---|
+| Natural engaged | The default: interested, reacting, one real peak |
+| Sustained hype | High from start to end (hyped only) |
+| Warm arc | Starts easy, warms to the peak, settles |
+| Deadpan, then a crack | Flat until one small break of a smile or laugh |
+| Sustained passive | Cool and even all the way (calm only) |
+
+- The same expression never repeats in two neighbouring beats.
+- **The delivery line**: one sentence in the brief's Idea line that sets the attitude, chosen to
+  suit the avatar's `tone`. Natural: the friendly next-door type, easy-going, dry and witty.
+  Hyped: a 2000s it-girl, a hype fan, a drama queen. Calm: the deadpan contrast, a quiet gossip, a
+  soft drawl. No energy words in a natural delivery line. Reuse it word for word in every video of
+  a series, or it drifts.
+
+## 9. A performance that looks alive
 
 The writer directs the hands, eyes, posture and expression shot by shot. Give it the cues only
-you know, in plain words, inside the Idea or Setting lines:
+you know, in plain words:
 
 - **A task for the hands.** Stirring coffee, folding a sweater, doing mascara, turning the
-  product in hand. Talking over a task looks real; standing still and talking looks
-  recited. The strongest moment is the task stopping as the key line lands.
-- **A target for the eyes.** "checks whether you're buying it", "glances at the bottle,
-  then back to the lens". Eyes that leave and come back look alive; a fixed stare looks
-  generated.
-- **Energy, written as what shows.** By default the energy is natural and warm, with one real
-  peak. High energy only when the person asks for it ("hyped", "energetic", "loud"). Calm for
-  luxury, deadpan or quiet tones. Write "leans in, half-smile, voice drops", never "is
-  excited".
-- **A real smile reaches the eyes.** "Cheeks lift, eyes crinkle" beats "smiles".
-- **One unguarded moment**: a small laugh, a restart, a shrug. Leave it out for deadpan or
-  luxury.
+  product in hand. The strongest moment is the task stopping as the key line lands.
+- **A target for the eyes.** "glances at the bottle, then back to the lens". Eyes that leave and
+  come back look alive; a fixed stare looks generated.
+- **Two or three small gestures per shot**, a different mix each shot, and at least one thing
+  that changes inside the shot. The expression moves across the whole clip.
+- **Movements land between phrases**, never on the key word. A movement you can hear (a cap's
+  click, a chair creak) goes in the Sound line.
+- **A real smile reaches the eyes**: "cheeks lift, eyes crinkle" beats "smiles".
+- **One unguarded beat per clip**: an eye-flick caught and recovered, a stumble mid-thought, the
+  settle after a laugh. Not for a sustained deadpan.
+- **One small goofy beat per clip**: an eyebrow waggle, a mock-thinking face, a cartoon shrug.
+  Not for calm or luxury tones.
+- **One sound from the place, optional**: a kettle clicking off, a dog's bark next door. Named
+  exactly, the eyes flick toward it and come back within about 1.5 s, the voice never mentions
+  it, never during a peak or the ending.
+- **Peaks**: one or two per clip, set off by the product (the reveal, the result shown), each
+  with ONE body move (a lean back, a jaw drop, a double take) that the free hands allow. The
+  biggest goes to the moment the product enters.
 - **Distance is a beat.** Leaning into the lens is a secret; leaning back is the verdict.
+- Two cues kill a performance: "smiles at the camera" and "holds the product and talks". Write
+  what she does instead.
 
-## 9. Staging that renders
+## 10. Accents and quirks
 
-- One main action per shot. A manipulation (opening, pouring, applying) costs a second of
-  speech.
-- In a selfie only one hand is free, and it holds one thing. Anything two-handed needs
-  "phone propped on the counter".
-- The product is in frame from the first second of its shot, label to camera, already open if
-  it is used open. Things that enter the frame later drift from their photo.
-- Never ask the avatar to count on its fingers: it renders wrong. A nod per item, or the
-  voice alone.
-- Name only props you supply (`objects`, `location`) or that the setting plainly holds. A named
-  prop with no photo comes out drawn badly or floating.
-- No split screen, picture-in-picture, captions or on-screen text in the brief: those are Video
-  Studio jobs after the take.
-- End at chest-up or wider. Close-ups of skin, teeth, food and hair show flaws.
-- Other people in the scene: say who they are by role and clothing ("a barista in a green apron
-  behind the counter"), or they can come out looking like the avatar.
+Offer an accent or a quirk only when the ask names an origin or wants "weird" or "viral" energy.
+Otherwise: neutral, no quirk.
 
-## 10. The claim floor, format by format
+**Accent.** In the delivery line: the origin and the attitude ("a Glasgow local, dry and quick"),
+the accent described strongly ("a strong, unmistakable Glasgow accent on every line"), never
+"slight" or "subtle", and never spelled out phonetically. A written accent lands in about one
+take of three: say so before the run. The voice step replaces it with the avatar's saved voice,
+so an accented clip skips it.
 
-The rule is in house-rules.md, section 7: the avatar is synthetic and has no past. How it lands
-in each format:
+**Quirk.** One physical habit, given exactly one beat, played about a third bigger than natural
+so it renders, never on the same beat as a peak. It reads as charm, never as mockery or a
+condition: describe the behaviour ("taps the lid twice before opening anything"), never a
+diagnosis. In a series it repeats unchanged (series.md).
 
-| Format | Never | Write instead |
+## 11. The persona, format by format
+
+The rule is in truth-and-safety.md, section 4: the avatar is a creator with a past. Its history
+with the product, its results, a before and after and its opinions are welcome; the craft is to
+make them specific. How it lands in each format:
+
+| Format | Weak | Strong |
 |---|---|---|
-| Review | "I've used it every morning for a month." | "Two pumps on damp hair, and you're done." (shown on camera) |
-| Review | "It cleared my breakouts." | "Two percent salicylic acid, right there on the label." |
-| Storytime | "This is how I got my dream job." | "POV: you show up a day early..." (a POV, the second person, or a moment happening now) |
-| Storytime | A story that ends "...and this cream fixed it." | The product, if any, used in the present, never the reason it ended well |
-| Tips | "This supplement stops bloating." | Label facts and approved claims only, or a tip that needs no product |
-| Before and after | A skin, body or weight result | A makeup look, an outfit, a desk, a room, changed on camera |
-| Reaction | Reacting to a review, comment or DM nobody supplied | Reacting to something real the person supplies |
-| Hot take | Naming a rival brand or a real person | "the big-name tub", "most apps" |
-| Any | "As a dermatologist..." | An opinion, plainly an opinion |
-
-Never present an avatar as a real customer, and never present the brand's video as an
-independent review.
-
-## 11. Check before you quote
-
-- The aim (one verb) and the takeaway are in the brief.
-- The hook is the most specific line, starts at once, and avoids the warm-up openers.
-- Every promised item is written out in full.
-- The words fit the seconds for this format.
-- The ending is a verdict, with no call to action.
-- The hands have a task, the eyes a target, and the energy is written as what shows.
-- Every prop is supplied or obvious; one action per shot; no finger counting; no text or split
-  screen.
-- Nothing breaks the claim floor, and none of the brand's don'ts appear.
-- `Language:` is there when the speech is not English; `Sound: voice and room sound only` is
-  there when the voice step runs.
+| Review | "I love this, it's so good." | "Every morning for a month. Two pumps on damp hair, and the frizz just stays down." |
+| Testimonial | "It changed my life." | "Three weeks in, I stopped putting concealer on my chin." |
+| Story mode | "...and this cream fixed everything." | The specific turn: "...and the week before the wedding, the redness finally went." |
+| Storytime | A story with no place or time | Its own story with one detail ("the week I moved to Lisbon..."), or a POV |
+| Tips | "This supplement is great for you." | "Two with breakfast, and the 3 pm crash is what went." Never "cures" or "treats" |
+| Before and after | A change inside one shot | The before as its own shot or take, the after on the cut |
+| Reaction, FAQ reply | A comment or DM drawn into the frame | The comment as Video Studio text, or an image the person supplies |
+| Hot take | Naming a rival brand or a real person (a real name also trips the content check) | "the big-name tub", "most apps" |
+| Any | Claiming to be a real, named person or a real brand's account | The avatar as itself: its name, its life, its credentials |

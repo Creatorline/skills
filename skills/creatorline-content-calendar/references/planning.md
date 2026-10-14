@@ -99,8 +99,8 @@ beats all of these.
 
 | Format | Concepts |
 |---|---|
-| Talking video | Three mistakes with X; the one thing to know before buying X; an unpopular opinion; the question everyone asks about X, answered; how to choose the right X; two of the brand's own products side by side |
-| Storytime | A moment the audience knows ("when your friend borrows your X"), never a personal result |
+| Talking video | Three mistakes with X; the one thing to know before buying X; an unpopular opinion; the question everyone asks about X, answered; how to choose the right X; two of the brand's own products side by side; a month with X, the honest review |
+| Storytime | A moment the audience knows ("when your friend borrows your X"); the avatar's own story with X: how it found it, the day it caved and bought one, what changed |
 | Carousel | What's in the bag; before you buy X, read this; X in five steps; this or that; a photo dump of the avatar's week |
 | Product video | The pour; the texture up close; in use in eight seconds; the sound it makes, no words |
 | Unboxing | What came in the box; the gift version; the restock |
@@ -127,6 +127,7 @@ first three seconds; the calendar shows it so the person can judge the week.
 | The audience's question | "Is X worth it?", "Why does X ...?" | "Why does vitamin C go first?" |
 | Result first | The finished thing at second 0, then how | The poured latte, then the first step |
 | A moment people know | "When ...", "POV: ..." | "POV: your friend asks what's in your bag." |
+| A personal result | "X weeks in ...", "I caved and ..." | "Three weeks in and I stopped wearing foundation." |
 | A choice | "This or that?" between two of the brand's own things | "Matte or glow for a first date?" |
 
 - Rotate the type: no two rows in a row with the same one.
@@ -134,9 +135,9 @@ first three seconds; the calendar shows it so the person can judge the week.
   never "hi guys", never "today I'll show you", never the brand's name.
 - A carousel's hook is the first photo's idea: a promise the next photos keep.
 - A reshoot keeps the trend's own opening; new words only when the person wants them.
-- The claim floor (house rules, section 7): the avatar has no past, so no "I've used it for
-  months", no "it cleared my skin", no credentials, no numbers that are not on the label or the
-  approved claims. The brand's don'ts are hard rules.
+- The avatar is a living persona (house rules, section 7): "I've used it for months", "it
+  cleared my skin" and a credential it holds are welcome. With approved claims from the person,
+  keep to them. The brand's don'ts are hard rules.
 
 ## 7. Days and times
 
@@ -202,7 +203,8 @@ included.
 | 6 | The questions people will ask, answered (talking video) |
 | 7 | The recap (carousel) |
 
-No invented reviews, ratings or customer reactions on any day.
+The avatar's own reaction and review are welcome on any day. A rating or a review screenshot
+goes on as Video Studio text, never generated into the picture.
 
 **A sale.** The offer's exact words come from the person. They go in the caption or as on-screen
 text added in Video Studio, never as spoken lines you made up.

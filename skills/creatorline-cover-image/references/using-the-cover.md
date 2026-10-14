@@ -89,7 +89,7 @@ for the total; then make the cover, get the pick, and continue below without ask
      again, because each call makes a new video.
 4. **How long.** `duration: 0.5` by default; the shortest a clip can be is 0.3 s. Up to 1 s
    when the cover's words are also the video's hook. Longer holds back the video's own opening.
-5. **Look.** `preview_video` with `at: [0.2]` and `show_safe_area: true` (free): the face and the
+5. **Look.** `preview_video` with `at: [0.1]` and `show_safe_area: true` (free): the face and the
    words sit outside the shaded bands.
 6. **Captions.** If the video had captions, they now read `out_of_date`. Writing them again is
    free, and the export hears them again by itself.
@@ -104,29 +104,15 @@ Anything more on that video (hook text, music, a split screen) is `creatorline-v
 
 ## 4. Exact words without drawing them
 
-The image model draws words well, but not always letter for letter. When the words must be
-exact (a name, a long word, letters with marks, a number with units), type them instead.
+Typing the words over a clean cover, on a video's cover frame or on a still, is in
+[headline text](headline-text.md), section 6.
 
-- **On a video's cover frame.** Make the cover without words: the same brief with the Words line
-  replaced by "Open space on the <left>, kept for a headline that is added later; the picture
-  itself is clean". Put it in front of the video (section 3), then type the words over it in the
-  same `edit_video` or `create_video` call:
-
-  ```json
-  { "op": "add_text", "text": "3 MISTAKES", "start": 0, "end": 2, "position": "top", "size": "xl", "look": "tiktokOutline" }
-  ```
-
-  The words stay on through the first 2 seconds, so they work as the hook too. Typed texts stay
-  inside the apps' safe area by themselves.
-- **The video's own first frame, no new image.** When the video already opens on the avatar's
-  face, the same `add_text` at `start: 0` turns its first frame into the cover. Nothing is
-  generated; only the export is paid. Look at the opening with `preview_video` first: a blink
-  or a blur there makes a poor cover. When its answer says `exact: false`, the picture is the
-  clip's cover frame, not its first frame: say you could not check the opening.
-- **On a still.** The app's slides page types words onto a photo and saves it as a PNG, in
-  vertical (`9:16`, `3:4`, `4:5`) or square frames, not `16:9`:
-  https://app.creatorline.io/brands/<brand id>/generate/slides. Give it as a link named
-  "Slides page", with the clean cover's name; the person adds the words there.
+**The real frame (framework 4): the video's own first frame, no new image.** When the video
+already opens on the avatar's face, an `add_text` at `start: 0` turns its first frame into the
+cover. Nothing is generated; only the export is paid. Look at the opening with `preview_video`
+(`at: [0.1]`) first: a blink or a blur there makes a poor cover. When its answer says
+`exact: false`, the picture is the clip's cover frame, not its first frame: say you could not
+check the opening.
 
 ## 5. What to tell the person
 
@@ -143,6 +129,8 @@ finishes it.
   then: "Upload it as the video's thumbnail in YouTube Studio. The link expires, but the image
   stays in your Creatorline library."
 - **A carousel:** "I'll put it first in the carousel, so it is the cover."
+- Say which kind of cover it is: clean, ready for a headline, or with the headline drawn in
+  ([headline text](headline-text.md), section 1), and offer the headline when it has none.
 - Never promise how a platform will show it. "Usually" is the honest word for the first frame.
 - The post went out with another frame as its cover: offer the TikTok draft next time, or the
   cover held for 1 s instead of 0.5 s.

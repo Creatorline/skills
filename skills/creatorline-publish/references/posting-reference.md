@@ -31,7 +31,7 @@ You cannot change or delete it afterwards from here, so get the words right firs
 | `scheduled_for` | no | A time of day, `"HH:mm"`, 24-hour. No date: it is that time on the day the post is approved or published |
 | `timezone` | no | An IANA zone (`"Europe/Istanbul"`) the time is read in. `publish_post` cannot set one later |
 | `format` | no | `photo`, `video` or `carousel`. Leave it out: it is read from the media |
-| `made_with_ai` | no | The AI label: TikTok's AI-made flag and YouTube's synthetic-content flag |
+| `made_with_ai` | no | The AI label: TikTok's AI-made flag and YouTube's synthetic-content flag. Set it to `true` by default; the person may switch it off |
 | `draft` | no | TikTok only: the post lands in the TikTok app's inbox, where the person finishes it. Refused when any other platform is in the post |
 | `auto_add_music` | no | TikTok photo carousels: TikTok adds a sound. On unless set to `false` |
 | `photo_cover_index` | no | TikTok photo carousels: the cover photo, 0-based into `asset_ids` |

@@ -123,7 +123,7 @@ intake.
 
 | The person wants | Skill |
 |---|---|
-| The avatar talking to camera: a product review or demo, a hot take, a story, tips, a GRWM chat, a reaction, a street-interview bit (5 to 30 s, one take) | `creatorline-talking-video` |
+| The avatar talking to camera: a product review, testimonial or demo, a hot take, a story, tips, a GRWM chat, a reaction, a street-interview bit (5 to 30 s, one take) | `creatorline-talking-video` |
 | The product as the hero with a voice over it; a person only as hands or a point of view | `creatorline-product-video` |
 | An unboxing, a haul or a PR package opened, with the avatar's reaction | `creatorline-unboxing-video` |
 | An outfit, shoes, a bag or jewelry on the avatar: OOTD, fit check, try-on haul | `creatorline-try-on-video` |
@@ -132,6 +132,7 @@ intake.
 | A TikTok, Reels or Shorts link re-filmed with the avatar: same beats and sound, new performer, maybe their product or app | `creatorline-reshoot` |
 | A real video kept exactly, with one or two people in it replaced by avatars; or the avatar doing a dance's moves | `creatorline-character-swap` |
 | Many versions of one video to compare: other avatars, hooks, products, voices, two or more languages | `creatorline-ad-variations` |
+| Something changed in a video that already exists, the rest kept: a product, an object, the clothes, the background, a colour, words in the picture | One quick change for the whole clip: the fast path (`video-edit`). Their product, a timed change or several versions: `creatorline-ad-variations` |
 | A longer episode (30 to 120 s) or a recurring series with the avatar as host; an episode script over 60 s | `creatorline-ai-host` |
 | A narrated video with no face on camera: a story, an explainer, a list, history, motivation | `creatorline-faceless-video` |
 | Editing a video: cuts, trims, order, text on screen, split screen, a stock hook clip, sound, export (a hook line among other edits) | `creatorline-video-studio` |
@@ -164,6 +165,10 @@ intake.
   product filling the frame, the voice off screen: product video.
 - **Voiceover or ad variations.** One new voice or one other language on one video: voiceover.
   Two or more versions to compare: ad variations.
+- **Video edit, Character Swap or Reshoot.** A thing in the video changes (a product, an object,
+  the clothes, the background, a colour, words) and the footage is kept: video edit. A person
+  changes: Character Swap, even when nothing else does. Filmed again (a real person's face in
+  the source, lines that name the product rewritten): Reshoot.
 - **Captions or Video Studio.** Speech captions, a hook headline or both, nothing else: captions.
   Cuts, order, labels, layers, music or the export, a hook line among them: Video Studio.
 - **Short script or publish.** A caption for media that is finished: publish (text only when
@@ -204,6 +209,7 @@ that states the defaults:
 | A photo brought to life | `photo-to-video` | the photo in `inputs.image_url` (asset id or file link); `prompt`: only what moves |
 | Their product moving on its own (a spin, a pour, a reveal), no person, no voice | `photo-to-video` | the product photo in `inputs.image_url`; `prompt`: the motion and one camera move |
 | A clip with no avatar: b-roll, a place, an establishing shot | `text-to-video` | `prompt`: one scene, fully described |
+| One change in an existing video, the rest kept: a background, a colour, an object, the season | `video-edit` | `inputs.source_video` (4 to 30 s, AI faces only); a photo of what goes in, if any, in `inputs.image_urls`; `prompt`, sent word for word: "Replace only <the thing> in @Video1 with <what it is, in a few words> from @Image1. Keep everything else exactly as it is." |
 | A voice line | `text-to-speech` | `prompt`: the exact words (up to 2,000 characters); `params.voice_id`: the avatar's `voice_id` from `get_avatar` |
 
 - **Every picture of the avatar is `photo-edit`.** `text-to-photo` draws from words alone: it
@@ -282,8 +288,9 @@ idea and the facts it cannot invent; it does the filmmaking ([references/video-b
 - **Scene clip:** the subject, the place and light, one action, one camera move, the sound.
 - **Voice line:** the words exactly as spoken. Tags such as `[excited]`, `[whispers]` and
   `[laughs]` set the feeling.
-- Describe what is there, never "no X". The avatar is synthetic: no personal results, no
-  history with a product, no credentials (house rules, section 7).
+- Describe what is there, never "no X". The avatar is a living persona: its own results, its
+  history with a product and its credentials are welcome; it never claims to be a real, named
+  person (house rules, section 7).
 
 ## Check before you show it
 

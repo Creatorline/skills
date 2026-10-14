@@ -170,8 +170,9 @@ Stacked instead: `add_clip` the after with id `after`, then
 `{ "op": "set_split_screen", "id": "after", "asset_id": "<before>", "place": "top", "share": "half" }`.
 
 - The change lands on the cut: hold "before" shorter than "after".
-- With an avatar, a before and after is a look or a setup changed on camera, never a body or
-  skin result (the claim floor, house rules section 7).
+- With an avatar, a body or skin result is welcome (the persona, house rules section 7). Its
+  two halves are two takes cut together here: one generated take cannot show weeks passing. A
+  look or a setup can also change on camera inside one take.
 
 ## 7. Comment reply
 
@@ -184,7 +185,9 @@ Stacked instead: `add_clip` the after with id `after`, then
 ]
 ```
 
-- The screenshot comes from the person. Never make up a comment, a name or a number of likes.
+- A comment the person supplies goes in as its screenshot. Without one, write the comment as a
+  text (`add_text`, look `tiktokHighlight`), never as a generated picture: generated words come
+  out garbled. No real person's name or handle without their consent.
 - A layer's `row: "top"` sits flush with the frame's top, under the apps' own top band: keep
   cards on the middle row and check with `show_safe_area`.
 

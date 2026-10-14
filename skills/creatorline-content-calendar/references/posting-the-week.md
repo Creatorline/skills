@@ -53,8 +53,9 @@ another.
 - **Last**, the brand's `call_to_action`. Calls to action live in the caption, never in the
   spoken lines.
 - **Voice:** keep to `tone` and `dos`; the `donts` are hard rules.
-- **Facts:** only the product card, the label and approved claims. Offer words, prices and
-  dates only as the person gave them.
+- **Facts:** product facts from the card and the label; the persona's own experience is
+  welcome (house rules, section 7); approved claims word for word when the person gave a list.
+  Offer words, prices and dates only as the person gave them.
 - **The week as a set:** every caption opens differently, and no two posts share their
   hashtags exactly.
 - **Hashtags:** one or two for the niche, one or two for the topic, the brand's own tag if it

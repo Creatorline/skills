@@ -19,8 +19,9 @@ done on the page, before the call.
 ## 1. The word budget
 
 People speak about 2.5 words a second, about 15 characters a second counting spaces. Plan
-to fill 80 to 90 % of a window: a line that fills all of it sounds rushed and runs over, a
-line that fills half leaves silence people scroll past.
+for the speech to fill 78 to 95 % of a window (fitting-takes.md, section 3): a line that fills
+all of it sounds rushed and runs over, a line that fills half leaves silence people scroll
+past. The table starts you at 20 to 23 words per 10 seconds.
 
 | Window | Words (English) | Characters (any language) |
 |---|---|---|
@@ -38,10 +39,12 @@ Adjust before you write:
 
 - Each `[laughs]`, `[sighs]` or `[pauses]` is performed and takes about a second: two or
   three words fewer for each.
-- Every full stop adds a short silence. A line of many short sentences takes the low end of
-  the range.
-- An excited or emotional read is slower: about 10 % fewer words.
-- Never more than 3 words a second. Past it the read sounds rushed, whatever the voice.
+- Every full stop adds about 0.7 s of silence and every comma about 0.5 s. A line of many
+  short sentences takes the low end of the range.
+- An excited or kid-like read: 17 to 21 words per 10 seconds instead of 20 to 23.
+- At most two sentences in a line that fills one window, with few commas.
+- Never more than 2.9 words a second of speech. Past it the read sounds rushed, whatever the
+  voice.
 - One voiceover holds 2000 characters, a little over two minutes.
 
 ## 2. Fitting a window
@@ -52,17 +55,20 @@ Adjust before you write:
 3. **Write, count, cut.** Over budget: lose the weakest clause and keep the point. Under
    budget: add a fact the viewer can use (a number, a reason, what happens next). Padding
    words only make the read slower.
-4. **After the take**, compare its `end` with the window:
+4. **After the take**, compare it with the window. Fixed windows (lines that must land on cuts
+   that cannot move) are judged by the bands in fitting-takes.md, section 3, and only words fix
+   them. Flexible windows let the visuals give way first:
 
 | The take | Do |
 |---|---|
 | Inside the window | Done |
-| Over by less than a second | Give the visuals the time: hold a photo clip longer, trim a video clip less (free) |
-| Over by more, and the visuals cannot stretch | New words: old word count times window divided by measured length. A new take: quote it, ask |
-| Short, leaving dead air | Shorten the visuals to the voice (free), or move the next line earlier |
+| Over by less than a second, and the visuals can stretch | Give the visuals the time: hold a photo clip longer, trim a video clip less (free) |
+| Over by more, or the window is fixed | New words: old word count times the band's middle (86.5 % of the window) divided by the measured speech. A new take: quote it, ask |
+| Short, leaving dead air | Shorten the visuals to the voice (free), or move the next line earlier; in a fixed window, add a real fact |
 
 5. The same words come back at about the same length, so a second take of them fixes
-   nothing. Change the words, never the speed.
+   nothing. Change the words, never the speed. Three attempts per line at most, the third with
+   changed words (fitting-takes.md, section 7).
 
 ## 3. Writing for the ear
 
@@ -116,6 +122,11 @@ in English whatever the language, right before the words they color. They are no
 | `[pauses]` | A beat before the payoff | `The secret? [pauses] Cold water.` |
 
 - At most one per sentence; one to three in 15 seconds. A tag on every line flattens them all.
+- A job of several takes opens every take with the same one tag, or none of them with any
+  (fitting-takes.md, section 5). A different opening on each take changes the read between
+  them.
+- A read that sounds flat or robotic: write the feeling into the words first, then add the
+  one tag that names it.
 - `add_voiceover` and `dialogue` always perform them. A voice line does too, unless
   `params.model_id` names another engine: that one reads the tag out loud.
 - The words carry the feeling first. A tag only sharpens a line that already has it.
@@ -142,8 +153,8 @@ brand's `content_angles`, and write one line per clip. Show the lines with the p
 - Do not narrate what is plain on screen ("here I am pouring coffee"). Say what it means
   ("cold water, twelve hours, no bitterness").
 - One narrator voice for the whole video. Change the feeling with words and tags.
-- The brand's `brand_voice` sets the tone; its don'ts are hard rules. Every claim is a fact
-  from the label or the person (house rules, section 7).
+- The brand's `brand_voice` sets the tone; its don'ts are hard rules. Product facts come from
+  the label or the person; the narrator's own experience is welcome (house rules, section 7).
 
 **Example.** Four clips, 14 s (0 to 3.5, 3.5 to 7, 7 to 10.5, 10.5 to 14), one voiceover from
 0 s. The budget is 28 to 31 words, less 2 for the pause; many short sentences put it at the
@@ -200,7 +211,7 @@ whose voice it is.
 | Up to about five minutes | Longer |
 
 - For a series that sounds like a different person in every video, re-voice each one to the
-  same `voice_id`.
+  same `voice_id`. Re-voice the first one, let the person hear it, then quote the rest.
 - When a new take will be re-voiced, it should be made with voice and room sound only; music
   goes on afterwards in Video Studio.
 - A real person on screen: re-voice only with their consent, and never give them the voice of
@@ -252,7 +263,7 @@ game changer, check out www.brew.com for 20% off!!!"
 A greeting where the hook should be, filler the voice speeds through, a link read aloud, a
 discount the brand never gave, and no fact.
 
-Strong, for 15 s in Mia's voice, from the label and the brand's own claims:
+Strong, for 15 s in Mia's voice:
 
 ```
 Your cold brew tastes bitter for one reason. It's not the beans, and it's not the grind.
@@ -260,5 +271,4 @@ Your cold brew tastes bitter for one reason. It's not the beans, and it's not th
 ```
 
 28 words and one pause: a hook that promises an answer, the answer at about 8 s (just past
-half way), a verdict to end, nothing the label or the brand does not back. The offer goes in
-the post caption, where the link lives too.
+half way), a verdict to end. The offer goes in the post caption, where the link lives too.

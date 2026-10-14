@@ -18,7 +18,7 @@ be done from a chat at all.
 
 | The person says | Skill |
 |---|---|
-| "Mia reviews my serum", "a hot take about cold plunges", "storytime about my first client", "3 tips for new runners", "GRWM while talking about my day" | `creatorline-talking-video` |
+| "Mia reviews my serum", "a testimonial: Mia has used my serum for a month", "a hot take about cold plunges", "storytime about my first client", "3 tips for new runners", "GRWM while talking about my day" | `creatorline-talking-video` |
 | "a video of my candle with a voiceover", "hands pouring the protein shake", "product B-roll with narration" | `creatorline-product-video` |
 | "Mia unboxes the PR package", "a haul video", "first look at the new drop" | `creatorline-unboxing-video` |
 | "Mia wearing this dress", "a fit check", "OOTD with these sneakers" | `creatorline-try-on-video` |
@@ -27,6 +27,7 @@ be done from a chat at all.
 | a TikTok, Reels or Shorts link with "make this with Mia", "recreate this", "do this trend" | `creatorline-reshoot` |
 | "put Mia in this video instead of the girl", "swap both people for my avatars", "Mia does this dance" | `creatorline-character-swap` |
 | "5 versions of this ad", "the same video with each of my avatars", "test 4 hooks", "this video in Spanish and German" | `creatorline-ad-variations` |
+| "put our new bottle in this video instead of the old one", "this ad on a beach and in the snow", "change the price on the sign" | `creatorline-ad-variations` (`video-edit`); one quick change for the whole clip, no product of theirs: the fast path |
 | "a weekly 60-second show with Mia", "episode 3 of our series", "a 90-second explainer hosted by Mia", "the script for a 2-minute episode" | `creatorline-ai-host` |
 | "a faceless story video", "a history explainer with narration", "top 5 facts with a voiceover" | `creatorline-faceless-video` |
 | "cut the first 2 seconds", "add text over the second clip", "put a stock hook in front", "split screen with gameplay", "export it" | `creatorline-video-studio` |
@@ -54,7 +55,7 @@ When one comes up inside a one-off this skill is already making, the fast path m
 | "a photo of Mia holding my serum" | `creatorline-photos` | their product is in it: it needs the product intake |
 | "8 photos of Mia at the beach for a carousel" | `creatorline-photos` | a set that has to work together, then a carousel post |
 | "a clip of Mia walking her dog" | fast path, `ugc-video` | a moment, no format |
-| "a clip of Mia reviewing my dog shampoo" | `creatorline-talking-video` | a review is a format with a claim floor |
+| "a clip of Mia reviewing my dog shampoo" | `creatorline-talking-video` | a review or a testimonial is a format with its own beats |
 | "animate this photo" | fast path, `photo-to-video` | one photo, one continuous take |
 | "turn these 5 photos into a reel with music" | `creatorline-video-studio` | several pieces assembled, then exported |
 | "voiceover for my video" | `creatorline-voiceover` | the voice has to fit the video's timing |
@@ -62,19 +63,22 @@ When one comes up inside a one-off this skill is already making, the fast path m
 | "my candle turning slowly on a table, no voice" | fast path, `photo-to-video` from the product photo | one product moment, no person |
 | "my candle with a voiceover about the scent" | `creatorline-product-video` | a voice over the product is a format |
 | "a 40-second narrated video about Lisbon" | `creatorline-faceless-video` | narration, several visuals, captions |
+| "make the wall behind her green in this clip" | fast path, `video-edit` | one change in an existing video, the rest kept; their product, a timed change or several versions go to `creatorline-ad-variations` |
 
 ## 3. Look-alikes, settled
 
-**Reshoot, Character Swap or motion control.** All three start from another video.
+**Reshoot, Character Swap, motion control or a video edit.** All four start from another video.
 
 | The person wants | Use | Skill |
 |---|---|---|
 | The idea, beats and sound of a video, performed again by the avatar, maybe with their product and new lines | Reshoot | `creatorline-reshoot` |
 | The real video kept exactly (moves, camera, cuts, sound), with one or two people in it replaced | Character Swap | `creatorline-character-swap` |
 | Only the moves (a dance, a gesture) performed by the avatar, starting from the avatar's photo | motion control | `creatorline-character-swap` |
+| The real video kept, with a thing in it changed (a product, an object, the clothes, the background, a colour, words in the picture) and no person changed | video edit | fast path `video-edit`; several versions or their product: `creatorline-ad-variations` |
 
 Reshoot needs one main person in the source. Two people who both have to change is Character
-Swap. If the person's words fit two rows, ask one question about the outcome: "Keep the original
+Swap. A person who changes is always Character Swap, never a video edit. A video edit takes AI
+faces only: a real person's video with their product swapped is Reshoot. If the person's words fit two rows, ask one question about the outcome: "Keep the original
 video exactly and only change who is in it, or film it again with Mia?"
 
 **Talking video or AI host.** One clip, 5 to 30 seconds, one take: talking video. Longer than

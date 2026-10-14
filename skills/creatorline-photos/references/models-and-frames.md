@@ -22,9 +22,9 @@ conversation before the first call.
 | `model` | Use it for | Trade-off |
 |---|---|---|
 | `nano-banana-pro-edit` (default: leave `model` out) | Every photo of the avatar; products; flat lays | Keeps the face best. No `9:16`. |
-| `gpt-image-v2-edit` | A frame with readable words; a `9:16` frame with words | Renders words well; softens skin a little; costs about twice the default |
+| `gpt-image-v2-edit` | A frame with readable words; a `9:16` frame with words; a product shot with nobody in it ([product modes](product-modes.md)) | Renders words and products well; softens skin a little; costs about twice the default; no `4:5` |
 | `bytedance-seedream-v4-5-edit` | A `9:16` frame without words; a cheaper set | Takes `image_size`, not `aspect_ratio` or `resolution`; about half the default; may hold the face a little less closely |
-| `nano-banana-2-edit` | Nothing here | No `4:5`; at `2K` it costs what the default does |
+| `nano-banana-2-edit` | A styled frame: a cartoon, anime, clay or illustrated avatar ([shot types](shot-types.md), section 13) | No `4:5`; at `2K` it costs what the default does; not for photos |
 
 **`text-to-photo`** (a picture from words alone, nobody and nothing real in it):
 
@@ -65,7 +65,11 @@ Spelled exactly as here; a value not listed is refused before anything is charge
 | A TikTok-only photo carousel that should fill the screen | `9:16` | Seedream `portrait_16_9`; `gpt-image-v2-edit` `9:16` for words |
 | A story, or a still to animate with `photo-to-video` | `9:16` | as above |
 | One outfit photo, the whole body | `2:3` | default |
-| A square grid post, a product tile | `1:1` | default |
+| A square grid post, a product tile | `1:1` | default; `gpt-image-v2-edit` when nobody is in it |
+| A shop listing (studio shot) | `1:1` | `gpt-image-v2-edit` |
+| A Pinterest pin | `2:3` | `gpt-image-v2-edit` with nobody in it; default with the avatar |
+| A website, email or campaign banner | `16:9`, or `21:9` for a slim strip | `gpt-image-v2-edit`; `3:2` on the default with the avatar in it |
+| An ad pack | `1:1`, `4:5` and `9:16` | `gpt-image-v2-edit` for `1:1` and `9:16`, default for `4:5` |
 
 Every frame of one carousel shares one frame shape.
 

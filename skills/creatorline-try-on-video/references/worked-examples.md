@@ -7,23 +7,24 @@ whose input does not exist yet is priced with `estimate_generation_cost` instead
 
 ## Contents
 
-1. [A dress fit check (Route A, the default)](#1-a-dress-fit-check-route-a-the-default)
-2. [A sneaker reveal](#2-a-sneaker-reveal)
+1. [A dress try-on (Route A, the default)](#1-a-dress-try-on-route-a-the-default)
+2. [A sneaker reveal, 10 s](#2-a-sneaker-reveal-10-s)
 3. [Earrings, a look in motion](#3-earrings-a-look-in-motion)
 4. [A haul of three tops](#4-a-haul-of-three-tops)
 5. [A trending jeans clip, Replace mode (Route B)](#5-a-trending-jeans-clip-replace-mode-route-b)
 6. [The locked look](#6-the-locked-look)
 
-## 1. A dress fit check (Route A, the default)
+## 1. A dress try-on (Route A, the default)
 
-The person: "Make a fit check of Mia in our new linen dress" with a link to the dress photo.
+The person: "Make a fit check of Mia in our new linen dress, 15 seconds" with a link to the dress
+photo.
 
-A one-liner with the item: decide everything, ask nothing but the price.
+A one-liner with the item and the length: decide everything, ask nothing but the price.
 
 1. `import_asset` `{ url: "<photo link>", brand_id: "<brand>", title: "Sage linen midi dress" }`.
 2. Wardrobe line: "sage green linen midi dress, square neckline, buttons down the front, ties at
-   the back of the waist, hits mid-calf". Setting line: "bright bedroom, window light from the
-   left".
+   the back of the waist, hits mid-calf". Setting line: "a bright bedroom, neutral daylight from
+   one window, a plain wall".
 3. Quote the look (no `confirm`):
 
 ```
@@ -32,7 +33,7 @@ create_generation {
   inputs: { other_elements: ["<dress>"] },
   params: { aspect_ratio: "2:3", resolution: "2K" },
   count: 2,
-  prompt: "@Avatar1 wearing the sage green linen midi dress from @Input1: square neckline, buttons down the front, ties at the back of the waist, hits mid-calf. Full body, feet in frame, weight on one leg, arms a little away from the sides so the cut shows, hands relaxed. Bright bedroom, window light from the left. Their own face and hair. The dress exactly as in @Input1, fitted as cut. Casual phone photo."
+  prompt: "@Avatar1 wearing the sage green linen midi dress from @Input1: square neckline, buttons down the front, ties at the back of the waist, hits mid-calf. Full body, feet in frame, weight on one leg, arms a little away from the sides so the cut shows, hands relaxed. A bright bedroom, neutral daylight from one window, a plain wall. Their own face and hair. The dress exactly as in @Input1, fitted as cut. Casual phone photo."
 }
 ```
 
@@ -40,9 +41,9 @@ create_generation {
    look, so it can be quoted now.
 5. The plan and the price, two short messages:
 
-   > A 12 s fit check: Mia steps back into view in the dress, a slow turn, the buttons, the tie
-   > at the back, her verdict. First two quick photos of her in it, to check the look before
-   > filming.
+   > A 15 s try-on: Mia with a shopping bag in her lounge clothes, then on the cut in the dress
+   > with a twirl, the linen up close, the tie at the back, and a pose in the living room. First
+   > two quick photos of her in it, to check the look before filming.
    >
    > Photos <A> credits, video <B>: <A+B> in all; you have <M>. Go ahead?
 
@@ -56,51 +57,62 @@ create_generation {
 create_generation {
   tool: "ugc-video", brand_id: "<brand>", avatar_id: "<Mia>",
   inputs: { objects: ["<dress>"] },
-  params: { ugc_style: "Auto", duration: 12, aspect_ratio: "9:16", resolution: "720p" },
+  params: { ugc_style: "Auto", duration: 15, aspect_ratio: "9:16", resolution: "720p" },
   confirm: true,
-  prompt: "Idea: fit check. @Avatar1 shows how the Sage linen midi dress (@Object1) fits and moves, in a bright bedroom.
-Hook: @Avatar1 steps back from the phone into full view, the hem still swinging, and says \"This is the dress for every summer wedding.\"
-Beats: full body, one slow turn so the skirt swings; waist-up on the square neckline and the front buttons; a turn to show the tie at the back; settled three-quarter for the verdict.
-Wardrobe: @Avatar1 wears the sage green linen midi dress (@Object1) in every shot: square neckline, buttons down the front, ties at the back of the waist, hits mid-calf. Fitted as cut.
-Setting: bright bedroom, window light from the left, phone propped on the dresser at hip height facing @Avatar1.
-Ending: a calm verdict, three-quarter, hands relaxed.
-Language: English.
-Sound: voice and room sound only."
+  prompt: "Idea: a try-on. @Avatar1 shows how the Sage linen midi dress (@Object1) fits and moves, at home.
+Register: natural.
+Hook: @Avatar1 already holds a plain kraft shopping bag by its handle, a grin breaking, and says \"I waited two months for this dress to restock.\"
+Beats: 1) Before: phone in her hand, waist-up, a plain grey crew-neck tee and lounge pants, the closed kraft bag held by one handle. 2) On the cut, the longest shot: phone propped on the dresser at hip height, full body in @Object1, one slow twirl, the skirt swinging, half a beat showing the back, settling front with a laugh; the bag is gone. 3) The shortest shot: phone in her hand, close on the waist, her free hand on her hip and off the fabric; the waist seam rises and settles with her breath; her voice goes on over it. 4) Phone propped, three-quarter from the back: the tie at the waist, a glance over her shoulder. 5) The living room, phone propped on a shelf, full body on the window seat, the hem falling; ending mid-phrase.
+Wardrobe: from shot 2 on, @Avatar1 wears the sage green linen midi dress (@Object1): square neckline, buttons down the front, ties at the back of the waist, hits mid-calf. Fitted as cut, the same in every shot.
+Hands: in shot 1 one hand is the phone and the other holds the bag; in shots 2 and 4 both hands are relaxed at her sides.
+Setting: a bright bedroom, then the living room of the same home; neutral daylight from one window, a plain wall behind her.
+Lines: \"I waited two months for this dress to restock.\" / \"Oh... look at it MOVE.\" / \"Linen, and it still feels soft at the waist.\" / \"The back ties right here.\" / \"Midi length, right at mid-calf...\"
+Language: English, American accent.
+Sound: voice and room sound only: the bag's paper rustle, a laugh on the twirl, bare feet on the wood floor."
 }
 ```
 
    Had neither look shown the dress right, step 7 would not run: say what is off (the tie, the
    length) and offer one retry of the look before any video.
 8. `get_generation` with `wait_seconds: 45` until done, one line between calls. Check the cover
-   with `preview_assets`, then show the card (SKILL.md, Show the result).
+   with `preview_assets`, then show the card (SKILL.md, Show the result) and ask the text
+   question.
 
-**GRWM variant:** `ugc_style: "GRWM"`, 15 s, and `Beats:` "talking to the phone while rolling
-the sleeves; ties the waist tie; smooths the skirt and steps back; full look, verdict". Every
+The lines are 33 words, inside the 28-35 band for 15 s; the wordiest line sits on the detail
+shot, where her mouth is out of frame. The opening is the wait, the format's proven hook: the
+persona has a past and its story is welcome (SKILL.md, The persona: fit, size and story). An
+occasion ("This is the dress for every summer wedding.") works as well.
+
+**GRWM variant:** `ugc_style: "GRWM"`, 15 s, the calm register (GRWM is one of its words), and
+the already-wearing beats (shot-lists.md, section 10): talking to the phone while rolling the
+sleeves; ties the waist tie; smooths the skirt and steps back; another room, verdict. Every
 action is on the dress itself: a prop the person did not supply (a bag, sunglasses) reads as part
-of what is sold. Keep the setting line with the propped phone: the GRWM template drifts toward a
-mirror otherwise.
+of what is sold. Keep the setting line with the propped phone and a plain wall: the GRWM template
+drifts toward a mirror otherwise.
 
-## 2. A sneaker reveal
+## 2. A sneaker reveal, 10 s
 
-The person: "Do a reveal with Jack and our white sneakers."
+The person: "Do a quick 10 second reveal with Jack and our white sneakers."
 
 1. The look photo first, as in example 1: full body, both feet on a plain light floor, `2:3`. It
    proves the shoes read on Jack and becomes the cover.
-2. The reveal. The video call does not take the look: Jack's own image is the "before".
+2. The reveal, three shots. The video call does not take the look: Jack's own image is the
+   Before.
 
 ```
 create_generation {
   tool: "ugc-video", brand_id: "<brand>", avatar_id: "<Jack>",
   inputs: { objects: ["<sneakers>"] },
   params: { ugc_style: "Before & after", duration: 10, aspect_ratio: "9:16", resolution: "720p" },
-  prompt: "Idea: a shoe reveal. Before: @Avatar1 in grey socks in a sunny hallway. After: @Avatar1 wearing the white leather sneakers (@Object1).
-Hook: @Avatar1 points down at the grey socks and says \"Every outfit needs one pair like this.\"
-Beats: socks, pointing down; on the cut, @Avatar1 wears @Object1 and steps toward the phone, both shoes in frame; full body, one heel lifts, verdict.
-Wardrobe: @Avatar1 wears the white leather sneakers with a chunky cream sole (@Object1) from the cut on, with straight blue jeans and a grey t-shirt in every shot.
-Setting: sunny hallway, light wood floor, phone propped on the floor against the wall.
-Ending: full body, a short verdict.
-Language: English.
-Sound: voice and room sound only."
+  prompt: "Idea: a shoe reveal. Before: @Avatar1 in plain grey socks in a sunny hallway, a kraft shopping bag in hand. After: @Avatar1 wearing the white leather sneakers (@Object1).
+Register: natural.
+Hook: the phone in his hand points down at the grey socks, the closed kraft bag hanging from his other hand, and he says \"Every outfit needs one pair like this.\"
+Beats: 1) Before, as in the hook. 2) On the cut, the longest shot: phone propped low against the wall, full body in @Object1, both shoes in frame, a turn on the spot, settling with a grin; the bag is gone. 3) Phone still propped, three-quarter, one foot forward, ending mid-phrase.
+Wardrobe: straight blue jeans and a grey crew-neck t-shirt in every shot; from the cut on, the white leather sneakers with a chunky cream sole (@Object1), the same in every shot.
+Setting: a sunny hallway, light wood floor, neutral daylight, a plain wall.
+Lines: about 16 words in all.
+Language: English, American accent.
+Sound: voice and room sound only: the bag's paper, sneakers squeaking once on the wood."
 }
 ```
 
@@ -151,8 +163,10 @@ The person: "Haul try-on of our three new summer tops with Mia."
    - the captions and the export: `get_video_guide` gives their credits (`credits.captions`,
      `credits.export`).
    One message: one line per item, the captions and the export, the total, one question.
-3. Each clip's `Beats:` "waist-up, already turning to the phone, hook line about the top;
-   chest-up on the neckline, verdict".
+3. Each clip is two shots of the already-wearing beats (shot-lists.md, section 10): "propped,
+   waist-up, already turning to the phone, hook line about the top; in hand, chest-up on the
+   neckline, the knit catching the light as she breathes, verdict". The Before shot and the kraft
+   bag belong to a single try-on, not to each clip of a haul.
 4. On yes, run the six; check each look before its clip, as in example 1.
 5. Join them (free):
 
@@ -172,7 +186,10 @@ create_video {
 
 6. `preview_video` `{ video_id, show_safe_area: true }` (free) and fix what overlaps.
 7. `write_captions` `{ video_id, position: "auto" }` without `confirm`; the same price as quoted,
-   call it again with `confirm: true`. Read `get_video` until `captions.status` is `ready`. Then
+   call it again with `confirm: true`. Read `get_video` until `captions.status` is `ready`. The
+   captions are written from what is heard: read each line against the lines in the briefs, the
+   item names spelled as the person spells them, numbers as digits, and fix a wrong word with
+   `edit_video` (`edit_caption`). Nothing said: the captions credits come back. Then
    `export_video` `{ video_id }` the same way, and read `get_video` until `export.status` is
    `done`. `export.asset_id` is the finished MP4 for creatorline-publish.
 
@@ -234,9 +251,12 @@ create_generation {
   include_avatar: false,
   inputs: { characters: ["<kept look>"], objects: ["<dress>"] },
   params: { ugc_style: "Auto", duration: 12, aspect_ratio: "9:16", resolution: "720p" },
-  prompt: <the same brief as before>
+  prompt: <the same brief, with the already-wearing beats>
 }
 ```
+
+- The look photo already wears the item, so there is no Before shot: use the already-wearing
+  beats (shot-lists.md, section 10), with the same Wardrobe, Setting and Lines.
 
 - `include_avatar: false` keeps the avatar's own image (in its own clothes) out, so the look
   photo is `@Avatar1` and it already wears the item. Keep `avatar_id`: the run is filed under

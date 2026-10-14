@@ -231,8 +231,8 @@ If the person names a look the way the app does ("Hormozi", "Karaoke"), use that
   theirs.
 - The shorts are real footage, only cut and captioned: post them with `made_with_ai: false`,
   unless the recording itself shows an avatar or other AI-made video (then `true`).
-- A post caption says what the short says. Never add a claim, a result or a credential the
-  speaker did not state on camera (house rules, section 7).
+- The speaker is a real person, so a post caption never puts words in their mouth: no claim,
+  result or credential they did not state on camera (house rules, section 7, Real people).
 
 ## When Video Studio fits better
 
@@ -321,7 +321,7 @@ Pick two or three that fit:
 | Spread them over the coming days | `publish_post` with `mode: "queue"`, one per short, on an explicit yes (`creatorline-publish`) |
 | A trim, an end line ("full episode on YouTube"), a call to action on one short | `creatorline-video-studio` |
 | A cover image for the best short | `creatorline-cover-image` (set by hand in the platform's app; a post sent from Creatorline cannot carry one, and every short already opens on its headline) |
-| The avatar re-filming the best moment as its own take | `creatorline-reshoot` with that short as the source (it films up to 30 s of it), when one person speaks in it and tells nothing of their own life the avatar could not claim |
+| The avatar re-filming the best moment as its own take | `creatorline-reshoot` with that short as the source (it films up to 30 s of it), when one person speaks in it: the avatar tells it as its own |
 | Next week's episode | This skill again, with the new link |
 
 ## References

@@ -40,8 +40,8 @@ Most viewers decide in the first two seconds. Everything there is chosen on purp
 | Point of view | "POV: your first 5K" |
 
 - The hook line and the post's caption say the same thing in different words.
-- Never promise what the video does not deliver; the claim floor applies to on-screen words too
-  (house rules, section 7).
+- Never promise what the video does not deliver. On-screen words follow the persona like
+  speech: its own result or history is welcome (house rules, section 7).
 
 ## 2. Length and pace
 
@@ -75,6 +75,10 @@ Most viewers decide in the first two seconds. Everything there is chosen on purp
 - **You cannot hear the clip.** To find what is said when: write the captions (paid once per
   video), read `captions.lines` in `get_video`, cut between lines, then write the captions again
   (free). The lines are your transcript.
+- **Cut away without cutting the voice.** To show what the speaker is talking about while they
+  keep talking, lay a `video` layer with `fill: true` over that part of their clip: layers are
+  silent by default, so the voice runs on under the b-roll ([blueprints](blueprints.md),
+  section 1). Come back to the face for the payoff.
 - **Order by energy.** Put the highest-energy clip first, the payoff about two thirds in, and a
   calm verdict last.
 - **Keep the first frame of each clip readable.** A clip whose first frame is a blur reads as
@@ -190,7 +194,7 @@ something.
 | Look at | Call |
 |---|---|
 | The whole video at a glance | `preview_video` (6 frames; `frames` up to 9) |
-| The hook | `at: [0.5]` |
+| The opening, as the feed shows it | `at: [0.1, 1, 1.8]`: the first frame, then the hook line a second and nearly two seconds in |
 | A label and the clip under it | `at: [<label start + 0.5>]` |
 | The ending | `at: [<duration - 1>]` |
 | What the apps will cover | `show_safe_area: true` |
@@ -202,3 +206,19 @@ something.
   look is the style.
 - The pictures are for you. Tell the person what you checked in one line and give them the
   studio link to watch it with sound.
+
+**How much each check proves**, weakest first. Claim only what your strongest check showed.
+
+| Check | Proves | Does not prove |
+|---|---|---|
+| The `edit_video` answer | What is set: every time, id and `note` | That it looks right |
+| `get_video` | What is stored now, `warnings`, `ready_to_export` | Anything about the pictures |
+| `preview_video` with `exact: true` | The real frames at those seconds, texts and layers drawn as the export draws them | Sound, captions' real typeface, the moments between frames |
+| `preview_video` with `exact: false` | Where things sit and whether words read | What a clip shows at that second |
+| The export: `export.status` `done`, `up_to_date` true, and the `list_assets` row whose `id` is `export.asset_id` (`file_type: "video"`, newest first) showing the planned length in `duration_sec` | An MP4 exists, of this version | The sound and the cuts feel right |
+| The person watching it with sound | Everything | |
+
+- A saved edit is not a video, and an export still `running` is not a finished one. Say a
+  video is finished only after the export check above.
+- Words in a script other than Latin (Arabic, Cyrillic, Chinese, Hindi...): look at a frame
+  where the text shows and check every letter is drawn, not a box or a gap.

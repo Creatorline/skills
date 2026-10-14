@@ -149,7 +149,9 @@ Fix every wrong line in one call, the highest `index` first:
 - Words show as written, so write the brand's name with its own capitals. `hormozi` puts
   everything in capitals by itself.
 - Fix how a spoken word is written: a brand or product name, a person's name, a number, a
-  foreign word. Never put words in that were not said, and never improve what was said.
+  foreign word. Never put words in that were not said, and never improve what was said. A word
+  of a voiceover's `text` that the hearing missed WAS said (a voiceover reads its text exactly):
+  put it back in the line where it is said (checking-captions.md, section 3).
 - An empty `text` removes the line. Leave filler words ("um") unless the person asks.
 - A later `write_captions` (after a cut, or the export hearing stale captions again) replaces
   these fixes. Proofread after the last change to the clips.
@@ -233,13 +235,13 @@ One call makes a new MP4 with the captions and the hook burned in. The source st
 
 ## 9. The plan and price message
 
-After the free steps, one short message in plain words: no route letters, no tool names. On a
-brand's first captioned video, name the other looks once:
+After the free steps, one short message in plain words: no route letters, no tool names. The
+look was asked in the intake when the brand had none (looks-and-placement.md, section 3); name
+the one in use so the person can change it:
 
 > Captions for "Fernly bottle review" (14 s), done in Video Studio so I can check the words
 > before they are burned in:
-> - Look: Hormozi, big caps with the spoken word in yellow. Others: TikTok, Minimal, Sticker,
->   Bold, Karaoke.
+> - Look: Hormozi, big caps with the spoken word in yellow (your brand's look).
 > - Hook at the top for the first 3 s: "this bottle fits every cup holder". Say "no hook" to
 >   skip it.
 > - Captions N credits (once for this video) and the export N credits: T in all. You have M.

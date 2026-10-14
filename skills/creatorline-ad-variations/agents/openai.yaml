@@ -1,7 +1,7 @@
 interface:
   display_name: "Ad Variations"
   short_description: "Many versions of one winning video"
-  default_prompt: "Use $creatorline-ad-variations to make 4 hook versions of my best video for an A/B test."
+  default_prompt: "Use $creatorline-ad-variations to make versions of my best video with new hooks, our other products or other backgrounds."
 policy:
   allow_implicit_invocation: true
 dependencies:

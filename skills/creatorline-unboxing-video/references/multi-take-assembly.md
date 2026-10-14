@@ -20,15 +20,18 @@ the server's own.
 | Situation | Takes |
 |---|---|
 | One product, up to 30 s | One take. Never split it: each join is a fresh render where the face can drift a little. |
+| One product, over 30 s | One take per 15-second section (after-the-reveal.md, section 1): a failed section is filmed again on its own. |
 | A haul of 2 to 5 items | One take per item: each product stays true to its own photo. |
 | More than 5 items | Two hauls, or the 5 the person cares about most. Past about 45 s a haul loses people. |
 | The person wants a separate intro or a separate verdict take | Fine: plan it as its own take with no product, or with the hero product. |
 
 ## 2. Plan the takes
 
-- **Take 1** (10-12 s) opens the package and reveals item 1.
-- **Takes 2 and on** (8 s each) start with the package already open and lift out the next
-  item. No second opening.
+- **Take 1** (12-15 s) runs the four beats with item 1 (unboxing-craft.md, section 1).
+- **Takes 2 and on** (8 s each, two shots) start with the package already open at the edge and
+  lift out the next item. No second opening, and the box is never closed or carried.
+- Write every take's brief before you price any of them, and check each against the brief
+  checklist in SKILL.md.
 - One item in `objects` per take. Its product card in its brief.
 - The same avatar in every take (the brand's default, or the same `avatar_id`).
 - The Setting and Wardrobe lines are copied word for word into every brief, so the room, the
@@ -132,8 +135,11 @@ them out. Then add the title and the item labels with `edit_video`:
    clip shows at that second.
 2. Captions, when they were in the yes: `write_captions` with `video_id`,
    `position: "auto"` and `confirm: true`. With labels on top, `auto` puts captions on a free
-   row. Read `get_video` every 20 seconds or so until `captions.status` is `ready`. Fix a
-   wrong word with `edit_video` and `edit_caption` (`index`, `text`).
+   row. Read `get_video` every 20 seconds or so until `captions.status` is `ready`. The
+   captions are written from what is heard, so read every line against the lines in your
+   briefs: the product's name spelled exactly as the person spells it, numbers as digits. Fix
+   a wrong word with `edit_video` and `edit_caption` (`index`, `text`). Nothing said (a quiet
+   unboxing): the captions credits come back; burn nothing.
 3. Read `get_video`: `ready_to_export` must be true and `warnings` empty.
 4. `export_video` with `video_id` and `confirm: true` (covered by the batch's yes). Read
    `get_video` every 10 to 30 seconds until `export.status` is `done`.
@@ -160,7 +166,11 @@ Read the balance with `get_credit_balance` after the batch.
 
 ## 8. When one take goes wrong
 
-- A failed take is refunded on its own; the others are fine. Never re-run the whole batch.
+- A failed take is refunded on its own; the others are fine. Never re-run the whole batch, and
+  never build the video with a take missing without saying so.
+- Two content-check failures in a row on the same take: do not send the same inputs a third
+  time. Change the product photo or the wording, or offer another of the brand's avatars; never
+  switch the avatar or the model without asking.
 - Offer two ways: re-run only that take (a new quote and a new yes), or build the video from
   the takes that worked, with the labels renumbered.
 - A take that came back wrong (the product drifted, a hand is off): give it a verdict

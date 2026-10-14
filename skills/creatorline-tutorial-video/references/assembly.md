@@ -1,29 +1,30 @@
 # Assembly in Video Studio
 
 How the filmed take (or takes) becomes the finished tutorial: one Video Studio project with the
-clips, a title, one label per step, captions and an end text, exported to an MP4. Every edit
-and preview is free; captions and the export are paid and were in the quote.
+clips, one label per step, the end text, and the extra text the person chose, exported to an
+MP4. Every edit and preview is free; captions and the export are paid and were in the quote.
 
 ## Contents
 
 1. [Before you start](#1-before-you-start)
 2. [The text layout](#2-the-text-layout)
-3. [Looks](#3-looks)
-4. [One take: build, captions, labels](#4-one-take-build-captions-labels)
-5. [Timing the labels from the captions](#5-timing-the-labels-from-the-captions)
-6. [Step takes: build, labels, captions](#6-step-takes-build-labels-captions)
-7. [Look before you export](#7-look-before-you-export)
-8. [Export](#8-export)
-9. [Swapping one step](#9-swapping-one-step)
-10. [Changes after the result](#10-changes-after-the-result)
+3. [The label look by category](#3-the-label-look-by-category)
+4. [Extra text: the four choices](#4-extra-text-the-four-choices)
+5. [One take: build, clock, labels](#5-one-take-build-clock-labels)
+6. [Timing the labels from the captions](#6-timing-the-labels-from-the-captions)
+7. [Step takes: build, labels, captions](#7-step-takes-build-labels-captions)
+8. [Look before you export](#8-look-before-you-export)
+9. [Export](#9-export)
+10. [Swapping one step](#10-swapping-one-step)
+11. [Changes after the result](#11-changes-after-the-result)
 
 ## 1. Before you start
 
 - `get_video_guide` once (free): `text_looks`, `caption_styles`, the frame and the bands the
   apps cover, and `credits.captions` and `credits.export`.
 - Clips come first. A text before the first clip refuses the whole call ("Add a clip first").
-- Give everything you add an `id`: `take`, `hook`, `s1` to `s5`, `title`, `step1` to `step5`,
-  `end`. Later operations name them.
+- Give everything you add an `id`: `take`, `s1` to `s12`, `step1` to `step12`, `hook`, `end`.
+  Later operations name them.
 - Read every time from the answers (`clips[].start`, `clips[].end`, `captions.lines`). Never
   add lengths up yourself.
 - Read `get_video` before each new round of edits. If the person is editing the same video in
@@ -33,31 +34,64 @@ and preview is free; captions and the export are paid and were in the quote.
 
 ## 2. The text layout
 
-| Text | Row | Look | Size | Shows |
-|---|---|---|---|---|
-| Title | `top` | the label look | `l` | From 0 to the start of step 1 |
-| Step labels | `top` | the label look | `m` | Each from its step's start to the next step's start |
-| End text | `top` | the label look | `m` | The last 2 s |
-| Captions | `bottom` (from `position: "auto"`) | the caption style that goes with the label look (section 3) | | The whole video |
+| Text | Where | Shows |
+|---|---|---|
+| Step labels | `position: "top"`, size `m`, one look | Label 1 from the first frame; each label until the next step starts; the last one to the end |
+| Hook text (only when chosen) | Just under the labels: `y: 0.21` under one-line labels, `y: 0.26` under two-line ones | Over step 1 only, in capitals |
+| End text | `position: "bottom"` when there are no captions (the pointing hand aims at it); the top row, taking over from the last label, when there are captions | The last second |
+| Captions (only when chosen) | The bottom row (`position: "auto"`) | The whole video |
 
 - One text on the top row at a time. They hand over, never overlap.
-- The same look and size on every label, so they read as one system.
-- Captions never go on top: that row is the labels'.
-- The top row is inside the area the apps leave clear; the editor keeps texts there by itself.
+- The same look, size and place for every label, so they read as one set.
+- A label that would cross the face: move EVERY label to `position: "bottom"` when there are no
+  captions. With captions, keep the labels on top and set every label to size `s`. Labels on
+  the bottom row: the end text takes that row over from the last label for the last second
+  (the last label ends where it starts), and the hook text moves to `position: "top"`.
+- Texts stay inside the area the apps leave clear by themselves.
 
-## 3. Looks
+## 3. The label look by category
 
-| The video feels | Label look | Caption style |
+Our looks are white words. Pick the one closest to the category's style and keep it for every
+label, the hook text and the end text:
+
+| Category | The style that fits | Look |
 |---|---|---|
-| Everyday: most products, food, home, fitness | `tiktokHighlight` (words on a solid plate) | `tiktok` |
-| Calm or premium: skincare, fragrance, tech | `tiktokTranslucent` (words on a see-through dark box) | `minimal` |
-| Loud, high energy | `tiktokOutline` (white words with a dark edge) | `hormozi` |
+| Skincare, luxury beauty | Editorial, refined | `instagram` |
+| Fragrance | Refined, thin, elegant | `instagram` |
+| Colour cosmetics | Modern | `tiktokText` |
+| Tech | Geometric | `snapchat` |
+| Fitness, supplements | Bold, in capitals | `tiktokOutline`, the label written in capitals |
+| Food | Warm, rounded | `tiktokHighlight` |
+| Coffee, artisan goods | Warm | `instagram` |
+| Fashion | Minimal | `instagram` |
+| Home | Light | `instagram` |
+| Not sure | Clean, neutral | `tiktokText` |
 
-Pick one row per video and keep it for every label and the captions. Check each value against
-`text_looks` and `caption_styles` in the guide before you use it. The person asked for a look:
-theirs wins.
+- `instagram` and `tiktokText` are bare words with a soft shadow: right over a busy scene. On a
+  bright, clean scene where white words wash out, use `tiktokTranslucent` (white words on a
+  see-through dark box) for every label instead.
+- Check each value against `text_looks` in the guide before you use it. The person asked for a
+  look: theirs wins.
+- Captions, when chosen, use `hormozi` (bold capitals at the bottom).
 
-## 4. One take: build, captions, labels
+## 4. Extra text: the four choices
+
+The labels are always there. Anything more is the person's choice, asked once at the end of
+intake when they have not said:
+
+| Choice | On the video | Captions written? |
+|---|---|---|
+| None (default) | Labels and end text | Yes, as the clock, then removed before the export |
+| Captions | Labels, end text, captions at the bottom | Yes, kept |
+| Hook | Labels, end text, a hook line under the step 1 label | Yes, as the clock, then removed |
+| Both | Labels, end text, hook line, captions | Yes, kept |
+
+The captions are written in every case because their timing is what puts each label on its
+step. They are paid once per video (`credits.captions`), so they are in every quote; say so in
+one line ("the captions pass times the labels"). Removed captions can come back later at no
+charge: `write_captions` again on the same video.
+
+## 5. One take: build, clock, labels
 
 1. Build:
 
@@ -70,109 +104,116 @@ theirs wins.
    ```
 
    The clip keeps its sound: it carries the voice.
-2. Captions: `write_captions` with `video_id`, the `style` from section 3 (the serum example
-   reads calm: `minimal`), `position: "auto"` and no `confirm`. The price matches the quote:
-   call again with `confirm: true`. It does not: ask.
-3. Say "Writing the captions." and read `get_video` about every 20 s until `captions.status`
-   is `ready`.
-4. Read `captions.lines` against the script. A misheard word: `edit_video` with
-   `{ op: "edit_caption", index: <line>, text: "<right words>" }` (free).
-5. Time the labels (section 5). Then one `edit_video` call adds every text:
+2. Captions: `write_captions` with `video_id`, `style: "hormozi"`, `position: "auto"` and no
+   `confirm`. The price matches the quote: call again with `confirm: true`. It does not: ask.
+3. Say "Timing the steps." and read `get_video` about every 20 s until `captions.status` is
+   `ready`.
+4. **The first word within 0.4 s.** The first line's `start` is later than 0.4: one
+   `edit_video` with `{ op: "update_clip", id: "take", trim_start: <that start - 0.3> }`, then
+   `write_captions` again (free, no approval) and wait for `ready`.
+5. Captions staying (Captions or Both): read `captions.lines` against the script and fix a
+   misheard word with `{ op: "edit_caption", index: <line>, text: "<right words>" }` (free).
+   The product's name and every number first; numbers as digits.
+6. Time the labels (section 6). Then one `edit_video` call adds every text, and ends with
+   `{ op: "remove_captions" }` when the choice is None or Hook:
 
    ```json
    [
-     { "op": "add_text", "id": "title", "text": "Glow C serum\nin 4 steps", "start": 0, "end": 2.9, "position": "top", "look": "tiktokTranslucent", "size": "l" },
-     { "op": "add_text", "id": "step1", "text": "Step 1: Dry skin", "start": 2.9, "end": 6.4, "position": "top", "look": "tiktokTranslucent", "size": "m" },
-     { "op": "add_text", "id": "step2", "text": "Step 2: Two drops", "start": 6.4, "end": 10.1, "position": "top", "look": "tiktokTranslucent", "size": "m" },
-     { "op": "add_text", "id": "step3", "text": "Step 3: Press in", "start": 10.1, "end": 13.8, "position": "top", "look": "tiktokTranslucent", "size": "m" },
-     { "op": "add_text", "id": "step4", "text": "Step 4: Let it settle", "start": 13.8, "end": 17.6, "position": "top", "look": "tiktokTranslucent", "size": "m" },
-     { "op": "add_text", "id": "end", "text": "Save this for later", "start": 17.6, "end": 20, "position": "top", "look": "tiktokTranslucent", "size": "m" }
+     { "op": "add_text", "id": "step1", "text": "Step 1 – Dry Skin", "start": 0, "end": 3.3, "position": "top", "look": "instagram", "size": "m" },
+     { "op": "add_text", "id": "step2", "text": "Step 2 – Lift the Dropper", "start": 3.3, "end": 7.2, "position": "top", "look": "instagram", "size": "m" },
+     { "op": "add_text", "id": "step3", "text": "Step 3 – Two Drops", "start": 7.2, "end": 11.4, "position": "top", "look": "instagram", "size": "m" },
+     { "op": "add_text", "id": "step4", "text": "Step 4 – Press In", "start": 11.4, "end": 15, "position": "top", "look": "instagram", "size": "m" },
+     { "op": "add_text", "id": "end", "text": "Link in bio", "start": 14, "end": 15, "position": "bottom", "look": "instagram", "size": "m" },
+     { "op": "remove_captions" }
    ]
    ```
 
-   The times above are an example; yours come from section 5. Each text ends where the next
-   one starts. An `end` past the video's end is cut to it (the `note` in `applied` says so).
-   Texts do not change the captions, so the captions stay `ready`.
+   The times above are an example; yours come from section 6. An `end` past the video's end is
+   cut to it (the `note` in `applied` says so).
 
-## 5. Timing the labels from the captions
+## 6. Timing the labels from the captions
 
-The writer lands each cut near the planned second, not on it. The spoken words are the true
-clock, and every step's line opens with its own order word (steps-and-script.md, section 8).
+Our writer lands each cut near the planned second, not on it. The spoken words are the true
+clock, and every step after the first carries its own cue word (steps-and-script.md,
+section 8).
 
-1. Walk `captions.lines` in order. Step k starts in the first line after step k-1's start
-   that holds step k's order word (ignore case and punctuation). The writer may reword a line
-   a little: when the order word is gone, look for the words of the step's heading or its
-   amount ("two drops") instead.
-2. Where in the line: the order word opens the line, so the step starts at the line's
-   `start`. It sits further in: start + (words before it / words in the line) x (end - start).
-   Three words before it in a line of eight: three eighths of the way.
-3. Each switch on the top row happens 0.2 s before the spoken start, so the label is up as
-   the step begins. Call that moment cut k (step k's start minus 0.2, never below 0), and cut
-   V for the verdict (the start of the line with the verdict's first words, minus 0.2).
-4. The title runs from 0 to cut 1. Label k runs from cut k to cut k+1. The last label runs
-   to cut V, and the end text from cut V to the video's end. Each text ends exactly where the
-   next one starts, so two never share the row.
-5. Less than 1.5 s for the end text: drop it and run the last label to the end. Less than
-   1.2 s for the title: drop it.
-6. Every label shows for at least 1.5 s. Round times to the hundredth.
-7. An order word you cannot find (misheard, or the line came out different): look in the lines
+1. Walk `captions.lines` in order. Step k (k from 2) starts in the first line after step k-1's
+   start that holds step k's cue word (ignore case and punctuation). The take may reword a line
+   a little: when the cue word is gone, look for the words of the step's heading or its amount
+   ("two drops") instead.
+2. Where in the line: the cue word opens the line, so the step starts at the line's `start`.
+   Further in: start + (words before it / words in the line) x (end - start). Three words
+   before it in a line of eight: three eighths of the way.
+3. Each label switches 0.2 s before its step is heard, so it is up as the step begins: cut k =
+   step k's start minus 0.2.
+4. Label 1 runs from 0 to cut 2; label k from cut k to cut k+1; the last label to the video's
+   end. Each text ends exactly where the next one starts.
+5. End text: the last second (from the video's `duration` minus 1 to the end). With captions
+   it takes the top row, so the last label ends where it starts; without, it sits on the
+   bottom row and the last label stays to the end.
+6. Hook text (Hook or Both): from 0 to cut 2, at the `y` in section 2.
+7. Every label shows for at least 1.5 s. Round times to the hundredth.
+8. A cue word you cannot find (misheard, or the line came out different): look in the lines
    around where it should be. Still nothing: put that label halfway between its neighbours and
    look at that moment with `preview_video`.
 
-The person did not want captions: time the labels from the plan instead (the hook's seconds,
-then each step's planned seconds), and tell them in one line that a label may sit a beat off
-and can be dragged in the studio. For exact labels without captions, film step takes.
+The person said no to captions even as a clock (they will not pay for them): time the labels
+from the plan instead (each step's planned seconds), and tell them in one line that a label
+may sit a beat off and can be dragged in the studio.
 
-## 6. Step takes: build, labels, captions
+## 7. Step takes: build, labels, captions
 
-1. Build with the clips in order, then the title and the labels, each `over` its clip:
+For steps filmed one take each (steps-and-script.md, section 12).
+
+1. Build with the clips in order, then each label `over` its clip:
 
    ```json
    [
-     { "op": "add_clip", "asset_id": "<hook take>", "id": "hook" },
      { "op": "add_clip", "asset_id": "<step 1 take>", "id": "s1" },
      { "op": "add_clip", "asset_id": "<step 2 take>", "id": "s2" },
      { "op": "add_clip", "asset_id": "<step 3 take>", "id": "s3" },
-     { "op": "add_text", "id": "title", "text": "Hair oil\nin 3 steps", "over": "hook", "position": "top", "look": "tiktokHighlight", "size": "l" },
-     { "op": "add_text", "id": "step1", "text": "Step 1: One pump", "over": "s1", "position": "top", "look": "tiktokHighlight", "size": "m" },
-     { "op": "add_text", "id": "step2", "text": "Step 2: Warm in palms", "over": "s2", "position": "top", "look": "tiktokHighlight", "size": "m" },
-     { "op": "add_text", "id": "step3", "text": "Step 3: Ends only", "over": "s3", "position": "top", "look": "tiktokHighlight", "size": "m" }
+     { "op": "add_clip", "asset_id": "<step 4 take>", "id": "s4" },
+     { "op": "add_text", "id": "step1", "text": "Step 1 – One Pump", "over": "s1", "position": "top", "look": "tiktokHighlight", "size": "m" },
+     { "op": "add_text", "id": "step2", "text": "Step 2 – Warm in Palms", "over": "s2", "position": "top", "look": "tiktokHighlight", "size": "m" },
+     { "op": "add_text", "id": "step3", "text": "Step 3 – Ends Only", "over": "s3", "position": "top", "look": "tiktokHighlight", "size": "m" },
+     { "op": "add_text", "id": "step4", "text": "Step 4 – Smooth Down", "over": "s4", "position": "top", "look": "tiktokHighlight", "size": "m" }
    ]
    ```
 
-2. End text: read the video's `duration` from the answer. Then `edit_video`:
-   `{ op: "update_text", id: "step3", end: <duration - 2> }` and
-   `{ op: "add_text", id: "end", text: "Save this for later", start: <duration - 2>, end: <duration>, position: "top", look: "tiktokHighlight", size: "m" }`.
+2. End text: read the video's `duration` from the answer, then
+   `{ op: "add_text", id: "end", text: "Link in bio", start: <duration - 1>, end: <duration>, position: "bottom", look: "tiktokHighlight", size: "m" }`
+   (with captions: on the top row, and `update_text` on the last label to end at
+   `<duration - 1>`).
 3. One voice, when the takes sound different (each take is its own render): offer to give
    every clip the avatar's own voice. `run_video_ai` with `video_id`, `action:
    "change_voice"`, the clip's `clip_id` and the avatar's `voice_id` (from `get_avatar`), one
    call per clip. Price them all without `confirm`, ask one yes for the total, then run them
    with `confirm: true`. Read `get_video` every 20 s or so until no clip is `generating`. Do
    this before the captions: a changed clip puts captions out of date.
-4. Captions as in section 4, steps 2 to 4.
-5. Optional tightening, once the captions are ready: a clip whose first line starts more than
-   0.8 s after the clip does opens on a pause. `update_clip` with `trim_start` so the speech
-   begins about 0.3 s in. A trim does not move texts: put the title and each label back with
-   `{ op: "update_text", id: "stepK", over: "sK" }`, then set the last label's end and the end
-   text again as in step 2, from the new `duration`. Then `write_captions` again (free) and
-   check the lines.
+4. Captions as in section 5, steps 2 to 5 (a clip whose first line starts more than 0.4 s in:
+   `update_clip` with `trim_start`, then put each label back with
+   `{ op: "update_text", id: "stepK", over: "sK" }`, then `write_captions` again, free).
+5. The choice is None or Hook: `remove_captions` before the export.
 
-## 7. Look before you export
+## 8. Look before you export
 
-- `preview_video` with `video_id`, `at` (the middle of the title, of each label and of the end
-  text; up to 9 moments) and `show_safe_area: true`.
-- Check: each label reads in one line; one text at a time on the top row; nothing a viewer must
-  read in the shaded bands; the captions' row clear of the labels; each label over the step it
-  names.
-- A label crosses the face in a close shot: keep it on the top row and change the look of
-  every label to `tiktokTranslucent` (when it is not already), or the size to `s`. Never move
-  labels into the captions' row.
-- The answer says `exact: false`: some clips are drawn from their cover frame. Judge layout and
-  words only; tell the person to watch the action in the video.
+- `preview_video` with `video_id`, `at` (the middle of each label, the hook text, the end text;
+  up to 9 moments a call) and `show_safe_area: true`.
+- Check: each label reads, all labels wrap alike; one text at a time on the top row; nothing a
+  viewer must read in the shaded bands; the captions' row clear of the labels; each label over
+  the step it names.
+- **Real frames.** When the answer says `exact: true`, the frames are the footage itself. Call
+  it again at the middle of each step and at two or three moments mid-sentence, and check: the
+  right hand action for that step, one product, no more than two hands, the cap and the state
+  consistent from step to step, the product the same size, a clean face and mouth, no text in
+  the picture except the product's own label. A step that fails: swap only that step
+  (section 10).
+- **Cover frames.** When it says `exact: false`, clips are drawn from their cover frame. Judge
+  layout and words only, and ask the person to watch the action in the studio.
 - `get_video`: `ready_to_export` is true and `warnings` is empty. "Nothing is heard": a clip's
   sound is off; `update_clip` with `id` and `sound: true`.
 
-## 8. Export
+## 9. Export
 
 1. `export_video` with `video_id` and no `confirm`. The price matches the quote: call again
    with `confirm: true`. It does not: ask.
@@ -183,7 +224,7 @@ and can be dragged in the studio. For exact labels without captions, film step t
 4. Any edit after the export makes it out of date (`up_to_date: false`). A new export is
    charged again: quote it first.
 
-## 9. Swapping one step
+## 10. Swapping one step
 
 **One take.**
 
@@ -198,9 +239,11 @@ and can be dragged in the studio. For exact labels without captions, film step t
    take> }`. It keeps its place, and its length when the new take is long enough, so the
    labels stay where they were. Give the new take the same line and a length close to the old
    part, so nothing said is cut off.
-4. `write_captions` again (free: the clips changed) and check the lines. The new line is cut
-   short: lengthen the clip with `update_clip` and `trim_end`, then re-time the labels after
-   it from the new `captions.lines` (section 5). Preview, then export again (quote it).
+4. `write_captions` again (free: the clips changed; if they were removed, still free) and
+   check the lines. The new line is cut short: lengthen the clip with `update_clip` and
+   `trim_end`, then re-time the labels after it from the new `captions.lines` (section 6).
+   Remove the captions again if the choice was None or Hook. Preview, then export again (quote
+   it).
 
 **Step takes.** Re-film that take with the same brief and one change, then `replace_clip` on
 its clip.
@@ -214,16 +257,17 @@ animation with `estimate_generation_cost` while the still does not exist yet; be
 starting it, call `create_generation` without `confirm` once more and ask again only if the
 price moved.
 
-## 10. Changes after the result
+## 11. Changes after the result
 
 | The person asks | Do | Paid? |
 |---|---|---|
 | Other words or timing on a label | `update_text` with `text`, `start`, `end` | Edit free; the new export is charged |
-| A wrong caption word | `edit_caption` | Edit free; the new export is charged |
+| Captions on after all | `write_captions` (free on this video), wait, then `set_captions` if needed | The new export is charged |
+| Captions off | `remove_captions` | The new export is charged |
 | Another caption style | `set_captions` with `style` | Edit free; the new export is charged |
 | Another label look | `update_text` with `look` on every label | Edit free; the new export is charged |
-| Remove the title or the end text | `remove_text` | Edit free; the new export is charged |
-| A step re-filmed | Section 9 | Yes |
-| Another hook, or another order of steps | A new take of the whole tutorial, put in the same video with `replace_clip` (the captions stay paid), labels re-timed (section 5) | Yes: the take and the new export |
+| Remove the hook text or the end text | `remove_text` | Edit free; the new export is charged |
+| A step re-filmed | Section 10 | Yes |
+| Another opener, or another order of steps | A new take of the whole tutorial, put in the same video with `replace_clip` (captions stay paid), labels re-timed (section 6) | Yes: the take and the new export |
 
 Quote every paid change and wait for a yes. Then show the new card.

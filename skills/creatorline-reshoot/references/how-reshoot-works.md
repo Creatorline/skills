@@ -78,8 +78,10 @@ Direction asks for other words.
   so it fits the same moment.
 - Lines that do not mention the product stay word for word.
 - Each sentence keeps its job: a reference to the old product becomes one to the new product,
-  a reference to alternatives stays one, a joke stays a joke, a claim stays a claim. That last
-  part is why the Direction must set the claims allowed (house-rules section 7).
+  a reference to alternatives stays one, a joke stays a joke, a claim stays a claim. So a
+  personal result in the source comes back as the avatar's own about the new product, which
+  is welcome (house-rules section 7); the person's approved claims or words to avoid, and a
+  fix for a source that promises a cure or an income, go in the Direction.
 - On-screen texts are rewritten the same way, or removed.
 
 **How they are voiced.**

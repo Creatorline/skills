@@ -220,8 +220,10 @@ Included in the Reshoot price. It speaks in the avatar's own voice (`voice_id` o
   product takes the old one's place, size and grip. A similar shape looks right (a bottle for
   a bottle, not a bottle for a lipstick).
 - Rewritten lines keep each sentence's job: a joke stays a joke, a claim stays a claim. A
-  personal result in the source ("it cleared my skin") would be said about the new product,
-  so set the claims in the Direction (claim floor, house-rules section 7).
+  personal result in the source ("it cleared my skin") comes back as the avatar's own result
+  with the new product, which is welcome: the avatar is a living persona (house-rules section
+  7). The person's approved claims or words to avoid go in the Direction, and so does a fix
+  for a source that promises a cure or an income.
 - Turn `change_voice` on when the avatar has a voice, or the new lines are read in a stock
   voice.
 - The music under the speech is dropped with the new voice track. Offer to add music
@@ -245,8 +247,9 @@ protect something, in one to four plain sentences:
 
 - what each attachment is for: "The product photo replaces the iced coffee she holds.";
 - the moments that must survive the cut: "Keep the first sip and the final nod.";
-- the claims allowed with a product: "New lines say only what the label says: 20 g protein,
-  no added sugar.";
+- the facts the new lines should use, or the person's approved claims when they gave a list:
+  "New lines name the 20 g of protein and no added sugar." or "Say only these claims: 20 g
+  protein, no added sugar.";
 - where an app recording appears.
 
 Leave out: links (never opened; write the facts in words), camera, lens and light (the plan

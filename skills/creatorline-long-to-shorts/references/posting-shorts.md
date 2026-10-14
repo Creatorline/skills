@@ -14,7 +14,7 @@ public, and it needs an explicit yes. Scheduling past what is here: `creatorline
 6. [Into the review queue](#6-into-the-review-queue)
 7. [Sending them out](#7-sending-them-out)
 8. [Covers](#8-covers)
-9. [Disclosure and claims](#9-disclosure-and-claims)
+9. [Disclosure and the speaker's words](#9-disclosure-and-the-speakers-words)
 
 ## 1. Know each short first
 
@@ -127,11 +127,11 @@ the order they came in. Read each answer's `goes_out` back to the person in one 
   app, or as the thumbnail of the full episode on YouTube (16:9). Offer it for the best one or
   two shorts, not all ten.
 
-## 9. Disclosure and claims
+## 9. Disclosure and the speaker's words
 
 - `made_with_ai: false` for shorts cut from a real recording: the footage is real, only cut
   and captioned. `true` when the recording itself shows an avatar or AI-made video.
-- A caption says what the short says. No result, credential, number or promise the speaker
-  did not state on camera; for health, money and supplements, only what was said, with no
-  cure or income promise (house rules, section 7).
+- The speaker is a real person, so a caption never puts words in their mouth: no result,
+  credential, number or promise they did not state on camera (house rules, section 7, Real
+  people). For health, money and supplements, no cure or income promise in the caption.
 - Only post recordings the person made or has the rights to.

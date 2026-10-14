@@ -116,9 +116,11 @@ face in her left hand, label to the camera, condensation on the can, a playful l
 lens. A sunny park bench, open shade. Product: <card line>. Casual phone photo.
 ```
 
-**Claim floor in photos.** No result on the avatar (clear skin, a flat stomach, longer lashes as
-a before and after), no fake review card, no badge or award that was not supplied
-(house-rules.md, section 7).
+**The persona in photos.** A result on the avatar is welcome (clear skin, a flat stomach,
+longer lashes): it is a living persona (house-rules.md, section 7). A before and after is two
+frames, the same look card with one thing changed. A review card or a rating goes on in the
+app's slides editor or comes from the person's image: small generated words come out garbled.
+An award from a real organization only when the person supplies it, since it speaks for them.
 
 ## 5. Outfit
 
@@ -132,8 +134,9 @@ line in the brief.
   named: "the jacket from @Input1 over the dress from @Input2".
 - A lookbook set: front, side mid-step, back over the shoulder, a detail (the buttons, the bag
   strap, the shoe).
-- Honest by default: the item fits as cut, no slimmer or taller body, no size claims the person
-  did not give.
+- Shown as cut by default: the item drapes as it is made, on the avatar's own body (never made
+  slimmer or taller to sell the fit). The persona's own size and fit ("I'm a medium, this runs
+  true") are welcome in the caption.
 
 ```
 Full body, feet in frame, taken by a friend at eye level a few steps away. @Avatar1 walks toward
@@ -161,7 +164,8 @@ bit of the room's clutter.
 ## 7. Flat lay and packshot
 
 The person's real products with nobody in the frame: `photo-edit`, `include_avatar: false`,
-the product photos in `other_elements`.
+the product photos in `other_elements`, on `gpt-image-v2-edit` with `quality: "Medium"`; inside
+a set of avatar photos, on the set's model ([product modes](product-modes.md), section 1).
 
 - **Flat lay:** shot straight down, a surface that fits the brand (marble, linen, oak, a
   bathroom shelf), a few props that belong with it, labels up, room between the items.
@@ -182,8 +186,9 @@ The making-of: her packing orders, planning at a desk, setting up a shot, sketch
 being prepared. Wider and messier than the rest, which is what makes it believable.
 
 - The product in progress or in boxes: their photos in `other_elements`.
-- Real places only from their photos (`location`). Never invent a factory, a team, a store or
-  customers that were not given.
+- The brand's real places only from their photos (`location`). Without them, the persona's own
+  studio, a team or customers are fine as a made-up world: described fully, all adults, never
+  a real, named place or company.
 
 ```
 Wide, taken from the doorway at eye level. @Avatar1 sits on the floor of a small studio packing
@@ -236,8 +241,9 @@ ask for screenshots as image file links (or a drop at https://app.creatorline.io
 
 ## 13. Styled, not a photo
 
-"Me as a cartoon", a clay figure, an anime still, an ink sketch: `photo-edit` with a style
-sentence, the same avatar.
+"Me as a cartoon", a clay figure, an anime still, an ink sketch: `photo-edit` with
+`model: "nano-banana-2-edit"` (the model proven for cartoon and illustrated characters),
+`aspect_ratio: "3:4"`, `resolution: "2K"`, a style sentence, the same avatar.
 
 - Generic style words only: "a soft clay stop-motion figure", "hand-painted anime with a
   painted background", "black ink cross-hatching", "a flat, minimal illustration". Never a
