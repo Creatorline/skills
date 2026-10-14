@@ -29,7 +29,6 @@ write the whole clip toward it.
 |---|---|
 | Story mode | keep you to the end of the scenario |
 | Review or demo | show you it works, so you stop wondering |
-| Testimonial | make you believe it worked for someone like you |
 | Hot take | get you to agree, or to argue |
 | Storytime | keep you to the last line |
 | Tips | hand you something you can use today |
@@ -58,7 +57,7 @@ never as its letter and number.
 | Pattern | The first second | Watch for |
 |---|---|---|
 | H1 Impact action | Something physical at its peak; the first word lands during it | One action, already moving |
-| H2 Mid-sentence confession | Starts as if on the fourth word, at confiding volume | A confession: a thought, or something it did ("I almost returned this") |
+| H2 Mid-sentence confession | Starts as if on the fourth word, at confiding volume | A confession: a thought, or a reaction ("okay, I was wrong about this") |
 | H3 Pattern interrupt | One thing in the frame is visibly off; the voice ignores it | One oddity, never mockery |
 | H4 Freeze-reaction | The face already in full reaction, up to 0.7 s of held silence, then the line | The only performed pause |
 | H5 Hostile open | A challenge to the viewer, a finger toward the lens | Never at a real person or brand |
@@ -243,18 +242,16 @@ diagnosis. In a series it repeats unchanged (series.md).
 
 ## 11. The persona, format by format
 
-The rule is in truth-and-safety.md, section 4: the avatar is a creator with a past. Its history
-with the product, its results, a before and after and its opinions are welcome; the craft is to
-make them specific. How it lands in each format:
+The rule is in truth-and-safety.md, section 4: the avatar speaks in its own voice, with its tone
+and opinions; the craft is to make them specific. How it lands in each format:
 
 | Format | Weak | Strong |
 |---|---|---|
-| Review | "I love this, it's so good." | "Every morning for a month. Two pumps on damp hair, and the frizz just stays down." |
-| Testimonial | "It changed my life." | "Three weeks in, I stopped putting concealer on my chin." |
-| Story mode | "...and this cream fixed everything." | The specific turn: "...and the week before the wedding, the redness finally went." |
+| Review | "I love this, it's so good." | "Two pumps on damp hair. Watch the frizz stay down." |
+| Story mode | "...and this cream fixed everything." | The specific turn, shown: "...one thin layer, and look, the shine's gone." |
 | Storytime | A story with no place or time | Its own story with one detail ("the week I moved to Lisbon..."), or a POV |
-| Tips | "This supplement is great for you." | "Two with breakfast, and the 3 pm crash is what went." Never "cures" or "treats" |
+| Tips | "This supplement is great for you." | "Two with breakfast, never on an empty stomach." Never "cures" or "treats" |
 | Before and after | A change inside one shot | The before as its own shot or take, the after on the cut |
 | Reaction, FAQ reply | A comment or DM drawn into the frame | The comment as Video Studio text, or an image the person supplies |
 | Hot take | Naming a rival brand or a real person (a real name also trips the content check) | "the big-name tub", "most apps" |
-| Any | Claiming to be a real, named person or a real brand's account | The avatar as itself: its name, its life, its credentials |
+| Any | Claiming to be a real, named person or a real brand's account | The avatar as itself: its name, its tone, its opinions |

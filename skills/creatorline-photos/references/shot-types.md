@@ -116,11 +116,10 @@ face in her left hand, label to the camera, condensation on the can, a playful l
 lens. A sunny park bench, open shade. Product: <card line>. Casual phone photo.
 ```
 
-**The persona in photos.** A result on the avatar is welcome (clear skin, a flat stomach,
-longer lashes): it is a living persona (house-rules.md, section 7). A before and after is two
-frames, the same look card with one thing changed. A review card or a rating goes on in the
-app's slides editor or comes from the person's image: small generated words come out garbled.
-An award from a real organization only when the person supplies it, since it speaks for them.
+**The persona in photos.** A before and after is two frames, the same look card with one thing
+changed. A review card or a rating goes on in the app's slides editor or comes from the
+person's image: small generated words come out garbled. An award from a real organization only
+when the person supplies it, since it speaks for them.
 
 ## 5. Outfit
 
@@ -135,8 +134,7 @@ line in the brief.
 - A lookbook set: front, side mid-step, back over the shoulder, a detail (the buttons, the bag
   strap, the shoe).
 - Shown as cut by default: the item drapes as it is made, on the avatar's own body (never made
-  slimmer or taller to sell the fit). The persona's own size and fit ("I'm a medium, this runs
-  true") are welcome in the caption.
+  slimmer or taller to sell the fit).
 
 ```
 Full body, feet in frame, taken by a friend at eye level a few steps away. @Avatar1 walks toward
@@ -186,9 +184,9 @@ The making-of: her packing orders, planning at a desk, setting up a shot, sketch
 being prepared. Wider and messier than the rest, which is what makes it believable.
 
 - The product in progress or in boxes: their photos in `other_elements`.
-- The brand's real places only from their photos (`location`). Without them, the persona's own
-  studio, a team or customers are fine as a made-up world: described fully, all adults, never
-  a real, named place or company.
+- The brand's real places only from their photos (`location`). Without them, a made-up studio,
+  team or customers are fine: described fully, all adults, never a real, named place or
+  company.
 
 ```
 Wide, taken from the doorway at eye level. @Avatar1 sits on the floor of a small studio packing

@@ -109,7 +109,7 @@ same brief blocks: never a different kind of request.
 - **YouTube**: the thumbnail's words add to the title, never repeat it. A title "I tried the
   cheapest phone" pairs with "IT WORKS?", not "CHEAPEST PHONE".
 - **The person's own words win.** Use them as given, in capitals, unless the video does not
-  keep their promise or they cross a fixed line (section 9); then say so in the plan.
+  keep their promise or section 9 says otherwise; then say so in the plan.
 
 | Pattern | Example | When |
 |---|---|---|
@@ -187,20 +187,18 @@ Every take adds "the same scene and lighting".
 
 ## 9. The persona on a cover
 
-Turn up the feeling, never promise what the video does not deliver. The avatar is a living
-persona (house rules, section 7): its own result, its time with the product and its verdict
-make strong cover words whenever the video tells them.
+Turn up the feeling, never promise what the video does not deliver. The avatar's verdict makes
+strong cover words whenever the video lands on one.
 
 | Asked for | Do |
 |---|---|
-| "I TRIED IT FOR 30 DAYS", "IT CLEARED MY SKIN", "I LOST 5 KG" | As given, when the video tells that story. A video that does not: "WORTH IT?" or "BEFORE YOU BUY" |
-| "#1 SERUM", "DOCTOR APPROVED" | As given: the brand stands behind its claims. With an approved-claims list, only its words. A number is typed, not drawn ([headline text](headline-text.md), section 6) |
+| "#1 SERUM" | As given. With an approved-claims list, only its words. A number is typed, not drawn ([headline text](headline-text.md), section 6) |
 | A message, comment, review or rating | Typed over the clean cover, or the person's own screenshot: drawn in, small words come out garbled |
 | A news strip about something that did not happen | none: a news look reads as a real outlet reporting it |
 | "DAY 100" when there is no hundredth day | the real episode or day number, or none |
 | Another brand's product, logo or interface as a prop | a plain, unbranded item; generic styling |
 | A celebrity or a real person's face | the avatar, or the person's own photo with their consent |
-| A before and after on the avatar (skin, body, a look) | When the video tells it: a split in before-and-after mode (section 8) |
+| A before and after | When the video shows the change: a split in before-and-after mode (section 8) |
 
 When you change the person's words, say so in one line in the plan, with the reason: "The
 video is her first try, so 30 DAYS LATER would not be kept; I'd write WORTH IT? instead."

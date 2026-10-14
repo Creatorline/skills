@@ -59,7 +59,7 @@ that is creatorline-talking-video, keeping the host and the script already agree
 | Outfit | No, never asked | What the avatar wears in its photo, said as a statement |
 | Voice | No | The avatar's own voice, matched across parts (host-continuity.md, section 8) |
 | Files they give | Asked only when a file could go two ways | Each gets one route (supplied-media.md) |
-| Pictures from the web | Asked in one line, only for real events or named subjects | Generated pictures that read as illustration |
+| Pictures from the web | Asked in one line, only for real events or named subjects: ones the person may use (their own, licensed or public domain) | Generated pictures that read as illustration |
 | Product | Only when the episode shows one | Its real photo; never a made-up stand-in |
 | Facts, numbers, news | Only when the topic needs them | Checked sources; otherwise numbers stay out |
 | Cover | No | One, quoted with the episode; the person may drop it |
@@ -76,8 +76,8 @@ After the intake, keep going to delivery. Pause only for a missing hard gap, a r
 (the set, the style), the price yes, or a checkpoint the person asked for.
 
 1. **Start, orient, check the tools.** If `track_skill_activation` is in your tool list, call it
-   once for this request with `skill_name: "creatorline-ai-host"` and never mention it. Then,
-   skipping what this conversation already did: `list_brands`, `get_brand`, `get_avatar` on
+   once for this request with `skill_name: "creatorline-ai-host"` (house-rules.md, section 10).
+   Then, skipping what this conversation already did: `list_brands`, `get_brand`, `get_avatar` on
    the host, `get_credit_balance` (house-rules.md, section 1). Confirm the tools the flow uses
    are in your list (review.md, section 2); one missing: say what cannot be done, stop. Call
    `get_video_guide` (its `credits` price captions and export) and `list_models` with
@@ -142,9 +142,10 @@ After the intake, keep going to delivery. Pause only for a missing hard gap, a r
    and 8. A cheaper episode: shorter, library cutaways or stills, no voice match, no cover.
 
 5. **Film.** On yes:
-   - Every paid call of the episode, here and in steps 6 and 7: call with the final arguments
-     and no `confirm`. If the credits equal that item's line in the quote, call again with
-     `confirm: true` without asking again. If they differ, stop and ask.
+   - Every paid call of the episode, here and in steps 6 and 7: the person's yes covers each
+     item of the quote at its quoted price. Call with the final arguments and no `confirm` to
+     read the price; when it matches that item's line, call again with `confirm: true`. When it
+     differs, stop and ask the person.
    - New set: make the four candidates, show them together with a link each, and wait for the
      person to pick one (host-continuity.md, section 2). Never pick for them.
    - Part 1 first, with the hook. Every part takes `avatar_id` and `inputs: {location: "<set
@@ -154,7 +155,7 @@ After the intake, keep going to delivery. Pause only for a missing hard gap, a r
      promise in big letters on the other, the top and bottom bands left clear, one take;
      creatorline-cover-image has the full craft. It is never a clip in the episode.
    - Part 1 done: check it (review.md, section 5). It passes: film the other parts and the
-     sign-off at once, no question. It fails: review.md, section 12. A running series films
+     sign-off at once, as quoted. It fails: review.md, section 12. A running series films
      every part at once.
    - Wait with `get_generation` `{generation_id, wait_seconds: 45}` on each running run, one
      short line between calls ("Part 2 of 3 is filming."). A lookup error is not a failed run:
@@ -234,10 +235,9 @@ it in place, re-time what sat over it, export again (assembly.md, section 12).
 - **The strongest picture before text.** For each part, name the most specific thing it could
   show before settling for a label (picture-plan.md, section 4).
 - **Measure, never guess.** Times come from `get_video` and the caption lines.
-- **Facts are backed, the host's life is its own.** A fact about the world (a number, a
-  headline, a date) comes from what the person gave, the brand document, or a source you name.
-  The host is a living persona: its own story, routines, results and opinions are welcome
-  (house-rules.md, section 7).
+- **Facts are backed.** A fact about the world (a number, a headline, a date) comes from what
+  the person gave, the brand document, or a source you name. The host speaks in its own voice,
+  with its own opinions.
 - **Sound.** No music unless the person supplies a quiet instrumental (supplied-media.md,
   section 8). Cutaways stay silent.
 

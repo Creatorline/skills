@@ -66,7 +66,7 @@ fewer (more only when the person asks). How-to steps: the Steps map below.
 | Block | 15 s | 30 s | 60 s |
 |---|---|---|---|
 | Hook: a specific number or a named contradiction | 0-3 | 0-3 | 0-6 |
-| Credibility: one flex and one confession, a line each (the persona's own, or the person's) | - | 3-6 | 6-12 |
+| Credibility: one flex and one confession, a line each | - | 3-6 | 6-12 |
 | The mechanism, with its receipt | 3-9 | 6-22 | 12-45 |
 | The command, or an if-then | 9-12 | 22-27 | 45-54 |
 | A one-line verdict or aphorism, then a hard stop | 12-15 | 27-30 | 54-60 |
@@ -116,11 +116,10 @@ answered.
 words over its beat.
 **Never.** Throat-clearing; vague or round numbers; a stat or quote with no source; get-rich
 promises; the same pace throughout; a tease never paid; corporate words.
-**Speakers.** The avatar: a living persona with its own receipts and confessions (its numbers,
-its costly mistake), written specific; data about the wider world names its source. The person:
-their own numbers, or a marked blank they fill. **Films with** `creatorline-talking-video`
-(`Talking head`), `creatorline-tutorial-video` (steps), or a narrator in
-`creatorline-faceless-video`.
+**Speakers.** The avatar: in its own voice, written specific; data about the wider world names
+its source. The person: their own numbers, or a marked blank they fill. **Films with**
+`creatorline-talking-video` (`Talking head`), `creatorline-tutorial-video` (steps), or a
+narrator in `creatorline-faceless-video`.
 
 ## 3. Product and tech review
 
@@ -130,8 +129,7 @@ changes their mind on camera.
 
 **Lanes.**
 - **Hands-on**: the speaker bought it, lived with it and reports back: what they bought, how
-  long they used it, what changed, what broke. The avatar's persona takes this lane with its
-  own history ("three weeks in", "I caved and got the big one"); the person, with theirs.
+  long they used it, what changed, what broke.
 - **Demo**: the product working now, no history needed: a first look, or a clip where the
   product doing its job is the whole story.
 - **Ranking**: several products; the sort rule announced in the second sentence (price going
@@ -169,12 +167,11 @@ in a ranking; the product's name and the call to action over the last beat.
 **Never.** Spec-sheet order (use the order a normal person's questions come in, or the order of
 use); an unowned opinion; a superlative with no comparison; a verdict with no why; press-release
 voice; apologizing for length; asking for likes.
-**Speakers.** The avatar: any lane, and Hands-on in its own voice is welcome ("I tested", "a
-month in", "I bought"). The person: Hands-on with their own story; what they do not tell you
-is a marked blank. Rankings compare the brand's own products, or products by type and price
-("the twenty-dollar one"), never another brand by name (house rules, section 7). **Films
-with** `creatorline-talking-video` (`Product ad`), `creatorline-product-video` (product as
-the hero, voice off screen).
+**Speakers.** The avatar: any lane, in its own voice. The person: Hands-on with their own
+story; what they do not tell you is a marked blank. Rankings compare the brand's own products,
+or products by type and price ("the twenty-dollar one"), never another brand by name (house
+rules, section 7). **Films with** `creatorline-talking-video` (`Product ad`),
+`creatorline-product-video` (product as the hero, voice off screen).
 
 ## 4. Commentary
 
@@ -371,8 +368,8 @@ looks; the household ruler's number ("as long as 3 buses").
 lecture register; unbroken abstraction; teases never paid; moralizing before the mechanism;
 round numbers; mocking the misconception.
 **Speakers.** A fact about the world needs a source, the label, or common knowledge the viewer
-can check; the persona's own experience with it is written. Health, supplements and money: no
-promise that it cures, treats or prevents a disease, or guarantees income or a return.
+can check. Health, supplements and money: no promise that it cures, treats or prevents a
+disease, or guarantees income or a return.
 **Films with** `creatorline-talking-video`, `creatorline-faceless-video`.
 
 ## 8. UGC scene formats
@@ -416,7 +413,7 @@ should stay to the last line. Default 30 s. Filmed as `Storytime` by
 | What it means now | - | - | 48-55 |
 | Kicker: the reaction, or the line that lands | 12-15 | 24-30 | 55-60 |
 
-One held pause just before the turn. The avatar has a past: it tells the story as its own
+One held pause just before the turn. The avatar tells the story as its own
 ("Last spring I showed up a day early..."), as a POV ("POV: you show up a day early"), in the
 second person ("You walk in and..."), or as something happening now ("I'm in the parking lot
 and I just realized..."). The person tells theirs. A product may be in the scene, never the
@@ -429,7 +426,7 @@ are asked for:
 |---|---|---|---|
 | GRWM chat | One point made while getting ready; lines about two words shorter | 30 s | `creatorline-talking-video` (`GRWM`) |
 | Day in the life | 4 to 6 moments, one line each, one thread tying them | 30 s | `creatorline-talking-video` (`Day in the life`) |
-| Before and after | A look, a room or a setup changed on camera, or two takes cut together in Video Studio; a change that took weeks (skin, a body) is the persona's story: it says the before, the camera shows the after | 15 s | `creatorline-talking-video` (`Before & after`) |
+| Before and after | A look, a room or a setup changed on camera, or two takes cut together in Video Studio | 15 s | `creatorline-talking-video` (`Before & after`) |
 | Street interview, podcast clip | Two speakers, lines labelled by role, one speaker per beat | 15 s | `creatorline-talking-video` (`Street interview`, `Podcast clip`) |
 | Unboxing, haul | Package, open, reveal, reaction | 15 to 20 s | `creatorline-unboxing-video` |
 | Try-on, fit check | The look, the details, the movement, the verdict | 15 s | `creatorline-try-on-video` |

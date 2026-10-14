@@ -55,15 +55,11 @@ declined request into a different outfit.
    sheer or see-through pieces, sexualized styling or poses, nudity, and any focus on intimate
    anatomy. Swimwear only as styled beachwear in a relaxed pose; a content check may still stop
    it (refunded). Kidswear is never worn on camera: offer creatorline-product-video.
-3. **Allowed promotion.** Decline political persuasion and prohibited or age-restricted goods:
-   adult products, gambling, drugs, prescription medicine, tobacco or nicotine, weapons,
-   counterfeits or replicas of another brand's design, extremist goods, risky financial products,
-   spyware, fraud, covert surveillance.
-4. **No impersonation.** The avatar is a living persona: its own size, fit, purchase story and
-   testimonial-style verdict are welcome
-   ([The persona: fit, size and story](#the-persona-fit-size-and-story)). It never claims to be
-   a real, named person or speaks as a real brand's official account (house-rules.md,
+3. **Allowed promotion.** Decline anything on the Never promoted list (house-rules.md,
    section 7).
+4. **No impersonation.** The avatar speaks in its own voice
+   ([The persona: fit and voice](#the-persona-fit-and-voice)). It never claims to be a real,
+   named person or speaks as a real brand's official account (house-rules.md, section 7).
 
 ## What you need
 
@@ -74,7 +70,7 @@ declined request into a different outfit.
 | Route B only: the try-on clip | **Ask**: a TikTok or Instagram link, a direct link to the video file, or a video in their library. At least 4 s, one main person; only its first 30 s are used. |
 | Avatar | The brand's default avatar, or the one the person names (the gate's age check). |
 | Accent, a habit or mannerism | Only when the person hints at it (says where the avatar is from, mentions a quirk). Never invented. |
-| Fabric, price, sizes offered | From the person, the label or the page (a price nobody gave is left out). The persona's own size and fit are its own. |
+| Fabric, price, sizes offered | From the person, the label or the page (a price nobody gave is left out). |
 | Register | From their words only; natural by default (references/performance.md, section 1). |
 | Setting | The home the avatar's own image shows, else a bright bedroom; neutral window daylight. |
 | Language | The brand's `language`; English lines in an American accent unless the brand's `country` or the person says otherwise. |
@@ -137,8 +133,8 @@ same way, A otherwise. C: references/frame-first.md.
      frames): `estimate_generation_cost`, same tool and params, counted in the total.
    - Route B: the swap without `confirm`, plus the re-voice if they want one.
 8. **Run** on yes: the same calls with `confirm: true`, in order. A call priced by an estimate
-   is called once more without `confirm` when its input exists: the same price, confirm it
-   without asking again; a higher one, tell the person and ask.
+   is called once more without `confirm` when its input exists: the same price is covered
+   by the yes, so confirm it; a higher one, tell the person and ask.
 9. **Wait and narrate.** `get_generation` with `wait_seconds: 20` for photos and `45` for
    videos, until `succeeded` or `failed`. One line between calls: "Making two photos of Mia in
    the dress." "Filming the try-on now, usually a few minutes." A swap often takes longer.
@@ -276,19 +272,15 @@ neckline, buttons down the front, ties at the back of the waist, hits mid-calf."
 11. Neutral daylight, never golden hour; no camera move unless asked.
 12. No call to action in the lines; the end loops (mid-phrase, or back to the first framing).
 
-## The persona: fit, size and story
+## The persona: fit and voice
 
-The avatar is a living persona with a body, a size and a wardrobe of its own (house-rules.md,
-section 7). A try-on is where that pays most, so use it:
+The avatar speaks in its own voice, and the item is shown on its body. Use both:
 
-- **Its own fit and size are welcome.** "I'm usually a medium and this fits true to size", "I
-  sized down and I'm glad", "I'm 170 cm and it hits mid-calf". Spoken, a fit line needs no
-  shot of its own; the video still shows how the item is cut and moves.
-- **The purchase and the wait are the proven opening:** "I just bought this", "my order finally
-  came", "I've waited months for this one". A reason it matters now (an occasion, a gap it
-  fills) works too.
-- **A testimonial in its own words** is welcome: what it wore it to, how it washed, a week of
-  wearing it ("I've worn it all week and it still looks pressed").
+- **How it sits on the body** is a strong line when the shot shows it: "it hits right at
+  mid-calf", "the waist sits right where it should". The video shows how the item is cut and
+  moves.
+- **A reason it matters now is the proven opening:** an occasion ("for a summer wedding"), a gap
+  it fills, or plain anticipation ("It's here. Trying it on.").
 - **How it looks on her is her opinion** ("these make my legs look a mile long"). A vague line
   ("flattering on everyone") is weak because it is vague: say what it does, on one place on the
   body, and describe the cut in the wardrobe line so the render shows it.
@@ -296,8 +288,7 @@ section 7). A try-on is where that pays most, so use it:
   or the page; a number that must read exactly goes in the caption or on-screen text.
 - `Before & after` is an outfit change on camera, never a body change: one take cannot show
   weeks passing.
-- Posts carry `made_with_ai: true`, a default the person may switch off (house-rules.md,
-  section 7).
+- Posts carry `made_with_ai: true` (house-rules.md, section 7).
 
 ## Check before you quote
 
@@ -312,8 +303,8 @@ Read every brief against this list:
 - The wardrobe line identical everywhere; absences said positively twice; closures by position.
 - Each hand's job named where it matters; no three jobs at once.
 - Lines inside the word band; no banned first word, AI-sounding phrase or call to action
-  (references/performance.md, sections 7 and 8). A story or fit line is spoken; a line pointing
-  at something to see has a shot that shows it.
+  (references/performance.md, sections 7 and 8). A line pointing at something to see has a shot
+  that shows it.
 - No age words (girl, boy, kid, young, teen); the avatar's face never described.
 - Register, Accent and Setting lines identical in every section and take; the end loops.
 

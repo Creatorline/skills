@@ -32,11 +32,11 @@ sound on gets a line the text did not spoil.
 ## 2. Hook types by genre
 
 A spoken-word script draws its options from its own genre's types: three options, three
-different types, each labelled. "With the avatar" says how the avatar takes the type: it is a
-living persona with its own receipts, tests, purchases and confessions (house rules, section 7).
-"Sourced" marks a fact about the real world, which needs a source; "supplied" marks material
-only the person can give (a headline, a recording). When the person speaks as themselves, what
-you do not know of theirs is a marked blank. Every example is an illustration, never a fact.
+different types, each labelled. "With the avatar" says how the avatar takes the type, in its
+own voice. "Sourced" marks a fact about the real world, which needs a source; "supplied" marks
+material only the person can give (a headline, a recording). When the person speaks as
+themselves, what you do not know of theirs is a marked blank. Every example is an
+illustration, never a fact.
 
 ### Business and self-improvement
 
@@ -45,26 +45,25 @@ of time read as receipts.
 
 | Type | The move | Example | With the avatar |
 |---|---|---|---|
-| Receipts | A non-round result in a timeframe, then "here's the short version" | "Four hundred and twelve orders in nineteen days. Here's the short version." | Yes, the persona's own numbers |
+| Receipts | A non-round result in a timeframe, then "here's the short version" | "Four hundred and twelve orders in nineteen days. Here's the short version." | Yes, the brand's real numbers |
 | Blueprint | The map to an outcome: N steps, and "step one is..." | "Three steps to a pantry that never runs out. Step one is boring." | Yes |
 | Paradox | Fact A, then the fact that contradicts it: how? | "The cheapest airline earns the most per seat. How?" | Yes, sourced |
 | Second-person mirror | The viewer's exact week, in the present tense | "You open the banking app, wince, and close it again." | Yes |
 | Inversion tutorial | How to stay stuck, step one | "How to never finish a side project. Step one: announce it." | Yes |
 | Gate | "If you're <painful state>, this is for you" | "If your inbox has four digits, this one's for you." | Yes |
 | Answer-first | The whole answer at once, then the deeper why | "Pay yourself first, automatically, on payday. Here's why it works." | Yes |
-| Story in progress | A story already costing something | "Day four, and I've already lost two clients." | Yes, its own story |
+| Story in progress | A story already costing something | "Day four, and I've already lost two clients." | Yes |
 | Headlines, then thesis | Two real headlines on screen, then the claim | (two headlines the person supplies) "Both are true. Here's why." | Only with headlines the person supplies |
 | Borrowed anecdote | A documented story about a known company that carries the thesis | "A famous toy maker nearly went bankrupt selling too many toys." | Yes, sourced, never a quote you cannot source |
 
 ### Product and tech review
 
 A hands-on hook holds at least one number and a first-person effort verb ("thirty days in").
-The avatar's persona carries its own: its purchase, its month of use, its test. The person's:
-ask them, or leave a marked blank.
+When the person speaks as themselves: ask them for theirs, or leave a marked blank.
 
 | Type | The move | Example | With the avatar |
 |---|---|---|---|
-| Stunt ledger | Spend a sum fast on the most extreme version, then: dream or scam? | "I spent two hundred dollars on the priciest pan I could find." | Yes, its own spend |
+| Stunt ledger | Spend a sum fast on the most extreme version, then: dream or scam? | "I spent two hundred dollars on the priciest pan I could find." | Yes |
 | Fresh intel | A recency stamp, the work done, and a promise to sort it | "It came out Tuesday. Two things the box doesn't tell you." | Yes |
 | Verdict-first tease | The verdict at once, then "here's why" | "Skip the pro model. Here's why." | Yes, as an opinion |
 | Disaster cold open | The failure, live, then "and I did everything right" | (the cheap bottle leaks on the desk) "Filled to the line. Closed tight." | Only a failure shown on camera, of a generic product |
@@ -83,7 +82,7 @@ The artifact AND the stance are known by the end of sentence one.
 | Cold-open sketch | Three to five seconds of the scene acted, then a snap to normal voice | (as a cheerful ad voice) "Unlimited plan!" (normal) "It's not." | Yes |
 | Artifact first | The odd thing shown or read raw, then the reaction | (reads the fine print aloud) "...Okay, let's talk about that." | Yes |
 | Discovery story | "People kept sending me this" | "Six of you sent me this ad this week." | Yes |
-| Experiment stakes | A costly, irreversible commitment | "I followed this advice for a month. Here's the bill." | Yes, its own month |
+| Experiment stakes | A costly, irreversible commitment | "I followed this advice for a month. Here's the bill." | Yes |
 | Verdict first | The stance, flat | "This ad is lying to you, politely." | Yes, as an opinion |
 | Deadpan definition | A textbook definition, undercut within seconds | "A free trial: a trial that is free. In theory." | Yes |
 | Fake-service guide | A helpful guide that delivers the opposite | "Welcome to the guide to ruining a first date." | Yes |
@@ -118,7 +117,7 @@ The artifact AND the stance are known by the end of sentence one.
 | Normalcy trap | A perfectly ordinary day | "The most ordinary street in town. Then the dog stops barking." | Yes, sourced |
 | Cut at the peak | The scene cut at its worst moment, then a rewind | "The door was open. Six hours earlier..." | Yes |
 | Raw audio first | A real emergency or jail call first, the voice named after | (the person's supplied recording) | Only with a real record the person may use |
-| Personal connection | The teller's own link to the case | "This happened two streets from where I grew up." | Yes, from the persona's own past; the case facts sourced |
+| Personal connection | The teller's own link to the case | "This happened two streets from where I grew up." | Only when the link is the person's own; the case facts sourced |
 | Concept, applied | A known idea, then the case that proves it | "Investigators call it the second look. It solved this." | Yes, sourced |
 | Damning stack | Fact on fact, ending on one absurd number | "No alibi. No car. One receipt, for eleven cents." | Yes, sourced |
 | Discovery framing | How the case was found, or the detail that broke it | "A librarian noticed the book was returned twice." | Yes, sourced |
@@ -150,7 +149,7 @@ owes: an unpaid hook is worse than none.
 |---|---|---|---|---|
 | Value promise | The benefit in one clause, with a count, a time or a price that makes it credible | "Three settings that stop your phone photos looking flat." | Every item delivered | "This will change your life" |
 | Intent | What is about to happen, then straight into it | "I'm folding a fitted sheet in four moves." | Doing it on camera, in that order | An intent the clip never carries out |
-| Result first | The finished thing at frame one; the line reframes it | (the finished shelf) "This takes eleven minutes." | How it was done | A number drawn into the frame: earnings or counts go in as Video Studio text |
+| Result first | The finished thing at frame one; the line reframes it | (the finished shelf) "This takes eleven minutes." | How it was done | A number drawn into the frame: counts go in as Video Studio text |
 | Offer up front | The real offer, said flat over the product | "Two bags for the price of one, until Sunday." | The terms and what the product is | Terms the person did not give |
 
 ### Hold one thing back
@@ -171,15 +170,11 @@ owes: an unpaid hook is worse than none.
 
 ### Own up
 
-The persona has a past, so its purchases, habits and results are its own to confess (house
-rules, section 7).
-
 | Form | First line | Example | Owes | Avoid |
 |---|---|---|---|---|
 | Almost did not post | A line that overrides its own hesitation and names the subject | "I wasn't going to post this, but the cheap one wins." | The proof, then a flat verdict | A hesitation the video never explains |
 | The honest downside | A real downside, said first | "Yes, it's expensive." | Why it is worth it | A fake downside |
-| Personal result | A result the speaker had, with its time | "Three weeks in, and my cheeks stopped going red by noon." | What they did, and what changed | A vague result ("it changed my life") |
-| The purchase | Why they finally bought it, or waited for it | "I waited three months for this to come back in stock." | Whether it was worth it | A purchase with no reason |
+| Result | What the product visibly does, or the time a task takes | "Eleven minutes, start to finish." | How it was done, shown | A vague result ("it changed my life") |
 
 ### Call out the viewer
 
@@ -270,6 +265,5 @@ When the person asks only for hooks ("give me 10 hooks for..."):
 | "You won't believe what this does!" | Withholds everything, says nothing | "This is the one setting your air fryer manual skips." |
 | "This changed my life." | Vague: no thing, no time, no change you can picture | "Three drops, and my dressing finally stopped splitting." |
 | "Comment if you agree!" | An engagement prompt, no payoff | "Your fridge isn't too small. It's set up wrong." |
-| "As a nutritionist, I..." | Opens on who is talking, not on what the viewer gets; a credential lands harder in beat 2 | "Read the back first. The front is marketing." |
 | "Today we're going to learn how vaccines work." | Announces the topic, no image, no question | "Your body keeps a most-wanted list. Here's how it's made." |
-| "I tested this for a month." | The month is there, the result is not | "Thirty days in, and it still ends the day at forty percent." |
+| "I tested this." | The test is there, the result is not | "Six p.m., and it's still at forty percent." |

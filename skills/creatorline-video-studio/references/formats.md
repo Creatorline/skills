@@ -170,9 +170,8 @@ Stacked instead: `add_clip` the after with id `after`, then
 `{ "op": "set_split_screen", "id": "after", "asset_id": "<before>", "place": "top", "share": "half" }`.
 
 - The change lands on the cut: hold "before" shorter than "after".
-- With an avatar, a body or skin result is welcome (the persona, house rules section 7). Its
-  two halves are two takes cut together here: one generated take cannot show weeks passing. A
-  look or a setup can also change on camera inside one take.
+- With an avatar, the two halves are two takes cut together here. A look or a setup can also
+  change on camera inside one take.
 
 ## 7. Comment reply
 

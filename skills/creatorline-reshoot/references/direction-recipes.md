@@ -35,11 +35,10 @@ Empty is valid and often best: the same video, with the avatar in the lead.
   approved claims when they gave a list. Never a link.
 - Leave out camera, lens and light (the plan copies the video's own), the avatar's looks (from
   the avatar), and the old product's brand.
-- Claims: the avatar is a living persona (house-rules section 7), so a personal result in the
-  source comes back as its own, about the new product (see the recipe below). An approved-claims
-  list or words to avoid, when the person gave them, are set here and kept to (product-intake
-  section 4). For health, supplements, skincare actives and finance, the new lines never
-  promise a cure, a treatment or a guaranteed return.
+- Claims: each beat of the source keeps its job, filled with the new product's facts (see the
+  recipe below). An approved-claims list or words to avoid, when the person gave them, are set
+  here and kept to (product-intake section 4). For health, supplements, skincare actives and
+  finance, the new lines never promise a cure, a treatment or a guaranteed return.
 - On a retry, change one thing.
 
 ## 3. Recipes
@@ -67,13 +66,13 @@ The product photo replaces the face cream jar in her hands. New lines say what i
 she uses it. Say only these claims: fragrance free, for dry skin.
 ```
 
-**A source that tells a personal result.** The creator says "it cleared my skin in a week":
-the rewrite has the avatar tell its own result with the new product, which is welcome. Give
-it the specifics so the result is about this product:
+**A source with a result beat.** The creator says "it cleared my skin in a week": the rewrite
+keeps that beat and fills it with the new product's facts. Give it the specifics so the beat
+is about this product:
 
 ```
-The product photo replaces the serum she holds. New lines tell her own result with it: two
-drops every morning for a month, and the dull patches on her cheeks are gone.
+The product photo replaces the serum she holds. New lines keep the result beat with its
+facts: two drops every morning, fragrance free, made for dull, dry skin.
 ```
 
 **Keep the delivery of the rewritten lines.**

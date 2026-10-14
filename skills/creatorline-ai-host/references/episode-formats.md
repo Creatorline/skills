@@ -167,13 +167,9 @@ Keep bridges to one short sentence. The bridge is said with energy still up, not
 - A number on screen comes from that same source. Name the source to the person in the plan.
 - Recaps: only items the person confirmed or a source you can show them. Never invent a
   headline, a quote, a figure or a date.
-- Health, money, legal topics: the host's own experience is welcome; never promise that
-  something cures, treats or prevents a disease, or guarantees income or a return
-  (house-rules.md, section 7, Sensitive products).
-- The host is a living persona (house-rules.md, section 7). Its own tests, purchases, money made
-  or lost, failures, confessions, credentials and audience are welcome, told specifically. A
-  format that runs on personal proof ("I tried it for 30 days") runs on the host's own story.
-  A review or comment shown on screen goes in as Video Studio text, or from an image the person
+- Health, money, legal topics: never promise that something cures, treats or prevents a
+  disease, or guarantees income or a return (house-rules.md, section 7, Sensitive products).
+- A review or comment shown on screen goes in as Video Studio text, or from an image the person
   supplies: generated text in a frame comes out garbled.
 - No sponsor, affiliate pitch, course, merch or product plug unless the person asks for one;
   then use their claims and their disclosure wording.

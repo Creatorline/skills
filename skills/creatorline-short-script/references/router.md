@@ -59,8 +59,8 @@ A genre is chosen only when its whole gate holds.
 There is no fallback genre. A vague, advice-shaped request is not Business by default: route it
 by its engine and spine like any other. A request that is a scene, not spoken word, goes to the
 UGC scene formats. An ad for the brand's own product is a Product review when the words carry
-it (a verdict on the product): Hands-on when the persona tells its own time with it, Demo when
-the product working is the story. Or it is the scene format that shows it (an unboxing, a
+it (a verdict on the product): Hands-on when the speaker tells their own time with it, Demo
+when the product working is the story. Or it is the scene format that shows it (an unboxing, a
 try-on, an app promo).
 
 ## 4. When two genres fit
@@ -92,8 +92,8 @@ defaults line. At most one message of up to three questions ([asking.md](asking.
 
 | Genre | What it needs | Infer when you can |
 |---|---|---|
-| Business | The lane (tips, a listicle, how-to steps); the speaker's own specific numbers and one costly confession (the avatar's persona brings its own; ask the person when they speak as themselves); data about the wider world with its source; how many items the hook promises | The lane from the ask; the count from the length; the persona's numbers and confession |
-| Product review | The lane (hands-on, demo, ranking, news, taught through use); the labor proof (bought, used for N days, broke, compared: the persona's own, or the person's when they speak as themselves); the honest verdict (a review is written backwards from it); what was NOT tested | With the avatar, its own history with the product (how long, how it found it, what changed) in the Hands-on lane |
+| Business | The lane (tips, a listicle, how-to steps); the speaker's own specific numbers and one costly confession (ask the person when they speak as themselves); data about the wider world with its source; how many items the hook promises | The lane from the ask; the count from the length |
+| Product review | The lane (hands-on, demo, ranking, news, taught through use); the labor proof (bought, used for N days, broke, compared: the person's when they speak as themselves); the honest verdict (a review is written backwards from it); what was NOT tested | The lane from the ask |
 | Commentary | The concrete artifact (a vague topic: ask for one, or propose two or three real kinds of artifact); the lane (hot take, reaction, deadpan satire); the speaker's actual stance | The stance from the brand's `brand_voice` |
 | Documentary | The story with its verified facts and sources (an unverified item is tagged `[VERIFY]`); the narrator's register (a present companion in the first person, or a composed narrator in the third, never in between); the lane; the withheld thing (when the title gives the outcome away, hold the how) | A narrator's register for a faceless script |
 | True crime | The case facts, the timeline and the sources (victims, the person responsible, the investigation, the legal outcome), researched or given, never invented; the lane; which reveal is held; the legal status (before a verdict, "allegedly" throughout) | Nothing: research it or ask |
@@ -101,12 +101,11 @@ defaults line. At most one message of up to three questions ([asking.md](asking.
 
 ## 6. Proof, by speaker
 
-Some genre moves need personal proof: receipts, a test, a purchase, a confession, a credential,
-a time of use.
+Some genre moves need personal proof: a number, a test, a purchase, a confession, a time of
+use.
 
-1. **The avatar** is a living persona (house rules, section 7): it carries its own proof. Write
-   it specific and in its voice ("three weeks in", "I caved after the third ad", "I sent the
-   first one back"), built on the product's real facts. The brand is responsible for its claims.
+1. **The avatar** speaks in its own voice, written specific, built on the product's real facts
+   and what the camera shows. The brand is responsible for its claims.
 2. **The person themself**: ask them for it, specifically ("What did you actually measure, and
    over how long?"). What they do not give is a marked blank they fill: "[your result]".
 3. **A narrator** speaks in the third person: the brand's facts and story, and named, sourced
@@ -115,8 +114,7 @@ a time of use.
 ## 7. The facts policy
 
 It covers the real world: events, people, companies, and numbers about them. It wins over any
-genre's wording, any hook type and any example in these references. The persona's own life is
-not part of it: that is written, not sourced (section 6).
+genre's wording, any hook type and any example in these references.
 
 - **Never invent** a real-world event, a statistic given as data, a quote, or a real person's
   words, dialogue or inner thoughts.

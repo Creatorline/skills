@@ -105,9 +105,8 @@ head", not "happy").
 - A review, comment card, rating or screenshot drawn into the picture: generated text comes
   out garbled. It goes in as Video Studio text, or the person supplies it as an image.
 
-The persona applies with Enhance off too (house-rules.md, section 7): the avatar's own result,
-history with the product or credential is welcome in its spoken lines. The fixed lines hold,
-and no writer is there to catch a slip.
+Safety holds with Enhance off too (house-rules.md, section 7), and no writer is there to catch
+a slip.
 
 ## 10. Weak and strong
 

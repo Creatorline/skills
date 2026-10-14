@@ -82,12 +82,9 @@ when guessed.
 
 ## 4. Claims
 
-- **The brand is responsible for its claims.** The avatar is a living persona (house-rules.md,
-  section 7): its own results, how long it has used the product, a before and after, a purchase
-  story, a testimonial in its own words are all welcome. Write them specific.
 - **Facts are a source, not a limit.** The label, the product page and the person's words tell
   you what the product is and does: use them freely, numbers included (15% vitamin C, 20 g
-  protein). The persona's experience goes beyond them.
+  protein). Write them specific.
 - **An approved-claims list is an option.** When the person gives one, use it word for word and
   keep to it; to keep a page's own claims out, write in the brief "Say only these claims: ...".
   Without one, write freely. Never ask for a list as a condition.
@@ -95,10 +92,8 @@ when guessed.
 - **Exact on screen.** A number or a claim that must read exactly (a price, an offer, a
   percentage) goes in Video Studio text or the caption (section 5): printed text in a generated
   frame comes out garbled. Spoken, it is fine.
-- **The fixed lines** (house-rules.md, section 7): never a real, named person or a real brand's
-  official account, never a minor, nothing illegal. For health, supplements, skincare actives
-  and finance that means no promise that it cures, treats or prevents a disease, and no
-  guaranteed income or return.
+- **Health and money** (house-rules.md, section 7): no promise that it cures, treats or
+  prevents a disease, and no guaranteed income or return.
 - One optional intake question covers it: "Anything you must say, or must never say, about it?"
 
 ## 5. Logos and printed text

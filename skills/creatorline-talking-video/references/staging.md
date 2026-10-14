@@ -154,8 +154,8 @@ Start from the look the product works on, so the demo is honest:
 | Fashion, jewelry | Fully styled |
 
 The starting look is never shown changing because of the product unless the change happens on
-camera in the clip (makeup going on, hair being styled). A result that needs time is told, or
-shown across a cut (formats.md, section 12).
+camera in the clip (makeup going on, hair being styled). A result that needs time is shown
+across a cut (formats.md, section 12).
 
 ## 8. Two or three people
 

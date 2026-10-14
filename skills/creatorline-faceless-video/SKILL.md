@@ -65,8 +65,8 @@ Follow [house-rules.md](references/house-rules.md) for consent, waiting and deli
 steps add what is particular to this format. [checks.md](references/checks.md) holds every gate.
 
 **0. Note the skill.** If `track_skill_activation` is in your tools, call it once for this new
-request with `skill_name: "creatorline-faceless-video"`. Not again while you wait or fix
-things. Never mention it.
+request with `skill_name: "creatorline-faceless-video"` (house-rules.md, section 10). Not again
+while you wait or fix things.
 
 **1. Orient** (once per conversation): `list_brands`, `get_brand` (its voice, `language`,
 `brand_voice`), `get_credit_balance` (a `free_trial: true` stops paid work: house rules,
@@ -110,6 +110,10 @@ with the script and the price, so both are approved at once. Always show every b
 A changed line is free; more blocks or another look are quoted again. Short balance: offer
 Picture story (about a third to a half of Animated), fewer blocks, or Stock footage.
 
+The yes covers each paid call of the quote at its quoted price, so those calls below take
+`confirm: true`. A call that would cost more than its line in the quote, or one the quote did
+not list, is asked first.
+
 **5. The look reference and the roster** (not for Stock footage). On yes: the look reference
 first (`text-to-photo`, `aspect_ratio: "2:3"`, [visual-style.md](references/visual-style.md),
 section 3); `get_generation` with `wait_seconds: 30` until it is done. Then every roster picture
@@ -125,7 +129,7 @@ call, free) against [visual-style.md](references/visual-style.md), section 13.
 **Review stop 1 (interactive, Animated and Stock footage).** List the pictures as links, one
 line per block (`Block 1: [shot 1](<url>) · [shot 2](<url>) ...`), say the look reference may
 look odd because it is only a sample of the look, and ask: "Continue to the narration?" with
-two options, Continue (recommended) and Stop here. End your turn. Hands-off runs never stop.
+two options, Continue (recommended) and Stop here. End your turn. Hands-off runs skip this stop.
 
 **7. Build and narrate.** Animated: the still cut from the shot pictures, 2 seconds each, all
 muted (narration-and-assembly.md, section 5). Then `add_voiceover` per block at the block's
@@ -215,7 +219,8 @@ The full list is [checks.md](references/checks.md), section 8. At least:
 | A picture drifts off the look | Redo it with the style line and the look reference, the palette line stated again; only that picture. A redo of a picture that succeeded is quoted first |
 | A picture shows letters, or a recognizable face | Redo it with signs described as plain, the figure from behind or in silhouette |
 | A figure looks like the brand's avatar | Check `include_avatar: false`; describe the figure fully; redo |
-| A run fails or is refused | The retry ladder ([checks.md](references/checks.md), section 6): same call twice, then reworded, then restaged, up to about 8; references never dropped |
+| A run fails | The retry ladder ([checks.md](references/checks.md), section 6): same call twice, then restaged, up to about 8 |
+| A run is refused by the content check | Tell the person which shot; offer another picture for that beat |
 | A shot cannot be made after the ladder | It drops out; its block becomes 4 shots of 2.5 seconds |
 | The look reference cannot be made | Stop: nothing else runs without it. Offer another look |
 | A line runs over 9.5 or under 7.2 seconds | Rewrite and retake it, at most 3 tries (narration-and-assembly.md, section 6) |
@@ -246,8 +251,8 @@ What next?
 Name the length, the look, the narrator and language, and whether captions are on. Credits
 used: the `credits_charged` of every run started, minus the failed ones (refunded). Credits
 left: `get_credit_balance`, called once at the end. The MP4 link expires; the studio link does
-not. Add the sources line for anything researched; keep job details and loose links to yourself
-unless asked. One line for anything that went differently ([checks.md](references/checks.md),
+not. Add the sources line for anything researched. Generation ids and other links are given
+when asked. One line for anything that went differently ([checks.md](references/checks.md),
 section 9).
 
 ## Next steps to offer

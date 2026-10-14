@@ -52,8 +52,7 @@ Fix any line that fails, then quote. A fix after the run is a paid retry.
 - The person's must-say and never-say words, and any approved list, are kept; no promise that it
   cures, treats or prevents a disease, or guarantees income or a return (truth-and-safety.md,
   section 3); none of the brand's don'ts.
-- A line that points at something to see has the shot that shows it; the persona's own story
-  needs none.
+- A line that points at something to see has the shot that shows it.
 - Voice gender and accent in the Format line, the same for every take and clip.
 - A Music line only when asked; `Language:` when not English.
 
@@ -88,7 +87,7 @@ Offered after the result, written in chat, free. Nothing of it is burned into th
   person pins it themselves once the post is live; no tool does this.
 - **Disclosure**: `#ad` opening the caption when someone other than the account's owner paid
   for the post (a brand's own product on its own account needs none); `made_with_ai: true` on
-  the post. Both are defaults the person may switch off (house-rules.md, section 7).
+  the post (house-rules.md, section 7).
 - **The loop note**: one line on why the ending runs back into the start.
 
 Then, on a yes, `create_post` with the caption, the hashtags and `made_with_ai: true`: it lands

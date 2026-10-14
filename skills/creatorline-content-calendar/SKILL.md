@@ -122,8 +122,9 @@ A month is planned two weeks at a time: plan the first two, make week 1, come ba
      already done), with the row's hook, angle, avatar, product card and language carried
      over. When that skill is not available to you and `get_guide` is in your tools, call it
      with the skill's name minus `creatorline-` as `topic` and follow that;
-   - before each paid call, make it without `confirm`; at or under the row's quote, call again
-     at once with `confirm: true` (the week's yes covers it); above it, pause that row and ask;
+   - the person's yes covers each row at its quoted price. Before each paid call, read its price
+     without `confirm`; at or under the row's quote, call again with `confirm: true`; above it,
+     pause that row and ask;
    - wait with `get_generation` and `wait_seconds: 45`; one short line between calls; show the
      progress board (card 2) when a row lands;
    - check each take with its skill's checks, then finish it as quoted: the avatar's own voice
@@ -153,9 +154,8 @@ The long form, with tables and examples, is [planning](references/planning.md).
 - **Mix formats, never repeat one two days running.** Talking videos carry trust, re-filmed
   trends carry reach, carousels get saved, product pieces show the thing working.
 - **Write every hook now**, specific and already in motion: a number, a mistake, a hot take, a
-  question the audience asks, the result shown first, the avatar's own result. Rotate the type
-  through the week. The avatar is a living persona, so "I've used it for months" and a purchase
-  story make strong hooks (house rules, section 7).
+  question the audience asks, the result shown first, the avatar's own verdict. Rotate the type
+  through the week.
 - **Value before the sell.** Open the week with something easy to watch; the product shows up
   from the second post, and a launch week builds tease, reveal, demo, how to use, questions.
 - **Fewer, better posts.** Three to five a week beats one, and quality beats daily for most
@@ -175,7 +175,7 @@ The long form, with tables and examples, is [planning](references/planning.md).
 - every row's inputs exist or are asked for in the intake (product photo, trend link, screens);
 - every row's format suits its accounts: YouTube takes video only, TikTok takes no single
   photo, a carousel holds 2 to 10 images;
-- hooks stay inside the fixed lines (house rules, section 7) and the brand's don'ts.
+- hooks keep to Safety (house rules, section 7) and the brand's don'ts.
 
 **The week as a set**, before you file the last post:
 

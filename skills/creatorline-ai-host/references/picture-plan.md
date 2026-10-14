@@ -139,9 +139,8 @@ word times.
 
 - Never put on screen an invented number, date, stamp, source name, headline or interface as
   if it were a real record. A real one carries what it is ("Screenshot: the app's settings").
-- The host's own result, a review or a comment card is welcome (the persona, house-rules.md,
-  section 7) as Video Studio text, or from an image the person supplies: never generated into
-  a picture, where words come out garbled.
+- A review or a comment card goes in as Video Studio text, or from an image the person
+  supplies: never generated into a picture, where words come out garbled.
 - An illustration never looks like a captured screen or a document.
-- A web page goes on screen as a screenshot that shows where it is from, and only with the
-  person's yes (supplied-media.md, section 7).
+- A web page goes on screen as a screenshot the person supplies, showing where it is from
+  (supplied-media.md, section 7).

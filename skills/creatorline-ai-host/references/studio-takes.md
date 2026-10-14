@@ -32,8 +32,8 @@ be filmed exactly as written with natural mouth movement.
 
 On the writer route `create_generation` always rewrites the brief into the model's prompt and
 films one phone: it never takes written camera setups. Here the prompt reaches the video model
-exactly as you write it, through a workflow step with Enhance off. Nothing checks or improves
-it on the way, so every rule below is yours to keep. The frame stays 9:16: Video Studio makes
+exactly as you write it, through a workflow step with Enhance off. The writer does not rewrite
+it, so every rule below, Safety included, is yours to keep. The frame stays 9:16: Video Studio makes
 vertical videos only.
 
 ## 2. What it needs
@@ -234,8 +234,7 @@ For every part:
 4. Every input is named by the right token, and nothing an image shows is described.
 5. The duration is inside the range `list_models` gives for the model.
 6. No placeholder, id, part number, note to the person, or word about the graphics layer.
-7. The fixed lines hold (house-rules.md, section 7): no real, named person, no minor, nothing
-   illegal. No writer is there to catch a slip. The persona's own past is welcome.
+7. Safety holds (house-rules.md, section 7): no real, named person, no minor.
 8. The realism layer and the voice block are word for word the show's; the exclusions come
    last.
 

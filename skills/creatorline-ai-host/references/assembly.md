@@ -75,7 +75,8 @@ already matched):
 - `voice_id` is the host's, from `get_avatar` (a host with none: the one voice picked from
   `list_voices`, host-continuity.md, section 6). Left out, the brand's own voice is used, which
   belongs to its default avatar and may be another person's.
-- First without `confirm` (the price), then with `confirm: true` when it matches the quote.
+- First without `confirm` (the price), then with `confirm: true` when it matches the quote the
+  person said yes to; when it differs, ask them.
 - Start all parts, then read `get_video` every 20 s until no clip shows `generating`. Each
   result takes its clip's place.
 - A failed match is refunded and leaves the clip as it was.

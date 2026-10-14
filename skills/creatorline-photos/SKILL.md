@@ -280,9 +280,8 @@ Look: <outfit in one line> · <place> · <light and time of day> · <palette: 2 
 **The product in frame.** Hold it the way it is really held (a bottle by its body, a jar in the
 palm, a bag on the shoulder), at its true size from the card, label to the camera, fingers
 below the label, one product per hand. Warn once about a large logo (product-intake.md, section
-5). A result on the avatar (clearer skin, a smaller waist) is welcome: it is a living persona
-(house-rules.md, section 7). A before and after is two frames of a set, the same look card with
-one thing changed: one picture shows one moment.
+5). A before and after is two frames of a set, the same look card with one thing changed: one
+picture shows one moment.
 
 **Clothes.** The wardrobe line, written once and reused: colour, fabric, cut, length,
 neckline, closures, the one detail it sells on. "Sage green linen midi dress, square neckline,
@@ -308,7 +307,7 @@ slides editor.
 - words spelled exactly as written;
 - one person unless more were asked; a mirror shows one reflection;
 - a set shares the outfit, the place, the light and the frame;
-- nothing crosses a fixed line (house-rules.md, section 7).
+- nothing breaks Safety (house-rules.md, section 7).
 
 Give each frame a verdict: keep, redo with one change (a paid run: ask), or drop. A carousel
 can drop a weak frame instead of paying for it again. Say plainly what is off.

@@ -31,8 +31,7 @@ sample lines, and what a real clip needs for Route B.
 - **Framing words.** Full body (head to feet), three-quarter (head to knee), waist-up, chest-up,
   close. Neighbouring shots differ in phone, distance and action. The last shot is chest-up or
   wider.
-- **Lines.** Opinions, what the frame shows, and the persona's own fit and story ("I'm a medium
-  and these fit true to size", "I've worn these all week"). The sample lines are patterns:
+- **Lines.** Opinions, reactions and what the frame shows. The sample lines are patterns:
   rewrite them from the item card's facts, the brand's voice and the persona.
 - **Look photo.** The pose and `aspect_ratio` for the `photo-edit` look. Default model: `2:3` for
   a full body, `3:4` for chest-up.
@@ -143,9 +142,9 @@ Sells on: its size against the body, how it is carried, the hardware.
 | 5 | | Another room, full body, mid-step. Verdict, mid-phrase. |
 
 - Size only against the body and from the item card ("sits at the hip, about 30 cm wide").
-- Lines: "Sits right at the hip." "The gold buckle is the whole point." What fits inside is the
-  persona's to say ("my laptop and my lunch fit"); a line that says "look" needs a shot that
-  shows it.
+- Lines: "Sits right at the hip." "The gold buckle is the whole point." What fits inside comes
+  from the item card or a shot that shows it ("watch, my laptop slides right in"); a line that
+  says "look" needs a shot that shows it.
 - Watch: one bag of the item (never two), and the kraft bag never in a shot after the first. One
   hand holds it, the other is relaxed; open and closed change only across a cut.
 - Look photo: full body, `2:3`, the bag on the shoulder or crossbody, one hand on the strap.
@@ -163,7 +162,7 @@ Sells on: how it catches the light, its size on the body, how it layers.
 | 4 | | Propped, waist-up: the pieces with the outfit, hand resting at the collarbone. |
 | 5 | | Another room by a window, chest-up, the other side of the face. Verdict, mid-phrase. |
 
-- Lines: "Gold hoops, just the right size." "I haven't taken these off all week."
+- Lines: "Gold hoops, just the right size." "These go with everything I own."
 - Watch: fine details and engravings never render exactly; names, materials and prices go in
   on-screen text. Never tighter than chest-up. For the most detail, a 9:16 look photo
   (`gpt-image-v2-edit`) animated with `photo-to-video` often beats a multi-shot clip.

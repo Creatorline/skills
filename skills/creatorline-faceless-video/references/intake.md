@@ -26,7 +26,7 @@ Decide this first, from the person's words.
 | The person says | Run |
 |---|---|
 | "make", "create", "generate", "go for it", or nothing about it | **Interactive**: the rounds below, and the three review stops (SKILL.md, the flow) |
-| "end to end", "hands-off", "no approvals", "don't ask", "surprise me", "you pick the voice", "you choose" | **Hands-off**: no rounds, no review stops, the defaults in section 6. The price yes is still asked: it is never skipped |
+| "end to end", "hands-off", "surprise me", "you pick the voice", "you choose" | **Hands-off**: no rounds, no review stops, the defaults in section 6. The price yes is still asked: it is never skipped |
 
 An ordinary request to make something is interactive. Only explicit words make a run
 hands-off. This overrides the one-liner autopilot of [asking.md](asking.md), section 4, for this

@@ -368,7 +368,8 @@ Only the person themself, or someone who agreed (house-rules.md, section 7).
      brand's avatars. Wait for the answer.
    - Hidden, blurred or tiny: ask for a better photo, or offer an avatar. Never try to rescue a
      missing face with a paid run.
-2. The default model refuses real faces: `model: "bytedance-seedance-2-0-reference-to-video"`,
+2. A real person's photo, with their consent, films on
+   `model: "bytedance-seedance-2-0-reference-to-video"` (the default model is for AI faces),
    `include_avatar: false`, the photo in `inputs.characters` (video-briefs.md, section 12).
    One take holds 15 s, so every part stays at 15 s or less.
 3. Never describe the person's face, age, build, ethnicity or hair in a brief: the words pull

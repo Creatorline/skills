@@ -219,11 +219,10 @@ Included in the Reshoot price. It speaks in the avatar's own voice (`voice_id` o
 - The source must handle a product on camera. Those moments are kept in the cut, and the new
   product takes the old one's place, size and grip. A similar shape looks right (a bottle for
   a bottle, not a bottle for a lipstick).
-- Rewritten lines keep each sentence's job: a joke stays a joke, a claim stays a claim. A
-  personal result in the source ("it cleared my skin") comes back as the avatar's own result
-  with the new product, which is welcome: the avatar is a living persona (house-rules section
-  7). The person's approved claims or words to avoid go in the Direction, and so does a fix
-  for a source that promises a cure or an income.
+- Rewritten lines keep each sentence's job: a joke stays a joke, a claim stays a claim. Each
+  beat of the source stays, filled with the new product's facts. The person's approved claims
+  or words to avoid go in the Direction, and so does a fix for a source that promises a cure
+  or an income.
 - Turn `change_voice` on when the avatar has a voice, or the new lines are read in a stock
   voice.
 - The music under the speech is dropped with the new voice track. Offer to add music

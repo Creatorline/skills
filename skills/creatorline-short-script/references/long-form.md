@@ -71,7 +71,7 @@ then back to the mechanism; the breakdown of the title's number held to the fina
 
 | Share | Block |
 |---|---|
-| 0-5% | Hook, the credential (the work done: what was bought, used, broken), the roadmap |
+| 0-5% | Hook, the work done (what was bought, used, broken), the roadmap |
 | 5-12% | What it is (the price now only if the price is the news) |
 | 12-70% | The walkthrough, never in spec-sheet order: in the order a normal person's questions come, in a physical tour, or in the order of use. The most impressive thing pulled forward and flagged; three or more specific, named deferrals planted |
 | 70-85% | The downsides, numbered |

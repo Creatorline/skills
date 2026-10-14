@@ -66,7 +66,7 @@ person asks for it. A missing product photo or length is a question, never a ref
 | Voice | No | Off screen, made in the same pass as the picture; the default avatar's gender and tone, locked for the whole video; the brand's `language`, English in the accent of the brand's `country` (American when none) |
 | Words | No | You write them ([voiceover](references/voiceover.md)) and show them word for word with the price |
 | Setting | No | By category ([shot lists](references/shot-lists.md)): a real room, neutral daylight from one window |
-| Claims | One optional question: "Anything you must say, or must never say?" | Written freely: the label's and the page's facts, and the persona's own routine and results ([the persona and the gate](references/truth-and-safety.md)) |
+| Claims | One optional question: "Anything you must say, or must never say?" | Written freely from the label's and the page's facts, in the avatar's own voice ([the persona and the gate](references/truth-and-safety.md)) |
 | Music | No | None: the voice and the product's own sounds |
 | Text on screen | No | None in the clip; offered after the result |
 | Frame | Never ask | 9:16, 720p, phone style |
@@ -256,8 +256,7 @@ the mechanism (the pump, the pour, the click). Full grammar:
 **Show the use honestly.** Open it before it is used. One interaction and at most one change of
 state per shot. A cap that comes off is gone; what is opened stays open. The result is the result
 of what the clip showed. The right place on the body or surface. Its real size against a hand,
-in centimetres. Never a result that needs time to appear in the frame: the voice may tell one
-(the persona's month with it), the picture shows now.
+in centimetres. Never a result that needs time to appear in the frame: the picture shows now.
 
 **Hands and people.** A first-person shot shows one working hand; two-handed actions are a
 propped phone with the hands cropped at the forearm. Say what each hand does and park the other.
@@ -265,8 +264,7 @@ A person is never the subject: an adult's hands or cropped body, matched to the 
 the mouth closed whenever any of the face shows, no mirror anywhere.
 
 **The voice.** It starts within 0.4 s of the first frame, on a benefit, the mechanism, a sensory
-detail, a label fact, or the persona's own result or routine (a living persona, house rules,
-section 7). One phrase per moment, no repeats, a verdict at the end, no spoken call
+detail or a label fact. One phrase per moment, no repeats, a verdict at the end, no spoken call
 to action. Up to 10 s: 12-20 words; 11-12 s: 20-28; 13-15 s: 28-35; longer: that band per take.
 Details: [voiceover](references/voiceover.md).
 
@@ -366,7 +364,7 @@ Pick the 2 or 3 that fit, one line each:
   same, what breaks a shot, sound, people in frame.
 - [Shot lists](references/shot-lists.md): settings, props, shots and openings for 20 product
   categories, and pairs of first and second uses.
-- [Voiceover](references/voiceover.md): word bands, the first second, the persona's story and
+- [Voiceover](references/voiceover.md): word bands, the first second, the persona's voice and
   claims, lines that work.
 - [The persona and the gate](references/truth-and-safety.md): the gate, claims, the persona's
   voice, people in frame, disclosure.

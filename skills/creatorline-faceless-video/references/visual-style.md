@@ -335,7 +335,7 @@ Frame: a tall frame, the subject in the upper middle, a calm lower third
   every figure fully so none comes out looking like the avatar.
 - **Figures read as adults.** Never a young person in a picture. Never write "child", "kid" or
   "childlike" in a brief: write "small", "simple" or "naive" for the look.
-- **Moderation-safe staging.** Avoid tight close-ups of animal faces, and aggressive or intimate
+- **Calm staging.** Avoid tight close-ups of animal faces, and aggressive or intimate
   poses. A figure that could read as unclothed becomes a shadow with one glowing feature.
   Clay figures never have muscles described: size and posture show strength.
 - **Style images the person sends** give the look only. Decline an image that is mainly an

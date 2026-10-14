@@ -142,14 +142,12 @@ into the use, then the second use into the result.
   "avatar_id": "<Mia's avatar id>",
   "inputs": { "objects": ["<mount asset id>"], "location": ["<car interior asset id>"] },
   "params": { "duration": 10 },
-  "prompt": "Format: a casual iPhone video in a parked car, seen from the passenger seat, low and steady, looking at the dashboard and @Avatar1's hands and forearms; her face stays above the top of the frame the whole time, real texture. Her voice is heard off screen, relaxed and dry.\nIdea: the mount goes onto the vent, a phone snaps onto it, and it holds.\nProduct: exactly one mount in frame. Clipwell vent mount (@Object1): a matte black magnetic disc about 6 cm wide on a short arm with a vent clip; the disc and the clip are its only parts. Use: the clip slides onto the air vent, then a phone snaps onto the disc.\nSetting: @Location1, neutral daylight through the windscreen, sunglasses on the dash, keys in the cupholder.\nShots: 1 medium: @Object1 rests on the passenger seat; @Avatar1's right hand picks it up and slides the clip onto the vent, the plastic flexing as it seats, her left hand resting on her knee. 2 close: a phone in her right hand snaps onto the disc with a click; she lets go and it holds, screen dark.\nVoiceover, word for word: \"Three months on my vent, potholes and all. Clip it on, phone to the magnet. Let go, it stays.\"\nSound: voice and room sound only, with the clip's snap.\nLanguage: English."
+  "prompt": "Format: a casual iPhone video in a parked car, seen from the passenger seat, low and steady, looking at the dashboard and @Avatar1's hands and forearms; her face stays above the top of the frame the whole time, real texture. Her voice is heard off screen, relaxed and dry.\nIdea: the mount goes onto the vent, a phone snaps onto it, and it holds.\nProduct: exactly one mount in frame. Clipwell vent mount (@Object1): a matte black magnetic disc about 6 cm wide on a short arm with a vent clip; the disc and the clip are its only parts. Use: the clip slides onto the air vent, then a phone snaps onto the disc.\nSetting: @Location1, neutral daylight through the windscreen, sunglasses on the dash, keys in the cupholder.\nShots: 1 medium: @Object1 rests on the passenger seat; @Avatar1's right hand picks it up and slides the clip onto the vent, the plastic flexing as it seats, her left hand resting on her knee. 2 close: a phone in her right hand snaps onto the disc with a click; she lets go and it holds, screen dark.\nVoiceover, word for word: \"One hand, no tools. Clip it on, phone to the magnet. Let go, it stays.\"\nSound: voice and room sound only, with the clip's snap.\nLanguage: English."
 }
 ```
 
-19 words. The three months are Mia's own: the voice is her living persona (voiceover.md,
-section 5), and the story is spoken, so it needs no shot. Check the cover with
-`preview_assets`: if her face shows, offer to keep it as a talking video or take it again on
-path A.
+15 words, each phrase on what its shot shows. Check the cover with `preview_assets`: if her
+face shows, offer to keep it as a talking video or take it again on path A.
 
 ## 5. One voice over a joined clip
 

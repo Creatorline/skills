@@ -135,7 +135,7 @@ minutes."
 | Arc, 1 min | 1 The moment of tension. 2 Who, where, what they want. 3 The obstacle. 4 It gets worse, or a clue appears. 5 The twist. 6 The ending that answers the hook |
 | Tone | Follows the story. Measured and close, as if told across a table |
 | Pictures | The same main figure in every scene, kept anonymous, with the same described clothes |
-| Watch for | A personal story the person tells is their life: use only the details they gave and keep them as the hero. A story the narrator persona tells as its own is welcome and written freely. Someone else's book, film or post: only public domain, or an original story on the same idea |
+| Watch for | A personal story the person tells is their life: use only the details they gave and keep them as the hero. A story the narrator tells is written freely as fiction. Someone else's book, film or post: only public domain, or an original story on the same idea |
 
 ## 8. Top-N list
 

@@ -61,12 +61,12 @@ create_generation {
   confirm: true,
   prompt: "Idea: a try-on. @Avatar1 shows how the Sage linen midi dress (@Object1) fits and moves, at home.
 Register: natural.
-Hook: @Avatar1 already holds a plain kraft shopping bag by its handle, a grin breaking, and says \"I waited two months for this dress to restock.\"
+Hook: @Avatar1 already holds a plain kraft shopping bag by its handle, a grin breaking, and says \"This is the dress for every summer wedding.\"
 Beats: 1) Before: phone in her hand, waist-up, a plain grey crew-neck tee and lounge pants, the closed kraft bag held by one handle. 2) On the cut, the longest shot: phone propped on the dresser at hip height, full body in @Object1, one slow twirl, the skirt swinging, half a beat showing the back, settling front with a laugh; the bag is gone. 3) The shortest shot: phone in her hand, close on the waist, her free hand on her hip and off the fabric; the waist seam rises and settles with her breath; her voice goes on over it. 4) Phone propped, three-quarter from the back: the tie at the waist, a glance over her shoulder. 5) The living room, phone propped on a shelf, full body on the window seat, the hem falling; ending mid-phrase.
 Wardrobe: from shot 2 on, @Avatar1 wears the sage green linen midi dress (@Object1): square neckline, buttons down the front, ties at the back of the waist, hits mid-calf. Fitted as cut, the same in every shot.
 Hands: in shot 1 one hand is the phone and the other holds the bag; in shots 2 and 4 both hands are relaxed at her sides.
 Setting: a bright bedroom, then the living room of the same home; neutral daylight from one window, a plain wall behind her.
-Lines: \"I waited two months for this dress to restock.\" / \"Oh... look at it MOVE.\" / \"Linen, and it still feels soft at the waist.\" / \"The back ties right here.\" / \"Midi length, right at mid-calf...\"
+Lines: \"This is the dress for every summer wedding.\" / \"Oh... look at it MOVE.\" / \"Linen, and it still feels soft at the waist.\" / \"The back ties right here.\" / \"Midi length, right at mid-calf...\"
 Language: English, American accent.
 Sound: voice and room sound only: the bag's paper rustle, a laugh on the twirl, bare feet on the wood floor."
 }
@@ -78,10 +78,9 @@ Sound: voice and room sound only: the bag's paper rustle, a laugh on the twirl, 
    with `preview_assets`, then show the card (SKILL.md, Show the result) and ask the text
    question.
 
-The lines are 33 words, inside the 28-35 band for 15 s; the wordiest line sits on the detail
-shot, where her mouth is out of frame. The opening is the wait, the format's proven hook: the
-persona has a past and its story is welcome (SKILL.md, The persona: fit, size and story). An
-occasion ("This is the dress for every summer wedding.") works as well.
+The lines are 32 words, inside the 28-35 band for 15 s; the wordiest line sits on the detail
+shot, where her mouth is out of frame. The opening is an occasion, the format's proven hook
+(SKILL.md, The persona: fit and voice).
 
 **GRWM variant:** `ugc_style: "GRWM"`, 15 s, the calm register (GRWM is one of its words), and
 the already-wearing beats (shot-lists.md, section 10): talking to the phone while rolling the
