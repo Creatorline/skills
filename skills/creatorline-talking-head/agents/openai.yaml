@@ -1,0 +1,13 @@
+interface:
+  display_name: "Talking Head"
+  short_description: "Your avatar reads your script to camera"
+  default_prompt: "Use $creatorline-talking-head to have my avatar say this script to camera."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: creatorline
+      description: "Creatorline MCP server"
+      transport: streamable_http
+      url: https://api.creatorline.io/mcp

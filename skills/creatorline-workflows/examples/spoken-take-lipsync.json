@@ -15,7 +15,7 @@
       "title": "Voice line",
       "stageId": "text-to-speech",
       "prompt": "@line",
-      "params": { "enhance": false, "voice_id": "<the avatar's voice_id from get_avatar>", "model_id": "eleven_v3", "speed": 1 }
+      "params": { "enhance": false, "voice_id": "<the avatar's voice_id from get_avatar>", "model_id": "eleven_v4", "speed": 1 }
     },
     {
       "id": "take",

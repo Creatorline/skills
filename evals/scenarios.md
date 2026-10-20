@@ -64,6 +64,15 @@ one at a time across several turns, an id shown, an engine or vendor named.
 | 4 | A review of our serum with my avatar. https://cdn.example.com/serum.jpg | `creatorline-talking-video` | orient, `import_asset` (the photo link), `create_generation` (tool `ugc-video`, no `confirm`). Review mode, the avatar's honest take in its own voice, the lines shown with the price. No approved-claims list asked for. |
 | Near miss | Avatarım kutuyu açsın ve içinden çıkan ürüne tepki versin. | `creatorline-unboxing-video` | Opening a package is an unboxing. |
 
+### creatorline-talking-head
+
+| # | Prompt | Skill | First calls |
+| --- | --- | --- | --- |
+| 1 | Have my avatar read this script to camera, word for word: "Big news. Our spring line drops Friday..." | `creatorline-talking-head` | orient, the script polished (words kept, tags added) and shown, `create_generation` (tool `talking-head`, no `confirm`) |
+| 2 | Avatarım bu metni kameraya okusun, yeşil ekranda olsun, oyun videomun üstüne koyacağım. | `creatorline-talking-head` | orient, `create_generation` (tool `talking-head`, `params.green_screen: true`, no `confirm`); after it is made, `create_video` with `add_clip` and an `add_layer` of kind `green_screen` |
+| 3 | A 2 minute explainer of how our refund policy works, Mia presenting, holding a mic, in a bright office. | `creatorline-talking-head` | orient, the script written in the brand's voice and shown, `create_generation` (tool `talking-head`, `params.microphone: true`, `params.location`, no `confirm`) |
+| Near miss | A 15 second hot take from my avatar about cold plunges. | `creatorline-talking-video` | A short clip whose lines are written for it, not a given script. |
+
 ### creatorline-product-video
 
 | # | Prompt | Skill | First calls |

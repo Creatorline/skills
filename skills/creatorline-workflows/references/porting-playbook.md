@@ -46,7 +46,7 @@ questions). Note which fields the person changes between runs: those become inpu
 | Lipsync audio onto a clip | `lipsync` | `video_url` + `audio_url`, both required. `sync-lipsync-v2-pro` when the source set what happens on a length mismatch (`sync_mode`) |
 | Replace the voice in a clip | `change-voice` | `video_url`. Set `voice_id` to the avatar's (`get_avatar`): left out, it is a stock voice. A "change voice" toggle on a generator in the source becomes this step too |
 | Add a music or voice track | `add-audio` | `video_url` + `audio_url`, `start_offset` |
-| Text to speech | `text-to-speech` | Makes audio for `lipsync` or `add-audio`. Set `voice_id`; `model_id` `eleven_v3` by default |
+| Text to speech | `text-to-speech` | Makes audio for `lipsync` or `add-audio`. Set `voice_id`; `model_id` `eleven_v4` by default |
 | Two-voice dialogue | `dialogue` | The prompt is an `A:` / `B:` script; set `voice_a` and `voice_b` |
 | Concatenate clips | `merge-clips` | `video_urls`, 2 to 10; edge order is clip order |
 | Captions, subtitles, hook text burned in | `caption-burn` | `source_video`; `hook_mode` (`auto`, `manual` uses the prompt, `off`), `caption_style`. It transcribes by itself |

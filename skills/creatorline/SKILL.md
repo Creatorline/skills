@@ -4,7 +4,7 @@ description: "Creatorline's front door: shows the workspace (brands, AI avatars,
 license: MIT
 metadata:
   author: creatorline
-  version: "2.0"
+  version: "2.1"
 ---
 
 # Creatorline
@@ -124,6 +124,7 @@ intake.
 | The person wants | Skill |
 |---|---|
 | The avatar talking to camera: a product review or demo, a hot take, a story, tips, a GRWM chat, a reaction, a street-interview bit (5 to 30 s, one take) | `creatorline-talking-video` |
+| The avatar reading the person's own script word for word in one steady frame, up to 3 minutes: a presenter, an explainer, an announcement, a lesson; a green screen avatar to put over another video | `creatorline-talking-head` |
 | The product as the hero with a voice over it; a person only as hands or a point of view | `creatorline-product-video` |
 | An unboxing, a haul or a PR package opened, with the avatar's reaction | `creatorline-unboxing-video` |
 | An outfit, shoes, a bag or jewelry on the avatar: OOTD, fit check, try-on haul | `creatorline-try-on-video` |
@@ -153,8 +154,10 @@ intake.
   (moves, camera, cuts, sound) with only the people changed: Character Swap. Only the moves of
   a dance or gesture, performed by the avatar from its photo: motion control, inside the
   Character Swap skill. Reshoot needs one main person in the source; two people: Character Swap.
-- **Talking video or AI host.** One clip of 5 to 30 seconds in one take: talking video. Longer,
-  several takes, or an episode of a series: AI host.
+- **Talking video, talking head or AI host.** One clip of 5 to 30 seconds whose lines you write,
+  with actions and cuts: talking video. Their own script said word for word in one steady
+  frame (up to 3 minutes), or a green screen presenter: talking head. Several takes, a set and
+  cutaways, or an episode of a series: AI host.
 - **Captions or voiceover.** Words the viewer reads: captions. A voice the viewer hears:
   voiceover. Both on a silent video: voiceover first, captions last.
 - **Photos or cover image.** Photos posted as they are: photos. One image made to win the tap,

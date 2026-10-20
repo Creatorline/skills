@@ -4,7 +4,7 @@ description: "Gives videos a voice: narration timed to a video's clips, a voice 
 license: MIT
 metadata:
   author: creatorline
-  version: "2.0"
+  version: "2.1"
 ---
 
 # Voiceover

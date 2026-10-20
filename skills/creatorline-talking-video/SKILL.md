@@ -1,10 +1,10 @@
 ---
 name: creatorline-talking-video
-description: "Makes a 5 to 30 second video of the brand's AI avatar talking to camera in one take: a story or review with a product, hot take, storytime, tips, GRWM chat or reaction. Use for 'my avatar talks about', 'UGC video of my product', 'talking head'. Not for unboxings or try-ons: use creatorline-unboxing-video or creatorline-try-on-video. Over 30 s: creatorline-ai-host."
+description: "Makes a 5 to 30 second video of the brand's AI avatar talking to camera in one take: a story or review with a product, hot take, storytime, tips, GRWM chat or reaction. Use for 'my avatar talks about', 'UGC video of my product', 'storytime'. Not for unboxings or try-ons: use creatorline-unboxing-video or creatorline-try-on-video. Their own script read as written: creatorline-talking-head."
 license: MIT
 metadata:
   author: creatorline
-  version: "2.0"
+  version: "2.1"
 ---
 
 # UGC Talking Video
@@ -48,6 +48,7 @@ one.
 | Re-filming a specific viral video with the avatar | `creatorline-reshoot` |
 | Keeping a real video and swapping the person in it | `creatorline-character-swap` |
 | Editing a video that already exists | `creatorline-video-studio` |
+| Their own script read word for word, a presenter, a green screen avatar | `creatorline-talking-head` |
 | Over 30 seconds, several takes, a recurring show | `creatorline-ai-host` |
 | No face on camera | `creatorline-faceless-video` |
 | Only the script or hooks, nothing filmed | `creatorline-short-script` |

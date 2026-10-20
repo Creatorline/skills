@@ -160,7 +160,7 @@ A 9:16 still of the avatar (a frame to animate, a story): `gpt-image-v2-edit` at
 | `lipsync` | `sync-3-lipsync`; `sync-lipsync-v2-pro` when you need `sync_mode` | `video_url: video`, `audio_url: audio` | `sync_mode` on v2 Pro (`cut_off`, `loop`, `bounce`, `silence`, `remap`: what happens when the video and the audio differ in length) | low, per source second |
 | `add-audio` | `ffmpeg-api-merge-audio-video` | `video_url: video`, `audio_url: audio` | `start_offset` | low, per run |
 | `change-voice` | `change-voice` | `video_url: video` | `voice_id` (set it: rule 5), `remove_background_noise` | per run, the highest of these |
-| `text-to-speech` (output: audio) | `elevenlabs-zrm-text-to-speech` | none; the prompt is the exact words | `voice_id` (set it), `model_id` (`eleven_v3` default, `eleven_multilingual_v2`, `eleven_flash_v2_5`), `speed` (0.7 to 1.2) | low, per run |
+| `text-to-speech` (output: audio) | `elevenlabs-zrm-text-to-speech` | none; the prompt is the exact words | `voice_id` (set it), `model_id` (`eleven_v4` default, `eleven_v4_turbo`, `eleven_v3`, `eleven_multilingual_v2`, `eleven_flash_v2_5`), `speed` (0.7 to 1.2) | low, per run |
 | `dialogue` (output: audio) | `elevenlabs-zrm-text-to-dialogue` | none; the prompt is an `A:` / `B:` script | `voice_a` (a stock voice when unset), `voice_b` (no default: set both), `stability` (0, 0.5, 1) | low, per run |
 | `merge-clips` | `merge-clips` | `video_urls: video` (2 to 10, edge order) | | low, per run |
 | `caption-burn` | `caption-burn` | `source_video: video` | `hook_mode` (`auto` writes one from the speech, `manual` uses the prompt as the hook, `off`), `caption_style` (`hormozi`, `tiktok`, `minimal`, `sticker`, `bold`, `karaoke`) | low, per run |
