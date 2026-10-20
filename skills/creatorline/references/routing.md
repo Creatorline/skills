@@ -19,6 +19,7 @@ be done from a chat at all.
 | The person says | Skill |
 |---|---|
 | "Mia reviews my serum", "a hot take about cold plunges", "storytime about my first client", "3 tips for new runners", "GRWM while talking about my day" | `creatorline-talking-video` |
+| "have Mia read this script", "Mia presents our quarterly update, here is the text", "a green screen Mia to put over my gameplay", "a 2 minute explainer, word for word" | `creatorline-talking-head` |
 | "a video of my candle with a voiceover", "hands pouring the protein shake", "product B-roll with narration" | `creatorline-product-video` |
 | "Mia unboxes the PR package", "a haul video", "first look at the new drop" | `creatorline-unboxing-video` |
 | "Mia wearing this dress", "a fit check", "OOTD with these sneakers" | `creatorline-try-on-video` |
@@ -81,8 +82,10 @@ Swap. A person who changes is always Character Swap, never a video edit. A video
 faces only: a real person's video with their product swapped is Reshoot. If the person's words fit two rows, ask one question about the outcome: "Keep the original
 video exactly and only change who is in it, or film it again with Mia?"
 
-**Talking video or AI host.** One clip, 5 to 30 seconds, one take: talking video. Longer than
-30 seconds, several takes joined, or one episode of a recurring show: AI host.
+**Talking video, talking head or AI host.** One clip, 5 to 30 seconds, lines you write, with
+actions and cuts: talking video. The person's own script said word for word in one steady
+frame, up to 3 minutes, or a green screen presenter: talking head. Several takes with a set and
+cutaways, or one episode of a recurring show: AI host.
 
 **Captions or voiceover.** Words the viewer reads: captions. A voice the viewer hears:
 voiceover. A silent video that needs both: voiceover first, captions last, because captions are

@@ -4,7 +4,7 @@ description: "Builds, runs and changes Creatorline workflows: saved pipelines of
 license: MIT
 metadata:
   author: creatorline
-  version: "2.0"
+  version: "2.1"
 ---
 
 # Workflows

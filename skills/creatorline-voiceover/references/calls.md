@@ -110,11 +110,11 @@ so export once, at the end.
 
 - `prompt` is the exact words to say, up to 2000 characters. Not a description of them.
 - `params.voice_id`: always pass it. Left out, it is a stock voice.
-- `params.model_id`: leave it out. The default, `eleven_v3`, performs feeling tags and speaks
-  the language the words are written in. `eleven_multilingual_v2` takes `params.speed` (0.7
-  to 1.2) but reads tags out loud: use it only when the person asks for a set pace and the
-  words carry no tags. Never use `speed` to make words fit a window: change the words
-  (fitting-takes.md, section 4). `speed` does nothing on `eleven_v3`. All the lines of one job
+- `params.model_id`: leave it out. The default, `eleven_v4`, performs feeling tags and speaks
+  the language the words are written in; `eleven_v3` does too. `eleven_multilingual_v2` reads
+  tags out loud: use it only when the person asks for it and the words carry no tags. A set
+  pace is `params.speed` (0.7 to 1.2), on any engine but `eleven_v3`. Never use `speed` to make
+  words fit a window: change the words (fitting-takes.md, section 4). All the lines of one job
   use the same `model_id`.
 - The output is an audio file (`output[].url`, `asset_id`). It can go to a lip sync
   (`audio_url`), or under a Video Studio project (`set_sound`: plays from 0 s, is not
@@ -295,7 +295,7 @@ start it again.
 | `add_voiceover` `wait_seconds` | 0 to 45 (default 30) |
 | `get_generation` `wait_seconds` | 0 to 45 (default 20) |
 | Re-voice | about five minutes of video |
-| `speed` (voice line, `eleven_multilingual_v2` and `eleven_flash_v2_5` only) | 0.7 to 1.2 |
+| `speed` (voice line, any engine but `eleven_v3`) | 0.7 to 1.2 |
 | `stability` (dialogue) | 0, 0.5 or 1 |
 | `sync_mode` (`sync-lipsync-v2-pro` only) | `cut_off`, `loop`, `bounce`, `silence`, `remap` |
 | Audio file brought in by `import_asset` | 50 MB |

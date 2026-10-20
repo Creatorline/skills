@@ -4,7 +4,7 @@ description: "Makes a 30 to 120 second episode hosted by the brand's AI avatar: 
 license: MIT
 metadata:
   author: creatorline
-  version: "2.0"
+  version: "2.1"
 ---
 
 # AI host episodes
@@ -34,6 +34,7 @@ that is creatorline-talking-video, keeping the host and the script already agree
 | The ask | Use |
 |---|---|
 | One talking clip, 5 to 30 s, one take (a review, a hot take, a tip) | creatorline-talking-video |
+| A given script read word for word in one steady frame, up to 3 minutes, no set or cutaways; a green screen presenter | creatorline-talking-head |
 | Narration with no face on camera | creatorline-faceless-video |
 | A product-first video with a voice off screen | creatorline-product-video |
 | The script of a video of 60 s or less, nothing filmed | creatorline-short-script. An episode script over 60 s stays here: write it (step 3) and stop before the quote. |
