@@ -29,6 +29,7 @@ below are placeholders: take them from the tools, never from the person.
 | `inputs.outfit` | Replace only. One image of clothes, worn by the main avatar. |
 | `params.duration` | Whole seconds, 4 to 30. Always set it: the source's length, rounded, at most 30. Left out, it is 15 and 15 seconds are billed. The swap films the source's first `duration` seconds. |
 | `params.resolution` | `480p`, `720p` (default) or `1080p`. |
+| `params.quality` | `high` (default) or `standard`: a fraction of the price, less detail, filmed 15 s at a time. |
 | `params.change_voice` | Leave it out. Re-voice with its own call (section 8). |
 | `prompt` | Transfer: an optional direction (directions.md). Replace: ignored, so leave it out. |
 | Frame and sound | No `aspect_ratio` and no audio setting: the result keeps the source's frame and its sound. |

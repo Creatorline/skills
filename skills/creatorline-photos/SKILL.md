@@ -106,8 +106,9 @@ Leave `model` out unless the frame needs one of the others. Values are exact; ch
 - The default model has no `9:16`. When the face matters most, prefer `3:4` on it to a 9:16
   frame on another model.
 - On the default model `2K` costs the same as `1K`. Never `4K`, never `auto_4K`.
-- `gpt-image-v2-edit` at `Medium` costs about twice the default and softens skin a little: use
-  it for words and for product shots with nobody in them. `High` costs several times `Medium`. Seedream costs about half the
+- `gpt-image-v2-edit` at `Medium` costs about what the default does at a vertical frame (more
+  at `1:1` and the near-square frames) and softens skin a little: use it for words and for
+  product shots with nobody in them. `High` costs several times `Medium`. Seedream costs about half the
   default and keeps skin texture, but may hold the face a little less closely than the default.
 - `nano-banana-2-edit` only for a styled frame (a cartoon, anime, clay or illustrated avatar,
   shot types section 13), the job it is proven at; it has no `4:5`, so a styled set is `3:4`.

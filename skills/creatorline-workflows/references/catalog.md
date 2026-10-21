@@ -58,7 +58,7 @@ can drift a little at each join, so prefer one take.
 One image brought to life in one continuous take, with an optional end frame. Output: video.
 Frames are wired straight in (no tokens). The first-frame slot is `image_url` on most models,
 `first_frame_url` on Veo 3.1, `first_image_url` on Veo 3.1 Lite, `start_image_url` on the
-Kling v3 tiers, `keyframes` on Flux 3 Keyframes; the end frame is the matching `end_...` /
+Kling v3 tiers, `keyframes` on Flux 3 Max Keyframes; the end frame is the matching `end_...` /
 `last_...` slot. No avatar slot: put the avatar into the frame first (a photo edit step).
 
 | Model | Length | Resolution | Cost | Notes |
@@ -70,7 +70,8 @@ Kling v3 tiers, `keyframes` on Flux 3 Keyframes; the end frame is the matching `
 | `veo3-1-first-last-frame-to-video` | 4, 6 or 8 s | 720p, 1080p | high | A first-and-last-frame look |
 | `veo3-1-first-last-frame-to-video-fast` | 4, 6 or 8 s | 720p, 1080p | low | |
 | `veo-3-1-lite-first-last-frame-to-video` | 8 s | 720p, 1080p | low, one price per run | |
-| `flux-3-image-to-video-timestamped` | 5 to 20 s | `hd`, `fhd` | low | Up to 10 `keyframes` with `keyframe_timestamps` |
+| `flux-3-max-image-to-video` | 5 to 20 s | 720p, 1080p | low (1080p standard) | First frame `image_url`, optional `end_image_url` |
+| `flux-3-max-keyframes-to-video` | 5 to 20 s | 720p, 1080p | low (1080p standard) | Up to 10 `keyframes` with `keyframe_timestamps`: whole seconds, comma-separated, ascending, within `duration` (empty spreads them evenly) |
 | `xai-grok-imagine-video-1-5-preview-image-to-video` | 1 to 15 s | 720p | lowest | No end frame |
 | `minimax-h3-max-image-to-video` / `minimax-h3-max-turbo-image-to-video` | 5 to 15 s | `768P` | lowest | `prompt_expansion_mode` |
 | `kling-v3-pro-image-to-video` / `kling-v3-standard-image-to-video` / `kling-o3-standard-image-to-video` | 3 to 15 s | fixed 1080p / 720p / 720p | low to lowest | Native audio raises the Kling v3 rate |
@@ -86,7 +87,7 @@ whenever the avatar should appear, use reference video instead.
 | `bytedance-seedance-2-0-text-to-video` (default) | 4 to 15 s | 720p, 1080p | standard |
 | `veo3-1-text-to-video` | 4, 6 or 8 s | 720p, 1080p | high |
 | `veo-3-1-lite-text-to-video` | 4, 6 or 8 s | 720p, 1080p | lowest |
-| `flux-3-text-to-video` | 5 to 20 s | `hd`, `fhd` | low |
+| `flux-3-max-text-to-video` | 5 to 20 s | 720p, 1080p | low (1080p standard) |
 | `minimax-h3-max-text-to-video` / `minimax-h3-max-turbo-text-to-video` | 5 to 15 s | `768P` | lowest |
 
 ## 4. Video: Reshoot (`reshoot`)
@@ -110,7 +111,8 @@ one main person on camera.
 A real video kept exactly (moves, camera, cuts, sound) with its people replaced by avatars.
 Output: video. The stage id stays `scene-video`; the canvas calls it Character Swap. Slots:
 `source_video: video` (required), `character: image (auto)` (up to 2 people, the workflow's
-avatar first), then by mode. Params: `resolution` (`480p`, `720p` default, `1080p`),
+avatar first), then by mode. Params: `quality` (`high` default, `standard`), `resolution`
+(`480p`, `720p` default, `1080p`),
 `duration` (4 to 30, default 15: how much of the source is filmed and billed, from its start;
 set it to the source's length, at most 30), `change_voice` (no effect in a workflow: add a
 `change-voice` step). The source keeps its own audio.
@@ -120,8 +122,11 @@ set it to the source's length, at most 30), `change_voice` (no effect in a workf
 | Transfer (default): the avatar wears the video's clothes | `character-swap-transfer` | `other_elements: image?` (up to 6: a place, an outfit, a product) | Optional Direction (what to wear instead, what each extra image is for); no `enhance` key |
 | Replace: the avatar as its own image shows it | `character-swap-replace` | `outfit: image?` (one photo of what the avatar wears) | None: a prompt on this step is ignored |
 
-Cost: per second filmed; 720p about twice 480p, 1080p about five times 480p. Use 480p for a
-test. Never name the engine behind it; the modes are Transfer and Replace.
+Cost: per second filmed; 720p about twice 480p, 1080p about five times 480p. `quality:
+"standard"` costs a fraction of `high` (about a sixth at 720p) and keeps less detail; it films
+at most 15 s in one take, so in a workflow keep `duration` at 15 or less with it (a longer
+standard step is refused before it is charged). Use 480p, or standard, for a test. Never name
+the engine behind it; the modes are Transfer and Replace, the qualities Standard and High.
 
 ## 6. Video: motion control (`motion-control`)
 
@@ -144,11 +149,15 @@ only when asked), `num_images` (keep 1: a step passes one image on). Output: ima
 | Stage | Model | Cost | Notes |
 |---|---|---|---|
 | `photo` | `nano-banana-pro` (default) | standard | Realism; 9:16 available |
+| `photo` | `nano-banana-2-1-text-to-image` | low | Newer Nano Banana 2; volume |
 | `photo` | `nano-banana-2-text-to-image` | low | Volume |
 | `photo` | `gpt-image-v2-text-to-image` | low to highest by `quality` (`Low`, `Medium`, `High`) | Words inside the image |
+| `photo` | `gpt-image-v2-5-flare-text-to-image` / `gpt-image-v2-5-sunburst-text-to-image` | low to highest by `quality` (`Low`, `Medium`, `High` default, `XHigh`, `Max`) | Newer GPT Image; Sunburst is slower, for finer detail |
 | `photo-edit` | `nano-banana-pro-edit` (default) | standard | Best likeness. No 9:16 (`auto` follows the input) |
+| `photo-edit` | `nano-banana-2-1-edit` | low | 9:16 available (`Auto` follows the input) |
 | `photo-edit` | `nano-banana-2-edit` | low | No 9:16 |
 | `photo-edit` | `gpt-image-v2-edit` | low to highest by `quality` | 9:16 available; words inside the image |
+| `photo-edit` | `gpt-image-v2-5-flare-edit` / `gpt-image-v2-5-sunburst-edit` | low to highest by `quality` (as above) | 9:16 available; the newer GPT Image |
 | `photo-edit` | `bytedance-seedream-v4-5-edit` | lowest | `image_size` instead of ratio and resolution (`portrait_16_9` is vertical) |
 
 A 9:16 still of the avatar (a frame to animate, a story): `gpt-image-v2-edit` at `9:16`.
