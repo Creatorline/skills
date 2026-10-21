@@ -37,7 +37,7 @@ questions). Note which fields the person changes between runs: those become inpu
 |---|---|---|
 | Text to image | `photo` | No slots: it cannot show the avatar. Words inside the image: `gpt-image-v2-text-to-image` with `quality: "High"` |
 | Edit an image, inpaint, restyle, "with this product", "with this face" | `photo-edit` | Slots `characters` (the avatar joins by itself), `location`, `other_elements`. Use it whenever an existing image or the avatar must be kept |
-| Image to video, first and last frame, keyframes | `video-i2v` | `image_url` (+ `end_image_url`); slot names differ per model (catalog.md, section 2). A keyframe list: `flux-3-image-to-video-timestamped` (`keyframes`, up to 10) |
+| Image to video, first and last frame, keyframes | `video-i2v` | `image_url` (+ `end_image_url`); slot names differ per model (catalog.md, section 2). A keyframe list: `flux-3-max-keyframes-to-video` (`keyframes`, up to 10) |
 | Character or reference video, a consistent person, UGC talking video, product in hand | `video-ref` | The avatar joins `characters`. Product photos in `objects`, a place in `location`, a voice track in `audio_urls`, clips to copy in `source_video` |
 | Text to video with no image at all | `video-t2v` | Only when the source truly had no image; when a person appears, `video-ref` gives them the avatar's face |
 | Replace the person in a real clip, face swap in video | `scene-video` (Character Swap) | `source_video` + the avatar (auto). Mode by clothing: `character-swap-transfer` keeps the video's outfit, `character-swap-replace` keeps the avatar's own (or the one in `outfit`). 4 to 30 s of source per take |

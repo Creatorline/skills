@@ -59,7 +59,7 @@ A swap copies only the moves that are in the clip. Anything new needs Reshoot or
 | A second person swapped | Only when they asked for two and named no second avatar | Nobody: the second person stays as filmed. |
 | Mode | No | Transfer. Replace when they want the avatar's own look or give an outfit. |
 | Which seconds | No | From the start, the whole clip, up to 30 s. |
-| Quality | No | `720p`. `480p` to test a risky source cheaply, `1080p` for a final ad. |
+| Quality | No | `high` at `720p`. `standard` (a fraction of the price, less detail) or `480p` to test a risky source cheaply; `1080p` for a final ad. |
 | Voice | No | The video's own sound. A re-voice in the avatar's voice is a follow-up ([The voice](#the-voice)). |
 
 ## The flow
@@ -106,6 +106,8 @@ A swap copies only the moves that are in the clip. Anything new needs Reshoot or
    - `params.duration`: ALWAYS set it, to the source's `duration_sec` rounded, at most 30. Left
      out, it is 15, and 15 seconds are billed even for a 6-second clip;
    - `params.resolution`: `720p` unless the person chose otherwise;
+   - `params.quality`: leave it out (`high`) unless the person asked for the cheaper
+     `standard`, or a test;
    - `prompt`: Transfer's optional direction only ([references/directions.md](references/directions.md)).
 
    Then one message: what you see, what will happen, and the price from the answer
@@ -117,7 +119,7 @@ A swap copies only the moves that are in the clip. Anything new needs Reshoot or
    - Speech in the clip: add that the voice stays the original's and a re-voice can follow.
    - A batch (a trim, a re-voice, several swaps): price every item, then ask one yes for the
      total ([references/calls.md](references/calls.md), section 9).
-   - Short balance (`sufficient: false`): offer `480p` or fewer seconds.
+   - Short balance (`sufficient: false`): offer `standard` quality, `480p` or fewer seconds.
    - A refusal: house-rules.md, section 8, and [If it goes wrong](#if-it-goes-wrong).
 8. **Run.** On yes, the same call with `confirm: true`. Keep the `generation_id`.
 9. **Wait and narrate.** `get_generation` with `wait_seconds: 45`, again until `succeeded` or
@@ -143,11 +145,13 @@ line before the price, with one fix: a cleaner part of the clip, the motion rout
   swapped.
 - A later part of a long video: cut it out in Video Studio and swap it there
   ([references/sources.md](references/sources.md), section 4).
-- The price follows `duration` and quality: `480p` costs about half of `720p`, `1080p` about
-  2.4 times. Shorter is cheaper and holds the likeness better: the best 6 to 15 seconds of a
+- The price follows `duration`, `resolution` and `quality`: `480p` costs about half of `720p`,
+  `1080p` about 2.4 times. `quality: "standard"` costs about a sixth of `high` at `720p` and
+  keeps less detail; it films 15 s at a time, so a longer swap is made in parts and joined.
+  Shorter is cheaper and holds the likeness better: the best 6 to 15 seconds of a
   trend usually carry it.
 - Asked what a swap would cost before there is a clip: `estimate_generation_cost` with
-  `tool: "character-swap"` and the `duration` and `resolution` they have in mind.
+  `tool: "character-swap"` and the `duration`, `resolution` and `quality` they have in mind.
 - The result keeps the source's frame: a landscape source gives a landscape video. There is no
   aspect setting.
 
@@ -264,7 +268,8 @@ Pick the 2 or 3 that fit, one line each:
   as on-screen text over a dance (`creatorline-video-studio`).
 - **Post it**: caption, accounts and time, into the review queue (`creatorline-publish`).
 - **More versions** with other avatars or outfits (`creatorline-ad-variations`).
-- **Final quality**: the same swap at `1080p` once a `480p` test looks right.
+- **Final quality**: the same swap at `high` and `1080p` once a `standard` or `480p` test looks
+  right.
 - **A cover** for the post (`creatorline-cover-image`).
 
 ## References
