@@ -136,7 +136,10 @@ parts of it; the stricter of the two on each side:
 | `top` | Just below the apps' top band | Only for a reason, and never with a hook on the top row |
 
 Route B and `short-clip` place captions themselves, low in the frame. They sit a little lower
-than Video Studio's bottom row, partly inside the band the apps cover, and cannot be moved.
+than Video Studio's bottom row, partly inside the band the apps cover, and cannot be moved. A
+workflow's `caption-burn` step takes `caption_position` (`bottom`, `middle`, `top`), the same
+rows as Video Studio's; it has no `auto`, so pick `middle` yourself for a split screen or a
+product low in the frame.
 
 ## 6. The hook and other texts
 

@@ -23,7 +23,7 @@ word, so copy every key from `get_workflow_catalog`.
 ```jsonc
 {
   "id": "n1",                 // required. letters, digits, "_" and "-"; unique in the graph
-  "kind": "generation",       // generation | publish | text | image
+  "kind": "generation",       // generation | publish | text | image | llm | montage (montage.md)
   "title": "Hero clip",       // optional card name on the canvas (up to 80 characters)
 
   // generation
