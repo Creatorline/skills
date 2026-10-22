@@ -40,6 +40,7 @@ spending, waiting, the result card, failures, safety) and ask every question the
 | Only the words, nothing filmed | `creatorline-short-script` |
 | Cutting, layering or adding text to a finished video | `creatorline-video-studio` |
 | Captions on a finished video | `creatorline-captions` |
+| The same kind of talking head on repeat, or a talking head as one step of a pipeline | `creatorline-workflows` (the `talking-head` stage) |
 
 A script with no product and no actions is still this skill. When the person wants the avatar
 to show or use something while talking, that is a talking video.

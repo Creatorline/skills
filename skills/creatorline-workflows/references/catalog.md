@@ -23,10 +23,11 @@ from these words.
 4. [Video: Reshoot](#4-video-reshoot-reshoot)
 5. [Video: Character Swap](#5-video-character-swap-scene-video)
 6. [Video: motion control](#6-video-motion-control-motion-control)
-7. [Photo](#7-photo-photo-and-photo-edit)
-8. [Audio and finishing](#8-audio-and-finishing)
-9. [Natural next steps](#9-natural-next-steps)
-10. [Not workflow stages](#10-not-workflow-stages)
+7. [Video: talking head](#7-video-talking-head-talking-head)
+8. [Photo](#8-photo-photo-and-photo-edit)
+9. [Audio and finishing](#9-audio-and-finishing)
+10. [Natural next steps](#10-natural-next-steps)
+11. [Not workflow stages](#11-not-workflow-stages)
 
 ## 1. Video: reference to video (`video-ref`)
 
@@ -137,7 +138,23 @@ into the motion video's first frame; `image`: keeps the avatar photo's backgroun
 `character_orientation` (`video` default, or `image`). Fixed prompt: no prompt, no `enhance`.
 Cost: per second of the motion video, low.
 
-## 7. Photo (`photo` and `photo-edit`)
+## 7. Video: talking head (`talking-head`)
+
+The avatar says a script WORD FOR WORD in one steady frame, 5 seconds to 3 minutes: a presenter,
+an explainer, the hook or the close of a longer piece. The prompt is the script (no writer, no
+`enhance`); emotion tags such as `[excited]` or `[pauses]` are read by the voice.
+
+| Model | Slots | Key params | Cost |
+|---|---|---|---|
+| `talking-head` | `character?: image (auto)` (the face: the workflow's avatar unless a step's output or an `image` node is wired in, such as a scene made by `photo-edit`), `location?: image` (a photo of the place) | `voice_id` (set it: rule 5), `resolution` (`480P`, `768P` default, shown as 720p, `1080P`), `green_screen`, `microphone`, `location` (the place in words), `scene_avatar_id` (another of the brand's avatars for this step only) | per spoken second at the quality, from the script's length; a scene adds its price |
+
+- With nothing set the avatar's photo is filmed as it is. `green_screen`, `microphone`, a
+  `location` or a `location` photo makes a scene from that photo first; the clothing stays the
+  photo's. For a different outfit, or the same scene in several takes, make the scene once
+  with `gpt-image-v2-edit` at 9:16 and wire it into each take's `character`.
+- A green screen take goes over another video in a `montage` step (`chromakey`).
+
+## 8. Photo (`photo` and `photo-edit`)
 
 `photo` draws from words alone: no slots, so it cannot show the avatar. `photo-edit` keeps an
 existing image: `characters: image (auto, up to 4)`, `location: image?`,
@@ -162,7 +179,7 @@ only when asked), `num_images` (keep 1: a step passes one image on). Output: ima
 
 A 9:16 still of the avatar (a frame to animate, a story): `gpt-image-v2-edit` at `9:16`.
 
-## 8. Audio and finishing
+## 9. Audio and finishing
 
 | Stage | Model (default) | Slots | Key params | Cost |
 |---|---|---|---|---|
@@ -172,13 +189,13 @@ A 9:16 still of the avatar (a frame to animate, a story): `gpt-image-v2-edit` at
 | `text-to-speech` (output: audio) | `elevenlabs-zrm-text-to-speech` | none; the prompt is the exact words | `voice_id` (set it), `model_id` (`eleven_v4` default, `eleven_v4_turbo`, `eleven_v3`, `eleven_multilingual_v2`, `eleven_flash_v2_5`), `speed` (0.7 to 1.2) | low, per run |
 | `dialogue` (output: audio) | `elevenlabs-zrm-text-to-dialogue` | none; the prompt is an `A:` / `B:` script | `voice_a` (a stock voice when unset), `voice_b` (no default: set both), `stability` (0, 0.5, 1) | low, per run |
 | `merge-clips` | `merge-clips` | `video_urls: video` (2 to 10, edge order) | | low, per run |
-| `caption-burn` | `caption-burn` | `source_video: video` | `hook_mode` (`auto` writes one from the speech, `manual` uses the prompt as the hook, `off`), `caption_style` (`hormozi`, `tiktok`, `minimal`, `sticker`, `bold`, `karaoke`) | low, per run |
+| `caption-burn` | `caption-burn` | `source_video: video` | `hook_mode` (`auto` writes one from the speech, `manual` uses the prompt as the hook, `off`), `caption_style` (`hormozi`, `tiktok`, `minimal`, `sticker`, `bold`, `karaoke`), `caption_position` (`bottom` default, `middle`, `top`) | low, per run |
 
 `caption-burn` reads the speech. A clip with no speech gets a manual hook as a title and no
 captions; with `hook_mode` `auto` or `off` it fails (refunded). Voice lines and a manual hook
 are words, not briefs: `enhance: false`.
 
-## 9. Natural next steps
+## 10. Natural next steps
 
 What the canvas suggests after each stage (`next_stages`). Any edge whose kinds match is
 valid too, such as a video step into `change-voice`.
@@ -188,10 +205,11 @@ valid too, such as a video step into `change-voice`.
 - `lipsync` → `merge-clips`, `caption-burn`, `add-audio`, publish
 - `merge-clips` → `caption-burn`, `lipsync`, `add-audio`, publish
 - `add-audio`, `change-voice` → `caption-burn`, publish
+- `talking-head` → `caption-burn`, `merge-clips`, `montage`, publish
 - `caption-burn` → publish (captions go last, on the finished cut)
 - `text-to-speech`, `dialogue` → `lipsync` or `add-audio` (`audio_url`), never publish
 
-## 10. Not workflow stages
+## 11. Not workflow stages
 
 - `short-clip` (a long video into several shorts): one source makes many clips, and a step
   passes on one. Use the long-to-shorts skill.
