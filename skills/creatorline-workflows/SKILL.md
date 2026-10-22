@@ -269,6 +269,7 @@ in `objects`. With Enhance on, the prompt would be a brief ("She shows the @topi
 | A real clip, the avatar in it | Character Swap → change voice → captions → publish | [examples/scene-swap-revoice.json](examples/scene-swap-revoice.json) |
 | A carousel | 2 to 10 photo or photo edit steps → one publish step with `publishFormat: "carousel"` | |
 | A trend re-filmed | Reshoot with the source bound to `source` → change voice (when the avatar speaks) → captions → publish | |
+| An edit no step makes (split screen, picture in picture, zoom and pan, transitions, moving text, a ducked music bed) | the steps that make the media → `montage` (one ffmpeg command) → publish | [references/montage.md](references/montage.md) |
 
 **Enhance on or off.** On, the prompt is a brief and the writer builds the shots, the lines,
 the persona and the template (`ugc_style`); write it the way
@@ -390,6 +391,8 @@ What next?
 - [references/porting-playbook.md](references/porting-playbook.md): source nodes to
   Creatorline steps, what collapses, and the mapping report.
 - [references/verbatim-prompts.md](references/verbatim-prompts.md): prompts for Enhance off.
+- [references/montage.md](references/montage.md): the `montage` node, its rules, recipes and
+  failures.
 - The example graphs in the Craft table: complete graphs to copy from.
 - [references/house-rules.md](references/house-rules.md),
   [references/asking.md](references/asking.md),
