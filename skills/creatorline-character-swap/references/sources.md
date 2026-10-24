@@ -18,7 +18,7 @@ setting.
 | A TikTok or Instagram post link | `import_asset` with `url`, `brand_id`, `title`. The post's video is copied into the library; keep `id` and `duration_sec`. A photo or carousel post is refused. |
 | A direct link to a video file | `import_asset` the same way (up to 100 MB). |
 | "The video in my library", "my last reshoot" | `list_assets` with `brand_id`, `file_type: "video"` and `search`; add `source: "generated"` for things made in Creatorline. |
-| A YouTube link | It cannot be brought in from here. Ask for the same video's TikTok or Instagram link, or for the file, uploaded in the app's library (below). Where you can run commands, download it yourself first ([downloading posts](downloading-posts.md)). |
+| A YouTube link | It cannot be brought in from here. Ask for the same video's TikTok or Instagram link, or for the file, uploaded in the app's library (below). |
 | A file on their device | They upload it in the app's library, then you find it with `list_assets`. |
 | "A trend" with no link | Trends live in the app, where each trend has a Character Swap button. Ask them to copy the trend's link to you, or to press that button there. |
 

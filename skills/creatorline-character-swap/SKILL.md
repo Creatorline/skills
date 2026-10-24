@@ -225,7 +225,7 @@ the source or the part of it, not the settings.
 |---|---|---|
 | `Missing required input "source_video"` | No source passed | Bring one in (step 4) |
 | `Missing required input "character"` | The avatar has no face yet | Another avatar, or make one at https://app.creatorline.io/avatars/new |
-| A link "serves a web page" | A page link (YouTube, a profile) | A TikTok or Instagram post link, a direct file link, or an upload in the app; a public video page can be downloaded first ([downloading posts](references/downloading-posts.md)) |
+| A link "serves a web page" | A page link (YouTube, a profile) | A TikTok or Instagram post link, a direct file link, or an upload in the app |
 | `Unknown parameter "aspect_ratio"` | The swap has no frame setting | Drop it: the source decides the frame |
 | `Unknown input "outfit"` or `"other_elements"` | That slot belongs to the other mode | Outfit is Replace, other elements are Transfer |
 | `"duration" must be >= 4` or `<= 30` | Out of range | 4 to 30 whole seconds |

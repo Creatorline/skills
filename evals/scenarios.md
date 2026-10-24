@@ -148,7 +148,6 @@ one at a time across several turns, an id shown, an engine or vendor named.
 | 2 | Bu Reels'i avatarımla yeniden çek ama elinde bizim serum olsun. | `creatorline-reshoot` | orient, `list_assets` (the serum), `create_generation` (tool `reshoot`, the serum in `inputs.objects`, no `confirm`) |
 | 3 | Recreate this trending video with my avatar and new lines about our app. | `creatorline-reshoot` | orient; asks for the link if none was given, then `create_generation` (tool `reshoot`, the new lines in the direction, no `confirm`) |
 | 4 | Make this TikTok an ad for our app, with our screen recording in it: https://www.tiktok.com/@someone/video/7400000000000000001 | `creatorline-reshoot` (a trend link to copy; with no link, an app promo is `creatorline-app-promo-video`) | orient, `list_assets` (the recording), `create_generation` (tool `reshoot`, the recording in `inputs.source_video`, no `confirm`) |
-| 5 | Reshoot this Short with my avatar: https://www.youtube.com/shorts/abc123XYZ00 | `creatorline-reshoot` | orient; YouTube is not importable: asks for the TikTok or Instagram link, or (in a coding agent) asks once to install yt-dlp, downloads the MP4 and has the person drop it in Assets, then `list_assets` and `create_generation` (tool `reshoot`, no `confirm`) |
 | Near miss | Keep this dance video exactly as it is and just put my avatar in place of the dancer. | `creatorline-character-swap` | The exact performance kept is a swap. |
 
 ### creatorline-character-swap
