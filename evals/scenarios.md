@@ -194,6 +194,7 @@ plan with Trends. On a free trial, case 1 reads the ads and passes on the Trends
 | 3 | Give me this week's competitor digest. | `creatorline-competitor-intel` | orient, `list_competitors`, `list_trending_posts` (`order: "new"`), `list_competitor_ads` (`only_new: true`); every competitor gets a line |
 | 4 | Scan for new ads from my competitors. | `creatorline-competitor-intel` | orient, `scan_competitor_ads` (no `confirm`): the price and the balance, or why it cannot run now |
 | 5 | Find me something from my competitors to reshoot with Mia. | `creatorline-competitor-intel`, then `creatorline-reshoot` | orient, `list_trending_posts`, `list_competitor_ads`, one pick offered; on a yes, `create_generation` (tool `reshoot`, the pick's link in `inputs.source`, no `confirm`) |
+| 6 | Download Weave's longest-running video ad for me. | `creatorline-competitor-intel` | orient, `list_competitors`, `list_competitor_ads` (`competitor_id`, `order: "longest"`, `format: "video"`), `get_competitor_ad` (its `download_url`) |
 | Near miss | Reshoot this TikTok with my avatar: https://www.tiktok.com/@someone/video/7400000000000000002 | `creatorline-reshoot` | A link to re-film needs no reading of competitors. |
 
 ## Finishing touches

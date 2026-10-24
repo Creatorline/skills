@@ -45,6 +45,7 @@ competitors.
 | `list_competitors` | The brand's competitors, their accounts and followers, how many ads each runs and how many the plan shows, the last scan | nothing |
 | `list_trending_posts` | The followed accounts' posts, by default the biggest breakouts first (`times_their_usual`), each with `post_url` | nothing |
 | `list_competitor_ads` | The competitors' ads as the plan shows them, new since the last scan first, then the longest running, each with `days_running`, `versions`, `cover_url` and `video_url` | nothing |
+| `get_trend`, `get_competitor_ad` | One post or ad by its `id`, with the link to download its video (made on the first ask when a list gave none, up to a minute) | nothing |
 | `scan_competitor_ads` | Reads every competitor's ads again (the app's "Find new ads"); once per brand every 12 hours | credits: price first |
 
 If `list_competitors` is not in your tools, this connection does not have them yet: say that
@@ -73,8 +74,9 @@ https://app.creatorline.io/ad-intelligence) and stop.
 7. **Offer one thing to make**, the strongest item of the brief, as the first of 2 or 3 next
    steps: "Make your version of Weave's 41-day ad with Mia" (Reshoot, its `video_url`), "Film
    Knowt's 9x post with your avatar" (Reshoot, its `post_url`), or "Keep the dance, swap the
-   dancer" (Character Swap). On a yes, hand off to that skill with the link: it prices the run
-   and asks before anything is spent.
+   dancer" (Character Swap). An ad with no `video_url` in the list: `get_competitor_ad` gives it.
+   On a yes, hand off to that skill with the link: it prices the run and asks before anything is
+   spent.
 8. **Scan for new ads, only when asked or offered and accepted.** `scan_competitor_ads` without
    `confirm` gives the price or why it cannot run now (one is running, or the next one can start
    at a given time). Tell the person the credits and the balance, and on a yes call it with
