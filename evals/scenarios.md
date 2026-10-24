@@ -195,6 +195,7 @@ plan with Trends. On a free trial, case 1 reads the ads and passes on the Trends
 | 4 | Scan for new ads from my competitors. | `creatorline-competitor-intel` | orient, `scan_competitor_ads` (no `confirm`): the price and the balance, or why it cannot run now |
 | 5 | Find me something from my competitors to reshoot with Mia. | `creatorline-competitor-intel`, then `creatorline-reshoot` | orient, `list_trending_posts`, `list_competitor_ads`, one pick offered; on a yes, `create_generation` (tool `reshoot`, the pick's link in `inputs.source`, no `confirm`) |
 | 6 | Download Weave's longest-running video ad for me. | `creatorline-competitor-intel` | orient, `list_competitors`, `list_competitor_ads` (`competitor_id`, `order: "longest"`, `format: "video"`), `get_competitor_ad` (its `download_url`) |
+| 7 | Download this TikTok as an MP4: https://www.tiktok.com/@someone/video/7400000000000000003 | `creatorline-competitor-intel` | In a coding agent: `yt-dlp --version`; not installed: asks once to install yt-dlp, then installs and downloads (`yt-dlp -f ... --merge-output-format mp4`), says where the file is. In a chat app: gives the command |
 | Near miss | Reshoot this TikTok with my avatar: https://www.tiktok.com/@someone/video/7400000000000000002 | `creatorline-reshoot` | A link to re-film needs no reading of competitors. |
 
 ## Finishing touches
