@@ -25,7 +25,6 @@ competitors.
 - "Which ads do they keep running?", "show me their best ads", "anything new from Weave?"
 - "A weekly competitor digest", "what changed this week?"
 - "Find me something to reshoot", "give me an idea from what works".
-- "Download this TikTok", "save their ad as an MP4": a post's or an ad's video file.
 - Before a content calendar, when the person wants it built on what works for competitors.
 
 ## Not for
@@ -83,15 +82,6 @@ https://app.creatorline.io/ad-intelligence) and stop.
    at a given time). Tell the person the credits and the balance, and on a yes call it with
    `confirm: true`. It takes a few minutes: `list_competitors` shows `scan_running` until it
    ends; then `list_competitor_ads` with `only_new: true`, and say what came in.
-
-## Downloading a post's video
-
-The person wants the file of a post or ad: a competitor's post or ad the tools list is
-`get_trend` / `get_competitor_ad` (a direct MP4, our own copy). Any other social link
-(TikTok, Instagram, YouTube, X, Facebook): download it with yt-dlp, installed after the
-person's yes, where you can run commands. Every step, the commands and the rules:
-[downloading posts](references/downloading-posts.md). To only remake a post with the avatar,
-no download is needed: its link goes straight into create_generation.
 
 ## A weekly digest
 
