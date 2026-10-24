@@ -1,0 +1,13 @@
+interface:
+  display_name: "Competitor Intel"
+  short_description: "See what works for your competitors"
+  default_prompt: "Use $creatorline-competitor-intel to show me what is working for my competitors right now."
+policy:
+  allow_implicit_invocation: true
+dependencies:
+  tools:
+    - type: mcp
+      value: creatorline
+      description: "Creatorline MCP server"
+      transport: streamable_http
+      url: https://api.creatorline.io/mcp

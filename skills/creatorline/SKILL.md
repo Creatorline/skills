@@ -143,6 +143,7 @@ intake.
 | A cover or thumbnail with a few words on it | `creatorline-cover-image` |
 | Words only for a video not made yet: hooks, a script (up to 60 s), a caption, nothing filmed | `creatorline-short-script` |
 | A podcast, YouTube video or long talk cut into several shorts | `creatorline-long-to-shorts` |
+| What works for the brand's competitors: their best posts, their longest-running ads, a weekly digest, an idea to remake (when `list_competitors` is in your tools) | `creatorline-competitor-intel` |
 | A week or two of posts, planned and then made | `creatorline-content-calendar` |
 | Finished media into a post: its caption and hashtags (also as text only), accounts, time; a post's status | `creatorline-publish` |
 | A pipeline that runs again and again, or one rebuilt from another tool | `creatorline-workflows` |
