@@ -94,7 +94,7 @@ How it chooses, frames and charges, in full:
    | "My latest video", "the interview", a title | `list_assets` with `brand_id`, `file_type: "video"` and `search` when they named it (newest first without it). Pick by title and `duration_sec`; name it by its title in the plan. |
    | A direct link to a video file | `import_asset` with `url`, `brand_id` and a `title` ("Episode 12, full"). Keep its `id` and `duration_sec`. Up to 100 MB. |
    | A file on their device, or attached in the chat | It cannot reach Creatorline from here. They drop it at https://app.creatorline.io/assets?activeBrand=BRAND_ID (up to 100 MB), then you find it with `list_assets`. |
-   | A cloud-drive share page, or any page with a player on it | Not a file. Ask for a YouTube link or an upload. |
+   | A cloud-drive share page, or any page with a player on it | Not a file. Ask for a YouTube link or an upload; a public video page can be downloaded first ([downloading posts](references/downloading-posts.md)). |
    | A file over 100 MB | 100 MB holds only a few minutes of 720p (often 5 to 15). Ask for a public YouTube link of it, or the part that matters as its own file. A long show can go in as several parts, each its own run. |
    | A TikTok, Reels or Shorts link, or any video under about 2 minutes | Already short: offer captions (`creatorline-captions`) or a trim (`creatorline-video-studio`). |
 

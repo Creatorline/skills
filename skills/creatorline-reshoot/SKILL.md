@@ -86,7 +86,7 @@ Every step, and what each setting changes:
    |---|---|
    | A TikTok or Instagram post link (share links too) | `import_asset` with `url` and `brand_id`. Add a `title` only when they said what the trend is ("Trend: 3 desk snacks"). The answer has the asset `id`, `duration_sec` and `ratio`. The same post imported twice is the same file. |
    | A direct link to a video file | `import_asset` with that `url` and `brand_id`. |
-   | A YouTube or Shorts link | Not importable. Ask for the same video's TikTok or Instagram link (creators often post on both), or for the file: dropped at https://app.creatorline.io/assets?activeBrand=BRAND_ID, then found with `list_assets`. |
+   | A YouTube or Shorts link | Not importable. Ask for the same video's TikTok or Instagram link (creators often post on both). Where you can run commands, download it instead ([downloading posts](references/downloading-posts.md)); the file is dropped at https://app.creatorline.io/assets?activeBrand=BRAND_ID, then found with `list_assets`. |
    | A video already in Creatorline | `list_assets` with `brand_id`, `file_type: "video"` and `search`. Look at the likely ones with `preview_assets` and name the one you picked by its title. |
    | A photo or carousel post | Refused: it has no video. Offer `creatorline-photos`. |
    | "Find me a trend" | With `list_trending_posts` in your tools: hand off to `creatorline-competitor-intel`, which reads the competitors' best posts and ads and comes back with a link. Otherwise point to Trends in the app: https://app.creatorline.io/trending?activeBrand=BRAND_ID (on plans that include it; not during the free trial). It leaves out videos Reshoot cannot re-film, and each trend links to its original post: they paste that link here, or press Reshoot right there. |
@@ -298,7 +298,7 @@ You cannot watch the whole take: ask them to watch for lip sync and the product 
 | What happened | Likely cause | Fix |
 |---|---|---|
 | The price call says the avatar needs a face | The brand has no avatar with a face | Make one in the app: https://app.creatorline.io/avatars/new |
-| The import is refused | A photo post, a private or deleted post, a web page, a file over 100 MB | Another link, or the file itself (step 2) |
+| The import is refused | A photo post, a private or deleted post, a web page, a file over 100 MB | Another link, or the file itself (step 2); a public video post the server cannot read can be downloaded ([downloading posts](references/downloading-posts.md)) |
 | Failed after a refusal or a content check | A real face on a take over 15 s, smoking, a sensitive scene | 15 s or less, or `reshoot-seedance-2-0` for a real-face avatar, or another source |
 | Failed for another reason | One of its steps did not finish | The same call once more; after a second failure, another source |
 | A grey or clay-looking figure shows | The storyboard placeholder showed through | The same call once more; then a steadier source |

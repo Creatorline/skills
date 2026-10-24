@@ -86,12 +86,11 @@ https://app.creatorline.io/ad-intelligence) and stop.
 
 ## Downloading a post's video
 
-The person wants the file of a post or ad: a competitor's post or ad the tools list is
-`get_trend` / `get_competitor_ad` (a direct MP4, our own copy). Any other social link
-(TikTok, Instagram, YouTube, X, Facebook): download it with yt-dlp, installed after the
-person's yes, where you can run commands. Every step, the commands and the rules:
-[downloading posts](references/downloading-posts.md). To only remake a post with the avatar,
-no download is needed: its link goes straight into create_generation.
+The person wants the file of a post or ad: one the tools list is `get_trend` /
+`get_competitor_ad` (a direct MP4, Creatorline's own copy). Only when that does not work (a
+link the tools do not hold, `media_problem`, a platform the server does not read), download it
+yourself: [downloading posts](references/downloading-posts.md). To only remake a post with the
+avatar, no download is needed: its link goes straight into create_generation.
 
 ## A weekly digest
 
