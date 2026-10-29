@@ -1,9 +1,9 @@
 # The picture plan
 
 What goes on screen over the host, where, and on which words: cutaways, cards, labels, split
-screens. Write the plan while the parts film, then build it in one `edit_video` call
-(assembly.md, sections 6 and 7) and check the build against it (review.md, section 7). The
-look of each item comes from the edit style (edit-styles.md).
+screens. Write the plan while the parts film, then build it in one `edit_video_layers` call
+and one `edit_video_texts` call (assembly.md, sections 6 and 7) and check the build against
+it (review.md, section 7). The look of each item comes from the edit style (edit-styles.md).
 
 ## Contents
 
@@ -83,8 +83,8 @@ Then choose the kind:
 
 | The beat needs | Use |
 |---|---|
-| Something to look at | A still: a library photo or `text-to-photo`, shown 2 to 3 s |
-| Something that moves or changes | A clip: library footage, `text-to-video`, or `photo-to-video` on a still |
+| Something to look at | A still: a library photo or `generate_text_to_photo`, shown 2 to 3 s |
+| Something that moves or changes | A clip: library footage, `generate_text_to_video`, or `generate_photo_to_video` on a still |
 | The real thing, because being real is the point (an archive photo, news, a named real product, person or place, proof) | A sourced file the person gave or agreed to (supplied-media.md, section 7) |
 | An illustration of an idea | A generated still or clip, never one that looks like a document |
 

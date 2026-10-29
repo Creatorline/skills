@@ -1,6 +1,6 @@
 # How Reshoot works
 
-What happens between `create_generation` with `tool: "reshoot"` and the finished video, and
+What happens between `generate_reshoot` and the finished video, and
 what each setting changes. Read it to explain a result, to plan a tricky source, or to fix a
 take that went wrong.
 
@@ -156,8 +156,9 @@ does: cover it with Video Studio `add_text`.
 - `1080p` more than doubles the rate per second. `change_voice` adds nothing.
 - Clips in `source_video` add their own seconds to what is billed. The source itself and the
   product photo do not.
-- The `needs_approval` answer of `create_generation` is the exact charge. Before there is a
-  source, `estimate_generation_cost` with `tool: "reshoot"` and `params.duration` gives it.
+- The `needs_approval` answer of `generate_reshoot` is the exact charge. Before there is a
+  source, `generate_reshoot` without `confirm`, with `params.duration` and no source, gives an
+  estimate (`estimate: true`).
 - Never write a number from memory: quote the tool's answer.
 
 ## 10. What Reshoot does not do

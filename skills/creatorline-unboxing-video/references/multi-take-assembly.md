@@ -46,7 +46,7 @@ Worked briefs: unboxing-briefs.md, section 6.
 
 Nothing starts until the person has said yes to the total.
 
-1. For every take, call `create_generation` WITHOUT `confirm`, with the exact arguments it will
+1. For every take, call `generate_ugc_video` WITHOUT `confirm`, with the exact arguments it will
    run with. Note each `credits`.
 2. Call `get_video_guide` (free). Its `credits.export` is the price of one export, and
    `credits.captions` the price of captions (charged once per video). Add captions only when
@@ -67,7 +67,7 @@ Nothing starts until the person has said yes to the total.
 
 ## 4. Run and wait
 
-1. On yes, call `create_generation` with `confirm: true` for each take, in order, one after
+1. On yes, call `generate_ugc_video` with `confirm: true` for each take, in order, one after
    another. Do not wait for one to finish before starting the next. Keep each
    `generation_id`.
 2. The workspace films a set number of runs at once (one at a time on some plans); the rest
@@ -87,16 +87,16 @@ order:
 {
   "brand_id": "<brand id>",
   "title": "Summer drop haul",
-  "operations": [
-    { "op": "add_clip", "asset_id": "<take 1 asset id>", "id": "item1" },
-    { "op": "add_clip", "asset_id": "<take 2 asset id>", "id": "item2" },
-    { "op": "add_clip", "asset_id": "<take 3 asset id>", "id": "item3" }
+  "clips": [
+    { "asset_id": "<take 1 asset id>", "id": "item1" },
+    { "asset_id": "<take 2 asset id>", "id": "item2" },
+    { "asset_id": "<take 3 asset id>", "id": "item3" }
   ]
 }
 ```
 
 That is `create_video`. Its answer gives each clip's `start` and `end`: read them, do not work
-them out. Then add the title and the item labels with `edit_video`:
+them out. Then add the title and the item labels with `edit_video_texts`:
 
 ```json
 {
@@ -120,12 +120,12 @@ them out. Then add the title and the item labels with `edit_video`:
   exactly as the person spells them.
 - Make every trim BEFORE you add texts. A text stays at its time when a clip is trimmed or
   removed later; re-anchor it with `update_text` and `over`.
-- To cut a slow start off a take: `update_clip` with `id` and `trim_start` (seconds of that
-  clip's own source), then re-anchor the texts.
-- Music: only from the brand's library (`set_sound` with an audio `asset_id`); there is no
-  stock music. It is turned down only under a voiceover, not under the avatar's own words in
-  the takes, so under a talking haul it competes with the voice: leave it out, or choose a
-  quiet track and say so to the person.
+- To cut a slow start off a take: `edit_video_clips` with `update_clip`, `id` and
+  `trim_start` (seconds of that clip's own source), then re-anchor the texts.
+- Music: only from the brand's library (`edit_video_sound` with `set_sound` and an audio
+  `asset_id`); there is no stock music. It is turned down only under a voiceover, not under
+  the avatar's own words in the takes, so under a talking haul it competes with the voice:
+  leave it out, or choose a quiet track and say so to the person.
 
 ## 6. Look, caption, export
 
@@ -138,8 +138,8 @@ them out. Then add the title and the item labels with `edit_video`:
    row. Read `get_video` every 20 seconds or so until `captions.status` is `ready`. The
    captions are written from what is heard, so read every line against the lines in your
    briefs: the product's name spelled exactly as the person spells it, numbers as digits. Fix
-   a wrong word with `edit_video` and `edit_caption` (`index`, `text`). Nothing said (a quiet
-   unboxing): the captions credits come back; burn nothing.
+   a wrong word with `edit_video_captions` and `edit_caption` (`index`, `text`). Nothing said
+   (a quiet unboxing): the captions credits come back; burn nothing.
 3. Read `get_video`: `ready_to_export` must be true and `warnings` empty.
 4. `export_video` with `video_id` and `confirm: true` (covered by the batch's yes). Read
    `get_video` every 10 to 30 seconds until `export.status` is `done`.
@@ -175,7 +175,7 @@ Read the balance with `get_credit_balance` after the batch.
   the takes that worked, with the labels renumbered.
 - A take that came back wrong (the product drifted, a hand is off): give it a verdict
   (house-rules.md, section 5). Re-run only that take with one change, then swap it in place
-  with `edit_video` and `replace_clip` (`id`, `asset_id`). It keeps the clip's place, but a
+  with `edit_video_clips` and `replace_clip` (`id`, `asset_id`). It keeps the clip's place, but a
   shorter take shortens the clip and the texts stay at their old times: re-anchor them with
   `update_text` and `over`, then look with `preview_video`. Captions written before the swap
   are out of date; writing them again is free.

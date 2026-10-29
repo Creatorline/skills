@@ -115,10 +115,10 @@ The yes covers each paid call of the quote at its quoted price, so those calls b
 not list, is asked first.
 
 **5. The look reference and the roster** (not for Stock footage). On yes: the look reference
-first (`text-to-photo`, `aspect_ratio: "2:3"`, [visual-style.md](references/visual-style.md),
+first (`generate_text_to_photo`, `aspect_ratio: "2:3"`, [visual-style.md](references/visual-style.md),
 section 3); `get_generation` with `wait_seconds: 30` until it is done. Then every roster picture
-(`photo-edit`, `include_avatar: false`, the look reference attached, section 4), started one
-after another without waiting, at most 6 at a time, then waited on.
+(`generate_photo_edit`, `include_avatar: false`, the look reference attached, section 4), started
+one after another without waiting, at most 6 at a time, then waited on.
 
 **6. The pictures.** Animated: every shot picture
 ([visual-style.md](references/visual-style.md), section 6), started in waves the same way.
@@ -142,7 +142,7 @@ studio link to listen (`[Open in Creatorline](<studio_url>)`). Ask: "Continue to
 (Picture story: "Continue to the pictures?"; Stock footage: "Finish the video?", then skip
 step 8 and stop 3). End your turn.
 
-**8. The motion, or the frames.** Animated: one `photo-to-video` run per shot
+**8. The motion, or the frames.** Animated: one `generate_photo_to_video` run per shot
 ([visual-style.md](references/visual-style.md), section 10), all started, then each put in with
 `replace_clip` as it finishes (narration-and-assembly.md, section 7). Picture story: the caption
 timeline, the frame slots, the frames in waves, then the assembly (section 8, steps 4 to 8).

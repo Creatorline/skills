@@ -30,10 +30,10 @@ and say in the plan which rows it is the control for:
 | Rows | What else changes | Matching control |
 |---|---|---|
 | Product (Reshoot) | Every frame is filmed again | A plain Reshoot of the source, `<base>_00_reshoot` |
-| Product, outfit, background, colour or words (`video-edit`) | The picture is rendered again: close to the original, rarely the same pixels; at 720p it can look softer than a sharp original | None that changes nothing. Edit at the source's sharpness, or compare these rows with each other |
+| Product, outfit, background, colour or words (`generate_video_edit`) | The picture is rendered again: close to the original, rarely the same pixels; at 720p it can look softer than a sharp original | None that changes nothing. Edit at the source's sharpness, or compare these rows with each other |
 | Spoken lines, when the original voice is not the avatar's | The voice | The original words through the same speech and lip sync, `<base>_00_revoiced` |
 | Outfit (Character Swap Replace), when the source does not show this avatar | The person | A plain Replace with no outfit, `<base>_00_replace` |
-| Product (`video-edit`), when the lines name the old product | The words now disagree with the picture | None: fix the words with a lines step, or use Reshoot for the set |
+| Product (`generate_video_edit`), when the lines name the old product | The words now disagree with the picture | None: fix the words with a lines step, or use Reshoot for the set |
 
 Product rows made the same way can also be compared only with each other: they share the same
 re-filming or re-rendering.

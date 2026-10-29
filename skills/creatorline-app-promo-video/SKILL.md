@@ -102,8 +102,8 @@ sound, or a number of takes. Never ask the person to record their screen.
    brief checks. Details and an example:
    [references/promo-scripts.md](references/promo-scripts.md).
 6. **Plan and price: one yes for the whole job.**
-   - The take: `create_generation` WITHOUT `confirm`: `tool: "ugc-video"`, `brand_id`,
-     `avatar_id` (only when not the default), `prompt` (the brief, below), `params:
+   - The take: `generate_ugc_video` WITHOUT `confirm`: `brand_id`, `avatar_id` (only when not
+     the default), `prompt` (the brief, below), `params:
      {ugc_style: "Auto", duration: 15, aspect_ratio: "9:16", resolution: "720p"}`. Pass no
      screenshots in `inputs`: they go on top in the edit. Only an online store's closing
      product goes in, as `inputs: {objects: [<product photo>]}`.
@@ -112,30 +112,32 @@ sound, or a number of takes. Never ask the person to record their screen.
    - One short message: what you will make (one line), the lines with the card each one
      carries, the three prices, the total and the balance. Ask for a yes (promo-scripts.md,
      section 14). `sufficient: false`: house-rules.md, section 2.
-7. **Film.** On yes, the same `create_generation` call plus `confirm: true`. Then
+7. **Film.** On yes, the same `generate_ugc_video` call plus `confirm: true`. Then
    `get_generation` with `wait_seconds: 45`, again until `status` is `succeeded` or `failed`.
    Say once: "Filming Mia at her desk now; a 15-second take usually takes a few minutes."
 8. **Build the project** (free). `create_video` with `brand_id`, `title: "<App> promo"` and
-   `operations: [{"op": "add_clip", "asset_id": "<the take>", "id": "talk"}]`, where the take
-   is `output[0].asset_id` from `get_generation`.
+   `clips: [{"asset_id": "<the take>", "id": "talk"}]`, where the take is
+   `output[0].asset_id` from `get_generation`.
 9. **Captions, which are also the clock.** Say "Writing the captions; they also tell me when
    each screenshot comes in." `write_captions` with `video_id`, `style: "bold"`, `position:
    "auto"`, `confirm: true` (covered by the yes). Read `get_video` every 20 seconds until
    `captions.status` is `ready`.
 10. **Dead air** (free). The first word should land within 0.4 s: trim the start and the
-    silent tail with `update_clip`, then `write_captions` again (free, no approval) and wait
-    for `ready` (screen-layouts.md, section 2).
-11. **Correct the words** (free): `edit_caption` so the lines match the script, the app's name
-    first, numbers as digits. In Both mode, take the hook's own lines out (screen-layouts.md,
-    section 3). Do it after the last hearing: a new hearing replaces your corrections.
-12. **Put the screenshots in** (free). Say "Putting your screenshots in." One `edit_video`
-    call: a card per beat, 1.4 s each on its cue word, then the hook plate and the call to
-    action text, and `remove_captions` last in Hook mode. Sizes and timing:
+    silent tail with `update_clip` (`edit_video_clips`), then `write_captions` again (free, no
+    approval) and wait for `ready` (screen-layouts.md, section 2).
+11. **Correct the words** (free): `edit_caption` (`edit_video_captions`) so the lines match the
+    script, the app's name first, numbers as digits. In Both mode, take the hook's own lines out
+    (screen-layouts.md, section 3). Do it after the last hearing: a new hearing replaces your
+    corrections.
+12. **Put the screenshots in** (free). Say "Putting your screenshots in." `edit_video_layers`:
+    a card per beat, 1.4 s each on its cue word; then `edit_video_texts`: the hook plate and
+    the call to action text; and in Hook mode, last, `edit_video_captions` with
+    `remove_captions`. Sizes and timing:
     [references/screen-layouts.md](references/screen-layouts.md).
 13. **Look and fix** (free). `preview_video` with `at` set to the hook, the middle of each card
     and the last second (up to 9 a call), and `show_safe_area: true`; with `exact: true`, also
-    two or three moments mid-sentence. `get_video`: `warnings` empty. Fix with `edit_video`,
-    look again.
+    two or three moments mid-sentence. `get_video`: `warnings` empty. Fix with the `edit_video_*`
+    tools, look again.
 14. **Export.** Say "Exporting the final video." `export_video` with `video_id` and
     `confirm: true` (covered by the yes). Read `get_video` every 10 to 30 seconds until
     `export.status` is `done`.
@@ -280,11 +282,11 @@ the model, a job id or the internal steps.
 - **Variations to test**: `creatorline-ad-variations`: another hook, another avatar, another
   language, each a new take with the same cards.
 - **The avatar's own voice**: when the avatar has a voice of its own (`get_avatar`
-  `voice_id`), `run_video_ai` with `action: "change_voice"` and that `voice_id` on the `talk`
-  clip. Price it and the new export together, ask once, then `write_captions` again (free), fix
-  the words again, and export. Asked for up front: say in the plan that it is priced once the
-  take exists. After step 8, call it without `confirm` for the price, ask, run it with
-  `confirm: true`, and read `get_video` until the clip is no longer `generating`. Then step 9.
+  `voice_id`), `change_clip_voice` with that `voice_id` on the `talk` clip (`clip_id: "talk"`).
+  Price it and the new export together, ask once, then `write_captions` again (free), fix the
+  words again, and export. Asked for up front: say in the plan that it is priced once the take
+  exists. After step 8, call it without `confirm` for the price, ask, run it with `confirm: true`,
+  and read `get_video` until the clip is no longer `generating`. Then step 9.
 - **More screenshots or a new order**: free edits in Video Studio, then a new export.
 
 ## References

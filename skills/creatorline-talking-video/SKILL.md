@@ -125,11 +125,10 @@ one.
 
    Then run the brief check ([checklists](references/checklists.md), section 1) and fix what
    fails before you quote.
-7. **Plan and price.** Make the call without `confirm`:
+7. **Plan and price.** Call `generate_ugc_video` without `confirm`:
 
    ```json
    {
-     "tool": "ugc-video",
      "brand_id": "<brand>",
      "avatar_id": "<the avatar on camera>",
      "prompt": "<the brief>",
@@ -140,10 +139,11 @@ one.
 
    Leave out `model`, `aspect_ratio` (`9:16`) and `resolution` (`720p`) unless the person asked.
    The answer is `needs_approval` with `credits`, `credit_balance` and `sufficient`. When the
-   voice step is planned, price it too: `estimate_generation_cost` with
-   `{ "tool": "change-voice", "params": { "voice_id": "<the avatar's voice_id>" } }`. Then one
-   message: what you will make (mode or format, shape, length, avatar, setting), the lines word
-   for word, each part's credits, the total, the balance, one question.
+   voice step is planned, price it too: `generate_change_voice` without `confirm` and without
+   the take (it does not exist yet), `{ "params": { "voice_id": "<the avatar's voice_id>" } }`,
+   answers with an estimate (`estimate: true`). Then one message: what you will make (mode or
+   format, shape, length, avatar, setting), the lines word for word, each part's credits, the
+   total, the balance, one question.
 
    > A 15-second story: Mia is running late, the serum is the one step she keeps, verdict at
    > the sink. She says: "<the lines>". The video is <N> credits and Mia's own voice <M>,
@@ -160,11 +160,10 @@ one.
 10. **Check the take** ([below](#check-before-you-show-it)). When a check fails, stop: show it,
     say what is off and what you would change (house rules, section 5), and say the voice step
     did not run and cost nothing.
-11. **Voice step**, when planned, on the checked take:
+11. **Voice step**, when planned, on the checked take, with `generate_change_voice`:
 
     ```json
     {
-      "tool": "change-voice",
       "brand_id": "<brand>",
       "avatar_id": "<the avatar on camera>",
       "inputs": { "video_url": "<the take's asset_id>" },
@@ -184,7 +183,8 @@ content check) is reported plainly, and a different model is a new quote and a n
 
 The video model gives every take a voice of its own. It suits the face, but it is not the
 avatar's saved voice, and it differs from video to video. To make every video sound like the
-same person, re-voice the kept take with `change-voice` in the avatar's `voice_id` (step 11).
+same person, re-voice the kept take with `generate_change_voice` in the avatar's `voice_id`
+(step 11).
 The words, timing, lip movement and delivery stay; only the voice changes.
 
 | Run it when | Skip it when |
@@ -318,7 +318,7 @@ Pick the 2 or 3 that fit this clip:
 | The same idea as a longer episode | `creatorline-ai-host` |
 
 When the person wants text, captions or music on it, the clip goes into a Video Studio project
-first: `create_video` with `brand_id`, a `title` and one `add_clip` operation with the take's
+first: `create_video` with `brand_id`, a `title` and one clip in `clips`, the take's
 `asset_id` (free). The sibling skill takes it from there.
 
 ## References

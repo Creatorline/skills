@@ -77,16 +77,16 @@ section 2). Call `get_video_guide` once for the voiceover, captions and export p
 
 | Part | Call, without `confirm` | Count |
 |---|---|---|
-| Look reference | `create_generation` `{ tool: "text-to-photo", brand_id, prompt, params: { aspect_ratio: "2:3" } }` | 1 |
-| Roster and shot pictures | `create_generation` `{ tool: "photo-edit", brand_id, include_avatar: false, inputs, params: { aspect_ratio: "2:3" }, prompt }` for one; the others cost the same | roster + 30 |
-| Motion | `estimate_generation_cost` `{ tool: "photo-to-video", model: "google-gemini-omni-flash-image-to-video", params: { duration: 3 } }` | 30 |
+| Look reference | `generate_text_to_photo` `{ brand_id, prompt, params: { aspect_ratio: "2:3" } }` | 1 |
+| Roster and shot pictures | `generate_photo_edit` `{ brand_id, include_avatar: false, inputs, params: { aspect_ratio: "2:3" }, prompt }` for one; the others cost the same | roster + 30 |
+| Motion | `generate_photo_to_video` `{ model: "google-gemini-omni-flash-image-to-video", params: { duration: 3 } }` (no image yet: an estimate) | 30 |
 | Narration | `credits.voiceover`, plus up to 2 retakes for lines that run long or short, charged only if used | 6 + 2 |
 | Captions, export | `credits.captions`, `credits.export` | 1 each |
 | Cover (when yes) | the cover's own quote (`creatorline-cover-image`) | 1 |
 
 **Picture story:** the look reference, the roster, the frames (plan on one frame per second of
-narration, never fewer than the seconds divided by 1.5; each costs one `photo-edit`), the
-narration (one voiceover per 2,000 characters, plus one retake), captions, export, cover.
+narration, never fewer than the seconds divided by 1.5; each costs one `generate_photo_edit`),
+the narration (one voiceover per 2,000 characters, plus one retake), captions, export, cover.
 
 **Stock footage:** only the narration (with its retakes), captions, export and the cover.
 
@@ -109,27 +109,36 @@ or a longer video is quoted again first.
 ## 5. Animated: the still cut
 
 Once the shot pictures are ready, build the video from them, free, so the narration can go on
-before any motion is paid for:
+before any motion is paid for. `create_video`:
 
 ```json
 {
   "brand_id": "<brand id>",
   "title": "The lighthouse that never went dark",
-  "operations": [
-    { "op": "add_clip", "asset_id": "<shot picture>", "id": "b1s1", "duration": 2 },
-    { "op": "add_clip", "asset_id": "<shot picture>", "id": "b1s2", "duration": 2 },
-    { "op": "add_clip", "asset_id": "<shot picture>", "id": "b1s3", "duration": 2 },
-    { "op": "add_clip", "asset_id": "<shot picture>", "id": "b1s4", "duration": 2 },
-    { "op": "add_clip", "asset_id": "<shot picture>", "id": "b1s5", "duration": 2 },
-    { "op": "set_all_clips_sound", "sound": false }
+  "clips": [
+    { "asset_id": "<shot picture>", "id": "b1s1", "duration": 2 },
+    { "asset_id": "<shot picture>", "id": "b1s2", "duration": 2 },
+    { "asset_id": "<shot picture>", "id": "b1s3", "duration": 2 },
+    { "asset_id": "<shot picture>", "id": "b1s4", "duration": 2 },
+    { "asset_id": "<shot picture>", "id": "b1s5", "duration": 2 }
   ]
+}
+```
+
+Then `edit_video_clips` with the new `video_id`:
+
+```json
+{
+  "video_id": "<video id>",
+  "operations": [{ "op": "set_all_clips_sound", "sound": false }]
 }
 ```
 
 - Every block in order, 5 clips of 2 seconds (or 4 of 2.5). Muting every clip now keeps the
   motion takes muted when they replace the pictures.
-- At most 60 operations per call: a 2 min video (60 shots) is `create_video` with the first
-  blocks, then `edit_video` with the rest and `set_all_clips_sound` last.
+- At most 60 clips per `create_video` and 60 operations per `edit_video_*` call: a longer
+  video is `create_video` with the first blocks, then `edit_video_clips` with the rest
+  (`add_clip`) and `set_all_clips_sound` last.
 - Keep the video's `id` and `studio_url`. "Nothing is heard" in `warnings` is expected until the
   narration is on.
 
@@ -166,7 +175,7 @@ The pause and the words are checked later from the captions (section 11).
    show `queued` and start on their own.
 2. `get_generation` with `wait_seconds: 45` on each until `succeeded`; its `output[0].asset_id`
    is the moving shot.
-3. `edit_video` with one `replace_clip` per finished shot (many in one call is fine):
+3. `edit_video_clips` with one `replace_clip` per finished shot (many in one call is fine):
    `{ "op": "replace_clip", "id": "b3s2", "asset_id": "<moving shot>" }`. The clip keeps its
    place, its 2 seconds and its silence. When a take is still for its first half second, add
    `{ "op": "update_clip", "id": "b3s2", "trim_start": 0.5, "trim_end": 2.5 }`.
@@ -185,7 +194,7 @@ The person reviews the narration first, then the pictures.
    paragraph end into two voiceovers, the second starting where the first ends.
 2. **A placeholder cut:** `create_video` with the roster's place pictures as clips whose
    `duration`s add up to the estimated narration length plus 2 seconds (each at most 30), then
-   `set_all_clips_sound` false.
+   `edit_video_clips` with `set_all_clips_sound` false.
 3. **Record:** `add_voiceover` with `start: 0` (and the second at the first one's `end`),
    `confirm: true`; `get_video` until `ready`. The real length sets the video's length.
 4. **The timeline:** `write_captions` (`confirm: true`, charged once); `get_video` every 20
@@ -197,9 +206,9 @@ The person reviews the narration first, then the pictures.
    which slots are new framings (the action or the place changes) and which are variations.
 6. **Frames, in waves** ([visual-style.md](visual-style.md), section 11). Keep each frame's slot
    number with its asset id: frames are placed by their slot, never by the order they finished.
-7. **Assemble:** `edit_video` removing the placeholders and adding every frame in slot order with
-   ids `f001`, `f002`, ... and its slot's `duration`. At most 60 operations per call, so several
-   calls, always in order.
+7. **Assemble:** `edit_video_clips` removing the placeholders and adding every frame in slot order
+   with ids `f001`, `f002`, ... and its slot's `duration`. At most 60 operations per call, so
+   several calls, always in order.
 8. `write_captions` again when the frames are in (free): they were heard before the cut changed.
 
 ## 9. Stock footage
@@ -207,15 +216,17 @@ The person reviews the narration first, then the pictures.
 - Per shot: `list_stock_clips` with `library: "hooks"` and a `search` of one to three plain
   words of what the shot shows (`walking park`, `gym`, `laptop`, `beach sunset`). Read `title`,
   `tags` and `duration`; look with `preview_assets` `stock_ids`.
-- In `create_video`: `{ "op": "add_clip", "stock_id": "<id>", "id": "b1s1", "trim_start": 0.5,
-  "trim_end": 2.5 }` for a 2-second shot, five per block, then `set_all_clips_sound` false.
+- In `create_video`'s `clips`: `{ "stock_id": "<id>", "id": "b1s1", "trim_start": 0.5,
+  "trim_end": 2.5 }` for a 2-second shot, five per block, then `edit_video_clips` with
+  `set_all_clips_sound` false.
 - Narrate, measure and centre as in section 6.
 - A block stock cannot show is rewritten to something it can ([visual-style.md](visual-style.md),
   section 12).
 
 ## 10. Texts, music and reactions
 
-Add texts once the clips are final: texts stay at fixed times when clips change.
+Add texts once the clips are final: texts stay at fixed times when clips change. Texts go in
+with `edit_video_texts`, music with `edit_video_sound`, a reaction with `edit_video_layers`.
 
 - **Title** over the first shot, 3 to 6 words: `{ "op": "add_text", "text": "The lighthouse
   that never went dark", "over": "b1s1", "position": "top", "size": "l" }`. About 26 characters
@@ -243,12 +254,13 @@ Add texts once the clips are final: texts stay at fixed times when clips change.
   bottom, clear of the subject.
 - **The timing comes from hearing the final audio; the words come from the script.** Read
   `captions.lines` against the script and correct every name, number and spelling with
-  `{ "op": "edit_caption", "index": <n>, "text": "..." }`.
+  `edit_video_captions`: `{ "op": "edit_caption", "index": <n>, "text": "..." }`.
 - **The lines are also the check that each take said its own line.** A block whose words are
   missing, or another block's words in its place, fails the narration gate: retake it
   (section 6). A gap of 0.8 seconds or more between two lines inside one block is a pause to
   remove: rewrite that line with fewer stops and retake it.
-- Change the look or the place later for free: `{ "op": "set_captions", "style": "sticker" }`.
+- Change the look or the place later for free, with `edit_video_captions`:
+  `{ "op": "set_captions", "style": "sticker" }`.
 - Clips changed after captions: `captions.status` is `out_of_date`; `write_captions` again when
   the cut is final (free, no yes needed).
 
@@ -268,8 +280,8 @@ Add texts once the clips are final: texts stay at fixed times when clips change.
 
 ## 13. Pitfalls
 
-- The operations of one call are applied all together or not at all; an `add_text` or
-  `add_layer` before the first clip refuses the whole call.
+- The operations of one `edit_video_*` call are applied all together or not at all; an
+  `add_text` or `add_layer` on a video with no clip yet refuses the whole call.
 - Texts, layers and voiceovers do not follow trims, removals or reorders: the fixed block grid
   avoids most of it; after any change of a block's length, put them back with `update_text`,
   `update_layer` and `move_voiceover`, then look again.
@@ -280,5 +292,5 @@ Add texts once the clips are final: texts stay at fixed times when clips change.
   overlap and readability, not the motion.
 - The person may not see preview pictures in their chat: share links instead.
 - The export is refused while a voiceover is generating or captions are being written.
-- Limits: 180 seconds per video, 60 operations per call, 300 characters per text, 30 seconds
-  per photo clip.
+- Limits: 180 seconds per video, 60 clips per `create_video`, 60 operations per edit call, 300
+  characters per text, 30 seconds per photo clip.

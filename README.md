@@ -53,6 +53,12 @@ the skill that fits.
 | Ad Variations (`creatorline-ad-variations`) | Many versions of one winning video, each changing one thing. |
 | Clips from Long Videos (`creatorline-long-to-shorts`) | A podcast or long video cut into captioned vertical shorts. |
 
+**From what works for your competitors**
+
+| Skill | What you get |
+| --- | --- |
+| Competitor Intel (`creatorline-competitor-intel`) | Your competitors' best posts and longest-running ads in a short brief, and your version of the best one. |
+
 **Finishing touches**
 
 | Skill | What you get |

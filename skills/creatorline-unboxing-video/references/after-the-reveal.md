@@ -25,7 +25,7 @@ own with the product.
 
 - Up to 30 s, write the sections into one brief as `Section 1:` and `Section 2:` lines: one take
   holds 30 s and has no joins.
-- Over 30 s, each section is its own `create_generation` call with its own brief, joined in
+- Over 30 s, each section is its own `generate_ugc_video` call with its own brief, joined in
   order with `create_video` (multi-take-assembly.md). A section that fails is filmed again on
   its own; the others stay.
 - Each section is about 15 s and holds 4 shots of at least 3 s: introduce, develop, land.
@@ -122,9 +122,10 @@ Language: English, American accent.
 Sound: voice and room sound only: the slice of the tape, the flaps, the tissue, the case's click, a soft gasp.
 ```
 
+`generate_ugc_video`:
+
 ```json
 {
-  "tool": "ugc-video",
   "brand_id": "<brand id>",
   "prompt": "<the brief above>",
   "inputs": { "objects": ["<earbuds photo asset id>"] },

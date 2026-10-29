@@ -31,8 +31,8 @@ picture) sits over it for a stretch of time.
 | A title card | A full-frame card with a title | A photo clip (a plain background or a brand picture from the library) shown 1.5 to 2.5 s, with an `l` or `xl` title `over` it |
 | B-roll over speech | The voice goes on while the picture cuts away | A `video` layer with `fill: true` over part of the talking clip; layers are silent by default, so the voice carries on underneath |
 
-B-roll over speech, as operations (the talking take is clip `talk`; the cutaway shows from
-4 s to 6.5 s while she keeps talking):
+B-roll over speech, as `edit_video_layers` operations (the talking take is clip `talk`; the
+cutaway shows from 4 s to 6.5 s while she keeps talking):
 
 ```json
 [
@@ -98,7 +98,7 @@ reads, and it is honest about what it is: each step appears on a cut.
   Prefix and suffix stay inside the text ("$12", "40%").
 - **The last step holds** until the label's job is done (edit grammar, section 4 for read time).
 
-**A count up** ("0%" to "100%" over 1.2 s, then held):
+**A count up** ("0%" to "100%" over 1.2 s, then held), as `edit_video_texts` operations:
 
 ```json
 [
@@ -129,8 +129,8 @@ describe a cut as a transition or a held step as an animation.
 |---|---|---|
 | A transition (fade, slide, zoom, spin, blur) between clips | Clips join on a cut | A cut on a movement (edit grammar, section 3); the person can review the cut in the studio |
 | Animated text (pop, slide up, typewriter, bounce) | Texts appear and go on a cut | The words timed to the speech; `hormozi` or `karaoke` captions for word-by-word energy; a phrase build (section 4) |
-| A zoom or punch-in on a talking head | Clips cannot be scaled | A closer take of the same moment cut in (a new take, priced: `run_video_ai` or a format skill); in a split screen, `main_focus` with `zoom` |
-| A slow move over a photo | Photos do not move | `run_video_ai` with `animate_photo` on that photo (priced) |
+| A zoom or punch-in on a talking head | Clips cannot be scaled | A closer take of the same moment cut in (a new take, priced: an AI-on-a-clip tool, SKILL.md, or a format skill); in a split screen, `main_focus` with `zoom` |
+| A slow move over a photo | Photos do not move | `animate_photo_clip` on that photo (priced) |
 | Music turned down under speech, or a volume level | Sound is on or off per clip; music plays at its own level; only a voiceover turns it down | Music only where nobody talks, or the clip's sound off with a voiceover carrying the words |
 | Silences removed by themselves | No automatic silence removal | Captions first, then `split_clip` at both ends of each pause and `remove_clip` (edit grammar, section 3) |
 | Shapes, arrows, progress bars, icons | No graphics layer | A photo layer of an arrow or an icon from their library; a held-state count |

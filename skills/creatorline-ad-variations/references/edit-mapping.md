@@ -68,7 +68,7 @@ Name each image's kind when it arrives. The kind decides what it replaces (secti
 | Place | A room, a street, a beach: a setting with no main subject |
 | Logo | A flat mark, a sticker, a print |
 | Animal | A pet or a creature |
-| Person | A face or a person: not for `video-edit` (section 7) |
+| Person | A face or a person: not for `generate_video_edit` (section 7) |
 | Second view | Another angle of an item already given: grouped with it as one item |
 
 An image the person sent that fits no version is never dropped in silence: ask about it in
@@ -117,12 +117,12 @@ Every choice is settled here, in the plan, so no prompt carries an "if".
 
 ## 7. People: Character Swap
 
-- **A change to who a person is goes to Character Swap**, never `video-edit`: another avatar
-  in her place, another face, another person. It works better for people.
+- **A change to who a person is goes to Character Swap**, never `generate_video_edit`: another
+  avatar in her place, another face, another person. It works better for people.
 - **It covers the whole video:** every appearance of that person, across cuts, turns, hands
   over the face, motion blur, mirrors and shadows. "Swap her only for the first 3 seconds" is
   not offered. Ask: swap her for the whole video, or change only something about her (a
-  garment, a hair colour) for those seconds with `video-edit`.
+  garment, a hair colour) for those seconds with `generate_video_edit`.
 - **Everyone not named stays as filmed.** A second person changes only when the person asked
   for two avatars.
 - **Adding or removing a person** is not offered.
@@ -154,7 +154,7 @@ Clothing on the same person, everything else kept:
 
 | Pick | When |
 |---|---|
-| `video-edit` | One garment changes (a jacket, a top, shoes), the rest of the look stays, and the source shows an AI face. A MODIFY for a colour or material, a REPLACE with the garment's image. |
+| `generate_video_edit` | One garment changes (a jacket, a top, shoes), the rest of the look stays, and the source shows an AI face. A MODIFY for a colour or material, a REPLACE with the garment's image. |
 | Character Swap Replace with `inputs.outfit` | A whole outfit, the source shows a real person's face, or the avatar changes too |
 
 - Only the named garment changes. Never describe, fix or change a garment the person did not

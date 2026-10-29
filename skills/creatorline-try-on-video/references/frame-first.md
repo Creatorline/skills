@@ -27,7 +27,7 @@ Use it when:
 2. Each frame gets a realism pass, so the video model copies a phone photo, not a glossy
    render. The passed frame is the one kept and the one the next frame takes.
 3. You look at the kept frames (free) and fix any before filming.
-4. `ugc-video` with the `Keyframes` template films one shot per frame, in order, opening each
+4. `generate_ugc_video` with the `Keyframes` template films one shot per frame, in order, opening each
    shot on its frame.
 
 Strictly one at a time: each run needs the one before, so wait for it to finish.
@@ -53,8 +53,8 @@ section 2):
 ## 3. Making a frame
 
 ```
-create_generation {
-  tool: "photo-edit", brand_id, avatar_id (only when one was named),
+generate_photo_edit {
+  brand_id, avatar_id (only when one was named),
   model: "gpt-image-v2-edit",
   inputs: { other_elements: [<inputs from the table, in order>] },
   params: { aspect_ratio: "9:16", resolution: "2K", quality: "High" },
@@ -88,8 +88,8 @@ Casual phone photo.
 ## 4. The realism pass
 
 ```
-create_generation {
-  tool: "photo-edit", brand_id,
+generate_photo_edit {
+  brand_id,
   model: "bytedance-seedream-v4-5-edit",
   include_avatar: false,
   inputs: { other_elements: [<the frame>] },
@@ -118,9 +118,10 @@ frame after it.
 
 ## 6. Film from the frames
 
+`generate_ugc_video` with:
+
 ```json
 {
-  "tool": "ugc-video",
   "brand_id": "<brand id>",
   "prompt": "<the video brief>",
   "inputs": { "objects": ["<frame 1>", "<frame 2>", "<frame 3>", "<frame 4>", "<frame 5>"] },
@@ -138,9 +139,9 @@ frame after it.
 
 ## 7. Price it as one batch
 
-1. Frame 1: `create_generation` without `confirm` (it needs no earlier frame).
-2. The other frames, every realism pass and the video: `estimate_generation_cost` with the same
-   tool, model and params.
+1. Frame 1: `generate_photo_edit` without `confirm` (it needs no earlier frame).
+2. The other frames, every realism pass and the video: the same tool, model and params without
+   `confirm` and without the input that does not exist yet, which answers with an estimate.
 3. One message: the stills with their passes, the video, the total, the balance, one yes.
 4. On yes, run in order. Call each later step once more without `confirm` when its input exists:
    the same price is covered by the yes, so confirm it; a higher one, tell the person and ask.

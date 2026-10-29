@@ -295,6 +295,6 @@ is quietly corrected.
 - No bracketed sounds in the voiceover (a laugh, a gasp): those are sounds a person on camera
   makes.
 - No music in the clip unless asked (SKILL.md, The brief). Music can go on later in Video Studio
-  (`set_sound`), and music under the voice garbles `change-voice`.
+  (`set_sound`), and music under the voice garbles `generate_change_voice`.
 - Path D with a Video Studio voiceover: film the clips with `generate_audio: false`, or turn their
   sound off in the video, so the voiceover is the only voice.

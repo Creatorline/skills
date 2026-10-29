@@ -110,10 +110,10 @@ A month is planned two weeks at a time: plan the first two, make week 1, come ba
    - **Plan and make** asked, or not said: price it first (step 5) and put the total under
      the calendar.
 5. **Price the whole week** ([batch production](references/batch-production.md), sections 1
-   to 3). Quote every paid call of every row with nothing confirmed: `estimate_generation_cost`
-   for each generation (or `create_generation` without `confirm` where the row's inputs and
-   brief already exist), `get_video_guide` `credits` for Video Studio steps. Add them up. One
-   message: each row's credits, the total, the balance, one question. `sufficient: false` or a
+   to 3). Quote every paid call of every row with nothing confirmed: each generation's
+   `generate_*` tool without `confirm` (an estimate while the row's inputs are not there yet,
+   the exact price once they are), `get_video_guide` `credits` for Video Studio steps. Add them up.
+   One message: each row's credits, the total, the balance, one question. `sufficient: false` or a
    budget: offer a lighter week (fewer posts, more carousels, shorter clips), never a partial
    start.
 6. **Make it** ([batch production](references/batch-production.md), sections 4 to 9). On yes:

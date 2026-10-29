@@ -67,8 +67,8 @@ she saw. It works because it feels unplanned.
 - **Mix:** 2 or 3 of her (a selfie, a candid, one full body), 1 or 2 details (hands, food, the
   product on a table), 1 or 2 views, maybe a flash photo at night.
 - **One day, one outfit.** The same look card in every frame; the light moves through the day.
-- Views and food with nothing real in them: `text-to-photo`. The product on a table:
-  `photo-edit` with `include_avatar: false`.
+- Views and food with nothing real in them: `generate_text_to_photo`. The product on a table:
+  `generate_photo_edit` with `include_avatar: false`.
 
 ```
 Selfie at arm's length, slight high angle. @Avatar1 squints into the sun with a half smile, wind
@@ -161,7 +161,7 @@ bit of the room's clutter.
 
 ## 7. Flat lay and packshot
 
-The person's real products with nobody in the frame: `photo-edit`, `include_avatar: false`,
+The person's real products with nobody in the frame: `generate_photo_edit`, `include_avatar: false`,
 the product photos in `other_elements`, on `gpt-image-v2-edit` with `quality: "Medium"`; inside
 a set of avatar photos, on the set's model ([product modes](product-modes.md), section 1).
 
@@ -196,10 +196,10 @@ hands. Afternoon window light. Casual phone photo, the room's own clutter.
 
 ## 9. Scenes without the avatar
 
-Views, food, a room, a sky, a texture, a background for text: `text-to-photo`, `prompt` only.
-Describe one scene fully: the subject, the place, the light, the time, how it was taken. In a
+Views, food, a room, a sky, a texture, a background for text: `generate_text_to_photo`, `prompt`
+only. Describe one scene fully: the subject, the place, the light, the time, how it was taken. In a
 set, the same look card's place, light and palette. Nothing real (their product, their shop)
-is drawn from words: those need `photo-edit` with their photos.
+is drawn from words: those need `generate_photo_edit` with their photos.
 
 ```
 A window seat in a small cafe at golden hour, a half-finished cappuccino and an open paperback
@@ -239,7 +239,7 @@ ask for screenshots as image file links (or a drop at https://app.creatorline.io
 
 ## 13. Styled, not a photo
 
-"Me as a cartoon", a clay figure, an anime still, an ink sketch: `photo-edit` with
+"Me as a cartoon", a clay figure, an anime still, an ink sketch: `generate_photo_edit` with
 `model: "nano-banana-2-edit"` (the model proven for cartoon and illustrated characters),
 `aspect_ratio: "3:4"`, `resolution: "2K"`, a style sentence, the same avatar.
 

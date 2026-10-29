@@ -28,7 +28,7 @@ Use it when:
 2. Each frame gets a realism pass, so the video model copies a phone photo and not a glossy
    render. The passed frame is the one kept and the one the next frame takes.
 3. You look at the four kept frames (free) and fix any before filming.
-4. `ugc-video` with the `Keyframes` template films one shot per frame, in order, opening each
+4. `generate_ugc_video` with the `Keyframes` template films one shot per frame, in order, opening each
    shot on its frame. Four frames need 12 to 15 s.
 
 Strictly one at a time: wait for each run to finish before starting the next one, because each
@@ -51,8 +51,8 @@ needs the one before.
 ## 3. Making a frame
 
 ```
-create_generation {
-  tool: "photo-edit", brand_id, avatar_id (only when one was named),
+generate_photo_edit {
+  brand_id, avatar_id (only when one was named),
   model: "gpt-image-v2-edit",
   inputs: { other_elements: [<inputs from the table, in order>] },
   params: { aspect_ratio: "9:16", resolution: "2K", quality: "High" },
@@ -84,8 +84,8 @@ window, a plain wall behind her, everything in focus. Casual phone photo.
 ## 4. The realism pass
 
 ```
-create_generation {
-  tool: "photo-edit", brand_id,
+generate_photo_edit {
+  brand_id,
   model: "bytedance-seedream-v4-5-edit",
   include_avatar: false,
   inputs: { other_elements: [<the frame>] },
@@ -115,9 +115,10 @@ frame after it, since each one was made from it.
 
 ## 6. Film from the frames
 
+`generate_ugc_video`:
+
 ```json
 {
-  "tool": "ugc-video",
   "brand_id": "<brand id>",
   "prompt": "<the brief>",
   "inputs": { "objects": ["<frame 1>", "<frame 2>", "<frame 3>", "<frame 4>"] },
@@ -137,9 +138,10 @@ frame after it, since each one was made from it.
 
 The frames do not exist yet, so price the batch before any of it runs:
 
-1. Frame 1: `create_generation` without `confirm` (its inputs exist).
-2. Frames 2 to 4, all four realism passes and the video: `estimate_generation_cost` with the
-   same tool, model and params.
+1. Frame 1: `generate_photo_edit` without `confirm` (its inputs exist).
+2. Frames 2 to 4, all four realism passes and the video: the same tool (`generate_photo_edit`,
+   or `generate_ugc_video` for the video) without `confirm` and without the frames that do not
+   exist yet, with the same model and params. It answers with an estimate.
 3. One message: the four stills with their passes, the video, the total, the balance, one yes.
 4. On yes, run in order. Call each later step once more without `confirm` when its input exists:
    the same price, confirm it without asking again; a higher one, tell the person and ask.

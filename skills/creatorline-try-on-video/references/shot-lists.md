@@ -33,8 +33,8 @@ sample lines, and what a real clip needs for Route B.
   wider.
 - **Lines.** Opinions, reactions and what the frame shows. The sample lines are patterns:
   rewrite them from the item card's facts, the brand's voice and the persona.
-- **Look photo.** The pose and `aspect_ratio` for the `photo-edit` look. Default model: `2:3` for
-  a full body, `3:4` for chest-up.
+- **Look photo.** The pose and `aspect_ratio` for the `generate_photo_edit` look. Default
+  model: `2:3` for a full body, `3:4` for chest-up.
 - **Swap clip.** What a real clip needs for Route B.
 
 ## 2. Tops and shirts
@@ -165,7 +165,7 @@ Sells on: how it catches the light, its size on the body, how it layers.
 - Lines: "Gold hoops, just the right size." "These go with everything I own."
 - Watch: fine details and engravings never render exactly; names, materials and prices go in
   on-screen text. Never tighter than chest-up. For the most detail, a 9:16 look photo
-  (`gpt-image-v2-edit`) animated with `photo-to-video` often beats a multi-shot clip.
+  (`gpt-image-v2-edit`) animated with `generate_photo_to_video` often beats a multi-shot clip.
 - Look photo: chest-up, `3:4`. Earrings: hair tucked behind the ear. Necklace: a plain crew
   neckline it sits on. A ring or bracelet: one hand resting near the collarbone.
 - Swap clip: close talking clips, chest-up, hands coming near the face. Small jewelry may not

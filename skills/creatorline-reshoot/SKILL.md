@@ -89,7 +89,7 @@ Every step, and what each setting changes:
    | A YouTube or Shorts link | Not importable. Ask for the same video's TikTok or Instagram link (creators often post on both), or for the file: dropped at https://app.creatorline.io/assets?activeBrand=BRAND_ID, then found with `list_assets`. |
    | A video already in Creatorline | `list_assets` with `brand_id`, `file_type: "video"` and `search`. Look at the likely ones with `preview_assets` and name the one you picked by its title. |
    | A photo or carousel post | Refused: it has no video. Offer `creatorline-photos`. |
-   | "Find me a trend" | No tool lists trends. Point to Trends in the app: https://app.creatorline.io/trending?activeBrand=BRAND_ID (on plans that include it; not during the free trial). It leaves out videos Reshoot cannot re-film, and each trend links to its original post: they paste that link here, or press Reshoot right there. |
+   | "Find me a trend" | With `list_trending_posts` in your tools: hand off to `creatorline-competitor-intel`, which reads the competitors' best posts and ads and comes back with a link. Otherwise point to Trends in the app: https://app.creatorline.io/trending?activeBrand=BRAND_ID (on plans that include it; not during the free trial). It leaves out videos Reshoot cannot re-film, and each trend links to its original post: they paste that link here, or press Reshoot right there. |
 
 3. **Look at the source (free).** `preview_assets` with the asset id shows its cover frame and
    length. Judge it against "A good source" in Craft. Open your next message with one line
@@ -117,11 +117,10 @@ Every step, and what each setting changes:
    in it. Whenever `objects` or `source_video` is attached, write one that says what each
    attachment is for: the server does not check this, and an unplaced attachment is wasted.
 
-6. **Price it.** `create_generation` WITHOUT `confirm`:
+6. **Price it.** `generate_reshoot` WITHOUT `confirm`:
 
    ```json
    {
-     "tool": "reshoot",
      "brand_id": "BRAND_ID",
      "avatar_id": "AVATAR_ID",
      "prompt": "DIRECTION",
@@ -332,7 +331,7 @@ What next?
 ```
 
 `OUTPUT_URL` is `output[0].url` and `STUDIO_URL` is `studio_url` from `get_generation`. N is
-`credits_charged` from the confirmed `create_generation`. M is `credit_balance` from
+`credits_charged` from the confirmed `generate_reshoot`. M is `credit_balance` from
 `get_credit_balance` read now: a take re-filmed on the second model moves the charge. The video
 link expires; the Creatorline link stays.
 

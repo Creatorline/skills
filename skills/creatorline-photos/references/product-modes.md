@@ -20,16 +20,16 @@ are the shot types in [shot types](shot-types.md), not modes.
 
 | Mode | The person wants | Frame by default | The call |
 |---|---|---|---|
-| Studio shot | The product alone on a clean, neutral or catalog background: a shop listing | `1:1`; `4:5` for Instagram | `photo-edit`, `include_avatar: false`, the product in `other_elements` |
-| Lifestyle scene | The product in a real place, in use, with atmosphere: a kitchen, outdoors, a cafe, a gym | `3:4` | `photo-edit`; the avatar in it when a person belongs in the scene, otherwise `include_avatar: false` |
-| Close-up with a person | A tight crop with hands or part of a face: applying, holding, showing | `3:4` or `4:5` | `photo-edit` with the avatar, framed close on the hands |
-| Pin | A vertical, moodboard-style image for Pinterest | `2:3` | `photo-edit` |
-| Banner | A wide header for a website, an email or a campaign | `16:9` (`21:9` for a slim strip) | `photo-edit`; with the avatar in it, `3:2` on the default model, which has no `16:9` |
+| Studio shot | The product alone on a clean, neutral or catalog background: a shop listing | `1:1`; `4:5` for Instagram | `generate_photo_edit`, `include_avatar: false`, the product in `other_elements` |
+| Lifestyle scene | The product in a real place, in use, with atmosphere: a kitchen, outdoors, a cafe, a gym | `3:4` | `generate_photo_edit`; the avatar in it when a person belongs in the scene, otherwise `include_avatar: false` |
+| Close-up with a person | A tight crop with hands or part of a face: applying, holding, showing | `3:4` or `4:5` | `generate_photo_edit` with the avatar, framed close on the hands |
+| Pin | A vertical, moodboard-style image for Pinterest | `2:3` | `generate_photo_edit` |
+| Banner | A wide header for a website, an email or a campaign | `16:9` (`21:9` for a slim strip) | `generate_photo_edit`; with the avatar in it, `3:2` on the default model, which has no `16:9` |
 | Carousel | 3 to 10 connected slides | `3:4` | [carousels](carousels.md) |
 | Ad pack | A coordinated set of static ad images for paid social | `1:1`, `4:5` and `9:16` | Section 7 |
-| Try-on | The product worn or used by a person | `3:4`; `2:3` for one full-body photo | `photo-edit` with the avatar wearing it ([shot types](shot-types.md), section 5) |
-| Concept | A surreal or CGI-style product: floating, levitating, a splash, frozen motion, a sculpture | `4:5` or `1:1` | `photo-edit`, `include_avatar: false`, the product photo |
-| Restyle | An existing image with a new aesthetic, mood or season, its subject kept | The image's own frame | `photo-edit`, the image in `other_elements` (section 6) |
+| Try-on | The product worn or used by a person | `3:4`; `2:3` for one full-body photo | `generate_photo_edit` with the avatar wearing it ([shot types](shot-types.md), section 5) |
+| Concept | A surreal or CGI-style product: floating, levitating, a splash, frozen motion, a sculpture | `4:5` or `1:1` | `generate_photo_edit`, `include_avatar: false`, the product photo |
+| Restyle | An existing image with a new aesthetic, mood or season, its subject kept | The image's own frame | `generate_photo_edit`, the image in `other_elements` (section 6) |
 
 - **The model.** A shot with no person in it (studio, pin, banner, concept, ad pack, a restyle
   of a product image) runs on `gpt-image-v2-edit`, `quality: "Medium"`: the model proven for
@@ -167,7 +167,7 @@ A product launch or a founder story in one batch:
 1. Five lifestyle photos of the avatar with the product, one brief each (each changes the
    light, the angle or the place), one look card.
 2. The person picks the best two.
-3. Each of the two becomes a 5-second clip with `photo-to-video` (the root skill,
+3. Each of the two becomes a 5-second clip with `generate_photo_to_video` (the root skill,
    `creatorline`): the prompt is motion only, "the camera slowly pulls back", because the
    photo already holds the scene.
 

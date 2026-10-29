@@ -102,7 +102,7 @@ avatar's face first, then its body and clothes, the video kept as it is. It read
 4. Put the casting in the price message: "Mia takes the woman in red on the left, Jack the man
    in the grey hoodie."
 5. Transfer: write the same casting in the direction. Replace: the order is all there is.
-6. Two avatars need `create_generation`: a Video Studio swap takes one avatar only.
+6. Two avatars need `generate_character_swap`: a Video Studio swap takes one avatar only.
 7. No re-voice on a two-avatar swap: one voice cannot speak for two people.
 8. A recurring pair (a skit series) keeps the same two avatars in the same order in every
    episode, so the audience knows who is who.

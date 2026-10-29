@@ -35,12 +35,12 @@ the full failure table. SKILL.md carries the short list.
 
 ## 2. Before any spend
 
-- Your tool list has what the flow uses: `create_generation`, `get_generation`,
-  `create_video`, `edit_video`, `write_captions`, `run_video_ai`, `preview_video` and
-  `export_video` (plus `create_workflow` and `run_workflow` for studio takes). One missing:
-  say what cannot be done and stop before any quote. Never improvise a missing step with
-  another paid tool.
-- `list_models` with `tool: "ugc-video"` once: the take's duration range and its slots. Never
+- Your tool list has what the flow uses: `generate_ugc_video` and the other generate_* tools
+  the episode needs, `get_generation`, `create_video`, the edit_video_* tools, `write_captions`,
+  `change_clip_voice`, `preview_video` and `export_video` (plus `create_workflow` and
+  `run_workflow` for studio takes). One missing: say what cannot be done and stop before any
+  quote. Never improvise a missing step with another paid tool.
+- The `generate_ugc_video` tool's schema, once: the take's duration range and its slots. Never
   rely on remembered limits.
 - Music the person called required is in the library before anything is spent
   (supplied-media.md, section 8).
@@ -62,7 +62,7 @@ Before each part's paid call, read its brief once more:
 - its opening framing is one size wider than the last part's ending (host-continuity.md,
   section 7);
 - every input is in the right slot and named in the brief (`@Avatar1`, `@Location1`,
-  `@Object1`), and the duration is inside the range `list_models` gave;
+  `@Object1`), and the duration is inside the range the tool's schema gives;
 - the continuity lines are word for word the kit's;
 - no placeholders left, no ids, no part numbers, no notes to the person, and no word about
   captions, texts, cards, cutaways or split screens.
@@ -155,7 +155,8 @@ Seven questions, answered with a reason each:
 
 ## 11. Repairs
 
-- Collect every concrete defect first, then fix them together in one `edit_video` call.
+- Collect every concrete defect first, then fix them together: one call per edit_video_* tool
+  they need.
 - Look again at what changed and at the seams next to it. Look wider only when clips, shared
   items or the timing of the whole video changed.
 - A preview taken before a change never clears the video after it.
@@ -205,7 +206,7 @@ Seven questions, answered with a reason each:
 | A part shows a different face, hair or outfit | Each part is its own render | Section 12; meanwhile cover the seam with a cutaway. If it repeats: a shorter part, fewer actions, or the stronger lock (host-continuity.md, section 11) |
 | The room or light changes between parts | No set photo, or the set words differ | The same set photo in `location`, the same set and light sentences |
 | The set has a person in it, and the host turned into them | The set photo was not empty | A new, empty set photo; re-film |
-| Parts sound like different people | Every take makes its own voice | Voice match every part (`run_video_ai`, `change_voice`, the same `voice_id`) |
+| Parts sound like different people | Every take makes its own voice | Voice match every part (`change_clip_voice`, the same `voice_id`) |
 | The voice match sounds garbled | Music or a second voice in the take | Re-film the part with "voice and room sound only" and the host alone |
 | Lines reworded, cut or rushed | Too many words for the seconds | More seconds (the duration rule); for exact words, the voice-first route |
 | Delivery slow and stretched | Too much silence in `duration` | The duration rule: 0.4 s of air, not more |
@@ -215,7 +216,7 @@ Seven questions, answered with a reason each:
 | The music drowns the host | `set_sound` is not turned down under speech | `remove_sound`, or a quieter track |
 | Captions show `out_of_date` | The clips changed after captions | `write_captions` again (free), wait for `ready` |
 | A text or cutaway sits on the wrong words after a trim | Texts, layers and voiceovers keep their times | Re-time from the new caption lines (`update_text`, `update_layer`), then preview |
-| "Add a clip first" | A text or layer came before any clip in the call | Put the `add_clip` operations first |
+| "Add a clip first" | A text or layer went on a video with no clip yet | Make the video with its `clips` first (`create_video`), then the texts and layers |
 | Export refused | Something is generating or captions are being written | `get_video` until nothing runs, then export |
 | "being changed somewhere else, nothing was saved" | The person is editing the same video | `get_video`, redo the change; ask them to close the editor while you work |
 | A second copy of the episode | `create_video` was sent twice | `list_videos` before retrying; remove a copy only with a yes (`delete_video`) |

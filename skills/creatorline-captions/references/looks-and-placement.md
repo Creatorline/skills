@@ -16,8 +16,8 @@ frame so the apps do not cover them.
 
 ## 1. The six caption looks
 
-The same six looks serve Video Studio (`style`), `hook-captions` and `short-clip`
-(`caption_style`). The person sees the names in the second column in the app.
+The same six looks serve Video Studio (`style`), `generate_hook_captions` and
+`generate_short_clip` (`caption_style`). The person sees the names in the second column in the app.
 
 | `style` | App name | Type | Colour | Edge | The word being said | Words at a time |
 |---|---|---|---|---|---|---|

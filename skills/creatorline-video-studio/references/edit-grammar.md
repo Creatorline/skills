@@ -211,7 +211,7 @@ something.
 
 | Check | Proves | Does not prove |
 |---|---|---|
-| The `edit_video` answer | What is set: every time, id and `note` | That it looks right |
+| The answer of `create_video` or an `edit_video_*` tool | What is set: every time, id and `note` | That it looks right |
 | `get_video` | What is stored now, `warnings`, `ready_to_export` | Anything about the pictures |
 | `preview_video` with `exact: true` | The real frames at those seconds, texts and layers drawn as the export draws them | Sound, captions' real typeface, the moments between frames |
 | `preview_video` with `exact: false` | Where things sit and whether words read | What a clip shows at that second |

@@ -91,13 +91,13 @@ whole batch.
 
 ## Pick the frame and the model
 
-| Where it goes | `aspect_ratio` | `tool` and `model` |
+| Where it goes | `aspect_ratio` | Tool and `model` |
 |---|---|---|
-| TikTok, Reels, Shorts (the default) | `9:16` | `photo-edit`, `gpt-image-v2-edit`, `quality: "Medium"` |
-| A YouTube video's thumbnail | `16:9` | `photo-edit`, `gpt-image-v2-edit`, `quality: "Medium"` |
-| The Instagram feed | `4:5` | `photo-edit`, model left out |
-| The first slide of a photo carousel | the set's frame, `3:4` by default | `photo-edit`, model left out |
-| Nobody and no image, any frame | as above | `text-to-photo`, `nano-banana-pro` |
+| TikTok, Reels, Shorts (the default) | `9:16` | `generate_photo_edit`, `gpt-image-v2-edit`, `quality: "Medium"` |
+| A YouTube video's thumbnail | `16:9` | `generate_photo_edit`, `gpt-image-v2-edit`, `quality: "Medium"` |
+| The Instagram feed | `4:5` | `generate_photo_edit`, model left out |
+| The first slide of a photo carousel | the set's frame, `3:4` by default | `generate_photo_edit`, model left out |
+| Nobody and no image, any frame | as above | `generate_text_to_photo`, `nano-banana-pro` |
 
 Always `resolution: "2K"`, never `4K`. Details and why: [cover briefs](references/cover-briefs.md),
 section 2. A cover and a thumbnail for the same video: one concept, two calls, priced together.
@@ -132,10 +132,10 @@ section 2. A cover and a thumbnail for the same video: one concept, two calls, p
 7. **Plan and price.** Call once without `confirm`: every variant with the same tool, model and
    `params` costs the same, so one price times the count. One short message: what the cover
    shows, words or clean, the choice of one or a set, the credits, the balance, one question.
+   `generate_photo_edit`:
 
    ```json
    {
-     "tool": "photo-edit",
      "model": "gpt-image-v2-edit",
      "brand_id": "<brand id>",
      "avatar_id": "<the avatar in the video>",

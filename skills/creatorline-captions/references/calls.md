@@ -13,7 +13,7 @@ person.
 4. [Route A: proofread](#4-route-a-proofread)
 5. [Route A: change the look or the place](#5-route-a-change-the-look-or-the-place)
 6. [Route A: export](#6-route-a-export)
-7. [Route B: one pass with hook-captions](#7-route-b-one-pass-with-hook-captions)
+7. [Route B: one pass with generate_hook_captions](#7-route-b-one-pass-with-generate_hook_captions)
 8. [Several videos at once](#8-several-videos-at-once)
 9. [The plan and price message](#9-the-plan-and-price-message)
 
@@ -29,7 +29,7 @@ person.
 | One text | Up to 300 characters; `\n` breaks a line |
 | A new text left without times | 0 to 2.5 s |
 | Video length for captions and export | Up to 180 s |
-| Operations per `create_video` or `edit_video` call | 60 |
+| Clips per `create_video`, operations per `edit_video_*` call | 60 |
 | `preview_video` | Up to 9 frames a call |
 | Captions charge | Once per video. Hearing them again after a change is free. Refunded when nothing is said or the job fails; after a refund the next hearing is charged like the first. |
 | Export charge | Every export. Refunded when it fails. |
@@ -41,17 +41,24 @@ wins.
 
 ## 2. Route A: build the video with its hook
 
-Read `get_video_guide` once per conversation first. Every `add_*` operation takes an `id` you
-choose, so later operations can name it.
+Read `get_video_guide` once per conversation first. Every clip of `create_video` and every
+`add_*` operation takes an `id` you choose, so later operations can name it.
 
-**A hook line over the opening seconds** (the usual case):
+**A hook line over the opening seconds** (the usual case): `create_video` with the clip, then
+`edit_video_texts` with the `video_id` it answers:
 
 ```json
 {
   "brand_id": "BRAND_ID",
   "title": "Fernly bottle review",
+  "clips": [ { "asset_id": "VIDEO_ASSET_ID", "id": "main" } ]
+}
+```
+
+```json
+{
+  "video_id": "VIDEO_ID",
   "operations": [
-    { "op": "add_clip", "asset_id": "VIDEO_ASSET_ID", "id": "main" },
     { "op": "add_text", "id": "hook", "text": "this bottle fits\nevery cup holder", "start": 0, "end": 3, "position": "top", "size": "l", "look": "tiktokOutline" }
   ]
 }
@@ -66,7 +73,9 @@ which reads over anything.
 
 **A ready-made opener before the video**, when its own first second is weak: find one with
 `list_stock_clips` (`library: "hooks"`, `search` with a few words about the mood, such as
-`shocked woman`), look at two or three with `preview_assets` (`stock_ids`), then:
+`shocked woman`), look at two or three with `preview_assets` (`stock_ids`), then put it in
+as `create_video`'s `hook` (the same fields without `op`), or with `edit_video_clips` on a video
+that exists:
 
 ```json
 { "op": "add_hook", "stock_id": "STOCK_ID", "text": "this bottle fits\nevery cup holder", "trim_end": 2.5 }
@@ -75,13 +84,13 @@ which reads over anything.
 It puts the clip at the very start with the line over it for as long as it plays, and moves
 everything else later. It changes the cut, so add it BEFORE `write_captions`. The line becomes
 a text with an id the server picks (the `applied` note names it) in the default look and size
-`m`: give it the brand's hook look and size with `update_text` on that id. Most stock hook
-clips have no sound (`has_sound` says). The editing craft for openers lives in
-`creatorline-video-studio`.
+`m`: give it the brand's hook look and size with `update_text` (`edit_video_texts`) on that
+id. Most stock hook clips have no sound (`has_sound` says). The editing craft for openers lives
+in `creatorline-video-studio`.
 
-**A video that is already a Video Studio project**: `get_video` first, then `edit_video` with
-`video_id` and only the `add_text` operation. If it already has a hook text, change it with
-`update_text` and its `id` instead of adding a second one.
+**A video that is already a Video Studio project**: `get_video` first, then `edit_video_texts`
+with `video_id` and only the `add_text` operation. If it already has a hook text, change it
+with `update_text` and its `id` instead of adding a second one.
 
 **Look** after every build or change:
 
@@ -127,7 +136,7 @@ the picture behind them.
 said: the script you wrote, the brand's name and products from `get_brand`, the names the
 person gave you.
 
-Fix every wrong line in one call, the highest `index` first:
+Fix every wrong line in one `edit_video_captions` call, the highest `index` first:
 
 ```json
 {
@@ -158,7 +167,7 @@ Fix every wrong line in one call, the highest `index` first:
 
 ## 5. Route A: change the look or the place
 
-Free, on a video whose captions exist:
+Free, on a video whose captions exist, with `edit_video_captions`:
 
 ```json
 { "video_id": "VIDEO_ID", "operations": [ { "op": "set_captions", "style": "tiktok", "position": "middle" } ] }
@@ -182,15 +191,15 @@ Free, on a video whose captions exist:
 Any edit after an export shows `up_to_date: false`: that version needs its own export, charged
 again. The quote for an export the video already has says so.
 
-## 7. Route B: one pass with hook-captions
+## 7. Route B: one pass with generate_hook_captions
 
-One call makes a new MP4 with the captions and the hook burned in. The source stays as it was.
+One `generate_hook_captions` call makes a new MP4 with the captions and the hook burned in.
+The source stays as it was.
 
 **Your own hook line:**
 
 ```json
 {
-  "tool": "hook-captions",
   "brand_id": "BRAND_ID",
   "prompt": "this bottle fits every cup holder",
   "inputs": { "source_video": "VIDEO_ASSET_ID" },
@@ -202,7 +211,6 @@ One call makes a new MP4 with the captions and the hook burned in. The source st
 
 ```json
 {
-  "tool": "hook-captions",
   "brand_id": "BRAND_ID",
   "inputs": { "source_video": "https://www.tiktok.com/@brand/video/123" },
   "params": { "hook_mode": "auto", "caption_style": "tiktok" }
@@ -214,8 +222,8 @@ One call makes a new MP4 with the captions and the hook burned in. The source st
 - `inputs.source_video` takes an asset id, a direct link to a video file, or a TikTok or
   Instagram post link (its video is imported for you). A web page link is refused before
   anything is charged.
-- `list_models` shows this tool's prompt as not used. In `manual` mode it is the hook line all
-  the same.
+- The tool's schema shows its prompt as not used. In `manual` mode it is the hook line all the
+  same.
 - No speech in the video: `manual` still burns the hook alone over the opening; `auto` and
   `off` fail (refunded), because there is nothing to caption and nothing to write a hook from.
 - The frame is kept as it is: a wide video stays wide.
@@ -224,7 +232,7 @@ One call makes a new MP4 with the captions and the hook burned in. The source st
 
 ## 8. Several videos at once
 
-- Route B: one `create_generation` WITHOUT `confirm` per video, the same `caption_style` on
+- Route B: one `generate_hook_captions` WITHOUT `confirm` per video, the same `caption_style` on
   all. Add up the `credits`, ask one yes for the total, then confirm each. Wait on each
   `generation_id` in turn and report each as it lands.
 - Route A: one `create_video` per video (free), then `write_captions` and `export_video`

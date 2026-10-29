@@ -89,7 +89,7 @@ first and use it as the outfit.
 |---|---|---|---|
 | Starts from | The item photo | The item photo and a real try-on clip | The item photo |
 | You get | A new phone-style video on the try-on arc, with lines | The clip's own moves, camera, cuts and sound, the avatar in the item | The try-on arc, every shot drawn and checked as a still first |
-| Tools | `photo-edit`, then `ugc-video` | `character-swap`, model `character-swap-replace`, the `outfit` slot | `photo-edit` per shot, then `ugc-video` with `Keyframes` |
+| Tools | `generate_photo_edit`, then `generate_ugc_video` | `generate_character_swap`, model `character-swap-replace`, the `outfit` slot | `generate_photo_edit` per shot, then `generate_ugc_video` with `Keyframes` |
 | Best when | No footage | They sent a clip, or found a trend whose moves they want | A shot-by-shot plan to follow exactly, or Route A lost the item twice |
 
 Pick B when the person sends a video, C when they hand you a shot list or A failed twice the
@@ -121,16 +121,17 @@ same way, A otherwise. C: references/frame-first.md.
    `file_type: "image"` and `search`, then `preview_assets`; or `import_asset` with the file
    link, the `brand_id` and the item's name as `title`. Write the **wardrobe line** (Craft) and
    the **setting line** once.
-5. **Check the slots once:** `list_models` with `tool: "photo-edit"`, `"ugc-video"`,
-   `"photo-to-video"` or `"character-swap"`. Never guess a key or a value.
+5. **Check the slots once:** read the schema of `generate_photo_edit`, `generate_ugc_video`,
+   `generate_photo_to_video` or `generate_character_swap`. Never guess a key or a value.
 6. **Write every brief first** (the look, the video, each section or take), then run them
    against [Check before you quote](#check-before-you-quote).
 7. **Plan and price.** One or two lines of plan, then the price as its own short message.
-   - Route A: the look and the video with `create_generation` without `confirm`. Both can be
-     quoted now: the video takes the item photo, not the look. One yes for the total. Say the
-     look comes first and you film only if it shows the item right.
+   - Route A: the look and the video, each with its generate_* tool without `confirm`. Both
+     can be quoted now: the video takes the item photo, not the look. One yes for the total.
+     Say the look comes first and you film only if it shows the item right.
    - A call whose input does not exist yet (a look in motion, the locked look, Route C's later
-     frames): `estimate_generation_cost`, same tool and params, counted in the total.
+     frames): the same tool and params without `confirm` and without that input, which answers
+     with an estimate (`estimate: true`), counted in the total.
    - Route B: the swap without `confirm`, plus the re-voice if they want one.
 8. **Run** on yes: the same calls with `confirm: true`, in order. A call priced by an estimate
    is called once more without `confirm` when its input exists: the same price is covered
@@ -147,8 +148,8 @@ video spends more. It also becomes the cover, a carousel slide, the start of a l
 the base of the locked look, or Route C's Wearing frame. Skip it only on "just the video".
 
 ```
-create_generation {
-  tool: "photo-edit", brand_id, avatar_id (only when one was named),
+generate_photo_edit {
+  brand_id, avatar_id (only when one was named),
   inputs: { other_elements: [<item asset ids, top to bottom>] },
   params: { aspect_ratio: "2:3", resolution: "2K" },
   count: 2,
@@ -166,8 +167,8 @@ create_generation {
 **The video:**
 
 ```
-create_generation {
-  tool: "ugc-video", brand_id, avatar_id (only when one was named),
+generate_ugc_video {
+  brand_id, avatar_id (only when one was named),
   inputs: { objects: [<item asset ids>] },
   params: { ugc_style: <from the table>, duration: <s>, aspect_ratio: "9:16", resolution: "720p" },
   prompt: <video brief>
@@ -196,11 +197,11 @@ Sound: voice and room sound only: <every sound to be heard>.
 | Long try-on | The arc, then later sections: a house tour, outside in light rain, a seated verdict | `Auto` | 30 or 45 s (references/try-on-arc.md, section 3) |
 | Already wearing | No Before shot: the person asks to skip the reveal, or the locked look | `Auto` | 10 to 15 s |
 | GRWM | Talks while finishing small things (sleeves, a tuck, a clasp), ends on the full look; calm register | `GRWM` | 12 to 20 s |
-| Look in motion | One continuous take from a 9:16 look photo: a step, a turn, a settle | `photo-to-video` tool | 5 to 8 s |
+| Look in motion | One continuous take from a 9:16 look photo: a step, a turn, a settle | `generate_photo_to_video` | 5 to 8 s |
 | Haul try-on | 2 to 4 items, one short clip each, joined with item labels | per item, then Video Studio | 15 to 30 s |
 
 - **GRWM:** the template leans toward a bathroom mirror. Keep the propped phone and a plain wall.
-- **Look in motion:** `tool: "photo-to-video"`, the 9:16 look in `inputs.image_url`,
+- **Look in motion:** `generate_photo_to_video`, the 9:16 look in `inputs.image_url`,
   `params.duration`, and a brief that says only what moves (video-briefs.md section 14). No cuts.
 - **Long and haul:** over 30 s, one take per section; a haul, one look and one clip per item.
   Both are joined in Video Studio and priced whole, captions and export included, before any of
@@ -216,8 +217,8 @@ Sound: voice and room sound only: <every sound to be heard>.
 3. Price it, then run it on yes:
 
 ```
-create_generation {
-  tool: "character-swap", brand_id, avatar_id (only when one was named),
+generate_character_swap {
+  brand_id, avatar_id (only when one was named),
   model: "character-swap-replace",
   inputs: { source_video: <clip asset id>, outfit: <item asset id> },
   params: { duration: <whole seconds of the clip, at most 30>, resolution: "720p" }
@@ -228,14 +229,14 @@ create_generation {
   for a shorter clip. `480p` is a cheaper first check of a risky clip.
 - The avatar replaces the main person: the avatar's face and body, the outfit photo's clothes.
   What the outfit photo does not show stays as in the clip.
-- `run_video_ai` has no Outfit slot: this route goes through `create_generation`. Trending
-  videos are on the app's Trends page (https://app.creatorline.io/trending, on plans that
-  include it).
+- `swap_character_in_clip` has no Outfit slot: this route goes through
+  `generate_character_swap`. Trending videos are on the app's Trends page
+  (https://app.creatorline.io/trending, on plans that include it).
 - **The voice.** The clip's sound stays, so a spoken line is still the original person's voice,
   usable only with their permission. For one avatar, one clear speaker and no music, offer a
-  re-voice after the swap: `tool: "change-voice"`, the swap's output in `inputs.video_url`,
+  re-voice after the swap: `generate_change_voice`, the swap's output in `inputs.video_url`,
   `params.voice_id` set to the avatar's `voice_id` (always pass it). Price it with the swap
-  (`estimate_generation_cost`). Leave the swap's own `change_voice` param out. No avatar voice,
+  (`generate_change_voice` without `confirm` and without the video: an estimate). Leave the swap's own `change_voice` param out. No avatar voice,
   or music: mute the clip in Video Studio and add a voiceover (creatorline-voiceover).
 
 ## Craft
@@ -335,7 +336,7 @@ Read every brief against this list:
 | Swap: pieces the outfit photo does not show are wrong | A photo of the whole outfit (or the look photo), or a clip whose other pieces suit it |
 | Swap: the item fights the clip's movement | A clip in a similar cut and length |
 | Swap: the best part of the clip starts after 30 s | Trim it in Video Studio and export it as a new clip (creatorline-video-studio), then use that |
-| The person wants themselves, not an avatar | Their own avatar, made from their photo at https://app.creatorline.io/avatars/new. A real face needs `model: "bytedance-seedance-2-0-reference-to-video"` on `ugc-video` (one take up to 15 s) |
+| The person wants themselves, not an avatar | Their own avatar, made from their photo at https://app.creatorline.io/avatars/new. A real face needs `model: "bytedance-seedance-2-0-reference-to-video"` on `generate_ugc_video` (one take up to 15 s) |
 
 Re-run only the shot, section or take that failed. Three paid tries at the same thing and still
 wrong: stop and offer the best take, another route, or another format (house-rules.md section 5).

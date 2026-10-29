@@ -103,8 +103,8 @@ Typed words are always spelled right and stay editable. The cover itself is made
 the free quarter named in the Composition block.
 
 - **On a video's cover frame (9:16).** The clean cover goes in front of the video in Video
-  Studio ([using the cover](using-the-cover.md), section 3), and the words go over it in the
-  same `create_video` or `edit_video` call:
+  Studio ([using the cover](using-the-cover.md), section 3), and the words go over it with
+  `edit_video_texts` right after:
 
   ```json
   { "op": "add_text", "text": "3 MISTAKES", "start": 0, "end": 2, "position": "top", "size": "xl", "look": "tiktokOutline" }

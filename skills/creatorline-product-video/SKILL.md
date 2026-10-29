@@ -79,26 +79,26 @@ letter or the model.
 
 | The ask | Path | What runs |
 |---|---|---|
-| A clip with a few shots and the hands doing the demo (the default) | A. No-face clip | `ugc-video` on its no-face model, the product in `image_urls` |
+| A clip with a few shots and the hands doing the demo (the default) | A. No-face clip | `generate_ugc_video` on its no-face model, the product in `image_urls` |
 | The product alone: only it, the light and the camera | A, with a brief that puts nothing else in frame | same |
-| One unbroken take (a pour, a spray), or the look approved before any motion | B. Still, then motion | `photo-edit` with no avatar, then `photo-to-video` |
+| One unbroken take (a pour, a spray), or the look approved before any motion | B. Still, then motion | `generate_photo_edit` with no avatar, then `generate_photo_to_video` |
 | Up to 30 s as one flowing take | B on the longer photo-to-video model | same, `model: "bytedance-seedance-2-5-image-to-video"` |
-| The person's own avatar as the hands and body (first person, in a car), face out of frame | C. Avatar, face out of frame | `ugc-video` on its default model with the avatar |
+| The person's own avatar as the hands and body (first person, in a car), face out of frame | C. Avatar, face out of frame | `generate_ugc_video` on its default model with the avatar |
 | About 45 s, or words that must be exact | D. Assemble | clips from A, B or C, joined in Video Studio under one voiceover |
 
-Why path A names a model: the default `ugc-video` model needs a person image in `characters`.
-With `include_avatar: false` and nothing there it refuses ("Missing required input
+Why path A names a model: the default `generate_ugc_video` model needs a person image in
+`characters`. With `include_avatar: false` and nothing there it refuses ("Missing required input
 \"characters\""). Its no-face model, `veo3-1-reference-to-video`, takes 1 to 3 plain images in
-`image_urls` and never adds the avatar. Its `duration` moves in steps of 8 (8, 16, 24):
-`list_models` shows the bounds but not the step, so pass a multiple of 8. Past 8 s it films
+`image_urls` and never adds the avatar. Its `duration` moves in steps of 8 (8, 16, 24): the
+tool's schema shows the bounds but not the step, so pass a multiple of 8. Past 8 s it films
 8-second takes and joins them, and the voice can change at each join (Voice options, below).
 A length the person names that is not a multiple of 8 (10, 15 or 30 s): round it to 8, 16 or 24
 on path A and say so in the plan, or, when the exact length matters, path C or B.
-Why path B names a photo model: the default `photo-edit` model has no 9:16 frame;
+Why path B names a photo model: the default `generate_photo_edit` model has no 9:16 frame;
 `gpt-image-v2-edit` does.
 
-If a call is refused over a slot or a value, read `list_models` with that `tool` and fix the call:
-it is the live list of slots, values and bounds. Never move to another model on your own when a
+If a call is refused over a slot or a value, read that `generate_*` tool's schema and fix the
+call: it lists the slots, values and bounds. Never move to another model on your own when a
 model refuses the take or is unavailable: say what happened, and a different model is a new
 quote and a new yes.
 
@@ -141,11 +141,12 @@ quote and a new yes.
    words ([voiceover](references/voiceover.md)). Write every brief before any price: path D's
    clips all at once. Run the brief check ([checklists](references/checklists.md), section 1).
 8. **Price.** Call each paid step without `confirm` and add them up (house rules, section 2):
-   - A or C: `create_generation` without `confirm` answers `needs_approval` with `credits`.
-   - B: `photo-edit` without `confirm`, plus `estimate_generation_cost` with
-     `tool: "photo-to-video"` and the `params` you will pass.
-   - Path A at 16 or 24 s, or the brand's own voice: add `estimate_generation_cost` with
-     `tool: "change-voice"` (Voice options, below), and say in the plan that it keeps one voice.
+   - A or C: `generate_ugc_video` without `confirm` answers `needs_approval` with `credits`.
+   - B: `generate_photo_edit` without `confirm`, plus `generate_photo_to_video` without
+     `confirm` and with the `params` you will pass (no still yet, so it answers an estimate).
+   - Path A at 16 or 24 s, or the brand's own voice: add `generate_change_voice` without
+     `confirm` (Voice options, below; an estimate before the clip exists), and say in the plan
+     that it keeps one voice.
    - D: each clip, plus the Video Studio steps from `get_video_guide` `credits` (voiceover,
      export, captions if wanted).
 
@@ -166,21 +167,23 @@ quote and a new yes.
 
 ### The call
 
-Path A, no-face clip (the other paths' full calls are in [examples](references/examples.md)):
+Path A, no-face clip, `generate_ugc_video` (the other paths' full calls are in
+[examples](references/examples.md)):
 
 ```json
-{ "tool": "ugc-video", "model": "veo3-1-reference-to-video", "brand_id": "<brand>",
+{ "model": "veo3-1-reference-to-video", "brand_id": "<brand>",
   "include_avatar": false,
   "inputs": { "image_urls": ["<product asset>", "<location asset, optional>"] },
   "params": { "duration": 8 },
   "prompt": "<the brief>" }
 ```
 
-- Path B: the still is `photo-edit` with `model: "gpt-image-v2-edit"`, `include_avatar: false`,
-  `count: 2`, the product in `inputs.other_elements`, `params.aspect_ratio: "9:16"`; the motion is
-  `photo-to-video` with the picked still in `inputs.image_url` (an optional `end_image_url` sets
-  the last frame; the default model films 4 to 15 s).
-- Path C: `ugc-video` with no `model`, the product in `inputs.objects`, a place in
+- Path B: the still is `generate_photo_edit` with `model: "gpt-image-v2-edit"`,
+  `include_avatar: false`, `count: 2`, the product in `inputs.other_elements`,
+  `params.aspect_ratio: "9:16"`; the motion is `generate_photo_to_video` with the picked still
+  in `inputs.image_url` (an optional `end_image_url` sets the last frame; the default model
+  films 4 to 15 s).
+- Path C: `generate_ugc_video` with no `model`, the product in `inputs.objects`, a place in
   `inputs.location`, `avatar_id` for a named avatar.
 - The person's own photo already shows the product in place, upright and vertical: skip the
   still and animate their photo.
@@ -220,9 +223,9 @@ Language: <spoken language>
 - **Template.** Leave `ugc_style` at `Auto` and name the format in the Format line. Two others
   fit: `Before & after` for a visible change across a cut (a cleaned surface), and `Cinematic`
   only when the person asks for a polished film. The rest frame a presenter (and `Unboxing`
-  ends on a chest-up frame), which brings a face in. `photo-to-video` takes no `ugc_style`.
+  ends on a chest-up frame), which brings a face in. `generate_photo_to_video` takes no `ugc_style`.
 - **Music** only when asked: one line, "a soft instrumental bed, low under the voice, no
-  singing", and never when `change-voice` will run (then it goes on in Video Studio).
+  singing", and never when `generate_change_voice` will run (then it goes on in Video Studio).
 - **Words on screen** go in later as Video Studio text, never in the brief.
 
 ## Craft
@@ -273,14 +276,14 @@ Details: [voiceover](references/voiceover.md).
 | Want | Do |
 |---|---|
 | A natural voice, one 8 s clip (path A) or one take (B, C) | The video's own voice, described in the Format line. Nothing extra |
-| One voice across a joined clip (path A at 16 or 24 s) | After the run, `change-voice` on the clip with `params.voice_id` |
-| The brand's own voice | Same: `change-voice` with `get_brand`'s `voice_id` |
+| One voice across a joined clip (path A at 16 or 24 s) | After the run, `generate_change_voice` on the clip with `params.voice_id` |
+| The brand's own voice | Same: `generate_change_voice` with `get_brand`'s `voice_id` |
 | Exact words, or about 45 s in one voice | Path D: film with `generate_audio: false`, then `add_voiceover` in Video Studio, which reads the words exactly as written |
 
-`change-voice` is a paid run of its own: quote it with the clip, always with `params.voice_id`
-(from `get_brand`, `get_avatar`, or `list_voices`), on one clear voice with no music. Prefer it to
-the `change_voice` param, whose re-voiced clip comes back as a separate run `get_generation` does
-not return. The call and path D's assembly are worked through in
+`generate_change_voice` is a paid run of its own: quote it with the clip, always with
+`params.voice_id` (from `get_brand`, `get_avatar`, or `list_voices`), on one clear voice with no
+music. Prefer it to the `change_voice` param, whose re-voiced clip comes back as a separate run
+`get_generation` does not return. The call and path D's assembly are worked through in
 [examples](references/examples.md), sections 5 and 6. Editing craft: `creatorline-video-studio`.
 
 ## Check before you show it
@@ -303,8 +306,8 @@ quote it, and wait for a yes (house rules, section 5).
 
 | What you see | Do |
 |---|---|
-| "Missing required input \"characters\"" | You called the default `ugc-video` model with no avatar. Use path A's model, or path C |
-| "\"duration\" must be <= 15" on `photo-to-video` | The default model films up to 15 s. Add `model: "bytedance-seedance-2-5-image-to-video"` (up to 30 s) and quote again |
+| "Missing required input \"characters\"" | You called the default `generate_ugc_video` model with no avatar. Use path A's model, or path C |
+| "\"duration\" must be <= 15" on `generate_photo_to_video` | The default model films up to 15 s. Add `model: "bytedance-seedance-2-5-image-to-video"` (up to 30 s) and quote again |
 | A face appears, or a mouth moves with the voice | Path C: offer to keep it as a talking video, or one more take on path A. Path A or B: the Format line first, "only a pair of hands", the crop below the face, the mouth closed |
 | The product looks different, the label is garbled | A cleaner photo with a smaller logo (product intake, section 5), a second angle in `image_urls`, or path B: there the first frame is the still itself |
 | The product turns and shows a side its photo lacks | Add that side's photo, or keep the product still and move the camera only on a cut |
@@ -314,7 +317,7 @@ quote it, and wait for a yes (house rules, section 5).
 | It is used wrong (opened by the wrong part, on the wrong body place) | Write the use as a sequence, one action per shot (shot grammar, sections 7 to 10) |
 | Shots melt into one, no cut | Neighbouring shots at different distances and phone positions |
 | Golden, orange or moody light | "Neutral daylight from one window"; none of the words in shot grammar, section 2 |
-| The voice changes at the 8-second join | `change-voice` over the clip with one `voice_id` |
+| The voice changes at the 8-second join | `generate_change_voice` over the clip with one `voice_id` |
 | The voice starts late, says something else, or mispronounces the name | Fix in the edit: Video Studio, the clip's sound off, `add_voiceover` with the exact words |
 | Music under the voice | "Voice and room sound only" in the Sound line; or fix in the edit as above |
 | Words or gibberish drawn in the frame | Same call again once; then add the words as Video Studio text instead |

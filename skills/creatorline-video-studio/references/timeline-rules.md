@@ -1,9 +1,9 @@
 # Timeline rules
 
-The mechanics of `create_video` and `edit_video`: how time is counted, what moves when
-something changes, what you get when you leave a field out, and what each refusal means.
-`get_video_guide` lists every operation with its fields; this file says how they behave
-together.
+The mechanics of `create_video` and the `edit_video_*` tools: how time is counted, what moves
+when something changes, what you get when you leave a field out, and what each refusal means.
+`get_video_guide` lists every operation with its fields and the edit tool that does it; this
+file says how they behave together.
 
 ## Contents
 
@@ -52,9 +52,9 @@ together.
 | A voiceover added, moved or replaced | | | | Out of date |
 
 After a trim, a removal or a reorder, re-anchor what belonged to a clip:
-`{ "op": "update_text", "id": "<text>", "over": "<clip>" }`,
-`{ "op": "update_layer", "id": "<layer>", "over": "<clip>" }`, and `move_voiceover` with a new
-`start`. Then `preview_video` at those moments.
+`{ "op": "update_text", "id": "<text>", "over": "<clip>" }` (`edit_video_texts`),
+`{ "op": "update_layer", "id": "<layer>", "over": "<clip>" }` (`edit_video_layers`), and
+`move_voiceover` with a new `start` (`edit_video_sound`). Then `preview_video` at those moments.
 
 Captions are timed to the cut they were heard from and never move. When the cut or a voiceover
 changes they show `captions.status: "out_of_date"`: `write_captions` again. Once a video has
@@ -84,10 +84,11 @@ Every add is the same each time: nothing copies the look of what was added befor
 
 ## 4. Ids and `over`
 
-- On an `add_*` operation, `id` is a name you choose: 1 to 32 letters, digits, `-` or `_`,
-  unique across the video's clips, texts, layers and voiceovers. Readable ids ("hook", "c2",
-  "title", "cta") make the next calls easy to write. Left out, you get one in the answer.
-- Later operations in the same call can name what an earlier one added.
+- On an `add_*` operation (and on a clip or the hook of `create_video`), `id` is a name you
+  choose: 1 to 32 letters, digits, `-` or `_`, unique across the video's clips, texts, layers
+  and voiceovers. Readable ids ("hook", "c2", "title", "cta") make the next calls easy to
+  write. Left out, you get one in the answer.
+- Later operations in the same call, and later calls, can name what an earlier one added.
 - `split_clip` and `duplicate_clip` make a new clip whose id you do not choose: read it in the
   `applied` note before naming it.
 - On every other operation, `id` is the id of the thing to change, as `get_video` prints it.
@@ -100,8 +101,12 @@ Every add is the same each time: nothing copies the look of what was added befor
   call is saved, and the answer names the operation (by its place in the list, counting from 0),
   the reason and what would be valid.
 - Fix that one operation and send the whole list again. Never send only the rest.
-- At most 60 operations per call. A bigger build goes in several calls: the clips first, then
-  texts and layers. Each call is all or nothing by itself.
+- Each edit tool takes only the operations of its part of the video (`get_video_guide` says
+  which tool does each), so a build is several calls: `create_video` with the clips and the
+  hook first, then one call per part (texts, layers, sound). Each call is all or nothing by
+  itself: what an earlier call saved stays.
+- At most 60 operations per call (60 clips in `create_video`). A bigger part goes in several
+  calls.
 - A time that only runs past the video's end is not refused: it is brought back inside and
   the `note` says so. Read the notes.
 - `create_video` makes a new video every time it is called. If a call timed out, look in
@@ -130,7 +135,8 @@ Nothing is ever stretched out of shape.
 - A video whose length cannot be read is refused: import it again with `import_asset`.
 - A file on the person's device cannot travel through the chat: a public link to the file, or
   an upload on the app's assets page, then `list_assets`.
-- `run_video_ai` works only on the brand's own files, never on a stock clip.
+- The AI-on-a-clip tools (SKILL.md, AI on a clip) work only on the brand's own files, never
+  on a stock clip.
 
 ## 7. Two writers on one video
 
@@ -167,7 +173,7 @@ while you work, and each change you save appears there as you make it.
 |---|---|---|---|
 | A voiceover | `add_voiceover` with `confirm: true` | The call waits for the take (`wait_seconds`, 30 by default, at most 45) and answers with its real `end`; still `generating`: read `get_video` again | Usually 5 to 30 s |
 | Captions | `write_captions` with `confirm: true` | `captions.status` in `get_video`: `writing`, then `ready` (or `failed`) | About a minute |
-| AI on a clip | `run_video_ai` with `confirm: true` | The clip shows `generating` in `get_video` and the result takes its place. A new clip from words shows only as a "Wait: ... being generated" line in `warnings` until it joins the end | Usually a few minutes |
+| AI on a clip | Its tool (`add_ai_video_clip`, `reshoot_clip`, ...) with `confirm: true` | The clip shows `generating` in `get_video` and the result takes its place. A new clip from words shows only as a "Wait: ... being generated" line in `warnings` until it joins the end | Usually a few minutes |
 | The export | `export_video` with `confirm: true` | `export.status`: `running`, then `done` (or `failed`) | One to a few minutes |
 
 - `get_video` answers at once: read it every 10 to 30 s, with one short line to the person
@@ -186,9 +192,10 @@ while you work, and each change you save appears there as you make it.
 | The answer says | Fix |
 |---|---|
 | "Unknown operation ..." | Use a name from `get_video_guide` |
+| "`<tool>` does not do ...: its operations are ..." | Send that operation with the edit tool of its part (`get_video_guide`) |
 | "... does not take `x`. It takes: ..." | Drop the field, or use the operation that takes it |
 | "... needs `asset_id` or `stock_id`" | Name the media |
-| "Add a clip first" | `add_clip` before any text, layer, voiceover or caption |
+| "Add a clip first" | Clips (`create_video` with `clips`, or `add_clip`) before any text, layer, voiceover or caption |
 | "`id` ... is already the id of a ..." | Pick another id, or leave `id` out |
 | "No clip / text / layer ..." | Use an id from the list in the message |
 | "`trim_end` is ... past the source's end" | At most `source_duration` |
@@ -208,7 +215,7 @@ while you work, and each change you save appears there as you make it.
 | "... is a ready-made stock clip: AI works on the brand's own files" | Use one of the brand's clips |
 | "Clip ... shows N s; ... needs at least 5 s" / "films at most 30 s" | Trim it longer, or split it and run each part |
 | "Character Swap in `replace` mode takes no direction" | Leave `prompt` out, or use `transfer` |
-| "`mode` is Character Swap's" | Leave `mode` out for any other action |
+| "`mode` is Character Swap's" | Leave `mode` out on any tool but `swap_character_in_clip` |
 | "`prompt` is needed" | Say what happens, what changes or what the new clip shows |
 | "`duration` is ...; ... makes N seconds" | Use a length from the message |
 | "... is longer than one new take: pass `duration`" | A Reshoot of a long clip: pick one of the lengths it lists |

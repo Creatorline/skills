@@ -20,24 +20,24 @@ track, and keep the person posted until every piece is in the review queue.
 Price every paid call of every row before any of them starts. Nothing in this section spends
 anything.
 
-- `estimate_generation_cost` prices a call from partial arguments: use it for every row whose
-  inputs are not all there yet. Pass the real `inputs` whenever they exist: some tools bill by
-  the length of the source video.
-- `create_generation` without `confirm` gives the exact price of a call whose inputs exist. It
+- A `generate_*` tool without `confirm` prices a call from partial arguments (an estimate,
+  `estimate: true`): use it for every row whose inputs are not all there yet. Pass the real
+  `inputs` whenever they exist: some tools bill by the length of the source video.
+- The same tool without `confirm` gives the exact price of a call whose inputs exist. It
   starts nothing.
 - `get_video_guide` (once) holds the Video Studio prices in `credits`: a voiceover, captions,
   an export.
 - Bring a trend link in first with `import_asset` (`url`, `brand_id`, `title`): it is free, it
   checks the link works, and its `duration_sec` sets the reshoot's length.
 
-| Row | Quote with |
+| Row | Quote with (no `confirm`) |
 |---|---|
-| Talking video | `estimate_generation_cost` with `tool: "ugc-video"` and `params: {"duration": <seconds>}`; plus `tool: "change-voice"` when the talking-video skill's own-voice rule applies (the avatar has a `voice_id`, one speaker) |
-| Trend reshoot | `estimate_generation_cost` with `tool: "reshoot"`, `inputs: {"source": "<imported asset id>"}`, `params: {"duration": <seconds>}` |
-| Character Swap | `estimate_generation_cost` with `tool: "character-swap"`, `inputs: {"source_video": "<imported asset id>"}`, `params: {"duration": <seconds>}`; `model` only for the Replace mode (`character-swap-replace`), left out for Transfer |
-| Carousel | `estimate_generation_cost` with `tool: "photo-edit"` and the photos skill's `params` (`aspect_ratio: "3:4"`, `resolution: "2K"`) for one photo, times the photos: the photos skill makes one call per photo |
+| Talking video | `generate_ugc_video` with `params: {"duration": <seconds>}`; plus `generate_change_voice` when the talking-video skill's own-voice rule applies (the avatar has a `voice_id`, one speaker) |
+| Trend reshoot | `generate_reshoot` with `inputs: {"source": "<imported asset id>"}`, `params: {"duration": <seconds>}` |
+| Character Swap | `generate_character_swap` with `inputs: {"source_video": "<imported asset id>"}`, `params: {"duration": <seconds>}`; `model` only for the Replace mode (`character-swap-replace`), left out for Transfer |
+| Carousel | `generate_photo_edit` with the photos skill's `params` (`aspect_ratio: "3:4"`, `resolution: "2K"`) for one photo, times the photos: the photos skill makes one call per photo |
 | Product video, unboxing, try-on, tutorial, app promo, faceless video, episode, clips from a long video | Every paid call its skill's price step names (several takes and Video Studio steps are common) |
-| Captions on a video with speech, when its skill does not add them | `estimate_generation_cost` with `tool: "hook-captions"`, once per video |
+| Captions on a video with speech, when its skill does not add them | `generate_hook_captions`, once per video |
 | Video Studio steps | `get_video_guide` `credits` |
 
 Write each row's total down next to the row: it is that row's ceiling at run time
@@ -105,8 +105,8 @@ the first three") is a new quote and a new yes.
    its defaults, its checks and its finishing steps as quoted, in this order: the take, the
    avatar's own voice, then captions (they are read from the final speech). Captions on a
    video with speech go on through `creatorline-captions`, in its one-pass way for a batch:
-   `hook-captions` on the finished take, one call per video, with `hook_mode: "manual"` and
-   the row's hook as `prompt` (you know what is said), or `hook_mode: "off"` when the video
+   `generate_hook_captions` on the finished take, one call per video, with `hook_mode: "manual"`
+   and the row's hook as `prompt` (you know what is said), or `hook_mode: "off"` when the video
    already opens on text.
 4. At each paid call, call first without `confirm` and compare the `credits` with the row's
    quote:

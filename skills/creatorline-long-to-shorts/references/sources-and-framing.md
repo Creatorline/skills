@@ -1,7 +1,7 @@
 # Sources, framing and price
 
-How a long recording comes in, how the `short-clip` tool chooses and builds the shorts, how long
-it takes, how its price is put together, and the questions people ask about it.
+How a long recording comes in, how the `generate_short_clip` tool chooses and builds the
+shorts, how long it takes, how its price is put together, and the questions people ask about it.
 
 ## Contents
 
@@ -138,9 +138,9 @@ recording's own.
   shorts is not refunded for a short that dropped out on the way.
 - A run that ends with no shorts gets its first charge back. When it failed after the topics
   were found (`all-clips-failed`), an extra-shorts charge already made stays: say so.
-- "How much would my hour-long podcast be?": `estimate_generation_cost` with
-  `tool: "short-clip"` and the link in `source_url` (or `inputs.source_video`). Without the
-  source the answer is a placeholder for a few seconds of video, not a price.
+- "How much would my hour-long podcast be?": `generate_short_clip` without `confirm`, with the
+  link in `source_url` (or `inputs.source_video`). Nothing starts. Without the source the
+  answer is an estimate for a few seconds of video, not a price.
 
 ## 7. Questions people ask
 

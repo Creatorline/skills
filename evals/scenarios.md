@@ -13,6 +13,7 @@ the Creatorline connection signed in, before a release and after any change to a
   try-on, tutorial, app promo, AI host, faceless
 - [From videos that already exist](#from-videos-that-already-exist): reshoot, Character
   Swap, ad variations, clips from long videos
+- [From what works for your competitors](#from-what-works-for-your-competitors): competitor intel
 - [Finishing touches](#finishing-touches): Video Studio, captions, voiceover
 - [Photos](#photos): photos and carousels, covers
 - [Planning and posting](#planning-and-posting): script, content plan, publish, workflows
@@ -178,6 +179,23 @@ one at a time across several turns, an id shown, an engine or vendor named.
 | 2 | Bu uzun videodan altyazılı kısa videolar çıkar, kütüphanedeki en yeni video. | `creatorline-long-to-shorts` | orient, `list_assets` (file type video), `create_generation` (tool `short-clip`, `inputs.source_video`, no `confirm`) |
 | 3 | Turn my 20 minute interview into vertical clips with karaoke captions. | `creatorline-long-to-shorts` | orient, `create_generation` (tool `short-clip`, `caption_style` karaoke, no `confirm`) |
 | Near miss | Trim the first three seconds off this short. | `creatorline-video-studio` | An edit, not clipping. |
+
+## From what works for your competitors
+
+### creatorline-competitor-intel
+
+The workspace for these: a brand with tracked competitors (the brand research found them), a
+plan with Trends. On a free trial, case 1 reads the ads and passes on the Trends answer.
+
+| # | Prompt | Skill | First calls |
+| --- | --- | --- | --- |
+| 1 | What are my competitors doing right now? | `creatorline-competitor-intel` | orient, `list_competitors`, `list_trending_posts`, `list_competitor_ads`; a brief of three items, then one thing to make |
+| 2 | Rakiplerimin en uzun süredir yayında olan reklamları hangileri? | `creatorline-competitor-intel` | orient, `list_competitors`, `list_competitor_ads` (`order: "longest"`) |
+| 3 | Give me this week's competitor digest. | `creatorline-competitor-intel` | orient, `list_competitors`, `list_trending_posts` (`order: "new"`), `list_competitor_ads` (`only_new: true`); every competitor gets a line |
+| 4 | Scan for new ads from my competitors. | `creatorline-competitor-intel` | orient, `scan_competitor_ads` (no `confirm`): the price and the balance, or why it cannot run now |
+| 5 | Find me something from my competitors to reshoot with Mia. | `creatorline-competitor-intel`, then `creatorline-reshoot` | orient, `list_trending_posts`, `list_competitor_ads`, one pick offered; on a yes, `create_generation` (tool `reshoot`, the pick's link in `inputs.source`, no `confirm`) |
+| 6 | Download Weave's longest-running video ad for me. | `creatorline-competitor-intel` | orient, `list_competitors`, `list_competitor_ads` (`competitor_id`, `order: "longest"`, `format: "video"`), `get_competitor_ad` (its `download_url`) |
+| Near miss | Reshoot this TikTok with my avatar: https://www.tiktok.com/@someone/video/7400000000000000002 | `creatorline-reshoot` | A link to re-film needs no reading of competitors. |
 
 ## Finishing touches
 

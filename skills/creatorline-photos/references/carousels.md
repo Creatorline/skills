@@ -1,9 +1,9 @@
 # Carousels
 
 A carousel is 2 to 10 photos posted as one post that people swipe through. Over the connector
-you build it frame by frame with `photo-edit` (and `text-to-photo` for scenes), then post the
-frames together with `create_post`. The app's one-click carousel is not on the connector; this
-file does the same job by hand.
+you build it frame by frame with `generate_photo_edit` (and `generate_text_to_photo` for scenes),
+then post the frames together with `create_post`. The app's one-click carousel is not on the
+connector; this file does the same job by hand.
 
 The examples use Mia, a woman avatar: write he, she or they to match the avatar's `gender`
 (`get_avatar`).
@@ -105,8 +105,8 @@ face differs.
 
 1. Write every frame's call first: the same `brand_id`, `model` and `params` for every frame;
    only `prompt`, `inputs` and `include_avatar` change. Scene frames with nothing real in them
-   are `text-to-photo` calls with the same `aspect_ratio` and `resolution`.
-2. Price: `create_generation` without `confirm` once for each distinct setup (tool, model,
+   are `generate_text_to_photo` calls with the same `aspect_ratio` and `resolution`.
+2. Price: the frame's tool without `confirm` once for each distinct setup (tool, model,
    `params`, `count`); frames with the same setup cost the same. Add them up and ask one yes
    for the whole set. A frame added or changed after the yes is quoted again.
 3. On yes, send every frame's call with `confirm: true`, one after another. Runs over the
@@ -209,7 +209,7 @@ The person: "Make a 6-photo carousel of Mia with our new candle for Instagram an
 3. Look card: "Look: oatmeal knit lounge set, hair loosely up · a small warm living room with a
    linen sofa and an oak coffee table · soft afternoon window light into lamp light · oatmeal,
    olive, amber · casual phone photo".
-4. On yes: six `photo-edit` calls with `confirm: true` (frames 3 and 5 with
+4. On yes: six `generate_photo_edit` calls with `confirm: true` (frames 3 and 5 with
    `include_avatar: false`), the candle in `other_elements` on all six, `aspect_ratio: "3:4"`,
    `resolution: "2K"`.
 5. Wait, check, order, show the card with six named links, offer: post it, animate the cover,

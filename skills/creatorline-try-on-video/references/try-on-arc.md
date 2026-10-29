@@ -68,7 +68,7 @@ order and fold them:
 | Over 60 s | One per 15 s, the last at least 4 s | One take per section, joined |
 
 Up to 30 s, write `Section 1:` and `Section 2:` into one brief: one take has no joins. Over 30 s,
-each section is its own `create_generation` call with its own brief, joined in order with
+each section is its own `generate_ugc_video` call with its own brief, joined in order with
 `create_video` (worked-examples.md, section 4, shows the joining). A failed section is filmed
 again on its own.
 

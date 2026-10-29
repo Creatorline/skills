@@ -45,7 +45,7 @@ spending, waiting, the result card, failures, safety) and ask the way
 
 ## What the tool does
 
-The tool is `short-clip`. Know these facts before you promise anything:
+The tool is `generate_short_clip`. Know these facts before you promise anything:
 
 - **One run, many shorts.** One short per distinct topic, at most 10, never two on the same
   topic. Intros, outros, sponsor reads and small talk are skipped. Nobody sets the number or
@@ -111,11 +111,10 @@ How it chooses, frames and charges, in full:
    >
    > Defaults: up to 10 shorts, one per topic, bold captions with the spoken word in yellow.
 
-5. **Plan and price.** `create_generation` WITHOUT `confirm`:
+5. **Plan and price.** `generate_short_clip` WITHOUT `confirm`:
 
    ```json
    {
-     "tool": "short-clip",
      "brand_id": "BRAND_ID",
      "source_url": "https://www.youtube.com/watch?v=VIDEO_ID",
      "params": { "caption_style": "hormozi" }

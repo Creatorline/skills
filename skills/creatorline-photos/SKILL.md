@@ -38,7 +38,7 @@ across the set, a price before anything is made, and nothing public without the 
 | A cover or thumbnail whose job is a few big words | `creatorline-cover-image` |
 | The avatar wearing the item in a video | `creatorline-try-on-video` |
 | Photos joined into a reel with music, motion or text | `creatorline-video-studio` |
-| One photo brought to life as a clip | `creatorline` (`photo-to-video`) |
+| One photo brought to life as a clip | `creatorline` (`generate_photo_to_video`) |
 | A narrated video built from pictures | `creatorline-faceless-video` |
 | Text slides: tips, quotes or a list laid over several photos | The app's slides editor (house-rules.md, section 9) |
 | A new avatar, or a change to the avatar's own face | The app: https://app.creatorline.io/avatars/new to make one, https://app.creatorline.io/avatars to change one |
@@ -62,15 +62,15 @@ across the set, a price before anything is made, and nothing public without the 
 
 ## Pick the tool
 
-| In the frame | `tool` | Inputs |
+| In the frame | Tool | Inputs |
 |---|---|---|
-| The avatar, in any shot | `photo-edit` | The avatar's face goes into `characters` by itself. A product, garment or style photo in `other_elements`; a photo of a real place in `location`. |
-| The person's real product, nobody (packshot, flat lay) | `photo-edit` | Product photos in `other_elements`; `include_avatar: false`. |
-| Nothing real: a view, food, a room, a texture, a background | `text-to-photo` | `prompt` only. Never `avatar_id`: it is refused. |
-| Two avatars | `photo-edit` | The second avatar's `image_url` from `get_avatar` in `characters` (used at once: it expires). |
+| The avatar, in any shot | `generate_photo_edit` | The avatar's face goes into `characters` by itself. A product, garment or style photo in `other_elements`; a photo of a real place in `location`. |
+| The person's real product, nobody (packshot, flat lay) | `generate_photo_edit` | Product photos in `other_elements`; `include_avatar: false`. |
+| Nothing real: a view, food, a room, a texture, a background | `generate_text_to_photo` | `prompt` only. Never `avatar_id`: it is refused. |
+| Two avatars | `generate_photo_edit` | The second avatar's `image_url` from `get_avatar` in `characters` (used at once: it expires). |
 
-- **Every picture of the avatar is `photo-edit`.** `text-to-photo` draws from words alone and
-  cannot show the avatar.
+- **Every picture of the avatar is `generate_photo_edit`.** `generate_text_to_photo` draws from
+  words alone and cannot show the avatar.
 - **A real product is never drawn from words.** No photo of it: name it in the caption and keep
   it out of the picture, or ask for the photo.
 
@@ -89,8 +89,8 @@ of it in scenes is a Carousel). Modes, frames, the interview, brief words and re
 
 ## Frames and models
 
-Leave `model` out unless the frame needs one of the others. Values are exact; check them with
-`list_models` (`tool: "photo-edit"`) once per conversation.
+Leave `model` out unless the frame needs one of the others. Values are exact; check them in
+the `generate_photo_edit` tool's schema.
 
 | The frame needs | `model` | `params` |
 |---|---|---|
@@ -98,7 +98,7 @@ Leave `model` out unless the frame needs one of the others. Values are exact; ch
 | Readable words in the picture | `gpt-image-v2-edit` | `aspect_ratio: "3:4"` or `"9:16"`, `resolution: "2K"`, `quality: "Medium"` |
 | A product shot with nobody in it (studio, pin, banner, concept, ad pack) | `gpt-image-v2-edit` | the mode's `aspect_ratio`, `resolution: "2K"`, `quality: "Medium"`; a `4:5` frame, or a frame inside a set of avatar photos, stays on the set's model |
 | A full 9:16 screen: a story, a frame to animate | `bytedance-seedream-v4-5-edit` | `image_size: "portrait_16_9"` (it takes no `aspect_ratio` or `resolution`) |
-| A scene with nobody and nothing real in it | leave out on `text-to-photo` | `aspect_ratio` as the rest of the set, `resolution: "2K"` |
+| A scene with nobody and nothing real in it | leave out on `generate_text_to_photo` | `aspect_ratio` as the rest of the set, `resolution: "2K"` |
 
 - **One frame for a whole set.** `3:4` is the one every photo model offers (`portrait_4_3` on
   Seedream), it fills an Instagram feed and reads well on TikTok. `4:5` when it only goes to
@@ -112,7 +112,7 @@ Leave `model` out unless the frame needs one of the others. Values are exact; ch
   default and keeps skin texture, but may hold the face a little less closely than the default.
 - `nano-banana-2-edit` only for a styled frame (a cartoon, anime, clay or illustrated avatar,
   shot types section 13), the job it is proven at; it has no `4:5`, so a styled set is `3:4`.
-- `list_models` also shows a `num_images` param. Leave it out: `count` sets the number of
+- The tool's schema also shows a `num_images` param. Leave it out: `count` sets the number of
   options and the server overwrites `num_images` with it.
 - Per-model values and the slot tokens: [references/models-and-frames.md](references/models-and-frames.md).
 
@@ -144,7 +144,7 @@ Leave `model` out unless the frame needs one of the others. Values are exact; ch
 5. **Write the shot list.** One line per frame: shot type, what happens, tool. For two or more
    frames also write the look card (Craft) and reuse it in every brief. A carousel follows
    [references/carousels.md](references/carousels.md).
-6. **Price.** `create_generation` with every argument and no `confirm`: nothing starts, and
+6. **Price.** The frame's tool with every argument and no `confirm`: nothing starts, and
    the answer is `needs_approval` with `credits`, `credit_balance` and `sufficient`. Frames with
    the same tool, model, `params` and `count` cost the same, so price each distinct setup once
    and add them up. One short message, then wait for a yes:
@@ -159,7 +159,7 @@ Leave `model` out unless the frame needs one of the others. Values are exact; ch
    Short balance (`sufficient: false`): say how many frames fit, or offer the whole set on the
    cheaper model (`bytedance-seedream-v4-5-edit`, about half). Tell the person what it does
    ("cheaper, may hold the face a little less closely"), never its name. Asked "how much?"
-   before the details exist: `estimate_generation_cost` for one photo, times the frames.
+   before the details exist: the tool without `confirm` for one photo, times the frames.
 7. **Run.** On yes, each frame's call with `confirm: true`, one call per frame, one after
    another. Over the workspace's parallel limit they wait and start by themselves.
 8. **Wait and narrate.** `get_generation` with `wait_seconds: 30` on each `generation_id` in
@@ -176,37 +176,37 @@ Leave `model` out unless the frame needs one of the others. Values are exact; ch
 Examples here use Mia, a woman avatar: write he, she or they to match the avatar's `gender`
 (`get_avatar`). They use the brand's default avatar; for another one, add `"avatar_id"`.
 
-The avatar, a moment:
+The avatar, a moment (`generate_photo_edit`):
 
 ```json
-{"tool": "photo-edit", "brand_id": "<brand id>",
+{"brand_id": "<brand id>",
  "prompt": "Waist-up, eye level, taken by a friend across the table. @Avatar1 sits at a small marble cafe table by the window, mid-laugh, looking off to the left, one hand around a glass of iced coffee. Oversized cream knit sweater. Soft morning window light. Casual phone photo, everything in focus, natural colours.",
  "params": {"aspect_ratio": "3:4", "resolution": "2K"}}
 ```
 
-Product in hand (the product card line comes from product-intake.md):
+Product in hand (`generate_photo_edit`; the product card line comes from product-intake.md):
 
 ```json
-{"tool": "photo-edit", "brand_id": "<brand id>",
+{"brand_id": "<brand id>",
  "inputs": {"other_elements": ["<product asset id>"]},
  "prompt": "Chest-up selfie at arm's length, slight high angle. @Avatar1 holds the serum from @Input1 beside her cheek in her right hand, label to the camera, fingers below the label, a soft smile at the lens. Bathroom vanity, white tiles, morning light from a window on the left. Product: Glow C Serum, amber glass dropper bottle that fits in one palm, white label. Casual phone photo, natural skin texture.",
  "params": {"aspect_ratio": "3:4", "resolution": "2K"}}
 ```
 
-Product only, nobody (a product-shoot mode, so the product model):
+Product only, nobody (`generate_photo_edit`; a product-shoot mode, so the product model):
 
 ```json
-{"tool": "photo-edit", "brand_id": "<brand id>", "include_avatar": false,
+{"brand_id": "<brand id>", "include_avatar": false,
  "model": "gpt-image-v2-edit",
  "inputs": {"other_elements": ["<product 1>", "<product 2>", "<product 3>"]},
  "prompt": "Shot straight down: a flat lay on a white marble counter. @Input1, @Input2 and @Input3 in a loose diagonal, labels up and readable, a folded linen towel and a sprig of eucalyptus beside them. Soft daylight from the top left, gentle shadows. Every product exactly as in its photo.",
  "params": {"aspect_ratio": "3:4", "resolution": "2K", "quality": "Medium"}}
 ```
 
-A scene with nothing real in it:
+A scene with nothing real in it (`generate_text_to_photo`):
 
 ```json
-{"tool": "text-to-photo", "brand_id": "<brand id>",
+{"brand_id": "<brand id>",
  "prompt": "An empty cobbled street in Lisbon at golden hour, a yellow tram stop, pastel houses, long warm shadows. Casual phone photo, horizon a little tilted.",
  "params": {"aspect_ratio": "3:4", "resolution": "2K"}}
 ```
@@ -324,14 +324,14 @@ can drop a weak frame instead of paying for it again. Say plainly what is off.
 | Looks like a stock ad | The phone-real cues; a phone holder in the frame line; remove polished words |
 | The frames do not match each other | The same look card in every brief, the same model for every frame; redo the odd one out or drop it |
 | A content check stopped it (refunded) | Rephrase: nothing revealing, no real person's or brand's name, no other brand's product |
-| `avatar_id` refused on `text-to-photo` | Use `photo-edit`: it shows the avatar |
+| `avatar_id` refused on `generate_text_to_photo` | Use `generate_photo_edit`: it shows the avatar |
 | An `aspect_ratio` value refused | The model does not offer it: the table above; Seedream takes `image_size` |
 | `import_asset` refuses a photo or carousel post link | Ask for the image file's own link, screenshots as files, or a drop at https://app.creatorline.io/assets |
 | `create_post` says a platform does not support the format | A carousel goes to Instagram, TikTok or Telegram; one photo to Instagram or Telegram. Pass `channels` (carousels.md, section 8) |
 | The brand has no avatar yet | It is made in the app at https://app.creatorline.io/avatars/new. Meanwhile offer product shots and scenes with nobody in them |
 | They want their own face, not an avatar | Their own avatar, made from their photo at https://app.creatorline.io/avatars/new; every shot here then works with it |
 | `get_generation` still running after a long wait | A slow model | `get_generation` again on the same id; never start the run a second time, which charges twice |
-| A model id refused as unknown | It is not in the catalog | Only ids from `list_models`; never one made up or remembered |
+| A model id refused as unknown | It is not in the catalog | Only ids from the tool's schema (its `model` list); never one made up or remembered |
 | Product-shoot options all look alike | Several takes of one brief (`count`) | Different briefs: another light, angle, setting or palette each (product-modes.md, section 5) |
 
 After three paid tries at the same frame, stop and offer the best take, another shot type, or
@@ -366,7 +366,7 @@ Pick the 2 or 3 that fit, one line each:
 
 - **Post it**: a set as one carousel, here ([references/carousels.md](references/carousels.md),
   section 8); one photo to Instagram through creatorline-publish.
-- **Bring a frame to life**: a few seconds of motion from one photo with `photo-to-video`
+- **Bring a frame to life**: a few seconds of motion from one photo with `generate_photo_to_video`
   (creatorline). A `9:16` frame animates best.
 - **A video with the same look**: the product reviewed on camera (creatorline-talking-video),
   the outfit in motion (creatorline-try-on-video).
