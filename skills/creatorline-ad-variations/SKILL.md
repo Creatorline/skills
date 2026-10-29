@@ -52,40 +52,41 @@ Each row is the original plus one change. The calls are in
 
 | Code | The change | Made with |
 |---|---|---|
-| P | A product, object or prop: replaced, added or removed | `video-edit` (keeps the footage) or `reshoot` with `inputs.objects` (films it again) [9] |
-| O | Clothing on the same person | `video-edit` (one garment) or `character-swap` Replace with `inputs.outfit` [8] |
-| B | The background or the place | `video-edit` [10] |
-| C | A colour, a material, the season, the time of day | `video-edit` [10] |
-| W | Words in the filmed picture: a sign, a label, a price | `video-edit` [10] |
-| A | Who presents it | `character-swap` (Transfer), then `change-voice` [7] |
-| H | The hook: a line on screen, a new opener, hook plus captions | Video Studio `add_text` or `add_hook`, or `hook-captions` [3-5] |
+| P | A product, object or prop: replaced, added or removed | `generate_video_edit` (keeps the footage) or `generate_reshoot` with `inputs.objects` (films it again) [9] |
+| O | Clothing on the same person | `generate_video_edit` (one garment) or `generate_character_swap` Replace with `inputs.outfit` [8] |
+| B | The background or the place | `generate_video_edit` [10] |
+| C | A colour, a material, the season, the time of day | `generate_video_edit` [10] |
+| W | Words in the filmed picture: a sign, a label, a price | `generate_video_edit` [10] |
+| A | Who presents it | `generate_character_swap` (Transfer), then `generate_change_voice` [7] |
+| H | The hook: a line on screen, a new opener, hook plus captions | Video Studio `add_text` or `add_hook`, or `generate_hook_captions` [3-5] |
 | E | The call to action on screen at the end | Video Studio `add_text` [6] |
-| L | Spoken lines | `text-to-speech` in the avatar's voice, then `lipsync` [11] |
-| V | The voice | `change-voice` [12] |
-| T | The language | `text-to-speech` and `lipsync`, or a Video Studio voiceover [11, 13] |
+| L | Spoken lines | `generate_text_to_speech` in the avatar's voice, then `generate_lipsync` [11] |
+| V | The voice | `generate_change_voice` [12] |
+| T | The language | `generate_text_to_speech` and `generate_lipsync`, or a Video Studio voiceover [11, 13] |
 | S | The caption look | Video Studio `write_captions`, one `style` per export [14] |
 
-Hooks, end text and caption looks are the cheapest rows. `video-edit`, swaps and reshoots cost
-the most: they are priced on the video's seconds, and 1080p costs about 2.5 times 720p.
+Hooks, end text and caption looks are the cheapest rows. `generate_video_edit`, swaps and
+reshoots cost the most: they are priced on the video's seconds, and 1080p costs about 2.5 times
+720p.
 
 **People go to Character Swap.** Any change to who a person is (another avatar, another face) is
-a Character Swap row, never `video-edit`: it works better for people. It covers the whole video,
-every appearance. "Swap her only for the first 3 seconds" is not offered: ask whether she is
-swapped for the whole video, or only something about her changes (a garment, a hair colour) for
-those seconds. Adding or removing a person is not offered.
+a Character Swap row, never `generate_video_edit`: it works better for people. It covers the
+whole video, every appearance. "Swap her only for the first 3 seconds" is not offered: ask
+whether she is swapped for the whole video, or only something about her changes (a garment, a
+hair colour) for those seconds. Adding or removing a person is not offered.
 [edit-mapping.md](references/edit-mapping.md), section 7, has the modes and who owns the look.
 
 **A product: keep the footage or film it again.**
 
-| `video-edit` | `reshoot` with the product |
+| `generate_video_edit` | `generate_reshoot` with the product |
 |---|---|
 | The take stays frame for frame; only the product changes | Every frame is filmed again around the new product |
 | The source shows an AI face or no face | One main person; a real person is filmed again as the avatar |
 | The same kind, size and handling (a bottle for a bottle) | Any kind: the moves are made to fit it |
 | The sound is kept: a line that names the old product still names it | Lines and text that name the old product are rewritten |
 
-**`video-edit` takes AI faces only.** A real person's face anywhere in the source is refused (and
-refunded). Its sources are the brand's own creations and footage with no face: hands, a product,
+**`generate_video_edit` takes AI faces only.** A real person's face anywhere in the source is
+refused (and refunded). Its sources are the brand's own creations and footage with no face: hands, a product,
 a place. On a real creator's video, a product version is Reshoot and a person version is
 Character Swap.
 
@@ -93,10 +94,10 @@ Character Swap.
 
 | Need | Hard gap or default |
 |---|---|
-| The source video | Hard gap. Find it by name in the library, or take a link. 4 to 30 s for `video-edit`, swaps and reshoots. |
+| The source video | Hard gap. Find it by name in the library, or take a link. 4 to 30 s for `generate_video_edit`, swaps and reshoots. |
 | 1. The change and the versions | Hard gap: what changes, and the ordered list of values or how many. "Just make variations": three hooks, nothing asked but the price. |
 | 2. Reference images | Asked when a version puts something in: all, some or none. A product needs its photo (product-intake.md); a place, a colour or a season can be words. |
-| 3. Sharpness | Asked for `video-edit`, swap and reshoot rows: 720p (faster, recommended) or 1080p. Otherwise 720p. |
+| 3. Sharpness | Asked for `generate_video_edit`, swap and reshoot rows: 720p (faster, recommended) or 1080p. Otherwise 720p. |
 | Avatars | By name from `list_avatars` (this brand's, or shared). |
 | Hooks and lines | You write them in the brand's voice. |
 | Post caption | One caption for every version, ideally the original's. |
@@ -124,7 +125,7 @@ Character Swap.
      ([edit-mapping.md](references/edit-mapping.md), sections 4 to 6).
 5. **Plan.** One row per version, in the order asked, each with its name and its change in plain
    words. Zip lists, never cross them. Settle every choice here, so no prompt carries an "if".
-6. **Write the edits** (`video-edit` rows): one prompt per version from
+6. **Write the edits** (`generate_video_edit` rows): one prompt per version from
    [edit-contract.md](references/edit-contract.md), then its checks (section 10). A prompt that
    fails twice drops only its version: say so.
 7. **Price the whole set.** Every row without `confirm` (variant-recipes.md, section 2), add them
@@ -244,11 +245,11 @@ prompt, a token or an id to the person; show a prompt only when they ask for it.
 |---|---|
 | Longer than 30 s | Say its length: edits, swaps and reshoots take up to 30 s. Offer a 30 s part they pick, cut first in Video Studio (variant-recipes.md, section 17), or the edit-only rows (hook, captions, end text) on the full video, up to 180 s. |
 | Shorter than 4 s | No edit, swap or reshoot; never loop or freeze it. Hook, text, voice and caption rows only. |
-| A real person's face in it | `video-edit` refuses it. Product: Reshoot (the avatar takes the person's place too: say so). Person: Character Swap. Hook, text, voice and caption rows work. A real person only with their permission (house-rules.md, section 7). |
+| A real person's face in it | `generate_video_edit` refuses it. Product: Reshoot (the avatar takes the person's place too: say so). Person: Character Swap. Hook, text, voice and caption rows work. A real person only with their permission (house-rules.md, section 7). |
 | A child or teen on screen | Not a source (house-rules.md, section 7). |
 | Two main people | Edits and avatar versions work. Reshoot needs one main person. |
 | No person on screen | Edits work (product, place, colour, words). Avatar, outfit and lip-sync rows do not apply. |
-| The speech names the old product | A `video-edit` keeps the sound, so the old name is still said. Offer Reshoot, or a lines step on the edit (variant-recipes.md, section 11). |
+| The speech names the old product | A `generate_video_edit` keeps the sound, so the old name is still said. Offer Reshoot, or a lines step on the edit (variant-recipes.md, section 11). |
 | Captions or text burned in | An edit keeps them word for word. A new hook line may sit on old text; caption-look rows need the clean master. |
 | Someone else's video | Not a source for versions. Re-film the idea with `creatorline-reshoot`, then test versions of that. |
 
@@ -328,9 +329,9 @@ What next?
 
 ## References
 
-- [edit-contract.md](references/edit-contract.md): the `video-edit` prompt: tokens, the four
-  operations, time scope, keeping an edit from spreading, the two templates, the checks, two
-  worked prompts.
+- [edit-contract.md](references/edit-contract.md): the `generate_video_edit` prompt: tokens,
+  the four operations, time scope, keeping an edit from spreading, the two templates, the
+  checks, two worked prompts.
 - [edit-mapping.md](references/edit-mapping.md): N and lists, the intake fields, which image
   goes where, people and Character Swap, clothes, text, where times come from.
 - [edit-checks.md](references/edit-checks.md): what to check after an edit, retries, the

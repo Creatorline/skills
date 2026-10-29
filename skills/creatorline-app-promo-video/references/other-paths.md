@@ -22,8 +22,7 @@ picking a source).
 **The call**, priced without `confirm` first, like every run:
 
 ```
-create_generation
-  tool: "reshoot"
+generate_reshoot
   brand_id: <brand>
   inputs:
     source: "<the trend link, or its asset id>"

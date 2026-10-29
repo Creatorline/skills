@@ -2,9 +2,9 @@
 
 The photo models the connector offers, the exact values each one takes, its slots, and what
 changes the price. The person is never asked for a model: you pick it by what the frame needs
-and say what the choice does ("this one renders words cleanly"), not its name. `list_models`
-with `tool: "photo-edit"` or `tool: "text-to-photo"` is the live truth; check it once per
-conversation before the first call.
+and say what the choice does ("this one renders words cleanly"), not its name. The schema of
+the `generate_photo_edit` or `generate_text_to_photo` tool is the live truth; check it before
+the first call.
 
 ## Contents
 
@@ -17,7 +17,7 @@ conversation before the first call.
 
 ## 1. Which model
 
-**`photo-edit`** (the avatar, the person's products, any photo edit):
+**`generate_photo_edit`** (the avatar, the person's products, any photo edit):
 
 | `model` | Use it for | Trade-off |
 |---|---|---|
@@ -28,7 +28,7 @@ conversation before the first call.
 | `nano-banana-2-edit` | A styled frame: a cartoon, anime, clay or illustrated avatar ([shot types](shot-types.md), section 13) | No `4:5`; at `2K` it costs what the default does; not for photos |
 | `nano-banana-2-1-edit` | A cheaper photo edit, a `9:16` frame without words | The newer Nano Banana 2; has `4:5` and `9:16`; less proven on the avatar's face than the default |
 
-**`text-to-photo`** (a picture from words alone, nobody and nothing real in it):
+**`generate_text_to_photo`** (a picture from words alone, nobody and nothing real in it):
 
 | `model` | Use it for |
 |---|---|
@@ -59,7 +59,7 @@ Spelled exactly as here; a value not listed is refused before anything is charge
 - Always pass `aspect_ratio` (or `image_size`) and `resolution: "2K"`: the defaults differ from
   model to model, and `auto` leaves the shape to the model.
 - Never `4K` or `auto_4K` (house rule).
-- Alternatives come from `count` (1 to 4) on `create_generation`, never from a `params` key.
+- Alternatives come from `count` (1 to 4) on the tool, never from a `params` key.
   Every model here also lists `num_images`: leave it out, the server sets it from `count`.
 - `gpt-image-v2-*` (2.5 included) and Seedream offer no `4:5`. `3:4` is the one frame every model has
   (`portrait_4_3` on Seedream), which is why a set defaults to it.
@@ -71,7 +71,7 @@ Spelled exactly as here; a value not listed is refused before anything is charge
 | A carousel for Instagram and TikTok (default) | `3:4` | default; `gpt-image-v2-edit` for a word frame |
 | Instagram only, every frame on the default model | `4:5` or `3:4` | default |
 | A TikTok-only photo carousel that should fill the screen | `9:16` | Seedream `portrait_16_9`; `gpt-image-v2-edit` `9:16` for words |
-| A story, or a still to animate with `photo-to-video` | `9:16` | as above |
+| A story, or a still to animate with `generate_photo_to_video` | `9:16` | as above |
 | One outfit photo, the whole body | `2:3` | default |
 | A square grid post, a product tile | `1:1` | default; `gpt-image-v2-edit` when nobody is in it |
 | A shop listing (studio shot) | `1:1` | `gpt-image-v2-edit` |
@@ -83,7 +83,7 @@ Every frame of one carousel shares one frame shape.
 
 ## 4. Slots and how to name them
 
-`photo-edit` models share three image slots. Every image goes to the model in one list, each
+`generate_photo_edit` models share three image slots. Every image goes to the model in one list, each
 with its role. The writer looks at the first four (the avatar first), so with more inputs than
 that, say in words what the later ones show.
 
@@ -95,12 +95,12 @@ that, say in words what the later ones show.
 
 - `include_avatar: false` keeps the avatar out: product shots, flat lays, a locked look.
 - With `include_avatar: false` and no image at all, the run becomes a words-only picture: use
-  `text-to-photo` for that instead.
-- `text-to-photo` has no slots. An `avatar_id` there is refused.
+  `generate_text_to_photo` for that instead.
+- `generate_text_to_photo` has no slots. An `avatar_id` there is refused.
 
 ## 5. What changes the price
 
-Never quote from this file: the `needs_approval` answer of `create_generation` is the price.
+Never quote from this file: the `needs_approval` answer of the tool is the price.
 To plan:
 
 - Photos are priced per image: `count: 3` costs three images.
@@ -110,17 +110,17 @@ To plan:
   `Low` less, and it shows. The 2.5 models price the same way, their `High` as GPT 2's `Medium`.
 - `nano-banana-2-1-*` costs about half the default at `1K` and less than it at `2K`.
 - Seedream costs about half the default.
-- `text-to-photo`'s default costs about the same as the default edit at `2K`, half at `1K`.
+- `generate_text_to_photo`'s default costs about the same as the default edit at `2K`, half at `1K`.
 - The prompt and the number of input photos do not change a photo's price.
 
 ## 6. What the server does with the brief
 
-- `create_generation` always sends the `prompt` to the server's writer, which turns it into the
+- Both tools always send the `prompt` to the server's writer, which turns it into the
   image prompt. There is no word-for-word mode here (only a workflow node with Enhance off has
   one: creatorline-workflows).
-- On `photo-edit` the writer sees the attached images, their roles and the avatar's persona, and
-  writes an edit instruction that keeps the avatar's identity. It puts a person in only when the
-  brief asks for one.
+- On `generate_photo_edit` the writer sees the attached images, their roles and the avatar's
+  persona, and writes an edit instruction that keeps the avatar's identity. It puts a person in only
+  when the brief asks for one.
 - It reads a product page link in the brief for facts, and never invents beyond it.
 - It is not phone-locked: without "casual phone photo" and a cue or two it drifts toward a
   polished, shallow-focus look.

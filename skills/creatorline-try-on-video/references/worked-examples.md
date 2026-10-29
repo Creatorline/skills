@@ -3,7 +3,8 @@
 Full runs, from the person's first message to the result. Ids are shown as `<...>`: take them
 from the tool answers, never ask for them, never show them. Every call that spends is first
 made without `confirm` (the quote) and repeated with `confirm: true` after the yes. A call
-whose input does not exist yet is priced with `estimate_generation_cost` instead.
+whose input does not exist yet is priced by the same tool without that input and without
+`confirm`, which answers with an estimate (`estimate: true`).
 
 ## Contents
 
@@ -28,8 +29,8 @@ A one-liner with the item and the length: decide everything, ask nothing but the
 3. Quote the look (no `confirm`):
 
 ```
-create_generation {
-  tool: "photo-edit", brand_id: "<brand>", avatar_id: "<Mia>",
+generate_photo_edit {
+  brand_id: "<brand>", avatar_id: "<Mia>",
   inputs: { other_elements: ["<dress>"] },
   params: { aspect_ratio: "2:3", resolution: "2K" },
   count: 2,
@@ -54,8 +55,8 @@ create_generation {
 7. The video with `confirm: true` (the yes already covered it):
 
 ```
-create_generation {
-  tool: "ugc-video", brand_id: "<brand>", avatar_id: "<Mia>",
+generate_ugc_video {
+  brand_id: "<brand>", avatar_id: "<Mia>",
   inputs: { objects: ["<dress>"] },
   params: { ugc_style: "Auto", duration: 15, aspect_ratio: "9:16", resolution: "720p" },
   confirm: true,
@@ -99,8 +100,8 @@ The person: "Do a quick 10 second reveal with Jack and our white sneakers."
    Before.
 
 ```
-create_generation {
-  tool: "ugc-video", brand_id: "<brand>", avatar_id: "<Jack>",
+generate_ugc_video {
+  brand_id: "<brand>", avatar_id: "<Jack>",
   inputs: { objects: ["<sneakers>"] },
   params: { ugc_style: "Before & after", duration: 10, aspect_ratio: "9:16", resolution: "720p" },
   prompt: "Idea: a shoe reveal. Before: @Avatar1 in plain grey socks in a sunny hallway, a kraft shopping bag in hand. After: @Avatar1 wearing the white leather sneakers (@Object1).
@@ -124,8 +125,8 @@ The person: "A short clip of Mia wearing our gold hoops, something loopable."
 1. A 9:16 look photo, since it will be animated:
 
 ```
-create_generation {
-  tool: "photo-edit", brand_id: "<brand>", avatar_id: "<Mia>",
+generate_photo_edit {
+  brand_id: "<brand>", avatar_id: "<Mia>",
   model: "gpt-image-v2-edit",
   inputs: { other_elements: ["<hoops>"] },
   params: { aspect_ratio: "9:16", resolution: "2K" },
@@ -136,17 +137,17 @@ create_generation {
 2. Animate it, one continuous take:
 
 ```
-create_generation {
-  tool: "photo-to-video", brand_id: "<brand>",
+generate_photo_to_video {
+  brand_id: "<brand>",
   inputs: { image_url: "<look>" },
   params: { duration: 6 },
   prompt: "She turns her head slowly toward the window so the right earring catches the light, then back to the lens with a small smile. Phone propped, frame locked."
 }
 ```
 
-Pricing: the look with `create_generation` without `confirm`; the animation with
-`estimate_generation_cost` (`tool: "photo-to-video"`, `params: { duration: 6 }`), since the look
-does not exist yet. One yes for the total. Once the look is kept, call the animation without
+Pricing: the look with `generate_photo_edit` without `confirm`; the animation with
+`generate_photo_to_video` without `confirm` and without the image (`params: { duration: 6 }`):
+an estimate, since the look does not exist yet. One yes for the total. Once the look is kept, call the animation without
 `confirm`: the same price, confirm it; a higher one, ask again. The brief says only what moves;
 never a cut.
 
@@ -156,9 +157,10 @@ The person: "Haul try-on of our three new summer tops with Mia."
 
 1. Bring in the three photos; one wardrobe line each.
 2. Price the whole haul before any of it starts:
-   - three looks (`photo-edit`, `count: 1` each) and three clips (`ugc-video`, `duration: 6`,
-     the same setting line in all three so it reads as one session): `create_generation`
-     without `confirm`, all six now, since the clips take the item photos;
+   - three looks (`generate_photo_edit`, `count: 1` each) and three clips
+     (`generate_ugc_video`, `duration: 6`, the same setting line in all three so it reads as
+     one session): each tool without `confirm`, all six now, since the clips take the item
+     photos;
    - the captions and the export: `get_video_guide` gives their credits (`credits.captions`,
      `credits.export`).
    One message: one line per item, the captions and the export, the total, one question.
@@ -167,15 +169,21 @@ The person: "Haul try-on of our three new summer tops with Mia."
    neckline, the knit catching the light as she breathes, verdict". The Before shot and the kraft
    bag belong to a single try-on, not to each clip of a haul.
 4. On yes, run the six; check each look before its clip, as in example 1.
-5. Join them (free):
+5. Join them, then label them (free):
 
 ```
 create_video {
   brand_id: "<brand>", title: "Summer tops haul",
+  clips: [
+    { asset_id: "<clip 1>", id: "t1" },
+    { asset_id: "<clip 2>", id: "t2" },
+    { asset_id: "<clip 3>", id: "t3" }
+  ]
+}
+
+edit_video_texts {
+  video_id: "<video>",
   operations: [
-    { op: "add_clip", asset_id: "<clip 1>", id: "t1" },
-    { op: "add_clip", asset_id: "<clip 2>", id: "t2" },
-    { op: "add_clip", asset_id: "<clip 3>", id: "t3" },
     { op: "add_text", text: "1. Cream knit tank", over: "t1", position: "top", look: "tiktokHighlight", size: "m" },
     { op: "add_text", text: "2. Striped linen shirt", over: "t2", position: "top", look: "tiktokHighlight", size: "m" },
     { op: "add_text", text: "3. Sage crop top", over: "t3", position: "top", look: "tiktokHighlight", size: "m" }
@@ -188,7 +196,7 @@ create_video {
    call it again with `confirm: true`. Read `get_video` until `captions.status` is `ready`. The
    captions are written from what is heard: read each line against the lines in the briefs, the
    item names spelled as the person spells them, numbers as digits, and fix a wrong word with
-   `edit_video` (`edit_caption`). Nothing said: the captions credits come back. Then
+   `edit_video_captions` (`edit_caption`). Nothing said: the captions credits come back. Then
    `export_video` `{ video_id }` the same way, and read `get_video` until `export.status` is
    `done`. `export.asset_id` is the finished MP4 for creatorline-publish.
 
@@ -210,8 +218,8 @@ The person: "Use this TikTok of a woman trying on jeans, but with Mia in our jea
 3. The quote, then the run on yes:
 
 ```
-create_generation {
-  tool: "character-swap", brand_id: "<brand>", avatar_id: "<Mia>",
+generate_character_swap {
+  brand_id: "<brand>", avatar_id: "<Mia>",
   model: "character-swap-replace",
   inputs: { source_video: "<clip>", outfit: "<jeans>" },
   params: { duration: 14, resolution: "720p" }
@@ -220,15 +228,15 @@ create_generation {
 
 4. The woman in the clip says a line: her voice would stay, and it is not ours to use. Mia has a
    `voice_id` in `get_avatar`, and the clip has no music: offer a re-voice after the swap, priced
-   with it now (`estimate_generation_cost`, `tool: "change-voice"`, the clip in
-   `inputs.video_url`). The other way: mute the clip in Video Studio and add a voiceover.
+   with it now (`generate_change_voice` without `confirm` and without `inputs.video_url`: an
+   estimate). The other way: mute the clip in Video Studio and add a voiceover.
 5. Wait with `get_generation` (`wait_seconds: 45`); say a swap often takes longer than a normal
    video.
 6. The re-voice, once the swap succeeded:
 
 ```
-create_generation {
-  tool: "change-voice", brand_id: "<brand>", avatar_id: "<Mia>",
+generate_change_voice {
+  brand_id: "<brand>", avatar_id: "<Mia>",
   inputs: { video_url: "<the swap's output asset_id>" },
   params: { voice_id: "<voice_id from get_avatar>" }
 }
@@ -245,8 +253,8 @@ When the item drifts between shots, the avatar holds it instead of wearing it, o
 shows a real model's face, film from the kept look photo instead of the avatar's own image:
 
 ```
-create_generation {
-  tool: "ugc-video", brand_id: "<brand>", avatar_id: "<Mia>",
+generate_ugc_video {
+  brand_id: "<brand>", avatar_id: "<Mia>",
   include_avatar: false,
   inputs: { characters: ["<kept look>"], objects: ["<dress>"] },
   params: { ugc_style: "Auto", duration: 12, aspect_ratio: "9:16", resolution: "720p" },

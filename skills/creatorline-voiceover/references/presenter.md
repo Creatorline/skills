@@ -45,11 +45,10 @@ presenter speak over only part of it). Never cut their words silently.
 
 ## 3. Filming each block
 
-One `create_generation` per block (quote without `confirm` first):
+One `generate_ugc_video` per block (quote without `confirm` first):
 
 ```json
 {
-  "tool": "ugc-video",
   "brand_id": "<brand>",
   "prompt": "<brief>",
   "params": { "duration": 10, "aspect_ratio": "9:16", "ugc_style": "Talking head" }
@@ -76,8 +75,8 @@ Sound: voice and room sound only.
 ## 4. The avatar's own voice
 
 - The video model speaks in a voice of its own. Re-voice EVERY block with the avatar's voice:
-  `create_generation`, tool `change-voice`, `inputs.video_url` the block's `asset_id`,
-  `params.voice_id` the avatar's (calls.md, section 4). It keeps the words, their timing and the
+  `generate_change_voice`, `inputs.video_url` the block's `asset_id`, `params.voice_id` the
+  avatar's (calls.md, section 4). It keeps the words, their timing and the
   mouth, and swaps only the voice, so no lip sync pass is needed.
 - Every block, not some: a narrator whose voice changes between blocks is the failure people
   hear first. The voice is locked as in fitting-takes.md, section 5.
@@ -87,13 +86,18 @@ Sound: voice and room sound only.
 ## 5. Placing the blocks
 
 In the base's Video Studio project (for a library video, `create_video` with the base as its
-clip first):
+clip first), the base's sound off with `edit_video_clips`:
+
+```json
+{ "video_id": "<video>", "operations": [ { "op": "set_all_clips_sound", "sound": false } ] }
+```
+
+then the blocks as layers with `edit_video_layers`:
 
 ```json
 {
   "video_id": "<video>",
   "operations": [
-    { "op": "set_all_clips_sound", "sound": false },
     { "op": "add_layer", "asset_id": "<block 1, re-voiced>", "id": "p1", "kind": "video", "start": 0, "duration": 10, "column": "left", "row": "middle", "width": 0.35, "corners": "rounded", "border": "white", "sound": true },
     { "op": "add_layer", "asset_id": "<block 2, re-voiced>", "id": "p2", "kind": "video", "start": 10, "duration": 4.2, "column": "left", "row": "middle", "width": 0.35, "corners": "rounded", "border": "white", "sound": true }
   ]
@@ -120,9 +124,9 @@ clip first):
 
 ## 6. Price, run and checks
 
-1. Quote every paid step before anything runs: each block's `ugc-video` call without `confirm`,
-   each re-voice with `estimate_generation_cost` (`tool: "change-voice"`; its file does not exist
-   yet), and the export. One total, one yes.
+1. Quote every paid step before anything runs: each block's `generate_ugc_video` call without
+   `confirm`, each re-voice with `generate_change_voice` without `confirm` (its file does not
+   exist yet, so it answers with an estimate), and the export. One total, one yes.
 2. Film the blocks; wait on each with `get_generation`. A failed block is filmed again alone, at
    most twice; the others stay.
 3. Re-voice each block; wait the same way.

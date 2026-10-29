@@ -46,12 +46,12 @@ often with hashtags: `creatorline-publish`. Decide from the request; ask only if
 
 ## Pick the route
 
-| | A. Video Studio (default) | B. One pass (`hook-captions`) | C. Shorts from a long video |
+| | A. Video Studio (default) | B. One pass (`generate_hook_captions`) | C. Shorts from a long video |
 |---|---|---|---|
 | The words | You read every line and fix names before they are burned in | Burned at once; a wrong word means a new run | Burned at once |
 | Hook headline | Your line, any size and look, top row, as long as you want | Your line or one written from the speech, small, top, first 2.5 s | Each short's own title |
 | Where captions sit | `auto`, `top`, `middle` or `bottom`, inside the apps' safe area | Fixed, low in the frame | Fixed |
-| Changing the look later | Free (`set_captions`), then a new export | A new run from the original video | A new run |
+| Changing the look later | Free (`set_captions` in `edit_video_captions`), then a new export | A new run from the original video | A new run |
 | Frame | Filled to 9:16 (a wide video loses its sides) | Kept as it is | Turned vertical on the speaker |
 | Length | Up to 180 s | Any | A long source |
 | What is charged | Captions once per video, then each export | One run | By the source's length |
@@ -118,26 +118,32 @@ one quick pass".
    the captions.
 
 6. **Build the video (free).** `get_video_guide` once per conversation. Then `create_video` with
-   the clip and the hook in one call; ids and fields are in
+   the clip, and `edit_video_texts` with the hook right after; ids and fields are in
    [references/calls.md](references/calls.md), section 2:
 
    ```json
    {
      "brand_id": "BRAND_ID",
      "title": "Fernly bottle review",
+     "clips": [ { "asset_id": "VIDEO_ASSET_ID", "id": "main" } ]
+   }
+   ```
+
+   ```json
+   {
+     "video_id": "VIDEO_ID",
      "operations": [
-       { "op": "add_clip", "asset_id": "VIDEO_ASSET_ID", "id": "main" },
        { "op": "add_text", "id": "hook", "text": "this bottle fits\nevery cup holder", "start": 0, "end": 3, "position": "top", "size": "l", "look": "tiktokOutline" }
      ]
    }
    ```
 
-   A video that is already a project: `edit_video` with the `add_text` operation alone.
+   A video that is already a project: `edit_video_texts` with the `add_text` operation alone.
 
 7. **Look (free).** `preview_video` with `at: [0.5, 2]` and `show_safe_area: true`. The hook must
    read at phone size, sit inside the safe area, and not cover the face, the product or text
-   that is already there. Fix with `update_text`, look again. If the video's `warnings` say
-   nothing is heard in it, there is nothing to caption: offer a voiceover
+   that is already there. Fix with `update_text` (`edit_video_texts`), look again. If the
+   video's `warnings` say nothing is heard in it, there is nothing to caption: offer a voiceover
    (`creatorline-voiceover`) or the hook alone.
 
 8. **Price both steps, ask once.**
@@ -159,17 +165,17 @@ one quick pass".
    words."
 
 10. **Proofread (free).** Read `captions.lines` in `get_video` against the words you know: a
-    voiceover's `text` (read exactly as written), a script the person says was read as
-    written, names from `get_brand` and the person. The hearing gives the times; the known
-    words give the spelling. At least 0.90 of the known words heard in order: fix the misspelled
-    ones. Below: over a voiceover, retype the lines with the known words, putting back a missed
-    word where it is said; over a generated clip, never paste the script over what was said:
-    tell the person which lines differ. Nothing known: say a quiet word may be missing, and
-    stop to ask when far fewer words were heard than the talking time holds. Fix with
-    `edit_caption` operations, all in one `edit_video` call (with the hook's `add_text` when it
-    waited for the words), highest `index` first: a line that gains or loses a word regroups
-    the lines after it. Details: [checking captions](references/checking-captions.md), sections
-    1 to 4, and [calls](references/calls.md), section 4.
+    voiceover's `text` (read exactly as written), a script the person says was read as written,
+    names from `get_brand` and the person. The hearing gives the times; the known words give the
+    spelling. At least 0.90 of the known words heard in order: fix the misspelled ones. Below:
+    over a voiceover, retype the lines with the known words, putting back a missed word where it
+    is said; over a generated clip, never paste the script over what was said: tell the person
+    which lines differ. Nothing known: say a quiet word may be missing, and stop to ask when far
+    fewer words were heard than the talking time holds. Fix with `edit_caption` operations, all in
+    one `edit_video_captions` call, highest `index` first: a line that gains or loses a word
+    regroups the lines after it. A hook that waited for the words goes on with `edit_video_texts`.
+    Details: [checking captions](references/checking-captions.md), sections 1 to 4, and
+    [calls](references/calls.md), section 4.
 
 11. **Look again (free).** `preview_video` with `show_safe_area: true` at the middle of the
     first line, of one half way through and of the last line: the words are there, on their
@@ -203,11 +209,10 @@ fixed and noted ([checking captions](references/checking-captions.md), section 1
    | `auto` (default) | Written from what is said, in the brand's voice. `prompt` is not read. | You do not know what is said |
    | `off` | None | Captions only, or the video already opens with text |
 
-5. **Price it.** `create_generation` WITHOUT `confirm`:
+5. **Price it.** `generate_hook_captions` WITHOUT `confirm`:
 
    ```json
    {
-     "tool": "hook-captions",
      "brand_id": "BRAND_ID",
      "prompt": "this bottle fits every cup holder",
      "inputs": { "source_video": "VIDEO_ASSET_ID" },
@@ -327,7 +332,7 @@ person asks; then say that the new look is the brand's look from now on.
 | Lyrics captioned | `write_captions` without `confirm`, with `clip_ids` naming only the talking clips (free when already paid), then proofread again. |
 | Two sets of captions on screen | The source had burned-in captions. Start from the clean version. |
 | The hook covers the face or text already in the video | `update_text`: size `m`, two lines, or another row than the captions. Or no hook. |
-| Captions cover the product | `edit_video` with `set_captions` `position: "middle"` (free), then a new export (charged: quote it). |
+| Captions cover the product | `edit_video_captions` with `set_captions` `position: "middle"` (free), then a new export (charged: quote it). |
 | Route B failed saying no speech was heard | A silent video with `hook_mode` `auto` or `off`. Use `manual` with a line (the hook alone shows), or route A with a text. |
 | "being changed somewhere else" | Someone has the video open in the studio. `get_video`, then redo the change on what is there. |
 | `export_video` refused | Read `warnings`: captions still writing, something generating, or over 180 s. Wait or trim. |
@@ -352,7 +357,7 @@ What next?
 - Route A: `EXPORT_URL` is `export.url` and `STUDIO_URL` the video's `studio_url`, both from
   `get_video`. N adds up `credits_charged` from the confirmed calls.
 - Route B: `output[0].url` and `studio_url` from `get_generation`; N is `credits_charged` from
-  the confirmed `create_generation`.
+  the confirmed `generate_hook_captions`.
 - M: `get_credit_balance`. Media links expire; the Creatorline link stays.
 - Name the hook and the look so the person can ask for a change in their own words.
 - One line each, only when true: the look chosen because nobody named one; heard with nothing

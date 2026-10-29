@@ -109,14 +109,14 @@ when guessed.
 
 | Tool | Slot | Note |
 |---|---|---|
-| `ugc-video` | `objects` | Name it with a plain noun and `@Object1` ("the serum (@Object1)") and say what the avatar does with it |
-| `photo-edit` | `other_elements` | A product shot without the avatar: `include_avatar: false` |
-| `reshoot` | `objects` | Replaces the product in the source video; say so in the Direction |
-| `character-swap`, Transfer | `other_elements` | Say in the Direction what it is for |
-| `character-swap`, Replace | `outfit` | Clothing only: the main avatar wears it |
-| `photo-to-video` | the start image | Make the still with the product first (`photo-edit`), then animate it |
+| `generate_ugc_video` | `objects` | Name it with a plain noun and `@Object1` ("the serum (@Object1)") and say what the avatar does with it |
+| `generate_photo_edit` | `other_elements` | A product shot without the avatar: `include_avatar: false` |
+| `generate_reshoot` | `objects` | Replaces the product in the source video; say so in the Direction |
+| `generate_character_swap`, Transfer | `other_elements` | Say in the Direction what it is for |
+| `generate_character_swap`, Replace | `outfit` | Clothing only: the main avatar wears it |
+| `generate_photo_to_video` | the start image | Make the still with the product first (`generate_photo_edit`), then animate it |
 
-Check slot keys in `list_models` before the first run; they differ per model.
+Input keys differ per model: the tool's schema says which model takes which.
 
 ## 7. Apps and websites
 
@@ -124,7 +124,7 @@ Check slot keys in `list_models` before the first run; they differ per model.
   files. We do not capture websites, and generated screens are never shown as the real app.
 - **Screens go on only in Video Studio**, as cards or layers (a split screen included), over or
   beside the avatar's take. Never put a screenshot or a screen recording into `source_video` (or
-  any other slot) on `ugc-video`: the model redraws it as a made-up screen.
+  any other slot) on `generate_ugc_video`: the model redraws it as a made-up screen.
 - The take itself shows the avatar, never a phone, laptop or screen in hand: the real screens
   are added on top.
 - The page URL in the brief gives the writer facts (what it does, for whom), not pictures.

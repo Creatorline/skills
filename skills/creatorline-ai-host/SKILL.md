@@ -81,9 +81,8 @@ After the intake, keep going to delivery. Pause only for a missing hard gap, a r
    Then, skipping what this conversation already did: `list_brands`, `get_brand`, `get_avatar` on
    the host, `get_credit_balance` (house-rules.md, section 1). Confirm the tools the flow uses
    are in your list (review.md, section 2); one missing: say what cannot be done, stop. Call
-   `get_video_guide` (its `credits` price captions and export) and `list_models` with
-   `tool: "ugc-video"` (the take's duration range) once each; both are free. Look for a
-   running series:
+   `get_video_guide` once (free; its `credits` price captions and export) and read the
+   `generate_ugc_video` tool's schema (the take's duration range). Look for a running series:
    - `get_brand` → `brand_voice.format_notes` may hold a line about the show;
    - `list_videos` with the `brand_id`: episodes are titled "<Show> Ep. <n>: <topic>";
    - `get_video` on the highest episode number (the list is ordered by last change).
@@ -125,18 +124,18 @@ After the intake, keep going to delivery. Pause only for a missing hard gap, a r
 
    | Item | Call |
    |---|---|
-   | Set candidates (new set only) | `create_generation` `{tool: "text-to-photo", brand_id, prompt, count: 4}` |
-   | Each part, and a new sign-off clip | `create_generation` `{tool: "ugc-video", brand_id, avatar_id, prompt, params: {ugc_style: "Talking head", duration, aspect_ratio: "9:16", resolution: "720p"}}` |
-   | A product repair still, if needed | `create_generation` `{tool: "photo-edit", ...}` (supplied-media.md, section 6) |
-   | Each new cutaway | `create_generation` with `text-to-video`, `photo-to-video` or `text-to-photo` |
-   | The cover | `create_generation` `{tool: "photo-edit", model: "gpt-image-v2-edit", avatar_id, prompt, params: {aspect_ratio: "9:16", resolution: "2K", quality: "Medium"}}` |
-   | Voice match, one per new take | `estimate_generation_cost` `{tool: "change-voice"}` |
+   | Set candidates (new set only) | `generate_text_to_photo` `{brand_id, prompt, count: 4}` |
+   | Each part, and a new sign-off clip | `generate_ugc_video` `{brand_id, avatar_id, prompt, params: {ugc_style: "Talking head", duration, aspect_ratio: "9:16", resolution: "720p"}}` |
+   | A product repair still, if needed | `generate_photo_edit` `{...}` (supplied-media.md, section 6) |
+   | Each new cutaway | `generate_text_to_video`, `generate_photo_to_video` or `generate_text_to_photo` |
+   | The cover | `generate_photo_edit` `{model: "gpt-image-v2-edit", avatar_id, prompt, params: {aspect_ratio: "9:16", resolution: "2K", quality: "Medium"}}` |
+   | Voice match, one per new take | `generate_change_voice` `{brand_id}` without the video: an estimate |
    | Captions and export | `get_video_guide` → `credits.captions`, `credits.export` |
 
    A part quoted before its set exists costs the same with it: a photo input does not change a
-   take's price. An item whose input does not exist yet is priced with
-   `estimate_generation_cost` and the same arguments. On the studio-takes route the takes'
-   line comes from `run_workflow` without `confirm` (studio-takes.md, section 3). Add
+   take's price. An item whose input does not exist yet is priced by its tool with the same
+   arguments, that input left out: the answer is an estimate. On the studio-takes route the
+   takes' line comes from `run_workflow` without `confirm` (studio-takes.md, section 3). Add
    everything up and send ONE message: title, length, host, set and style; the script part by
    part; the cutaways in one line; one line per item, the total, the balance, how long it
    takes, "Go ahead?" (example below). Short balance or free trial: house-rules.md, sections 2
@@ -167,18 +166,19 @@ After the intake, keep going to delivery. Pause only for a missing hard gap, a r
      progress, not the delivery.
 
 6. **Assemble** (references/assembly.md has every operation list):
-   1. `create_video` `{brand_id, title: "<Show> Ep. <n>: <topic>", operations}`: one `add_clip`
-      per part, ids `p1`, `p2`..., then the sign-off clip. Send the `studio_url` as a rough cut
+   1. `create_video` `{brand_id, title: "<Show> Ep. <n>: <topic>", clips}`: one clip per
+      part, ids `p1`, `p2`..., then the sign-off clip. Send the `studio_url` as a rough cut
       in one line and carry on.
-   2. Voice match: `run_video_ai` `{video_id, action: "change_voice", clip_id, voice_id}` on
-      every part, the same `voice_id` each time. Read `get_video` every 20 s until no clip is
+   2. Voice match: `change_clip_voice` `{video_id, clip_id, voice_id}` on every part, the
+      same `voice_id` each time. Read `get_video` every 20 s until no clip is
       `generating`.
    3. `write_captions` `{video_id, style, position: "auto"}`, the style's caption style; read
       `get_video` until `captions.status` is `ready`.
-   4. Read `captions.lines` against the script. In ONE `edit_video`, trim the silence at the
-      seams. Then `write_captions` again: free, no price step. Wait for `ready`.
-   5. In one `edit_video`, build the picture plan in the edit style (references/edit-styles.md),
-      timed from the caption lines. Read it back against the plan.
+   4. Read `captions.lines` against the script. In ONE `edit_video_clips` call, trim the
+      silence at the seams. Then `write_captions` again: free, no price step. Wait for `ready`.
+   5. In one `edit_video_layers` call and one `edit_video_texts` call, build the picture plan
+      in the edit style (references/edit-styles.md), timed from the caption lines. Read it
+      back against the plan.
    6. The frame review with `preview_video` (review.md, section 8). Fix, look again.
 
 7. **Review, then export.** Tick "Check before you show it". Then `export_video` and read

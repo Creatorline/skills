@@ -25,7 +25,7 @@ section 10).
 
 - "Make this every Monday", "a pipeline I can run again", "save this as a workflow".
 - A pipeline from another tool, a screenshot of a node graph, or a written recipe to rebuild.
-- Exact prompts that must reach the model word for word. `create_generation` always rewrites
+- Exact prompts that must reach the model word for word. A `generate_*` tool always rewrites
   its prompt; only a workflow step with Enhance off runs a prompt as written.
 - A saved workflow to run again (a new topic, a new product photo) or to change.
 

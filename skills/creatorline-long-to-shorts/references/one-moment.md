@@ -21,8 +21,8 @@ export each have a small fixed price, quoted and agreed first. For anything past
   link goes in with `import_asset`; a file on their device is uploaded at
   https://app.creatorline.io/assets?activeBrand=BRAND_ID (up to 100 MB), then `list_assets`.
 - **Call `get_video_guide` once per conversation** before your first `create_video`. It is
-  free and it is the authority on operations, fields, looks and limits: where it and this file
-  disagree, it wins.
+  free and it is the authority on operations, fields, looks and limits, and says which edit
+  tool does each operation: where it and this file disagree, it wins.
 - **Times.** `trim_start` and `trim_end` are seconds of the SOURCE. "12:30" is 750,
   "1:02:15" is 3735. `start` and `end` on texts are seconds of the new video's own timeline.
 - **The moment.** You cannot watch the recording. The person gives the time, or a quote with
@@ -35,14 +35,23 @@ export each have a small fixed price, quoted and agreed first. For anything past
 
 ## 2. One moment by time
 
-1. Build it in one call (free):
+1. Build it in two calls (free): `create_video` with the clip, then `edit_video_texts` with
+   the headline.
 
    ```json
    {
      "brand_id": "BRAND_ID",
      "title": "Why your first price is too low",
+     "clips": [
+       { "id": "moment", "asset_id": "SOURCE_ASSET_ID", "trim_start": 750, "trim_end": 795 }
+     ]
+   }
+   ```
+
+   ```json
+   {
+     "video_id": "VIDEO_ID",
      "operations": [
-       { "op": "add_clip", "id": "moment", "asset_id": "SOURCE_ASSET_ID", "trim_start": 750, "trim_end": 795 },
        { "op": "add_text", "id": "headline", "text": "Why your first price is too low", "start": 0, "end": 2.5, "position": "top", "size": "l" }
      ]
    }
@@ -58,8 +67,8 @@ export each have a small fixed price, quoted and agreed first. For anything past
 4. Captions, when anyone speaks: `write_captions` with `video_id` and `style` (the same looks
    as the cutting tool), WITHOUT `confirm` for the price. After the yes (section 7), with
    `confirm: true`. Read `get_video` every 10 to 20 seconds until `captions.status` is
-   `ready`, read the `lines`, and fix a mis-heard word with `edit_video` (`video_id` and
-   `operations: [{ "op": "edit_caption", "index": 4, "text": "the corrected line" }]`).
+   `ready`, read the `lines`, and fix a mis-heard word with `edit_video_captions` (`video_id`
+   and `operations: [{ "op": "edit_caption", "index": 4, "text": "the corrected line" }]`).
 5. `export_video` with `video_id`, the same price-then-yes way. Read `get_video` every 10
    seconds until `export.status` is `done`. `export.asset_id` is the finished short; post it
    with `create_post` ([posting-shorts.md](posting-shorts.md)).
@@ -77,18 +86,18 @@ another.
 
 ## 4. A best-of in one video
 
-Several moments joined into one short ("the three best answers"): one `create_video` with an
-`add_clip` per moment, all from the same `asset_id`, each with its own `trim_start` and
+Several moments joined into one short ("the three best answers"): one `create_video` with a
+clip per moment in `clips`, all from the same `asset_id`, each with its own `trim_start` and
 `trim_end` and its own `id`, in the order they should play. Keep the total under 180 seconds,
-and under 90 for a short people finish. A headline over the first clip; a text label over each
-following clip (`over` its clip id) when the subject changes. Then captions and the export as
+and under 90 for a short people finish. Then `edit_video_texts`: a headline over the first
+clip; a text label over each following clip (`over` its clip id) when the subject changes. Then captions and the export as
 in section 2.
 
 ## 5. Keeping a wide shot whole
 
 Two people side by side, or a speaker far off center: put the same moment over itself as a
 layer that shows the whole wide picture across the middle, while the cropped clip fills the
-frame behind it.
+frame behind it. That is `edit_video_layers` with this operation:
 
 ```json
 { "op": "add_layer", "id": "wide", "asset_id": "SOURCE_ASSET_ID", "kind": "video", "over": "moment", "trim_start": 750, "fill": true, "sound": false }
@@ -107,14 +116,14 @@ Put the headline at the top and captions at the bottom, clear of the layer. Look
 For a short the cutting tool made. Its captions and headline are part of the picture, so:
 
 - Do NOT `write_captions` on it: there would be two sets.
-- A trim: `create_video` with `add_clip` (`asset_id` = the short) and `trim_start` /
+- A trim: `create_video` with one clip (`asset_id` = the short) and `trim_start` /
   `trim_end` in the short's own seconds. The burned captions move with the picture, so a trim
   is safe.
-- An end line ("Full episode on YouTube", the brand's call to action): `add_text` over the
-  last 2 to 3 seconds, `position: "middle"`, clear of the captions at the bottom and the
-  headline at the top.
+- An end line ("Full episode on YouTube", the brand's call to action): `edit_video_texts`
+  with `add_text` over the last 2 to 3 seconds, `position: "middle"`, clear of the captions at
+  the bottom and the headline at the top.
 - Music under a talking short competes with the voice: only when the person asks, from their
-  own audio file (`set_sound`).
+  own audio file (`edit_video_sound` with `set_sound`).
 - Then `export_video` (paid, price first) and post the export's `asset_id`, not the original.
 
 ## 7. The price and the yes

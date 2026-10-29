@@ -97,7 +97,7 @@ cannot tell what it is, say so and show only what is visible.
 **The photo is the reference.** The person's own photo goes in `inputs.objects` as it is. Make
 one repair still only when the photo is a collage, carries a watermark, a price or other text,
 is held in a hand, sits on a busy background, is too small or soft, or shows several objects:
-`photo-edit` with `include_avatar: false`, the photo in `inputs.other_elements`, and a brief
+`generate_photo_edit` with `include_avatar: false`, the photo in `inputs.other_elements`, and a brief
 for a square frame, a plain neutral background, even light from the front, a natural
 three-quarter angle, the product reproduced exactly with nothing added. Price it in the quote.
 Compare it with the original (`preview_assets` on both). If it changed the product (a colour,
@@ -136,7 +136,7 @@ the host's place or merged with them. That is the sign the inputs were named wro
 | The product changes between parts | The same photo in every part that shows it; its look described nowhere |
 | An accessory nobody supplied shows as if real | An official image, or keep it spoken |
 | The product drifts in a still (a coloured finish comes back silver) | Attach the photo, remove the look words, one image per request |
-| A worn product disappears | Keep its photo in every later part and say it is worn in each brief. Still lost: one photo of the host wearing it (`photo-edit`, the product in `other_elements`, 3:4, 2K), quoted, added to `objects` as how it is worn |
+| A worn product disappears | Keep its photo in every later part and say it is worn in each brief. Still lost: one photo of the host wearing it (`generate_photo_edit`, the product in `other_elements`, 3:4, 2K), quoted, added to `objects` as how it is worn |
 | The product never leaves the table | Put "examined" on the part with the strongest claim |
 | It is handled wrong (a tube sprayed, headphones held like a cup) | Write "in use" from the mechanic you noted, with "opened" first |
 

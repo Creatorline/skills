@@ -28,7 +28,7 @@ be done from a chat at all.
 | a TikTok, Reels or Shorts link with "make this with Mia", "recreate this", "do this trend" | `creatorline-reshoot` |
 | "put Mia in this video instead of the girl", "swap both people for my avatars", "Mia does this dance" | `creatorline-character-swap` |
 | "5 versions of this ad", "the same video with each of my avatars", "test 4 hooks", "this video in Spanish and German" | `creatorline-ad-variations` |
-| "put our new bottle in this video instead of the old one", "this ad on a beach and in the snow", "change the price on the sign" | `creatorline-ad-variations` (`video-edit`); one quick change for the whole clip, no product of theirs: the fast path |
+| "put our new bottle in this video instead of the old one", "this ad on a beach and in the snow", "change the price on the sign" | `creatorline-ad-variations` (`generate_video_edit`); one quick change for the whole clip, no product of theirs: the fast path |
 | "a weekly 60-second show with Mia", "episode 3 of our series", "a 90-second explainer hosted by Mia", "the script for a 2-minute episode" | `creatorline-ai-host` |
 | "a faceless story video", "a history explainer with narration", "top 5 facts with a voiceover" | `creatorline-faceless-video` |
 | "cut the first 2 seconds", "add text over the second clip", "put a stock hook in front", "split screen with gameplay", "export it" | `creatorline-video-studio` |
@@ -52,19 +52,19 @@ When one comes up inside a one-off this skill is already making, the fast path m
 
 | Request | Where | Why |
 |---|---|---|
-| "a photo of Mia at the beach" | fast path, `photo-edit` | one plain photo, no format |
+| "a photo of Mia at the beach" | fast path, `generate_photo_edit` | one plain photo, no format |
 | "a photo of Mia holding my serum" | `creatorline-photos` | their product is in it: it needs the product intake |
 | "8 photos of Mia at the beach for a carousel" | `creatorline-photos` | a set that has to work together, then a carousel post |
-| "a clip of Mia walking her dog" | fast path, `ugc-video` | a moment, no format |
+| "a clip of Mia walking her dog" | fast path, `generate_ugc_video` | a moment, no format |
 | "a clip of Mia reviewing my dog shampoo" | `creatorline-talking-video` | a review is a format with its own beats |
-| "animate this photo" | fast path, `photo-to-video` | one photo, one continuous take |
+| "animate this photo" | fast path, `generate_photo_to_video` | one photo, one continuous take |
 | "turn these 5 photos into a reel with music" | `creatorline-video-studio` | several pieces assembled, then exported |
 | "voiceover for my video" | `creatorline-voiceover` | the voice has to fit the video's timing |
-| "a sunset over Lisbon, as a clip" | fast path, `text-to-video` | one scene, no avatar |
-| "my candle turning slowly on a table, no voice" | fast path, `photo-to-video` from the product photo | one product moment, no person |
+| "a sunset over Lisbon, as a clip" | fast path, `generate_text_to_video` | one scene, no avatar |
+| "my candle turning slowly on a table, no voice" | fast path, `generate_photo_to_video` from the product photo | one product moment, no person |
 | "my candle with a voiceover about the scent" | `creatorline-product-video` | a voice over the product is a format |
 | "a 40-second narrated video about Lisbon" | `creatorline-faceless-video` | narration, several visuals, captions |
-| "make the wall behind her green in this clip" | fast path, `video-edit` | one change in an existing video, the rest kept; their product, a timed change or several versions go to `creatorline-ad-variations` |
+| "make the wall behind her green in this clip" | fast path, `generate_video_edit` | one change in an existing video, the rest kept; their product, a timed change or several versions go to `creatorline-ad-variations` |
 
 ## 3. Look-alikes, settled
 
@@ -75,7 +75,7 @@ When one comes up inside a one-off this skill is already making, the fast path m
 | The idea, beats and sound of a video, performed again by the avatar, maybe with their product and new lines | Reshoot | `creatorline-reshoot` |
 | The real video kept exactly (moves, camera, cuts, sound), with one or two people in it replaced | Character Swap | `creatorline-character-swap` |
 | Only the moves (a dance, a gesture) performed by the avatar, starting from the avatar's photo | motion control | `creatorline-character-swap` |
-| The real video kept, with a thing in it changed (a product, an object, the clothes, the background, a colour, words in the picture) and no person changed | video edit | fast path `video-edit`; several versions or their product: `creatorline-ad-variations` |
+| The real video kept, with a thing in it changed (a product, an object, the clothes, the background, a colour, words in the picture) and no person changed | video edit | fast path `generate_video_edit`; several versions or their product: `creatorline-ad-variations` |
 
 Reshoot needs one main person in the source. Two people who both have to change is Character
 Swap. A person who changes is always Character Swap, never a video edit. A video edit takes AI
@@ -153,7 +153,7 @@ step first and ask one yes for the total (house-rules.md, section 2).
 | Request | Order |
 |---|---|
 | "a TikTok of Mia with captions, posted tonight" | `creatorline-talking-video`, then `creatorline-captions`, then `creatorline-publish` |
-| "this photo as a reel with my music" | fast path `photo-to-video`, then `creatorline-video-studio` (the person's audio under it, export), then `creatorline-publish` |
+| "this photo as a reel with my music" | fast path `generate_photo_to_video`, then `creatorline-video-studio` (the person's audio under it, export), then `creatorline-publish` |
 | "a carousel of Mia with my product" | `creatorline-photos` (it posts the carousel) |
 | "repurpose my podcast for the week" | `creatorline-long-to-shorts`, then `creatorline-cover-image`, then `creatorline-publish` |
 | "recreate this trend with my product, and a cover" | `creatorline-reshoot`, then `creatorline-cover-image` |
@@ -180,9 +180,9 @@ A request may name a preset, an effect, a template or a feature from another app
 3. Say in one line what you are making instead: "We don't have that effect as a button; I'll film
    Mia with cash falling around her as part of the clip."
 
-Never answer only "that does not exist". A model the person names: check `list_models` for the
-tool; if the tool offers it, pass it as `model`; if not, say what we have that does the same job,
-in plain words.
+Never answer only "that does not exist". A model the person names: check the tool's schema
+(its `model` list); if the tool offers it, pass it as `model`; if not, say what we have that does
+the same job, in plain words.
 
 ## 7. Not possible from a chat
 

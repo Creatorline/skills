@@ -1,12 +1,16 @@
 # Formats
 
-Edits that work in the Video Studio, each as the operations to send. Every list goes in one
-`create_video` (with `brand_id` and a `title`) or one `edit_video` (with `video_id`). Values in
-angle brackets come from your own calls: asset ids from `list_assets` or `import_asset`, stock
-ids from `list_stock_clips`, clip and text ids from the answer of the call before. The trims,
-lengths and words are examples: a `trim_end` stays within the file's length (`duration_sec` in
-`list_assets`, `duration` in `list_stock_clips`). After each build: read the answer,
-`preview_video`, fix, then the finish (SKILL.md, steps 9 to 11).
+Edits that work in the Video Studio, each as the calls to send. A new video starts with one
+`create_video` (with `brand_id`, a `title`, its `clips` and an optional `hook`); everything else
+goes to the edit tool of its part (`edit_video_texts`, `edit_video_layers`, `edit_video_sound`,
+`edit_video_split_screen`, `edit_video_clips`), with the `video_id` from that answer and the
+`operations` shown. On an existing video, its clips go in as `add_clip` (and the hook as
+`add_hook`) operations of `edit_video_clips`. Values in angle brackets come from your own calls:
+asset ids from `list_assets` or `import_asset`, stock ids from `list_stock_clips`, clip and text
+ids from the answer of the call before. The trims, lengths and words are examples: a `trim_end`
+stays within the file's length (`duration_sec` in `list_assets`, `duration` in
+`list_stock_clips`). After each build: read the answer, `preview_video`, fix, then the finish
+(SKILL.md, steps 9 to 11).
 
 ## Contents
 
@@ -28,20 +32,25 @@ lengths and words are examples: a `trim_end` stays within the file's length (`du
 **When:** any video whose own first seconds are slow. A ready-made clip of a face reacting, with
 the hook line over it, stops the scroll; the person's video follows.
 
+`create_video`:
+
 ```json
-[
-  { "op": "add_hook", "stock_id": "<hook>", "text": "You're using retinol wrong", "id": "hook", "trim_end": 2.5 },
-  { "op": "add_clip", "asset_id": "<their video>", "id": "main", "trim_start": 0.4 }
-]
+{
+  "brand_id": "<brand>",
+  "title": "Retinol mistakes",
+  "hook": { "stock_id": "<hook>", "text": "You're using retinol wrong", "id": "hook", "trim_end": 2.5 },
+  "clips": [ { "asset_id": "<their video>", "id": "main", "trim_start": 0.4 } ]
+}
 ```
 
 - Find the hook with `list_stock_clips` (`library: "hooks"`, `search` for the mood: "shocked
   woman", "side eye", "pointing"). Its `duration` must be at least the `trim_end` you give.
 - The hook line gets its own text id, written in the `applied` note. It starts at size `m`;
-  a hook of four words or fewer reads better at `l` (`update_text` with that id and
-  `"size": "l"`).
+  a hook of four words or fewer reads better at `l` (`update_text` in `edit_video_texts`, with
+  that id and `"size": "l"`).
 - Most stock hooks are silent; the person's video brings the sound.
-- Then, with the times from the answer, a call to action over the last 2.5 s:
+- Then, with the times from the answer, a call to action over the last 2.5 s, with
+  `edit_video_texts`:
   `{ "op": "add_text", "text": "Link in bio", "start": <end - 2.5>, "end": <end>, "position": "middle" }`.
 
 ## 2. Tips or a list, with labels
@@ -49,26 +58,39 @@ the hook line over it, stops the scroll; the person's video follows.
 **When:** a talking clip that counts things ("3 mistakes", "5 tools"). A title opens it and
 each item gets a label while it is said.
 
-First call:
+First `create_video`, then `edit_video_texts` with the answer's `video_id`:
 
 ```json
-[
-  { "op": "add_clip", "asset_id": "<talking take>", "id": "talk", "trim_start": 0.3 },
-  { "op": "add_text", "id": "title", "text": "3 runner mistakes", "start": 0, "end": 2.5, "position": "top", "size": "l" }
-]
+{
+  "brand_id": "<brand>",
+  "title": "3 runner mistakes",
+  "clips": [ { "asset_id": "<talking take>", "id": "talk", "trim_start": 0.3 } ]
+}
+```
+
+```json
+{
+  "video_id": "<video>",
+  "operations": [
+    { "op": "add_text", "id": "title", "text": "3 runner mistakes", "start": 0, "end": 2.5, "position": "top", "size": "l" }
+  ]
+}
 ```
 
 To time the labels you need to know when each item is said. You cannot hear the clip, so
 write the captions first (`write_captions`, priced and agreed with the export as one finish):
 `captions.lines` in `get_video` is a transcript with times. A video pays for captions once, so
-writing them again after later cuts is free. Then:
+writing them again after later cuts is free. Then `edit_video_texts`:
 
 ```json
-[
-  { "op": "add_text", "id": "tip1", "text": "1. Too fast, too soon", "start": <line start>, "end": <next item's start>, "position": "top" },
-  { "op": "add_text", "id": "tip2", "text": "2. Same shoes forever", "start": <line start>, "end": <next item's start>, "position": "top" },
-  { "op": "add_text", "id": "tip3", "text": "3. Skipping rest days", "start": <line start>, "end": <line end + 1>, "position": "top" }
-]
+{
+  "video_id": "<video>",
+  "operations": [
+    { "op": "add_text", "id": "tip1", "text": "1. Too fast, too soon", "start": <line start>, "end": <next item's start>, "position": "top" },
+    { "op": "add_text", "id": "tip2", "text": "2. Same shoes forever", "start": <line start>, "end": <next item's start>, "position": "top" },
+    { "op": "add_text", "id": "tip3", "text": "3. Skipping rest days", "start": <line start>, "end": <line end + 1>, "position": "top" }
+  ]
+}
 ```
 
 - Leave `look` and `size` out of every label: they all get the same default look, so they
@@ -81,16 +103,33 @@ writing them again after later cuts is free. Then:
 **When:** "turn these photos into a reel with my song". Photos show for a set time; music
 carries it.
 
+`create_video`, then `edit_video_texts`, then `edit_video_sound`:
+
 ```json
-[
-  { "op": "add_clip", "asset_id": "<photo 1>", "id": "p1", "duration": 2 },
-  { "op": "add_clip", "asset_id": "<photo 2>", "id": "p2", "duration": 1.5 },
-  { "op": "add_clip", "asset_id": "<photo 3>", "id": "p3", "duration": 1.5 },
-  { "op": "add_clip", "asset_id": "<photo 4>", "id": "p4", "duration": 2.5 },
-  { "op": "add_text", "id": "title", "text": "Our weekend in Lisbon", "over": "p1", "position": "top", "size": "l" },
-  { "op": "add_text", "id": "cta", "text": "Save this for later", "over": "p4", "position": "middle" },
-  { "op": "set_sound", "asset_id": "<their audio file>" }
-]
+{
+  "brand_id": "<brand>",
+  "title": "Our weekend in Lisbon",
+  "clips": [
+    { "asset_id": "<photo 1>", "id": "p1", "duration": 2 },
+    { "asset_id": "<photo 2>", "id": "p2", "duration": 1.5 },
+    { "asset_id": "<photo 3>", "id": "p3", "duration": 1.5 },
+    { "asset_id": "<photo 4>", "id": "p4", "duration": 2.5 }
+  ]
+}
+```
+
+```json
+{
+  "video_id": "<video>",
+  "operations": [
+    { "op": "add_text", "id": "title", "text": "Our weekend in Lisbon", "over": "p1", "position": "top", "size": "l" },
+    { "op": "add_text", "id": "cta", "text": "Save this for later", "over": "p4", "position": "middle" }
+  ]
+}
+```
+
+```json
+{ "video_id": "<video>", "operations": [ { "op": "set_sound", "asset_id": "<their audio file>" } ] }
 ```
 
 - A photo shows 0.3 to 30 s (3 s when `duration` is left out). 1.5 to 2.5 s per photo keeps it
@@ -99,9 +138,9 @@ carries it.
   `import_asset`). There is no stock music.
 - You cannot hear the song, so you cannot cut on its beat. Say so, and point them to the studio
   to nudge a photo's length by hand.
-- Photos do not move. For motion, `run_video_ai` with `animate_photo` on the hero photo
-  (priced). For a swipeable post instead of a video, a carousel: `creatorline-publish` posts
-  the photos they have as one, `creatorline-photos` makes new ones.
+- Photos do not move. For motion, `animate_photo_clip` on the hero photo (priced). For a swipeable
+  post instead of a video, a carousel: `creatorline-publish` posts the photos they have as one,
+  `creatorline-photos` makes new ones.
 - Nothing is said, so no captions.
 
 ## 4. Green screen reaction
@@ -109,12 +148,32 @@ carries it.
 **When:** reacting to a trend, a product or a headline. A person filmed on green stands in
 front of the video; their green comes off by itself.
 
+`create_video` with the clip, then `edit_video_layers`, then `edit_video_texts`:
+
 ```json
-[
-  { "op": "add_clip", "asset_id": "<the video reacted to>", "id": "src", "trim_end": 12 },
-  { "op": "add_layer", "stock_id": "<green screen clip>", "id": "me", "over": "src", "column": "left", "row": "bottom", "width": 0.6 },
-  { "op": "add_text", "id": "top", "text": "Me reading the ingredients", "over": "src", "position": "top", "size": "l" }
-]
+{
+  "brand_id": "<brand>",
+  "title": "Reading the ingredients",
+  "clips": [ { "asset_id": "<the video reacted to>", "id": "src", "trim_end": 12 } ]
+}
+```
+
+```json
+{
+  "video_id": "<video>",
+  "operations": [
+    { "op": "add_layer", "stock_id": "<green screen clip>", "id": "me", "over": "src", "column": "left", "row": "bottom", "width": 0.6 }
+  ]
+}
+```
+
+```json
+{
+  "video_id": "<video>",
+  "operations": [
+    { "op": "add_text", "id": "top", "text": "Me reading the ingredients", "over": "src", "position": "top", "size": "l" }
+  ]
+}
 ```
 
 - Find the person with `list_stock_clips` (`library: "green_screen"`, `search` for the
@@ -122,8 +181,9 @@ front of the video; their green comes off by itself.
 - `column: "left"` keeps them clear of the apps' buttons down the right side; `row: "bottom"`
   lets the frame's lower band cover only their body.
 - Two sounds play at once: the video's and the reacting person's (a green screen layer is heard
-  by default). Keep one: `{ "op": "update_clip", "id": "src", "sound": false }` or
-  `{ "op": "update_layer", "id": "me", "sound": false }`.
+  by default). Keep one: `{ "op": "update_clip", "id": "src", "sound": false }`
+  (`edit_video_clips`) or `{ "op": "update_layer", "id": "me", "sound": false }`
+  (`edit_video_layers`).
 - A layer lasts no longer than its own clip: the `note` says when it was shortened.
 - A video reacted to must be the brand's own, imported with the person's right to use it.
 
@@ -132,11 +192,23 @@ front of the video; their green comes off by itself.
 **When:** a talking clip on top and something to watch below (the product in use, a screen
 recording, satisfying footage). Two pictures keep eyes on the screen.
 
+`create_video` with the clip, then `edit_video_split_screen`:
+
 ```json
-[
-  { "op": "add_clip", "asset_id": "<talking take>", "id": "talk" },
-  { "op": "set_split_screen", "id": "talk", "asset_id": "<second video>", "place": "bottom", "share": "half", "sound": false, "main_focus": { "x": 0.5, "y": 0.35 } }
-]
+{
+  "brand_id": "<brand>",
+  "title": "Split screen demo",
+  "clips": [ { "asset_id": "<talking take>", "id": "talk" } ]
+}
+```
+
+```json
+{
+  "video_id": "<video>",
+  "operations": [
+    { "op": "set_split_screen", "id": "talk", "asset_id": "<second video>", "place": "bottom", "share": "half", "sound": false, "main_focus": { "x": 0.5, "y": 0.35 } }
+  ]
+}
 ```
 
 - `share`: `third`, `half` or `two_thirds` of the frame's height for the second video.
@@ -157,16 +229,30 @@ recording, satisfying footage). Two pictures keep eyes on the screen.
 One after the other (photos shown here; for videos use `trim_start` / `trim_end` instead of
 `duration`):
 
+`create_video`, then `edit_video_texts`:
+
 ```json
-[
-  { "op": "add_clip", "asset_id": "<before>", "id": "before", "duration": 2 },
-  { "op": "add_clip", "asset_id": "<after>", "id": "after", "duration": 3 },
-  { "op": "add_text", "id": "t1", "text": "Before", "over": "before", "position": "top", "size": "xl" },
-  { "op": "add_text", "id": "t2", "text": "After", "over": "after", "position": "top", "size": "xl" }
-]
+{
+  "brand_id": "<brand>",
+  "title": "Desk makeover",
+  "clips": [
+    { "asset_id": "<before>", "id": "before", "duration": 2 },
+    { "asset_id": "<after>", "id": "after", "duration": 3 }
+  ]
+}
 ```
 
-Stacked instead: `add_clip` the after with id `after`, then
+```json
+{
+  "video_id": "<video>",
+  "operations": [
+    { "op": "add_text", "id": "t1", "text": "Before", "over": "before", "position": "top", "size": "xl" },
+    { "op": "add_text", "id": "t2", "text": "After", "over": "after", "position": "top", "size": "xl" }
+  ]
+}
+```
+
+Stacked instead: the after as the one clip, with id `after`, then `edit_video_split_screen` with
 `{ "op": "set_split_screen", "id": "after", "asset_id": "<before>", "place": "top", "share": "half" }`.
 
 - The change lands on the cut: hold "before" shorter than "after".
@@ -177,16 +263,28 @@ Stacked instead: `add_clip` the after with id `after`, then
 
 **When:** answering a viewer's comment on camera. The comment shows first, then the answer.
 
+`create_video` with the answer, then `edit_video_layers`:
+
 ```json
-[
-  { "op": "add_clip", "asset_id": "<talking answer>", "id": "talk", "trim_start": 0.3 },
-  { "op": "add_layer", "asset_id": "<comment screenshot>", "id": "comment", "start": 0, "duration": 3, "column": "center", "row": "middle", "width": 0.8, "border": "white", "corners": "rounded" }
-]
+{
+  "brand_id": "<brand>",
+  "title": "Reply to a comment",
+  "clips": [ { "asset_id": "<talking answer>", "id": "talk", "trim_start": 0.3 } ]
+}
+```
+
+```json
+{
+  "video_id": "<video>",
+  "operations": [
+    { "op": "add_layer", "asset_id": "<comment screenshot>", "id": "comment", "start": 0, "duration": 3, "column": "center", "row": "middle", "width": 0.8, "border": "white", "corners": "rounded" }
+  ]
+}
 ```
 
 - A comment the person supplies goes in as its screenshot. Without one, write the comment as a
-  text (`add_text`, look `tiktokHighlight`), never as a generated picture: generated words come
-  out garbled. No real person's name or handle without their consent.
+  text (`add_text` in `edit_video_texts`, look `tiktokHighlight`), never as a generated picture:
+  generated words come out garbled. No real person's name or handle without their consent.
 - A layer's `row: "top"` sits flush with the frame's top, under the apps' own top band: keep
   cards on the middle row and check with `show_safe_area`.
 
@@ -195,10 +293,15 @@ Stacked instead: `add_clip` the after with id `after`, then
 **When:** the avatar talks about a product and the viewer should see it up close for a
 moment.
 
+`edit_video_layers`:
+
 ```json
-[
-  { "op": "add_layer", "asset_id": "<product photo>", "id": "product", "start": <when it is named>, "duration": 2.5, "column": "center", "row": "middle", "width": 0.45, "border": "white", "corners": "rounded" }
-]
+{
+  "video_id": "<video>",
+  "operations": [
+    { "op": "add_layer", "asset_id": "<product photo>", "id": "product", "start": <when it is named>, "duration": 2.5, "column": "center", "row": "middle", "width": 0.45, "border": "white", "corners": "rounded" }
+  ]
+}
 ```
 
 - Time it to the line that names the product: `captions.lines` once captions exist, else a
@@ -213,16 +316,32 @@ moment.
 **When:** a voice tells a story over footage: an explainer, a list, a faceless clip. Build the
 picture first, then the voice, then fit the picture to the voice.
 
+`create_video` with every clip's sound off, then `edit_video_texts`, then `edit_video_sound`:
+
 ```json
-[
-  { "op": "add_clip", "asset_id": "<b-roll 1>", "id": "b1", "trim_end": 3 },
-  { "op": "add_clip", "asset_id": "<b-roll 2>", "id": "b2", "trim_end": 3 },
-  { "op": "add_clip", "asset_id": "<b-roll 3>", "id": "b3", "trim_end": 3 },
-  { "op": "add_clip", "asset_id": "<b-roll 4>", "id": "b4", "trim_end": 3 },
-  { "op": "set_all_clips_sound", "sound": false },
-  { "op": "add_text", "id": "hook", "text": "Why Venice is sinking", "over": "b1", "position": "top", "size": "l" },
-  { "op": "set_sound", "asset_id": "<music>" }
-]
+{
+  "brand_id": "<brand>",
+  "title": "Why Venice is sinking",
+  "clips": [
+    { "asset_id": "<b-roll 1>", "id": "b1", "trim_end": 3, "sound": false },
+    { "asset_id": "<b-roll 2>", "id": "b2", "trim_end": 3, "sound": false },
+    { "asset_id": "<b-roll 3>", "id": "b3", "trim_end": 3, "sound": false },
+    { "asset_id": "<b-roll 4>", "id": "b4", "trim_end": 3, "sound": false }
+  ]
+}
+```
+
+```json
+{
+  "video_id": "<video>",
+  "operations": [
+    { "op": "add_text", "id": "hook", "text": "Why Venice is sinking", "over": "b1", "position": "top", "size": "l" }
+  ]
+}
+```
+
+```json
+{ "video_id": "<video>", "operations": [ { "op": "set_sound", "asset_id": "<music>" } ] }
 ```
 
 Then `add_voiceover` (priced, agreed) with `over: "b1"`; its answer gives the voice's real
@@ -237,29 +356,49 @@ again, then captions (`karaoke` suits narration) and the export.
 
 **When:** an episode, an unboxing or a tutorial filmed as several takes.
 
+`create_video`, then `edit_video_texts`:
+
 ```json
-[
-  { "op": "add_clip", "asset_id": "<take 1>", "id": "t1", "trim_start": 0.4 },
-  { "op": "add_clip", "asset_id": "<take 2>", "id": "t2", "trim_start": 0.4 },
-  { "op": "add_clip", "asset_id": "<take 3>", "id": "t3", "trim_start": 0.4 },
-  { "op": "add_text", "id": "title", "text": "Episode 3: desk setup", "start": 0, "end": 2.5, "position": "top", "size": "l" }
-]
+{
+  "brand_id": "<brand>",
+  "title": "Episode 3: desk setup",
+  "clips": [
+    { "asset_id": "<take 1>", "id": "t1", "trim_start": 0.4 },
+    { "asset_id": "<take 2>", "id": "t2", "trim_start": 0.4 },
+    { "asset_id": "<take 3>", "id": "t3", "trim_start": 0.4 }
+  ]
+}
+```
+
+```json
+{
+  "video_id": "<video>",
+  "operations": [
+    { "op": "add_text", "id": "title", "text": "Episode 3: desk setup", "start": 0, "end": 2.5, "position": "top", "size": "l" }
+  ]
+}
 ```
 
 - Trim the settle at each take's start, so every join lands mid-energy.
 - To cut a flub or a long pause inside a take: write captions first and find the gap between
-  two lines. In one call, `split_clip` with `at` the gap's start and `split_clip` with `at` its
-  end; the `applied` notes name the new clips. In the next call, `remove_clip` the middle one.
+  two lines. In one `edit_video_clips` call, `split_clip` with `at` the gap's start and
+  `split_clip` with `at` its end; the `applied` notes name the new clips. In the next call,
+  `remove_clip` the middle one.
 - After the cuts, re-anchor labels with `over`, then `write_captions` again (free).
 
 ## 11. A quick re-cut of one take
 
 **When:** "cut the first 2 seconds", "make it faster", "end it sooner".
 
+`edit_video_clips`:
+
 ```json
-[
-  { "op": "update_clip", "id": "<clip>", "trim_start": 2, "trim_end": 11.5, "speed": 1.1 }
-]
+{
+  "video_id": "<video>",
+  "operations": [
+    { "op": "update_clip", "id": "<clip>", "trim_start": 2, "trim_end": 11.5, "speed": 1.1 }
+  ]
+}
 ```
 
 - `trim_start` and `trim_end` are seconds of the clip's own source: read the current ones and
@@ -285,4 +424,4 @@ again, then captions (`karaoke` suits narration) and the export.
 | One clip tightened | 11 |
 
 Formats combine: a hook opener (1) in front of a list (2) with a product card (8) is one
-call with all of their operations, the clips first.
+`create_video` with all of their clips and the hook, then one call per part for the rest.

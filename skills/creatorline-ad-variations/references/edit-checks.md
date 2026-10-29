@@ -1,6 +1,6 @@
 # Edit checks
 
-What to check on a `video-edit` version after it lands, how to retry, and how to report the
+What to check on a `generate_video_edit` version after it lands, how to retry, and how to report the
 set. The checks before the quote are in [edit-contract.md](edit-contract.md), section 10.
 
 ## Contents

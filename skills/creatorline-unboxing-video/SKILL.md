@@ -106,11 +106,10 @@ A missing product photo, length or avatar is something to ask for, never a reaso
 7. **Write every brief** before pricing anything: one brief, or one per take for a haul or a
    video over 30 s. Template below; worked versions in references/unboxing-briefs.md. Then run
    the checklist in [Check before you quote](#check-before-you-quote).
-8. **Plan and price.** Call `create_generation` WITHOUT `confirm`:
+8. **Plan and price.** Call `generate_ugc_video` WITHOUT `confirm`:
 
    ```json
    {
-     "tool": "ugc-video",
      "brand_id": "<brand id>",
      "prompt": "<the brief>",
      "inputs": { "objects": ["<product asset id>", "<package asset id, when given>"] },
@@ -251,20 +250,20 @@ the face can drift a little.
 1. Plan the takes: take 1 runs the four beats; later takes start with the box open at the edge
    (a haul) or open mid-thought in a post-reveal shape (a long video). The same avatar, and the
    Setting, Wardrobe, Register and Language lines word for word in every brief.
-2. Price the whole batch before anything starts: `create_generation` without `confirm` for
+2. Price the whole batch before anything starts: `generate_ugc_video` without `confirm` for
    every take, plus `get_video_guide` (`credits.export`, and `credits.captions` when captions
    are part of it). One line per take, the total, the balance, one yes.
 3. On yes, start every take with `confirm: true`, then wait on each with `get_generation`.
    The workspace films a set number at once; the rest wait their turn and start on their own.
-4. Build one video with `create_video` (an `add_clip` per take, in order), add labels with
-   `edit_video`, look with `preview_video`, captions if planned, then `export_video` with
+4. Build one video with `create_video` (a clip per take, in order), add labels with
+   `edit_video_texts`, look with `preview_video`, captions if planned, then `export_video` with
    `confirm: true`.
 
 Every operation, the polling and what to do when one take fails: references/multi-take-assembly.md.
 
 ## Check before you quote
 
-Read every brief against this list before the first `create_generation` call:
+Read every brief against this list before the first `generate_ugc_video` call:
 
 - The four beats in order; beat 1 shows no product, beat 4 no box; four different actions and
   four different distances.

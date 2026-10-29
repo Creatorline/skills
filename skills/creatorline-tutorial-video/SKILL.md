@@ -120,12 +120,11 @@ cannot be filmed, and say which.
 7. **Write the brief** for each take ([steps-and-script.md](references/steps-and-script.md),
    sections 11 and 12, on top of [video-briefs.md](references/video-briefs.md)) and run the
    check in section 13 there, claims included.
-8. **Price the whole video at once.** For each take, call `create_generation` WITHOUT
+8. **Price the whole video at once.** For each take, call `generate_ugc_video` WITHOUT
    `confirm`:
 
    ```
-   create_generation {
-     tool: "ugc-video",
+   generate_ugc_video {
      brand_id: <brand>,
      avatar_id: <only for an avatar other than the brand's default>,
      prompt: <the brief>,
@@ -136,33 +135,33 @@ cannot be filmed, and say which.
 
    Each answer is `needs_approval` with `credits`, `credit_balance` and `sufficient`. A run
    whose input does not exist yet (a take that needs an object photo still to be made) is
-   priced with `estimate_generation_cost` (same `tool`, `params` and the `inputs` you have;
-   it takes no brand, avatar or prompt). Add `credits.captions` (always: the captions time the
+   priced by the same tool without `confirm` and without that input (same `params` and the
+   `inputs` you have); it answers with an estimate (`estimate: true`). Add `credits.captions` (always: the captions time the
    labels) and `credits.export` from the guide. Then one message: the title, the numbered
    steps (label and line), the length, the avatar, the setting, the extra text, and the total
    against the balance (example below). `sufficient: false`: say what is missing and offer a
    shorter version (10 s, 3 steps); house-rules.md, section 2. The person changes a step or a
    line: rewrite the brief and quote again before anything starts.
-9. **Film.** On yes, call `create_generation` again for each take with the same arguments
+9. **Film.** On yes, call `generate_ugc_video` again for each take with the same arguments
    plus `confirm: true`. Step takes: start all of them; extra ones wait for a free slot on
    their own. Then `get_generation` with `generation_id` and `wait_seconds: 45` until `status`
    is `succeeded` or `failed`. Between calls, one short line: "Filming the four steps now,
    about two to four minutes." Keep each take's `output[0].asset_id`.
 10. **Assemble in Video Studio** ([assembly.md](references/assembly.md)):
-    1. `create_video` with `brand_id`, a `title` and the clips (step takes: the labels too,
-       each `over` its step's clip).
+    1. `create_video` with `brand_id`, a `title` and the `clips` (step takes: then the labels
+       with `edit_video_texts`, each `over` its step's clip).
     2. `write_captions` with `style: "hormozi"` and `position: "auto"`, without `confirm`. The
        price matches the quote: call again with `confirm: true` without asking again (the yes
        covered it). Different: ask. Say "Timing the steps." and read `get_video` about every
        20 s until `captions.status` is `ready`.
     3. The first line starts after 0.4 s: trim the take's start so speech begins at about
        0.3 s, then `write_captions` again (free).
-    4. Time each label from `captions.lines` (assembly.md, section 6). One `edit_video` call
-       adds the labels, the end text and the hook text if chosen, and removes the captions when
-       the person chose None or Hook.
+    4. Time each label from `captions.lines` (assembly.md, section 6). One `edit_video_texts`
+       call adds the labels, the end text and the hook text if chosen; `edit_video_captions`
+       (`remove_captions`) removes the captions when the person chose None or Hook.
     5. `preview_video` at the middle of each text, with `show_safe_area: true`. With
        `exact: true`, also look at the middle of each step (assembly.md, section 8). Fix with
-       `edit_video`, look again.
+       the edit_video_* tools, look again.
     6. `get_video`: `ready_to_export` is true and `warnings` is empty. `export_video` without
        `confirm`, then with `confirm: true` when the price matches. Say "Exporting the final
        video." and read `get_video` every 10 to 30 s until `export.status` is `done`.
@@ -247,15 +246,15 @@ The know-how lives in [steps-and-script.md](references/steps-and-script.md) and
 |---|---|
 | A take failed | It was refunded. Say what failed in plain words; change one thing; ask before filming again (house-rules.md, section 5). |
 | The take was refused by moderation | Never send the same inputs again: the same inputs are refused the same way. Change the Wardrobe line to the most covered outfit (a fully buttoned shirt over a camisole, in colours that suit the room), say so, quote and ask. |
-| The whole take is off (steps missing, wrong product) | Re-film it with one change, quoted first. Put it in the same video: `replace_clip`, then `update_clip` with `trim_end` at the new take's `source_duration`, then `write_captions` (free: captions are paid once per video) and re-time the labels (assembly.md, section 6). A new video pays for captions again. |
+| The whole take is off (steps missing, wrong product) | Re-film it with one change, quoted first. Put it in the same video: `edit_video_clips` with `replace_clip`, then `update_clip` with `trim_end` at the new take's `source_duration`, then `write_captions` (free: captions are paid once per video) and re-time the labels (assembly.md, section 6). A new video pays for captions again. |
 | One step came out wrong (wrong hand action, wrong order) | Re-film only that step as a 4 to 6 s take and swap it in (assembly.md, section 10). Quote it first. |
-| The same step fails twice | Make a still of the avatar mid-step with `photo-edit` (the product in `other_elements`), then animate it with `photo-to-video` (one continuous take; the brief says only what moves) and swap it in. Quote both runs together. |
+| The same step fails twice | Make a still of the avatar mid-step with `generate_photo_edit` (the product in `other_elements`), then animate it with `generate_photo_to_video` (one continuous take; the brief says only what moves) and swap it in. Quote both runs together. |
 | A step was skipped or two were merged | Too many beats for the seconds: add 5 s or drop a step, at most one step per 3.5 to 4 s. |
 | Lines rushed or cut off | Over the word budget: cut words from the lines (steps-and-script.md, section 8). |
 | The cap is back on, or the product changed size between steps | The state or the size was not written into each step: add it to every action and re-film the step. |
-| The voice differs between step takes | Offer to give every step clip the avatar's own voice: `run_video_ai` with `action: "change_voice"`, the clip's `clip_id` and the avatar's `voice_id` (from `get_avatar`), one call per clip, quoted together, before the captions (assembly.md, section 7). |
+| The voice differs between step takes | Offer to give every step clip the avatar's own voice: `change_clip_voice` with the clip's `clip_id` and the avatar's `voice_id` (from `get_avatar`), one call per clip, quoted together, before the captions (assembly.md, section 7). |
 | A step's cue word is missing from the captions | Look for its heading words in the lines around it; still nothing, place that label between its neighbours and check it with `preview_video` (assembly.md, section 6). |
-| A label shows over the wrong moment | `update_text` with new `start` / `end`, read from `captions.lines`. |
+| A label shows over the wrong moment | `edit_video_texts` (`update_text`) with new `start` / `end`, read from `captions.lines`. |
 | A label crosses the face | No captions: move every label to `position: "bottom"`. With captions: every label to size `s`. |
 | `captions.status` is `out_of_date` | The clips changed. `write_captions` again: free. |
 | `captions.status` is `failed` | The captions credits came back. Call `write_captions` again: its price is the one already agreed, so it needs no new yes. Tell the person in one line. |

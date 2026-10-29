@@ -1,8 +1,11 @@
 # Assembling the episode in Video Studio
 
-The operation lists for building, timing and finishing an episode. Every list goes into
-`create_video` or `edit_video` as `operations`, applied all together or not at all.
-`get_video_guide` lists every operation and field; read it once before the first edit.
+The calls for building, timing and finishing an episode. `create_video` takes the clips; every
+later list goes as `operations` into the edit_video_* tool for its part of the video
+(`edit_video_clips`, `edit_video_layers`, `edit_video_texts`, `edit_video_split_screen`,
+`edit_video_sound`, `edit_video_captions`), each call applied all together or not at all.
+`get_video_guide` lists every operation, its field and its tool; read it once before the first
+edit.
 
 ## Contents
 
@@ -25,12 +28,12 @@ The operation lists for building, timing and finishing an episode. Every list go
    line as a rough cut they can watch, and carry on without waiting for an answer.
 2. Voice match on every part.
 3. `write_captions` (charged once per video) and wait until `ready`.
-4. Read `captions.lines`. All trims at the seams in one call. Then `write_captions` again
-   (free, no price step) and wait.
+4. Read `captions.lines`. All trims at the seams in one `edit_video_clips` call. Then
+   `write_captions` again (free, no price step) and wait.
 5. Only for a split screen: cut at the NEW caption times and set it (section 6). If
    `captions.status` is then `out_of_date`, write them again (free) and wait.
-6. The picture plan (picture-plan.md): cutaways, cards and texts in one call, timed from the
-   latest caption lines.
+6. The picture plan (picture-plan.md): cutaways and cards in one `edit_video_layers` call,
+   then the texts in one `edit_video_texts` call, timed from the latest caption lines.
 7. Read it back against the plan, then the frame review (review.md, sections 7 and 8). Fix,
    look again.
 8. Checklist (SKILL.md), then `export_video`.
@@ -44,15 +47,17 @@ captions. Adding texts and layers after captions does not touch the captions.
 
 ## 2. The spine
 
+`create_video`:
+
 ```json
 {
   "brand_id": "<brand>",
   "title": "Speak Up Sundays Ep. 1: 3 phrases that make you sound confident",
-  "operations": [
-    { "op": "add_clip", "id": "p1", "asset_id": "<part 1>" },
-    { "op": "add_clip", "id": "p2", "asset_id": "<part 2>" },
-    { "op": "add_clip", "id": "p3", "asset_id": "<part 3>" },
-    { "op": "add_clip", "id": "signoff", "asset_id": "<sign-off clip>" }
+  "clips": [
+    { "id": "p1", "asset_id": "<part 1>" },
+    { "id": "p2", "asset_id": "<part 2>" },
+    { "id": "p3", "asset_id": "<part 3>" },
+    { "id": "signoff", "asset_id": "<sign-off clip>" }
   ]
 }
 ```
@@ -66,10 +71,10 @@ captions. Adding texts and layers after captions does not touch the captions.
 ## 3. Voice match
 
 Once per part, the sign-off included the first time it is filmed (a reused sign-off clip is
-already matched):
+already matched), with `change_clip_voice`:
 
 ```json
-{ "video_id": "<video>", "action": "change_voice", "clip_id": "p1", "voice_id": "<host voice_id>" }
+{ "video_id": "<video>", "clip_id": "p1", "voice_id": "<host voice_id>" }
 ```
 
 - `voice_id` is the host's, from `get_avatar` (a host with none: the one voice picked from
@@ -90,7 +95,7 @@ already matched):
 `write_captions` hears the clips' speech. After `get_video` shows `captions.status: "ready"`,
 `captions.lines` holds every line with its `start` and `end` on the timeline. Use them:
 
-- to check the words against the script: a misheard word is fixed with
+- to check the words against the script: a misheard word is fixed with `edit_video_captions`
   `{ "op": "edit_caption", "index": 7, "text": "<right words>" }`, never by changing the script
   and never by re-filming; a word the host really said wrong or left out needs a re-take or a
   patch (section 11);
@@ -115,7 +120,7 @@ For each part, from the caption lines inside it:
   words inside. Trim only idle air at the ends: keep the first sound, the tail of the last word
   and the pauses inside. Never change a clip's `speed` to make the episode fit.
 
-All trims in one call, and nothing else in it:
+All trims in one `edit_video_clips` call, and nothing else in it:
 
 ```json
 [
@@ -131,7 +136,7 @@ and read the new lines before timing anything.
 ## 6. Cutaways, cards and split screens
 
 All cutaways sit over the host clip as layers, so the host keeps talking under them. Every
-layer gets `sound: false`.
+layer gets `sound: false`. Layers go in `edit_video_layers`.
 
 **Full screen** (vertical footage):
 
@@ -153,16 +158,16 @@ layer gets `sound: false`.
   apps cover: check with `preview_video` and `show_safe_area: true`.
 - A cutaway across a seam (from 1 s before to 1 or 2 s after) hides a small shift between
   parts.
-- New cutaway footage, when the library has none: `text-to-video` (`params: {duration: 5,
-  generate_audio: false}`, a scene with hands, objects or places and no faces), or
-  `photo-to-video` (`inputs: {image_url: "<photo>"}`, the still as the first frame,
+- New cutaway footage, when the library has none: `generate_text_to_video` (`params:
+  {duration: 5, generate_audio: false}`, a scene with hands, objects or places and no faces), or
+  `generate_photo_to_video` (`inputs: {image_url: "<photo>"}`, the still as the first frame,
   `params: {duration: 5, generate_audio: false}`; one continuous move). video-briefs.md,
   section 14, says how to brief both.
 
 **Split screen** (a long demonstration, such as a screen recording the person gave): it covers
 a whole clip, so cut the part first. Do it after the trims and their free re-caption
 (section 1, step 5), with `at` taken from the NEW caption lines. Each cut must sit at least
-0.3 s inside a clip.
+0.3 s inside a clip. The cuts go in `edit_video_clips`:
 
 ```json
 [
@@ -172,7 +177,7 @@ a whole clip, so cut the part first. Do it after the trims and their free re-cap
 ```
 
 The middle piece is the new clip the FIRST `split_clip` made: its line in `applied` names it.
-Then:
+Then `edit_video_split_screen`:
 
 ```json
 { "op": "set_split_screen", "id": "<middle piece>", "asset_id": "<recording>", "place": "bottom", "share": "half", "sound": false }
@@ -181,6 +186,8 @@ Then:
 With a split screen, `position: "auto"` captions move to the middle row by themselves.
 
 ## 7. Texts
+
+In `edit_video_texts`:
 
 ```json
 [
@@ -205,8 +212,8 @@ With a split screen, `position: "auto"` captions move to the middle row by thems
 - No music by default, and the delivery says so. `set_sound` puts one audio file from the
   library under the whole video at its own level; it is turned down only under voiceovers, not
   under the host's own speech. A normal music track buries the words.
-- If the person gives a quiet instrumental and wants it: `{ "op": "set_sound", "asset_id":
-  "<audio>" }`. Say once that you cannot hear the mix and ask them to listen in the studio
+- If the person gives a quiet instrumental and wants it: `edit_video_sound` with `{ "op":
+  "set_sound", "asset_id": "<audio>" }`. Say once that you cannot hear the mix and ask them to listen in the studio
   (supplied-media.md, section 8).
 - Cutaways and cards stay silent (`sound: false`). A supplied clip that must be heard plays
   as its own clip between parts, sound on.
@@ -217,7 +224,7 @@ With a split screen, `position: "auto"` captions move to the middle row by thems
 2. `preview_video` with `at`: the first second, each seam, the middle of each cutaway, the
    sign-off (up to 9 moments). When the answer says `exact: false`, some clips are shown by
    their cover frame: judge placement and readability only.
-3. Fix with `edit_video`, look again.
+3. Fix with the edit_video_* tools, look again.
 4. `get_video`: `ready_to_export` true, `warnings` empty, captions `ready`.
 5. `export_video`: price, then `confirm: true`. Read `get_video` every 10 to 30 s until
    `export.status` is `done`. `export.asset_id` is the MP4 in the library (for `create_post`),
@@ -231,12 +238,22 @@ A 10 to 15 s teaser of the opening, its own video, cut from the episode's export
 hook text, the labels, the cutaways and the captions are already burned into it, so the
 teaser needs no captions run: only one export, quoted first.
 
+`create_video`, then `edit_video_texts` on the new video:
+
 ```json
 {
   "brand_id": "<brand>",
   "title": "Teaser: Speak Up Sundays Ep. 1",
+  "clips": [
+    { "id": "t1", "asset_id": "<the episode's export.asset_id>", "trim_end": 14.4 }
+  ]
+}
+```
+
+```json
+{
+  "video_id": "<teaser>",
   "operations": [
-    { "op": "add_clip", "id": "t1", "asset_id": "<the episode's export.asset_id>", "trim_end": 14.4 },
     { "op": "add_text", "id": "cta", "text": "Full episode on our page", "start": 11.6, "end": 14.3, "position": "middle", "look": "tiktokHighlight" }
   ]
 }
@@ -254,15 +271,17 @@ fixed line plays, so lips never mismatch.
 
 1. Quote it as one batch: the voiceover and a new export. One yes for both.
 2. From the caption lines (`captions.status` must be `ready`), the line's `start` and `end`.
-   One call: `[{ "op": "split_clip", "at": <start> }, { "op": "split_clip", "at": <end> }]`.
-3. The middle piece is the new clip the first `split_clip` made (its `applied` line). One
-   call:
+   One `edit_video_clips` call: `[{ "op": "split_clip", "at": <start> }, { "op": "split_clip",
+   "at": <end> }]`.
+3. The middle piece is the new clip the first `split_clip` made (its `applied` line). Mute it
+   with `edit_video_clips`, then cover it with `edit_video_layers`:
 
    ```json
-   [
-     { "op": "update_clip", "id": "<piece>", "sound": false },
-     { "op": "add_layer", "id": "patch", "asset_id": "<cutaway>", "fill": true, "sound": false, "over": "<piece>" }
-   ]
+   [{ "op": "update_clip", "id": "<piece>", "sound": false }]
+   ```
+
+   ```json
+   [{ "op": "add_layer", "id": "patch", "asset_id": "<cutaway>", "fill": true, "sound": false, "over": "<piece>" }]
    ```
 
 4. `add_voiceover` `{video_id, text: "<the right line>", voice_id: "<host voice_id>", over:
@@ -282,15 +301,17 @@ place.
    person may have edited it in the studio since. Never rebuild the episode over their edits.
 2. Quote the change as one batch: a new take of the part (the same brief with the one change),
    its voice match, and a new export (every export is charged). One yes for the total.
-3. Re-film the part. `edit_video` `[{op: "replace_clip", id: "p2", asset_id: "<new take>"}]`:
-   same place, same length when the new take is long enough.
+3. Re-film the part. `edit_video_clips` `[{op: "replace_clip", id: "p2", asset_id: "<new
+   take>"}]`: same place, same length when the new take is long enough.
 4. Voice match that clip, then `write_captions` again (free).
-5. Re-time the texts and cutaways that sat over it (`update_text`, `update_layer`). Look only at
-   the changed stretch and the seams on both sides of it, then export.
+5. Re-time the texts and cutaways that sat over it (`edit_video_texts` `update_text`,
+   `edit_video_layers` `update_layer`). Look only at the changed stretch and the seams on both
+   sides of it, then export.
 6. Deliver the new MP4 and the same Video Studio link, with one line on what changed.
 
 Only an MP4, no project (an episode made elsewhere, or a project deleted): say that parts
 cannot be swapped cleanly, then offer to bring the MP4 in (`import_asset`), make a project
 with it as one clip, cut out the part's stretch (`split_clip` at its caption times) and put
-the new take in its place (`replace_clip` on the middle piece). The MP4's captions and texts
-are burned in, so the new stretch will not match them exactly: say so before quoting.
+the new take in its place (`replace_clip` on the middle piece), both in `edit_video_clips`.
+The MP4's captions and texts are burned in, so the new stretch will not match them exactly:
+say so before quoting.

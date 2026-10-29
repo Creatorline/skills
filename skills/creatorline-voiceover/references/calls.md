@@ -27,11 +27,10 @@ make a project (free):
 {
   "brand_id": "<brand>",
   "title": "3 cold brew mistakes",
-  "operations": [
-    { "op": "add_clip", "asset_id": "<video 1>", "id": "c1" },
-    { "op": "add_clip", "asset_id": "<video 2>", "id": "c2", "trim_start": 0.5, "trim_end": 4 },
-    { "op": "add_clip", "asset_id": "<photo>", "id": "c3", "duration": 3 },
-    { "op": "set_all_clips_sound", "sound": false }
+  "clips": [
+    { "asset_id": "<video 1>", "id": "c1", "sound": false },
+    { "asset_id": "<video 2>", "id": "c2", "trim_start": 0.5, "trim_end": 4, "sound": false },
+    { "asset_id": "<photo>", "id": "c3", "duration": 3 }
   ]
 }
 ```
@@ -39,8 +38,9 @@ make a project (free):
 That is `create_video`. Read every clip's `start` and `end` from its answer; never guess a
 time. `preview_video` (free) shows what each clip shows.
 
-**The clips' own sound.** `set_all_clips_sound` with `sound: false` mutes every clip;
-`update_clip` with `id` and `sound: false` mutes one. Only a music bed (`set_sound`, an audio
+**The clips' own sound.** `sound: false` on a clip in `create_video` mutes it from the start;
+on a project that exists, `edit_video_clips` with `set_all_clips_sound` and `sound: false`
+mutes every clip, `update_clip` with `id` and `sound: false` mutes one. Only a music bed (`set_sound`, an audio
 file from the library) is turned down to a quarter under a voiceover by itself; a clip's own
 sound stays at full level.
 
@@ -79,8 +79,8 @@ the first one runs.
 
 | Change | Call |
 |---|---|
-| Start it elsewhere | `edit_video`: `{ "op": "move_voiceover", "id": "<voiceover>", "start": 2.5 }` |
-| Take it off | `edit_video`: `{ "op": "remove_voiceover", "id": "<voiceover>" }` |
+| Start it elsewhere | `edit_video_sound`: `{ "op": "move_voiceover", "id": "<voiceover>", "start": 2.5 }` |
+| Take it off | `edit_video_sound`: `{ "op": "remove_voiceover", "id": "<voiceover>" }` |
 | New words or another voice, same place | `add_voiceover` with `replace_id: "<voiceover>"`, new `text` and `voice_id`, no `start` or `over`. A paid take. The old take plays until the new one is in. |
 
 **The export** (`export_video`), last, after captions if any:
@@ -97,11 +97,10 @@ so export once, at the end.
 
 ## 2. Voice line
 
-`create_generation`:
+`generate_text_to_speech`:
 
 ```json
 {
-  "tool": "text-to-speech",
   "brand_id": "<brand>",
   "prompt": "Three things nobody tells you about cold brew. [curious] Ready?",
   "params": { "voice_id": "<the avatar's voice_id>" }
@@ -124,11 +123,10 @@ so export once, at the end.
 
 ## 3. Dialogue
 
-`create_generation`:
+`generate_dialogue`:
 
 ```json
 {
-  "tool": "dialogue",
   "brand_id": "<brand>",
   "prompt": "A: Be honest. How many leg days did you skip this month?\nB: [laughs] Define skip.\nA: Two squats a day. That's it.",
   "params": {
@@ -151,11 +149,10 @@ so export once, at the end.
 
 ## 4. Re-voice
 
-A library or generated video, `create_generation`:
+A library or generated video, `generate_change_voice`:
 
 ```json
 {
-  "tool": "change-voice",
   "brand_id": "<brand>",
   "inputs": { "video_url": "<video asset id>" },
   "params": { "voice_id": "<the avatar's voice_id>", "remove_background_noise": false }
@@ -169,13 +166,12 @@ A library or generated video, `create_generation`:
 - The words, their timing, the lip movement and the delivery stay; only the voice changes.
 - Up to about five minutes of video. One price per run, whatever the length.
 
-A clip inside a Video Studio project, `run_video_ai` (the result takes the clip's place, so
-the edit around it stays):
+A clip inside a Video Studio project, `change_clip_voice` (the result takes the clip's place,
+so the edit around it stays):
 
 ```json
 {
   "video_id": "<video>",
-  "action": "change_voice",
   "clip_id": "<clip>",
   "voice_id": "<the avatar's voice_id>"
 }
@@ -188,11 +184,10 @@ the brand's default avatar's voice.
 
 ## 5. Lip sync
 
-`create_generation`:
+`generate_lipsync`:
 
 ```json
 {
-  "tool": "lipsync",
   "brand_id": "<brand>",
   "inputs": {
     "video_url": "<video asset id>",
@@ -213,7 +208,6 @@ the brand's default avatar's voice.
 
 ```json
 {
-  "tool": "lipsync",
   "brand_id": "<brand>",
   "model": "sync-lipsync-v2-pro",
   "inputs": { "video_url": "<video asset id>", "audio_url": "<audio asset id>" },
@@ -232,7 +226,7 @@ the brand's default avatar's voice.
    quote an export of it first: its MP4 stays in the library.
 2. `add_voiceover` with `replace_id` for each voiceover, the words written fresh in the new
    language, the same `voice_id`.
-3. `edit_video` with `update_text` for every on-screen text, in the new language.
+3. `edit_video_texts` with `update_text` for every on-screen text, in the new language.
 4. Captions, if the video has them: `write_captions` again (free after the first time).
 5. `export_video`.
 
@@ -242,12 +236,13 @@ the brand's default avatar's voice.
    (put it in a Video Studio project, `write_captions`, read `captions.lines`; captions are
    paid the first time, so quote them with the rest).
 2. Write the new language's lines to the same seconds (the video's `duration_sec`).
-3. Quote the voice line (`create_generation` `text-to-speech`, no `confirm`) and the lip sync
-   (`estimate_generation_cost` with `tool: "lipsync"` and `inputs.video_url`: the audio does
-   not exist yet, and the price follows the video). One yes for the total.
+3. Quote the voice line (`generate_text_to_speech`, no `confirm`) and the lip sync
+   (`generate_lipsync` without `confirm`, with only `inputs.video_url`: the audio does not
+   exist yet, so it answers with an estimate, and the price follows the video). One yes for
+   the total.
 4. Run the voice line; wait; read its `duration_sec` when given. Much longer than the video:
    rewrite shorter and ask before a second voice line.
-5. `create_generation` `lipsync` with `video_url` and the voice line's `asset_id` in
+5. `generate_lipsync` with `video_url` and the voice line's `asset_id` in
    `audio_url`, first without `confirm`: if the price is the one quoted, confirm; if not, ask.
 6. Expect only the new voice in the result: music or room sound from the original is not
    kept. Put music back in Video Studio (`set_sound`).
@@ -259,11 +254,11 @@ sync when the take is short.
 ## 7. Pricing a batch
 
 - Quote every paid call of the job first, without `confirm`, then add them up and ask once.
-- `add_voiceover`, `export_video`, `write_captions` and `run_video_ai` answer with their price
-  when called without `confirm`.
-- `create_generation` answers with its price without `confirm`. For a step whose input does not
-  exist yet (a lip sync of audio you are about to make), use `estimate_generation_cost` with the
-  inputs you have.
+- `add_voiceover`, `export_video`, `write_captions` and `change_clip_voice` answer with their
+  price when called without `confirm`.
+- A `generate_*` tool answers with its price without `confirm`. For a step whose input does not
+  exist yet (a lip sync of audio you are about to make), call its tool without `confirm` with
+  the inputs you have: it answers with an estimate (`estimate: true`).
 - A voice take, a voice line and a dialogue are priced per run, not per word, up to their
   2000 characters; so is a re-voice. A lip sync is priced per second of its video.
 - If a call's price at run time differs from the quote, ask again before confirming.
@@ -277,7 +272,7 @@ sync when the take is short.
 | `add_voiceover` | The call waits (`wait_seconds` up to 45); then `get_video` | 5 to 30 s |
 | Voice line, dialogue | `get_generation` with `wait_seconds: 45` | Under a minute |
 | Re-voice, lip sync | `get_generation` with `wait_seconds: 45`, again until done | One to a few minutes |
-| `run_video_ai` change voice | `get_video` every 10 to 20 s | A few minutes |
+| `change_clip_voice` | `get_video` every 10 to 20 s | A few minutes |
 | Captions, export | `get_video` every 10 to 20 s | About a minute; one to a few |
 
 A run over the workspace's parallel limit stays `queued` and starts by itself: say it is

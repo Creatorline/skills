@@ -32,7 +32,7 @@ section 10).
   theirs, no outfit to show), a picture with no one in it, a short clip of the avatar, a photo
   brought to life, a scene clip.
 - Account questions: which brands, avatars and accounts there are, how many credits are left,
-  what a piece would cost (`estimate_generation_cost`, free, starts nothing).
+  what a piece would cost (its `generate_*` tool without `confirm`, free, starts nothing).
 - A generation that failed, is stuck, or came out wrong. A post that failed to go out:
   `creatorline-publish`.
 
@@ -133,7 +133,7 @@ intake.
 | A TikTok, Reels or Shorts link re-filmed with the avatar: same beats and sound, new performer, maybe their product or app | `creatorline-reshoot` |
 | A real video kept exactly, with one or two people in it replaced by avatars; or the avatar doing a dance's moves | `creatorline-character-swap` |
 | Many versions of one video to compare: other avatars, hooks, products, voices, two or more languages | `creatorline-ad-variations` |
-| Something changed in a video that already exists, the rest kept: a product, an object, the clothes, the background, a colour, words in the picture | One quick change for the whole clip: the fast path (`video-edit`). Their product, a timed change or several versions: `creatorline-ad-variations` |
+| Something changed in a video that already exists, the rest kept: a product, an object, the clothes, the background, a colour, words in the picture | One quick change for the whole clip: the fast path (`generate_video_edit`). Their product, a timed change or several versions: `creatorline-ad-variations` |
 | A longer episode (30 to 120 s) or a recurring series with the avatar as host; an episode script over 60 s | `creatorline-ai-host` |
 | A narrated video with no face on camera: a story, an explainer, a list, history, motivation | `creatorline-faceless-video` |
 | Editing a video: cuts, trims, order, text on screen, split screen, a stock hook clip, sound, export (a hook line among other edits) | `creatorline-video-studio` |
@@ -186,10 +186,10 @@ intake.
 3. Load the skill and follow it. If it is not available in this session, call `get_guide` with
    its name without `creatorline-` as `topic` (`talking-video`) and follow that text.
 4. A request that spans skills ("make it, caption it, post it tonight"): start with the one that
-   makes the media. Price every paid step you can before any of it starts
-   (`estimate_generation_cost` prices a later generation from partial inputs) and ask one yes
-   for the total (house rules, section 2). A step that has a price only once the media exists
-   (captions, an export) gets its own quote and yes when you reach it.
+   makes the media. Price every paid step you can before any of it starts (a `generate_*` tool
+   without `confirm` prices a later generation from partial inputs) and ask one yes for the total
+   (house rules, section 2). A step that has a price only once the media exists (captions, an
+   export) gets its own quote and yes when you reach it.
 5. Two still fit: ask ONE question about the outcome, not about tools: "Keep the original video
    and only change who is in it, or film it again with Mia?"
 6. A preset, effect or feature from another app ("money rain", "glow-up effect"): a hint about
@@ -204,31 +204,31 @@ that states the defaults:
 > A photo of Mia at the beach: casual phone look, portrait frame, one photo. Should she hold
 > your sunscreen? If so, send me its photo.
 
-| They want | `tool` | What goes in |
+| They want | Tool | What goes in |
 |---|---|---|
-| A photo of the avatar: a selfie, a moment, an outfit, holding something | `photo-edit` | a `prompt` that says "the avatar ..."; a product or prop photo in `inputs.other_elements` |
-| Their own product alone, no person | `photo-edit` | the product photo in `inputs.other_elements`; `include_avatar: false` |
-| A picture with no avatar: a place, a background, food, a mood | `text-to-photo` | `prompt` only; never `avatar_id` |
-| A short clip of the avatar doing or saying something | `ugc-video` | `prompt`: the brief |
-| A photo brought to life | `photo-to-video` | the photo in `inputs.image_url` (asset id or file link); `prompt`: only what moves |
-| Their product moving on its own (a spin, a pour, a reveal), no person, no voice | `photo-to-video` | the product photo in `inputs.image_url`; `prompt`: the motion and one camera move |
-| A clip with no avatar: b-roll, a place, an establishing shot | `text-to-video` | `prompt`: one scene, fully described |
-| One change in an existing video, the rest kept: a background, a colour, an object, the season | `video-edit` | `inputs.source_video` (4 to 30 s, AI faces only); a photo of what goes in, if any, in `inputs.image_urls`; `prompt`, sent word for word: "Replace only <the thing> in @Video1 with <what it is, in a few words> from @Image1. Keep everything else exactly as it is." |
-| A voice line | `text-to-speech` | `prompt`: the exact words (up to 2,000 characters); `params.voice_id`: the avatar's `voice_id` from `get_avatar` |
+| A photo of the avatar: a selfie, a moment, an outfit, holding something | `generate_photo_edit` | a `prompt` that says "the avatar ..."; a product or prop photo in `inputs.other_elements` |
+| Their own product alone, no person | `generate_photo_edit` | the product photo in `inputs.other_elements`; `include_avatar: false` |
+| A picture with no avatar: a place, a background, food, a mood | `generate_text_to_photo` | `prompt` only; never `avatar_id` |
+| A short clip of the avatar doing or saying something | `generate_ugc_video` | `prompt`: the brief |
+| A photo brought to life | `generate_photo_to_video` | the photo in `inputs.image_url` (asset id or file link); `prompt`: only what moves |
+| Their product moving on its own (a spin, a pour, a reveal), no person, no voice | `generate_photo_to_video` | the product photo in `inputs.image_url`; `prompt`: the motion and one camera move |
+| A clip with no avatar: b-roll, a place, an establishing shot | `generate_text_to_video` | `prompt`: one scene, fully described |
+| One change in an existing video, the rest kept: a background, a colour, an object, the season | `generate_video_edit` | `inputs.source_video` (4 to 30 s, AI faces only); a photo of what goes in, if any, in `inputs.image_urls`; `prompt`, sent word for word: "Replace only <the thing> in @Video1 with <what it is, in a few words> from @Image1. Keep everything else exactly as it is." |
+| A voice line | `generate_text_to_speech` | `prompt`: the exact words (up to 2,000 characters); `params.voice_id`: the avatar's `voice_id` from `get_avatar` |
 
-- **Every picture of the avatar is `photo-edit`.** `text-to-photo` draws from words alone: it
-  cannot show the avatar and refuses `avatar_id`.
-- **Voice:** `text-to-speech` uses a stock voice unless `params.voice_id` is passed. Always pass
-  the avatar's (or the brand's `voice_id` from `get_brand` when there is no avatar). To give a
-  finished clip the avatar's voice, run `change-voice` on it (its own price, its own result)
-  rather than setting `change_voice` on `ugc-video`, whose re-voiced copy is a separate run that
-  `get_generation` does not return.
-- **The exact look in motion:** get the still right with `photo-edit` first (cheap and quick to
-  redo), get a yes on it, then animate it once with `photo-to-video`. Make that still 9:16 (the
-  photo frame row below) so the clip fills the screen. For the avatar talking or acting across
-  several shots, go straight to `ugc-video`.
+- **Every picture of the avatar is `generate_photo_edit`.** `generate_text_to_photo` draws from
+  words alone: it cannot show the avatar and refuses `avatar_id`.
+- **Voice:** `generate_text_to_speech` uses a stock voice unless `params.voice_id` is passed.
+  Always pass the avatar's (or the brand's `voice_id` from `get_brand` when there is no avatar).
+  To give a finished clip the avatar's voice, run `generate_change_voice` on it (its own price,
+  its own result) rather than setting `change_voice` on `generate_ugc_video`, whose re-voiced
+  copy is a separate run that `get_generation` does not return.
+- **The exact look in motion:** get the still right with `generate_photo_edit` first (cheap and
+  quick to redo), get a yes on it, then animate it once with `generate_photo_to_video`. Make that
+  still 9:16 (the photo frame row below) so the clip fills the screen. For the avatar talking or
+  acting across several shots, go straight to `generate_ugc_video`.
 - **Product with a voice over it** is a format: `creatorline-product-video`.
-- Other models, slots and values: `list_models` with the `tool`. Never guess a key or a value.
+- Other models, slots and values: the tool's own schema. Never guess a key or a value.
 
 **Defaults, stated in one line, never asked** ("Mia, vertical, 10 seconds, shot like a phone
 video."):
@@ -237,10 +237,10 @@ video."):
 |---|---|
 | Avatar | the brand's default avatar; another only when the person names one (`avatar_id`) |
 | Video frame | `aspect_ratio: "9:16"` (the video tools' default) |
-| Photo frame | `aspect_ratio: "3:4"` on `photo-edit`, whose default model has no 9:16. A still that must fill a 9:16 screen (a story, a frame to animate): `model: "gpt-image-v2-edit"` with `aspect_ratio: "9:16"`. `text-to-photo` defaults to 9:16. |
+| Photo frame | `aspect_ratio: "3:4"` on `generate_photo_edit`, whose default model has no 9:16. A still that must fill a 9:16 screen (a story, a frame to animate): `model: "gpt-image-v2-edit"` with `aspect_ratio: "9:16"`. `generate_text_to_photo` defaults to 9:16. |
 | Look | phone-native UGC: leave `ugc_style` on `Auto`; `Cinematic` only when asked |
 | Video length | 10 seconds (the default `duration`) |
-| Video sharpness | `720p` (the default); `1080p` costs about 2.5 times as much, only when asked and only where `list_models` lists it (the default `photo-to-video` model has 720p alone) |
+| Video sharpness | `720p` (the default); `1080p` costs about 2.5 times as much, only when asked and only where the tool's schema lists it (the default `generate_photo_to_video` model has 720p alone) |
 | Photo size | `resolution: "2K"`; never `4K` unless asked |
 | Photos per run | 1; `count` 2 to 4 when they want options |
 | Spoken language | the brand's `language` from `get_brand`, written into the brief |
@@ -249,7 +249,7 @@ video."):
 
 1. Plan in one line: "A 10-second vertical clip: Mia pours coffee at her kitchen counter and
    says one line about slow mornings."
-2. Price: `create_generation` with every argument and no `confirm`. The answer is
+2. Price: the row's `generate_*` tool with every argument and no `confirm`. The answer is
    `status: "needs_approval"` with `credits`, `credit_balance` and `sufficient`. Say: "That's
    <N> credits; you have <M>. Go ahead?" Nothing has started. With `sufficient: false`, say how
    many are missing and offer a cheaper version instead (house rules, section 2).
@@ -261,21 +261,27 @@ video."):
    "is it ready?" any time.
 5. Check it, show it, offer next steps (below).
 
+`generate_photo_edit`:
+
 ```json
-{"tool": "photo-edit", "brand_id": "<brand id>",
+{"brand_id": "<brand id>",
  "prompt": "The avatar sits at a sunny cafe window holding the iced latte from @Input1 in both hands, laughing at something off camera. Casual phone photo, natural window light.",
  "inputs": {"other_elements": ["<asset id of the drink photo>"]},
  "params": {"aspect_ratio": "3:4", "resolution": "2K"}}
 ```
 
+`generate_photo_to_video`:
+
 ```json
-{"tool": "photo-to-video", "brand_id": "<brand id>",
+{"brand_id": "<brand id>",
  "inputs": {"image_url": "<asset id of the photo>"},
  "prompt": "She lifts the cup, takes a slow sip and smiles at the camera. Steam drifts up. The camera pushes in slowly."}
 ```
 
+`generate_text_to_speech`:
+
 ```json
-{"tool": "text-to-speech", "brand_id": "<brand id>",
+{"brand_id": "<brand id>",
  "prompt": "[excited] Three things I pack for every weekend away. The last one always gets asked about.",
  "params": {"voice_id": "<voice_id from get_avatar>"}}
 ```
@@ -329,7 +335,7 @@ Pick the 2 or 3 that fit, one line each, and run the chosen one through its skil
 
 | What was made | Offer |
 |---|---|
-| A photo | animate it (`photo-to-video`, here); more like it for a carousel (`creatorline-photos`); a cover with words (`creatorline-cover-image`); post it (`creatorline-publish`) |
+| A photo | animate it (`generate_photo_to_video`, here); more like it for a carousel (`creatorline-photos`); a cover with words (`creatorline-cover-image`); post it (`creatorline-publish`) |
 | A clip | captions (`creatorline-captions`); a hook, text or more clips (`creatorline-video-studio`); versions with other hooks (`creatorline-ad-variations`); post it |
 | A voice line | put it under a video (`creatorline-voiceover`); have the avatar say it on camera (lip sync, `creatorline-voiceover`) |
 | A scene clip | b-roll in a narrated video (`creatorline-faceless-video`) or in Video Studio |
@@ -341,9 +347,9 @@ Every failed run is refunded automatically: say so. The full table is
 
 | What happened | Do this |
 |---|---|
-| A video with a real person's photo or face failed | The default video model takes AI faces only. With that person's consent, run `ugc-video` again (after a yes) with `model: "bytedance-seedance-2-0-reference-to-video"`; one take holds 15 s. |
-| The avatar is missing from a photo | It was `text-to-photo`, `include_avatar: false`, or a brief with no person in it. Redo on `photo-edit` with "the avatar ..." in the brief. |
-| The voice is not the avatar's | Pass `params.voice_id` from `get_avatar` (`voice_a` on `dialogue`). For a finished clip: `change-voice` with `inputs.video_url` = its `asset_id` and that `voice_id`. |
+| A video with a real person's photo or face failed | The default video model takes AI faces only. With that person's consent, run `generate_ugc_video` again (after a yes) with `model: "bytedance-seedance-2-0-reference-to-video"`; one take holds 15 s. |
+| The avatar is missing from a photo | It was `generate_text_to_photo`, `include_avatar: false`, or a brief with no person in it. Redo on `generate_photo_edit` with "the avatar ..." in the brief. |
+| The voice is not the avatar's | Pass `params.voice_id` from `get_avatar` (`voice_a` on `generate_dialogue`). For a finished clip: `generate_change_voice` with `inputs.video_url` = its `asset_id` and that `voice_id`. |
 | `queued` for a while | The workspace runs a set number of generations at once; this one waits for a free slot and starts by itself. Keep waiting; never start it again. |
 | A paid call timed out | It may have started. Check (`get_generation`, `list_assets` with `source: "generated"`, `list_videos`) before calling again. |
 | Captions show `out_of_date` | The clips changed after captions were written: `write_captions` again, free and with no yes needed. |

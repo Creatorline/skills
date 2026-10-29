@@ -60,7 +60,7 @@ The set is asked in the intake of a first episode (SKILL.md, step 2). The kinds:
 | The avatar photo's own background | No set photo: the takes build the room from the avatar's photo and the brief, so it can differ between parts. Offer it only when that photo shows a real room filling much of the frame; a portrait, a selfie or a tight crop needs a set |
 
 **Candidates, then a pick.** A new set is made as four candidates in one call:
-`create_generation` `{tool: "text-to-photo", brand_id, prompt, count: 4}`. No `avatar_id`:
+`generate_text_to_photo` `{brand_id, prompt, count: 4}`. No `avatar_id`:
 this tool draws from words alone and refuses one. Its frame is 9:16 by default. Show all four
 together (`preview_assets` with the four output asset ids, then one line each with a link) and
 wait for the person to pick one, or to ask for more (a new priced call, with what they said
@@ -166,11 +166,10 @@ Language: <spoken language>
 Sound: voice and room sound only.
 ```
 
-The call:
+The call, `generate_ugc_video`:
 
 ```json
 {
-  "tool": "ugc-video",
   "brand_id": "<brand>",
   "avatar_id": "<host>",
   "prompt": "<the brief>",
@@ -305,7 +304,7 @@ like two people. Pick the route in the plan and state it.
 
 | Route | When | How |
 |---|---|---|
-| Voice match (default) | The host has a `voice_id` (`get_avatar`) | Film the parts with their own sound, then re-voice each in Video Studio: `run_video_ai` `{video_id, action: "change_voice", clip_id, voice_id}` (assembly.md, section 3). Words, timing and lips stay; the voice becomes the avatar's own. Needs one clear voice and no music in the take. |
+| Voice match (default) | The host has a `voice_id` (`get_avatar`) | Film the parts with their own sound, then re-voice each in Video Studio: `change_clip_voice` `{video_id, clip_id, voice_id}` (assembly.md, section 3). Words, timing and lips stay; the voice becomes the avatar's own. Needs one clear voice and no music in the take. |
 | Voice match, chosen voice | The host has no `voice_id` | Pick one voice with `list_voices` (`search` with the host's gender, age and manner, such as `calm female 30s`) and match every part to it. Name it in the plan. Say once that the avatar can keep a voice of its own, set in the app (https://app.creatorline.io/avatars). Never use the brand's `voice_id` here: it belongs to the brand's default avatar. |
 | Voice first | The words must be exact (a sponsor read, a legal line, a script the person wants word for word) | See below. |
 | No match | The person drops the voice match from the quote | Keep parts few (2 or 3) and say once that the parts may sound slightly different. |
@@ -330,11 +329,11 @@ stress and melody, so the brief's Voice line still shapes the delivery.
 
 **Voice first**, part by part:
 
-1. `create_generation` `{tool: "text-to-speech", brand_id, prompt: "<the part's exact
-   lines>", params: {voice_id: "<host voice_id>"}}`. The `prompt` is read word for word.
+1. `generate_text_to_speech` `{brand_id, prompt: "<the part's exact lines>", params:
+   {voice_id: "<host voice_id>"}}`. The `prompt` is read word for word.
    Always pass `voice_id`: left out, the line may be read in a voice that is not the host's.
 2. Wait with `get_generation`; note the audio's `asset_id` and `duration_sec`.
-3. The part: `ugc-video` with `inputs: {location: ..., audio_urls: ["<audio asset id>"]}`,
+3. The part: `generate_ugc_video` with `inputs: {location: ..., audio_urls: ["<audio asset id>"]}`,
    `duration` = the audio's seconds + 0.4, rounded up (at least 4), and in the brief "@Avatar1 says @Audio1"
    in place of the quoted lines. No Voice line: the audio is the only voice.
 4. Film part 1 and check the lip sync before filming the rest.

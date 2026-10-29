@@ -203,10 +203,10 @@ Made first, once, before anything else. It is a reference only: it is never show
   goes into every later call, and anything drawn in it leaks into the video.
 - **With a mascot:** the reference is the mascot instead: one full-body character, expressive,
   a clear readable silhouette, looking at the camera, centred on a simple background.
-- **The call:** `create_generation` with `tool: "text-to-photo"`, `brand_id`,
+- **The call:** `generate_text_to_photo` with `brand_id`,
   `params: { aspect_ratio: "2:3" }` (the frame every later picture uses), and the prompt:
   `<style line>. A small vignette: <the one subject>, centred, on the look's own background.`
-- **From the person's images:** `tool: "photo-edit"`, `include_avatar: false`,
+- **From the person's images:** `generate_photo_edit`, `include_avatar: false`,
   `inputs: { other_elements: [<their images>] }`, `params: { aspect_ratio: "2:3" }`, and a
   prompt that opens: "Take only the rendering and the colour grading of the input images, mixed
   if there are several. Never their people, words, logos or objects. Then draw: <vignette>."
@@ -220,7 +220,7 @@ Made first, once, before anything else. It is a reference only: it is never show
 
 Every figure, place and prop the script needs, made once from the look reference, before any
 shot picture. A shot made without the asset it needs drifts. Every roster call:
-`create_generation` with `tool: "photo-edit"`, `brand_id`, `include_avatar: false`,
+`generate_photo_edit` with `brand_id`, `include_avatar: false`,
 `inputs: { other_elements: [<look reference>] }`, and the style line first in the prompt,
 followed by "@Input1 is the look reference: copy its look only, never its subject."
 
@@ -264,11 +264,10 @@ followed by "@Input1 is the look reference: copy its look only, never its subjec
 ## 6. Shot pictures
 
 Every shot of every block is one picture composed from the roster: a full staged scene, never a
-lone object on blank white, never drawn from the look reference alone.
+lone object on blank white, never drawn from the look reference alone. `generate_photo_edit`:
 
 ```json
 {
-  "tool": "photo-edit",
   "brand_id": "<brand id>",
   "include_avatar": false,
   "inputs": {
@@ -297,8 +296,8 @@ Frame: a tall frame, the subject in the upper middle, a calm lower third
   then spare second angles; never the place, the look reference or a figure who is on screen.
 - **Show what the line names.** A line about spices puts the sacks and the scales on screen.
 - The lower third is for captions and the apps' buttons: keep it calm.
-- `photo-edit` has no 9:16; `2:3` is the closest. The 9:16 frame crops a little off each side,
-  so keep the subject centred.
+- `generate_photo_edit` has no 9:16; `2:3` is the closest. The 9:16 frame crops a little off each
+  side, so keep the subject centred.
 
 ## 7. Shot variety
 
@@ -331,8 +330,8 @@ Frame: a tall frame, the subject in the upper middle, a calm lower third
 - **Real people, living or historical, are named in the narration only.** On screen they are
   an archetype in the right clothes, told apart by silhouette and build, from behind or far
   away. No celebrity, politician or anyone who has not agreed.
-- **The brand's avatar stays out.** `include_avatar: false` on every `photo-edit` call. Describe
-  every figure fully so none comes out looking like the avatar.
+- **The brand's avatar stays out.** `include_avatar: false` on every `generate_photo_edit` call.
+  Describe every figure fully so none comes out looking like the avatar.
 - **Figures read as adults.** Never a young person in a picture. Never write "child", "kid" or
   "childlike" in a brief: write "small", "simple" or "naive" for the look.
 - **Calm staging.** Avoid tight close-ups of animal faces, and aggressive or intimate
@@ -358,11 +357,10 @@ Frame: a tall frame, the subject in the upper middle, a calm lower third
 
 ## 10. Motion briefs
 
-Animated mode only. Each shot picture becomes a short moving take with `photo-to-video`:
+Animated mode only. Each shot picture becomes a short moving take with `generate_photo_to_video`:
 
 ```json
 {
-  "tool": "photo-to-video",
   "brand_id": "<brand id>",
   "model": "google-gemini-omni-flash-image-to-video",
   "inputs": { "image_url": "<the shot picture's asset id>" },
@@ -411,9 +409,10 @@ The Picture story mode has no motion: the cuts are the motion, so frames change 
   look reference, no figures, no places. Attaching the roster makes the model rebuild the scene,
   the most common failure of this mode.
 
+  `generate_photo_edit`:
+
   ```json
   {
-    "tool": "photo-edit",
     "brand_id": "<brand id>",
     "include_avatar": false,
     "inputs": { "other_elements": ["<the frame before>"] },

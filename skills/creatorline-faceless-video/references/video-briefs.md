@@ -26,7 +26,7 @@ know. Its job is the filmmaking. Do not do its job.
 
 ## 1. What the writer already does
 
-On `ugc-video` and `photo-to-video` the writer reads your brief, the avatar's persona (its name,
+On `generate_ugc_video` and `generate_photo_to_video` the writer reads your brief, the avatar's persona (its name,
 archetype, bio and tone) and the attached images, then writes a timed shot list. Over MCP that
 first version is filmed with no review. It already:
 
@@ -39,8 +39,8 @@ first version is filmed with no review. It already:
 - writes in the avatar's own voice and turns negatives into positives.
 
 So never send lenses, rigs, lighting setups, shot timestamps, `@Image` headers or a finished
-model prompt: they fight the writer or get rewritten. The one `create_generation` tool that
-sends your text word for word is `video-edit` (section 14). Any other prompt that must reach the
+model prompt: they fight the writer or get rewritten. The one generation tool that
+sends your text word for word is `generate_video_edit` (section 14). Any other prompt that must reach the
 model unchanged needs a workflow node with Enhance off (the workflows skill).
 
 ## 2. What only you can give
@@ -232,7 +232,7 @@ The craft:
 ## 11. Inputs and how to name them
 
 The avatar goes in by itself (`include_avatar` defaults to true). Other inputs go in `inputs` by
-slot key, as an asset id or a direct file URL. The slots of the default `ugc-video` model:
+slot key, as an asset id or a direct file URL. The slots of the default `generate_ugc_video` model:
 
 | Slot | Holds | Name it in the brief |
 |---|---|---|
@@ -250,7 +250,7 @@ slot key, as an asset id or a direct file URL. The slots of the default `ugc-vid
   finish, logo or printed words: words about the look make the model redraw it, and printed
   words come out as broken letters. Facts belong in the spoken lines.
 - With `@Audio1`, write "@Avatar1 says @Audio1" and do not write the words out.
-- Slot keys differ per model: read them from `list_models`. `veo3-1-reference-to-video` and
+- Input keys differ per model: the tool's own schema says which model takes which. `veo3-1-reference-to-video` and
   `xai-grok-imagine-reference-to-video` take plain `image_urls` and never add the avatar.
 
 ## 12. Real faces and AI faces
@@ -258,9 +258,9 @@ slot key, as an asset id or a direct file URL. The slots of the default `ugc-vid
 | Who is on camera | Pass `model` |
 |---|---|
 | A Creatorline avatar (an AI face) | Nothing: the tool's default model (Seedance 2.5) |
-| A real person's photo, with their consent | `bytedance-seedance-2-0-reference-to-video` on `ugc-video`, `reshoot-seedance-2-0` on `reshoot`; one take holds 15 s |
+| A real person's photo, with their consent | `bytedance-seedance-2-0-reference-to-video` on `generate_ugc_video`, `reshoot-seedance-2-0` on `generate_reshoot`; one take holds 15 s |
 
-- The default model refuses real faces, also inside `source_video` clips. `ugc-video` has no
+- The default model refuses real faces, also inside `source_video` clips. `generate_ugc_video` has no
   automatic fallback, so choose Seedance 2.0 up front. Reshoot re-films a refused take on 2.0 by
   itself when the take is 15 s or shorter.
 - To keep a real video and swap its people for avatars, use Character Swap, not a `source_video`
@@ -277,36 +277,37 @@ slot key, as an asset id or a direct file URL. The slots of the default `ugc-vid
 | `generate_audio` | `true` (Seedance models) | The clip should be silent (b-roll under a voiceover) |
 | `change_voice` | `false` | The avatar has a cloned voice, the clip has one speaker and no music. Charged on its own |
 
-- Read each tool's default model and allowed values from `list_models`. Never guess a value.
+- Each `generate_*` tool's schema lists its default model and the values each setting takes.
+  Never guess a value.
 - The price rises with more seconds, `1080p`, reference video seconds and `change_voice`. The
   `needs_approval` answer gives the exact number.
 - For a first try keep it short and `720p`. Go longer or sharper once the idea works.
 
 ## 14. Other video tools
 
-**`photo-to-video`** animates one image in one continuous take: never ask for a cut. The brief
+**`generate_photo_to_video`** animates one image in one continuous take: never ask for a cut. The brief
 says only what MOVES: the action, the expression, one camera move (locked, a slow push-in or a
 slight handheld drift), and a spoken line if any. Never describe what the image already shows.
 An optional end frame sets where the take lands. Speech per beat: 2 s 5-7 words, 3 s 7-10, 4 s
-10-13, 5 s 12-17. For a precise look, get the still right with `photo-edit` first, then animate
+10-13, 5 s 12-17. For a precise look, get the still right with `generate_photo_edit` first, then animate
 it once.
 
-**`text-to-video`** films from words alone, with no avatar and no image. Its writer does not build
+**`generate_text_to_video`** films from words alone, with no avatar and no image. Its writer does not build
 a shot timeline, so describe one scene fully: the subject, the place and light, the one main
 action, one camera move, the sound. Use it for b-roll and scenes without the avatar.
 
-**`reshoot`** does not use the writer above: it plans its own cut from the source video. `prompt`
+**`generate_reshoot`** does not use the writer above: it plans its own cut from the source video. `prompt`
 is an optional Direction; empty means the same video with the avatar. With `objects` or
 `source_video` attached, say in words what each is for: "the avatar presents the product photo
 instead of the cup in the video". Put new lines in quotes only when the words should change.
 
-**`character-swap`** takes no brief. Transfer (`character-swap-transfer`) takes an optional
+**`generate_character_swap`** takes no brief. Transfer (`character-swap-transfer`) takes an optional
 Direction: what the avatar wears instead of the video's outfit, what each `other_elements` image
 is for. Replace (`character-swap-replace`) takes no prompt and refuses one.
 
-**`motion-control`** takes no prompt. The moves come from the motion video.
+**`generate_motion_control`** takes no prompt. The moves come from the motion video.
 
-**`video-edit`** changes one thing in a real 4 to 30 s video and keeps the rest: its length, its
+**`generate_video_edit`** changes one thing in a real 4 to 30 s video and keeps the rest: its length, its
 frame and its sound. No writer runs: the `prompt` reaches the model word for word, so write the
 whole edit as the instruction itself. Name the video `@Video1` and the images `@Image1`, `@Image2`
 in slot order; an avatar goes in only when you pass its `avatar_id` (never the brand's default),
@@ -316,13 +317,13 @@ faces only: a real person's face in the video fails the run (refunded).
 
 ## 15. Photo briefs
 
-The same server writer turns `photo-edit` and `text-to-photo` briefs into image prompts.
+The same server writer turns `generate_photo_edit` and `generate_text_to_photo` briefs into image prompts.
 
 - **A person appears only when the brief asks for one.** For a photo of the avatar on
-  `photo-edit`, say so: "the avatar sitting at a cafe table, holding the product". A brief about a
+  `generate_photo_edit`, say so: "the avatar sitting at a cafe table, holding the product". A brief about a
   product, a place or food comes out with no one in it.
 - **No person wanted:** pass `include_avatar: false` and mention no one.
-- `text-to-photo` cannot show the avatar. Every picture of the avatar is `photo-edit`.
+- `generate_text_to_photo` cannot show the avatar. Every picture of the avatar is `generate_photo_edit`.
 - The photo writer is not phone-locked. For a casual look say "casual phone photo, neutral
   daylight". For a polished shot name the light and the surface: "soft window light, light oak
   table".

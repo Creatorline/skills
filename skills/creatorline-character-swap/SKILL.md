@@ -30,7 +30,7 @@ to before anything ran.
 | The person wants | Hand off to |
 |---|---|
 | The trend's idea filmed again with their product, new lines or a new place | `creatorline-reshoot` |
-| Only a product or object changed, the person kept as filmed | `creatorline-ad-variations`: a video edit (the `video-edit` tool) swaps the product and keeps the footage. `creatorline-reshoot` films it again with their product. |
+| Only a product or object changed, the person kept as filmed | `creatorline-ad-variations`: a video edit (`generate_video_edit`) swaps the product and keeps the footage. `creatorline-reshoot` films it again with their product. |
 | Several versions of one video (other avatars, hooks, voices, languages) | `creatorline-ad-variations` |
 | A try-on, fit check or OOTD video, where the outfit is the content | `creatorline-try-on-video` |
 | A new video of the avatar from an idea or a script | `creatorline-talking-video` |
@@ -44,7 +44,7 @@ to before anything ran.
 |---|---|---|---|
 | **Transfer** (`character-swap-transfer`, the default) | Moves, camera, cuts, setting, sound, and the performer's clothes | Face, hair, body | "Put my avatar in this video." Most requests. |
 | **Replace** (`character-swap-replace`) | Moves, camera, cuts, setting, sound | Face, hair, body, and the clothes in its own image or in an Outfit image | "As she looks", "in her own clothes", "wearing this outfit" |
-| **Motion** (tool `motion-control`) | Only the moves: the footage itself is not kept | Its photo, clothes and all, in the video's setting or the photo's own background | "Do this dance on its own", "on a plain background". One person only. |
+| **Motion** (`generate_motion_control`) | Only the moves: the footage itself is not kept | Its photo, clothes and all, in the video's setting or the photo's own background | "Do this dance on its own", "on a plain background". One person only. |
 | **Reshoot** (`creatorline-reshoot`) | The idea, the beats, the cut rhythm, the sound | A new take: their product, new lines, a new place | They want their own version, not this footage |
 
 Tell the person what a route does, never its id: "Mia takes her place and wears her outfit."
@@ -97,10 +97,9 @@ A swap copies only the moves that are in the clip. Anything new needs Reshoot or
    - Transfer extras (a place, a garment, a product): `import_asset` or `list_assets`, for
      `inputs.other_elements` (up to 6).
    - A Replace outfit: `import_asset` or `list_assets`, for `inputs.outfit` (one image).
-7. **Plan and price.** Call `create_generation` WITHOUT `confirm`
+7. **Plan and price.** Call `generate_character_swap` WITHOUT `confirm`
    ([references/calls.md](references/calls.md) has every shape):
-   - `tool: "character-swap"`, `model`: the mode's id, `brand_id`, and `avatar_id` when it is
-     not the brand's default;
+   - `model`: the mode's id, `brand_id`, and `avatar_id` when it is not the brand's default;
    - `inputs.source_video`: the source's asset id; `inputs.character`: the second avatar's
      asset id, only when there is one;
    - `params.duration`: ALWAYS set it, to the source's `duration_sec` rounded, at most 30. Left
@@ -150,8 +149,9 @@ line before the price, with one fix: a cleaner part of the clip, the motion rout
   keeps less detail; it films 15 s at a time, so a longer swap is made in parts and joined.
   Shorter is cheaper and holds the likeness better: the best 6 to 15 seconds of a
   trend usually carry it.
-- Asked what a swap would cost before there is a clip: `estimate_generation_cost` with
-  `tool: "character-swap"` and the `duration`, `resolution` and `quality` they have in mind.
+- Asked what a swap would cost before there is a clip: `generate_character_swap` without
+  `confirm` and without a source, with the `duration`, `resolution` and `quality` they have in
+  mind. It answers with an estimate (`estimate: true`).
 - The result keeps the source's frame: a landscape source gives a landscape video. There is no
   aspect setting.
 
@@ -190,16 +190,16 @@ Replace ignores `prompt`: leave it out. Steer it with:
 
 A swap keeps the video's sound, so a talking clip still speaks in the original performer's
 voice. For one avatar whose `get_avatar` has a `voice_id`, offer a re-voice once the swap is
-done: `create_generation` with `tool: "change-voice"`, the swap's output in
-`inputs.video_url`, and `params.voice_id` set to that `voice_id`. Always pass it: left out, a
-stock voice can be used. It needs one clear voice: music under the speech or two speakers come
-out garbled, so never offer it on a dance with music or a two-avatar swap. Leave the swap's own
+done: `generate_change_voice` with the swap's output in `inputs.video_url`, and
+`params.voice_id` set to that `voice_id`. Always pass it: left out, a stock voice can be used.
+It needs one clear voice: music under the speech or two speakers come out garbled, so never
+offer it on a dance with music or a two-avatar swap. Leave the swap's own
 `change_voice` param out: its charge is not in the swap's price, and its result is a separate
 run you cannot follow.
 
 ### The motion route
 
-For "my avatar does this dance on its own": the same flow with `tool: "motion-control"` and the
+For "my avatar does this dance on its own": the same flow with `generate_motion_control` and the
 dance clip in `inputs.motion_video`. The avatar's photo performs the moves as a new video, in
 the photo's clothes. `params.scene_control`: `video` (the default) puts it in the clip's own
 setting; `image` keeps the photo's background, the answer to "in front of a plain wall" when
@@ -236,7 +236,7 @@ the source or the part of it, not the settings.
 | The face drifts or looks pasted on | Small face, dark, fast blur, face covered | A closer, brighter part of the clip; `1080p` for a sharper face |
 | Wrong clothes | Transfer keeps the video's outfit | A direction, or Replace with an Outfit image |
 | Only part of the video came back | `duration` shorter than the source, or a source over 30 s | Set `duration`; swap a later part in Video Studio |
-| `run_video_ai`: the clip "needs at least 5 s" or "films at most 30 s" | The Video Studio clip is too short or too long | Change its `trim_start` / `trim_end` with `edit_video` |
+| `swap_character_in_clip`: the clip "needs at least 5 s" or "films at most 30 s" | The Video Studio clip is too short or too long | Change its `trim_start` / `trim_end` with `edit_video_clips` (`update_clip`) |
 | Still the original voice | The sound is kept by design | Re-voice it ([The voice](#the-voice)) |
 
 ## Show the result

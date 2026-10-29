@@ -28,8 +28,8 @@ house-rules.md, section 9):
 - the library: https://app.creatorline.io/assets
 - trends: https://app.creatorline.io/trending
 
-Always import a post link first instead of passing it straight to `create_generation`: the
-import gives you the length you need for `duration`, and an asset you can look at.
+Always import a post link first instead of passing it straight to `generate_character_swap`:
+the import gives you the length you need for `duration`, and an asset you can look at.
 
 ## 2. The checklist
 
@@ -60,7 +60,7 @@ Say a red flag in one line before the price, with one fix. Then do what the pers
 | Cuts between different people as the main subject | Swap one stretch with one lead |
 | A tiny, dark, blurred or mostly hidden face | A closer, brighter part of the clip, or Reshoot (a new take of the idea) |
 | They want their product, new lines or a new place throughout | Reshoot (`creatorline-reshoot`). A product the performer holds can also go in Transfer's `other_elements`. |
-| They want the moves, not this footage | The motion route (`motion-control`) |
+| They want the moves, not this footage | The motion route (`generate_motion_control`) |
 | A child on screen | Do not use it (house-rules.md, section 7) |
 | A real person's face offered as the second avatar | Only the person themselves, or with their permission; never a public figure |
 
@@ -76,12 +76,12 @@ brand owns or has licensed. For a trend post, the platform's own reuse rules app
   runs.
 - Shorter costs less and holds the likeness better. When the person needs only the hook and
   the peak of a dance, suggest the strongest 6 to 15 seconds.
-- A swap through `create_generation` always starts at the source's first second. For a later
+- A swap through `generate_character_swap` always starts at the source's first second. For a later
   part, or to skip a slow start, swap it in Video Studio (calls.md, section 6):
-  1. `create_video` with one `add_clip`: the source's `asset_id`, `trim_start` and
+  1. `create_video` with one clip in `clips`: the source's `asset_id`, `trim_start` and
      `trim_end` in seconds of the source, and an `id` for the clip. Free.
-  2. `run_video_ai` with `action: "character_swap"` and that `clip_id`, without `confirm` for
-     the price; on yes, with `confirm: true`.
+  2. `swap_character_in_clip` with that `clip_id`, without `confirm` for the price; on yes,
+     with `confirm: true`.
   3. `get_video` every 20 seconds or so until the clip is no longer `generating`.
 
   The part must be 5 to 30 s, and this route takes one avatar at standard quality, with no

@@ -47,12 +47,12 @@ expect on every take, and a price they agreed to before anything runs.
 | The person wants | Route | Tool | They get |
 |---|---|---|---|
 | A voice over a video (most requests) | **Voiceover** | `add_voiceover` on a Video Studio project | The video with the voice on its timeline |
-| A voice line on its own | **Voice line** | `create_generation`, tool `text-to-speech` | An audio file |
-| Two people talking | **Dialogue** | `create_generation`, tool `dialogue` | An audio file |
-| The same words in another voice | **Re-voice** | `create_generation`, tool `change-voice`; for a clip inside a Video Studio project, `run_video_ai` with `action: "change_voice"` | The video, re-voiced |
-| A face mouthing new audio | **Lip sync** | `create_generation`, tool `lipsync` | The video, mouth synced |
+| A voice line on its own | **Voice line** | `generate_text_to_speech` | An audio file |
+| Two people talking | **Dialogue** | `generate_dialogue` | An audio file |
+| The same words in another voice | **Re-voice** | `generate_change_voice`; for a clip inside a Video Studio project, `change_clip_voice` | The video, re-voiced |
+| A face mouthing new audio | **Lip sync** | `generate_lipsync` | The video, mouth synced |
 | Another language | **Language version** | Narration: new voiceovers in that language. A face speaking: a voice line, then a lip sync | The video in that language |
-| The avatar seen narrating over their video | **On-screen narrator** | `ugc-video` blocks, `change-voice`, `add_layer` ([presenter](references/presenter.md)) | The video with the avatar talking in a card |
+| The avatar seen narrating over their video | **On-screen narrator** | `generate_ugc_video` blocks, `generate_change_voice`, `add_layer` ([presenter](references/presenter.md)) | The video with the avatar talking in a card |
 
 Whenever there is a video to narrate, take the Voiceover route, never a voice line laid under
 the video: the words are read exactly as written, its answer gives the take's real length,
@@ -91,9 +91,10 @@ no fitting: read it at its natural length and say how long it came out.
 - **The avatar's voice first.** `list_avatars` and `get_avatar` give `voice_id` (and
   `get_avatar` its `voice_name`); `get_brand` gives the default avatar's `voice_id`. Use the
   avatar the person named, else the brand's default avatar.
-- **Always pass it.** `voice_id` on `add_voiceover` and `run_video_ai`; `params.voice_id` on
-  `text-to-speech` and `change-voice`; both `params.voice_a` and `params.voice_b` on
-  `dialogue`. Left out, a run can speak in a stock voice or another avatar's.
+- **Always pass it.** `voice_id` on `add_voiceover` and `change_clip_voice`; `params.voice_id`
+  on `generate_text_to_speech` and `generate_change_voice`; both `params.voice_a` and
+  `params.voice_b` on `generate_dialogue`. Left out, a run can speak in a stock voice or
+  another avatar's.
 - **No voice on the avatar.** Say so once, offer two or three fitting voices from
   `list_voices` by name with a few words each, the best match first, and say the avatar gets
   a voice of its own on its page in the app.
@@ -159,9 +160,9 @@ no fitting: read it at its natural length and say how long it came out.
 8. **Run** on yes: the same calls with `confirm: true`, in order.
 9. **Wait and narrate.** `add_voiceover` waits for its own take: pass `wait_seconds: 45`. A
    generation: `get_generation` with `wait_seconds: 45`, again until `succeeded` or
-   `failed`. Video Studio jobs (export, captions, `run_video_ai`): `get_video` every 10 to 20
-   seconds. One short line between calls: "Recording Mia's read." "Putting her voice on the
-   clip." "Making the finished video."
+   `failed`. Video Studio jobs (export, captions, `change_clip_voice`): `get_video` every 10
+   to 20 seconds. One short line between calls: "Recording Mia's read." "Putting her voice on
+   the clip." "Making the finished video."
 10. **Fit** (Voiceover route), **check** (below), then **show** and offer **next steps**.
     Captions are a next step to offer, never added on your own.
 
@@ -173,8 +174,8 @@ sections 9 and 10).
 ### Voiceover: the route in short
 
 1. A project to work on: the video's `video_id`, or `create_video` with `brand_id`, `title`
-   and one `add_clip` per library video, in order (free).
-2. The clips' own sound off unless it should stay: `edit_video` with
+   and one clip in `clips` per library video, in order (free).
+2. The clips' own sound off unless it should stay: `edit_video_clips` with
    `{ "op": "set_all_clips_sound", "sound": false }` (free). Only a music bed set with
    `set_sound` is turned down under a voiceover by itself; a clip's own sound plays at full
    level and talks over the narration.
@@ -203,8 +204,8 @@ The take's length is known only once it is made. The whole method is in
 
 | The take | Fix | Paid? |
 |---|---|---|
-| Ends a little past its clip, and the visuals can stretch | `update_clip`: a longer `duration` on a photo clip, less trimmed off a video clip | Free (`edit_video`) |
-| Starts in the wrong place | `move_voiceover` with `id` and `start` | Free (`edit_video`) |
+| Ends a little past its clip, and the visuals can stretch | `update_clip`: a longer `duration` on a photo clip, less trimmed off a video clip | Free (`edit_video_clips`) |
+| Starts in the wrong place | `move_voiceover` with `id` and `start` | Free (`edit_video_sound`) |
 | Outside its band, the window fixed | Rewrite (too long: cut a clause; too short: add a fact; pausey: one flowing clause), then `add_voiceover` with `replace_id` (no `start` or `over`) | A new take: quote it, ask |
 | One word wrong or mispronounced | Respell it (writing for voice, section 3), then `replace_id` | A new take: quote it, ask |
 
@@ -233,8 +234,9 @@ The full method, with tables and examples, is in
 - **Feeling tags** (`[excited]`, `[cheerfully]`, `[laughs]`, `[whispers]`, `[curious]`,
   `[sad]`, `[sighs]`, `[pauses]`): in square brackets, in English whatever the language,
   right before the words they color, at most one per sentence. Several takes of one job open
-  with the same one tag, or none. `add_voiceover` and `dialogue` always perform them;
-  `text-to-speech` does unless `params.model_id` is changed, and then reads them out loud.
+  with the same one tag, or none. `add_voiceover` and `generate_dialogue` always perform them;
+  `generate_text_to_speech` does unless `params.model_id` is changed, and then reads them out
+  loud.
 - **The brand's voice.** Tone and do's from `brand_voice`; its don'ts are hard rules.
 - **The persona** ([house rules](references/house-rules.md), section 7): in the avatar's voice,
   its own results, its history with the product and its credentials are welcome ("I've made

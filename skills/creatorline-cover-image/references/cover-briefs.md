@@ -23,7 +23,7 @@ and reading a reference cover.
 
 ## 1. How the brief is used
 
-`create_generation` hands your `prompt` to Creatorline's image writer, which turns it into the
+`generate_photo_edit` hands your `prompt` to Creatorline's image writer, which turns it into the
 instruction the image model gets ([video briefs](video-briefs.md), section 15). The writer
 keeps the avatar's face from the avatar reference and adds the avatar's persona. It knows
 nothing about covers: the poster look, the parts of the frame the apps hide, the headline. Say
@@ -41,9 +41,10 @@ those yourself, in the blocks below, one block per line.
 
 ## 2. The call
 
+`generate_photo_edit`:
+
 ```json
 {
-  "tool": "photo-edit",
   "model": "gpt-image-v2-edit",
   "brand_id": "<brand id>",
   "avatar_id": "<the avatar in the video>",
@@ -54,11 +55,11 @@ those yourself, in the blocks below, one block per line.
 }
 ```
 
-| The cover | `tool` | `model` | `params` |
+| The cover | Tool | `model` | `params` |
 |---|---|---|---|
-| TikTok, Reels, Shorts (`9:16`) or YouTube (`16:9`), with a person or a product photo | `photo-edit` | `gpt-image-v2-edit` | `aspect_ratio`, `resolution: "2K"`, `quality: "Medium"` |
-| Instagram feed (`4:5`) or a carousel's first slide (`3:4`), with a person or a product photo | `photo-edit` | leave it out (`nano-banana-pro-edit`) | `aspect_ratio`, `resolution: "2K"` |
-| Nobody and no image to work from, any frame | `text-to-photo` | `nano-banana-pro` | `aspect_ratio`, `resolution: "2K"` |
+| TikTok, Reels, Shorts (`9:16`) or YouTube (`16:9`), with a person or a product photo | `generate_photo_edit` | `gpt-image-v2-edit` | `aspect_ratio`, `resolution: "2K"`, `quality: "Medium"` |
+| Instagram feed (`4:5`) or a carousel's first slide (`3:4`), with a person or a product photo | `generate_photo_edit` | leave it out (`nano-banana-pro-edit`) | `aspect_ratio`, `resolution: "2K"` |
+| Nobody and no image to work from, any frame | `generate_text_to_photo` | `nano-banana-pro` | `aspect_ratio`, `resolution: "2K"` |
 
 - **`count: 1`, always.** Each variant (an expression, a camera take, a concept) is its own
   brief and its own call. Never several takes of one brief: a retake is a retry (SKILL.md,
@@ -70,7 +71,7 @@ those yourself, in the blocks below, one block per line.
 - `quality: "High"` costs about three and a half times `Medium`: only for a 3D logo (section
   11) or a fallback edit (section 10).
 - `inputs.other_elements` holds only what the cover shows: the product first, then a logo.
-  Read the slot keys and values from `list_models` (`tool: "photo-edit"`) if anything is
+  Read the slot keys and values from the `generate_photo_edit` tool's schema if anything is
   refused; never guess a value.
 
 ## 3. The eleven blocks
@@ -259,11 +260,10 @@ file from the library, or a file link the person sends.
 
 When the person wants their flat logo as a glossy object on the cover. One run first, then its
 result goes in every cover call of the set as the logo input (the last image in
-`other_elements`).
+`other_elements`). `generate_photo_edit`:
 
 ```json
 {
-  "tool": "photo-edit",
   "model": "gpt-image-v2-edit",
   "brand_id": "<brand id>",
   "include_avatar": false,
@@ -308,10 +308,10 @@ A cover the person likes (a link or a picture in the chat) is art direction, nev
 
 ## 13. Special cases
 
-- **Nobody and no image** (a scene, a place, a graphic): `text-to-photo`,
+- **Nobody and no image** (a scene, a place, a graphic): `generate_text_to_photo`,
   `model: "nano-banana-pro"`, the frame's `aspect_ratio`, `resolution: "2K"`, and never
   `avatar_id` (it is refused). Drop the Subjects block and the identity lock.
-- **A product and nobody**: `photo-edit` with `include_avatar: false` and the product in
+- **A product and nobody**: `generate_photo_edit` with `include_avatar: false` and the product in
   `other_elements`; no Subjects block.
 - **Two avatars**: the second avatar's `image_url` from `get_avatar` in `inputs.characters`
   (use it at once: the link expires). The first avatar goes in by itself. Each gets its own

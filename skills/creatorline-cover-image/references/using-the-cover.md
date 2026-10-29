@@ -46,7 +46,7 @@ The picked cover becomes a short still at the very start of the video, so the po
 and the apps that show the first frame show the cover. Editing is free; the new export is paid.
 
 **Asked for together** ("make a cover and put it on my video"): price both before either runs.
-The cover's price comes from `create_generation` without `confirm`. The export's comes from
+The cover's price comes from `generate_photo_edit` without `confirm`. The export's comes from
 `export_video` without `confirm` on the project the cover will go into: every export of a video
 costs the same, so the quote holds after the cover is added. A clip that is not in a project
 yet: make the project first with `create_video` and the clip alone (free), then quote. One yes
@@ -60,7 +60,7 @@ and continue.
      version (the person may be editing it).
    - A finished clip (a generation or an upload): its `asset_id`.
 3. **Put the cover in front.**
-   - A project, with `edit_video`:
+   - A project, with `edit_video_clips`:
 
      ```json
      {
@@ -79,9 +79,9 @@ and continue.
      {
        "brand_id": "<brand id>",
        "title": "<the video's title>",
-       "operations": [
-         { "op": "add_clip", "asset_id": "<cover asset id>", "duration": 0.5, "id": "cover" },
-         { "op": "add_clip", "asset_id": "<video asset id>", "id": "main" }
+       "clips": [
+         { "asset_id": "<cover asset id>", "duration": 0.5, "id": "cover" },
+         { "asset_id": "<video asset id>", "id": "main" }
        ]
      }
      ```

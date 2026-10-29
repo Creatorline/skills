@@ -21,11 +21,11 @@ A refusal before a run means nothing was charged.
 
 | You see | Why | Do this |
 |---|---|---|
-| "Unknown tool", "Unknown parameter", "Unknown input" or "Invalid value ... Allowed: ..." | A guessed slug, key or value | Read `list_models` with that `tool` and use the exact keys and values. The refusal lists the allowed ones. |
-| `text-to-photo` refuses `avatar_id` | It draws from words alone and has no place for a face | Use `photo-edit`: the avatar's face goes in by itself. |
+| "Unknown tool", "Unknown parameter", "Unknown input" or "Invalid value ... Allowed: ..." | A guessed slug, key or value | Read that `generate_*` tool's schema and use the exact keys and values. The refusal lists the allowed ones. |
+| `generate_text_to_photo` refuses `avatar_id` | It draws from words alone and has no place for a face | Use `generate_photo_edit`: the avatar's face goes in by itself. |
 | A link in `inputs` is refused as a page or the wrong kind of file | A slot needs the media file itself | Use a direct link to the image, video or audio file, or an asset id from `list_assets`. A TikTok or Instagram post link works in a video slot only. A product page link goes in the `prompt` instead: the writer reads the page for facts. |
 | A YouTube link is refused | Only the long-video cutter takes a page link, in `source_url` | That is `creatorline-long-to-shorts`. For another tool, the person uploads the video file. |
-| Reference videos are over the combined length | `ugc-video`'s `source_video` holds a limited total | Trim them, or re-film the video with `creatorline-reshoot`, which the refusal names. |
+| Reference videos are over the combined length | `generate_ugc_video`'s `source_video` holds a limited total | Trim them, or re-film the video with `creatorline-reshoot`, which the refusal names. |
 | "Missing required input" for the avatar slot | The brand's default avatar has no face yet | Make the avatar at https://app.creatorline.io/avatars/new, or pass another avatar's `avatar_id`. |
 | "No such asset" | An id from another workspace, or a typo | Find the file again with `list_assets`. |
 | "No such brand", "No such avatar", "No such video" | This person cannot reach it (members see only their brands) or it does not exist | List, by name, what they can reach (`list_brands`, `list_avatars`, `list_videos`). |
@@ -40,7 +40,7 @@ Every failed run is refunded automatically. Say so, every time.
 |---|---|---|
 | `status: "failed"` with an `error` | The run could not finish | Read `error` and the `next` hints from `get_generation`. Say what failed in plain words, name the one thing you will change, and ask before the paid retry. |
 | A content check stopped it | The words or an input tripped the provider's filter | Rephrase: no real person's name, no brand the person did not give you, nothing explicit, no violence or weapons. Never send the same words again. |
-| A video with a real person's photo, or a clip with a real face in `source_video`, failed | The default video model takes AI faces only | With that person's consent, run `ugc-video` again with `model: "bytedance-seedance-2-0-reference-to-video"` (one take holds 15 s). Reshoot re-films a refused take on its own when it is 15 s or shorter; longer, pass `model: "reshoot-seedance-2-0"` and at most 15 s. |
+| A video with a real person's photo, or a clip with a real face in `source_video`, failed | The default video model takes AI faces only | With that person's consent, run `generate_ugc_video` again with `model: "bytedance-seedance-2-0-reference-to-video"` (one take holds 15 s). Reshoot re-films a refused take on its own when it is 15 s or shorter; longer, pass `model: "reshoot-seedance-2-0"` and at most 15 s. |
 | "The video engine is unavailable right now" | A problem on our side, not the person's | Refunded. Offer to try again later, or another tool for the same goal. |
 | Long-video cutting failed with no transcript or no clips found | The source has too little clear speech | `creatorline-long-to-shorts` needs a talking video. Try a video with speech. |
 | Captions or a hook burn failed with no speech | Nothing is said in the video | Add a voiceover first (`creatorline-voiceover`), or use a hook headline alone (`creatorline-captions`). |
@@ -54,10 +54,10 @@ again, or change the brief. A fix in Video Studio costs nothing until export.
 
 | You see | Why | Do this |
 |---|---|---|
-| The avatar is missing from a photo | Made with `text-to-photo`, or with `include_avatar: false`, or the brief never asked for a person | Redo with `photo-edit` and a brief that says "the avatar ...". |
+| The avatar is missing from a photo | Made with `generate_text_to_photo`, or with `include_avatar: false`, or the brief never asked for a person | Redo with `generate_photo_edit` and a brief that says "the avatar ...". |
 | A stranger instead of the avatar, or two look-alikes | An extra person in the brief with no description, or the wrong avatar | Describe other people by role and clothing, or leave them out; check `avatar_id`. |
-| The voice is not the avatar's | `text-to-speech`, `change-voice` and `dialogue` fall back to a stock voice unless told | Pass `params.voice_id` (on `dialogue`, `params.voice_a`) with the avatar's `voice_id` from `get_avatar`. No voice there: the brand's `voice_id` from `get_brand`, or a fitting one from `list_voices`. |
-| A finished clip speaks in the wrong voice | The video model makes its own voice | Run `change-voice` on it: `inputs.video_url` = the clip's `asset_id`, `params.voice_id` = the avatar's. One clear voice, no music. Over this connection prefer that to `change_voice: true` on `ugc-video`: that re-voice is a separate run whose result `get_generation` does not return and whose price is not in the first quote. |
+| The voice is not the avatar's | `generate_text_to_speech`, `generate_change_voice` and `generate_dialogue` fall back to a stock voice unless told | Pass `params.voice_id` (on `generate_dialogue`, `params.voice_a`) with the avatar's `voice_id` from `get_avatar`. No voice there: the brand's `voice_id` from `get_brand`, or a fitting one from `list_voices`. |
+| A finished clip speaks in the wrong voice | The video model makes its own voice | Run `generate_change_voice` on it: `inputs.video_url` = the clip's `asset_id`, `params.voice_id` = the avatar's. One clear voice, no music. Over this connection prefer that to `change_voice: true` on `generate_ugc_video`: that re-voice is a separate run whose result `get_generation` does not return and whose price is not in the first quote. |
 | A voiceover in Video Studio has the wrong voice | It uses the brand's voice unless told | `add_voiceover` with `replace_id` and the right `voice_id`. |
 | Lines rushed, cut or too sparse | The words do not fit the seconds | About 2.5 words a second: trim the lines or lengthen the clip (video-briefs.md, section 7). |
 | The product is wrong, blurry or its label garbled | No clean product photo, or text expected from the model | Pass a clean, well-lit product photo in its slot. Words that must be exact go in Video Studio text or the post caption, never in the picture. |
@@ -85,7 +85,7 @@ again, or change the brief. A fix in Video Studio costs nothing until export.
 | "This video is being changed somewhere else right now ..." | The person is editing it in the app at the same time | `get_video`, then make the change on what is there. Ask them not to edit it while you do. |
 | The export is refused | Empty, longer than 180 s, or waiting on a voiceover or captions | Read `get_video`: `ready_to_export` and `warnings` say what to fix. |
 | "Nothing is heard" warning | Every clip is muted and there is no sound or voiceover | Turn a clip's sound on, add a voiceover, or lay the person's audio under it. |
-| An on-clip AI action is refused on a stock clip | AI actions work on the brand's own files only | Use one of the brand's clips, or make new footage with `create_generation`. |
+| An on-clip AI action is refused on a stock clip | AI actions work on the brand's own files only | Use one of the brand's clips, or make new footage with a `generate_*` tool. |
 
 ## 6. Posting
 

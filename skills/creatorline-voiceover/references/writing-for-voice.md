@@ -127,7 +127,7 @@ in English whatever the language, right before the words they color. They are no
   them.
 - A read that sounds flat or robotic: write the feeling into the words first, then add the
   one tag that names it.
-- `add_voiceover` and `dialogue` always perform them. A voice line does too, unless
+- `add_voiceover` and `generate_dialogue` always perform them. A voice line does too, unless
   `params.model_id` names another engine: that one reads the tag out loud.
 - The words carry the feeling first. A tag only sharpens a line that already has it.
 

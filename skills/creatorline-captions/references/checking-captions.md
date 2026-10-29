@@ -63,8 +63,8 @@ number as the same whether written in digits or words. Then:
    - Over a generated talking clip, the take may not have said the script. Never paste the
      script over what was said: tell the person which lines differ, and offer a new take (the
      skill that made it) or captions of what was said.
-3. **Fix** with `edit_caption`, all in one `edit_video` call, highest `index` first (calls.md,
-   section 4).
+3. **Fix** with `edit_caption`, all in one `edit_video_captions` call, highest `index` first
+   (calls.md, section 4).
 4. **Count.** When only known words are spoken (a voiceover over silent clips), all the lines
    together hold exactly the known word count. One more or one fewer means a word is doubled
    or lost: find it and fix it.

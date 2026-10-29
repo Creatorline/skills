@@ -38,11 +38,10 @@ Detail: a faint fingerprint on the glass
 Claims: none given
 ```
 
-Call:
+Call, `generate_ugc_video`:
 
 ```json
 {
-  "tool": "ugc-video",
   "model": "veo3-1-reference-to-video",
   "brand_id": "<brand id>",
   "include_avatar": false,
@@ -64,11 +63,10 @@ Price message:
 ## 2. Path A: the product alone
 
 The person: "Just the candle, nobody in it, cosy evening vibe." Their "evening" beats the
-daylight default.
+daylight default. `generate_ugc_video`:
 
 ```json
 {
-  "tool": "ugc-video",
   "model": "veo3-1-reference-to-video",
   "brand_id": "<brand id>",
   "include_avatar": false,
@@ -86,11 +84,10 @@ per prop (shot grammar, section 8).
 The person: "Animate my cold brew bottle, a pour over ice, with a voiceover." One unbroken take
 fits a pour.
 
-Step 1, the still (2 to choose from):
+Step 1, the still (2 to choose from), `generate_photo_edit`:
 
 ```json
 {
-  "tool": "photo-edit",
   "model": "gpt-image-v2-edit",
   "brand_id": "<brand id>",
   "include_avatar": false,
@@ -101,14 +98,13 @@ Step 1, the still (2 to choose from):
 }
 ```
 
-Step 2, the motion. Price it together with step 1 by `estimate_generation_cost` with
-`tool: "photo-to-video"` and `params: { "duration": 8 }`. Once the person picked a still, call it
-without `confirm`: the same price goes straight on with `confirm: true`; a different one is asked
-again.
+Step 2, the motion, `generate_photo_to_video`. Price it together with step 1 by calling it
+without `confirm` and without the still, with `params: { "duration": 8 }` (an estimate). Once the
+person picked a still, call it without `confirm`: the same price goes straight on with
+`confirm: true`; a different one is asked again.
 
 ```json
 {
-  "tool": "photo-to-video",
   "brand_id": "<brand id>",
   "inputs": { "image_url": "<the picked still's asset id>" },
   "params": { "duration": 8 },
@@ -125,7 +121,7 @@ Price message (one yes for both):
 
 Notes:
 - No `@` tokens in the motion brief: the still is wired in as the start frame.
-- No `ugc_style` on `photo-to-video`: its models do not take one.
+- No `ugc_style` on `generate_photo_to_video`: its models do not take one.
 - For one take longer than 15 s, or `1080p`, add `"model": "bytedance-seedance-2-5-image-to-video"`
   (up to 30 s; its frame follows the still) and quote again.
 
@@ -133,11 +129,10 @@ Notes:
 
 The person: "Use Mia's hands, show my phone mount in her car, no face." The avatar goes in by
 itself; the brief keeps her face out of the frame. 10 s holds two shots of about 5 s: the intro
-into the use, then the second use into the result.
+into the use, then the second use into the result. `generate_ugc_video`:
 
 ```json
 {
-  "tool": "ugc-video",
   "brand_id": "<brand id>",
   "avatar_id": "<Mia's avatar id>",
   "inputs": { "objects": ["<mount asset id>"], "location": ["<car interior asset id>"] },
@@ -153,12 +148,12 @@ face shows, offer to keep it as a talking video or take it again on path A.
 
 A path A clip of 16 s is two takes joined, and the voice can change at the join. Re-voice it in
 one voice after it succeeds. Price this step with the clip, under the same yes
-(`estimate_generation_cost` with `tool: "change-voice"`). Once the clip exists, call it without
-`confirm`; the same price goes on with `confirm: true`, a different one is asked again:
+(`generate_change_voice` without `confirm`, before the clip exists: an estimate). Once the clip
+exists, call it without `confirm`; the same price goes on with `confirm: true`, a different one
+is asked again:
 
 ```json
 {
-  "tool": "change-voice",
   "brand_id": "<brand id>",
   "inputs": { "video_url": "<the clip's asset id>" },
   "params": { "voice_id": "<voice_id from get_brand>" }
@@ -175,7 +170,7 @@ of the same gender as the voice in the clip. The result is a new video with its 
 second a new use at a new distance; the third one more use and the result, each opening where
 the last ended. They are filmed with `"generate_audio": false` in `params` so only the voiceover
 speaks; their briefs carry no Voiceover and no Sound line. About 45 s works the same way with
-more clips. Write all the briefs first, then price all of it: the clips (`create_generation`
+more clips. Write all the briefs first, then price all of it: the clips (`generate_ugc_video`
 without `confirm`, each), plus the voiceover and the export from `get_video_guide` `credits`
 (captions too, if wanted). One yes for the total:
 
@@ -185,16 +180,25 @@ without `confirm`, each), plus the voiceover and the export from `get_video_guid
 > Three clips: <N1> credits. Voiceover: <N2>. Export: <N3>. <N> in all; you have <M>. Go ahead?
 
 A clip that fails is refunded and re-filmed alone (a new quote); the clips already done are kept.
-When the clips are done, build the video (free):
+When the clips are done, build the video (free): `create_video` with the clips, then
+`edit_video_texts` with the answer's `video_id`:
 
 ```json
 {
   "brand_id": "<brand id>",
   "title": "Glow C Serum, morning step",
+  "clips": [
+    { "asset_id": "<clip 1>", "id": "c1" },
+    { "asset_id": "<clip 2>", "id": "c2" },
+    { "asset_id": "<clip 3>", "id": "c3" }
+  ]
+}
+```
+
+```json
+{
+  "video_id": "<video id>",
   "operations": [
-    { "op": "add_clip", "asset_id": "<clip 1>", "id": "c1" },
-    { "op": "add_clip", "asset_id": "<clip 2>", "id": "c2" },
-    { "op": "add_clip", "asset_id": "<clip 3>", "id": "c3" },
     { "op": "add_text", "text": "One step. Two drops.", "over": "c1", "position": "top", "size": "l" }
   ]
 }
@@ -206,7 +210,7 @@ The clips join on plain cuts: no transitions. Then:
    `over: "c1"`; then `confirm: true`, which the yes already covered. The brand's own voice is
    used unless you pass `voice_id`.
 2. Read the voiceover's `end` in the answer. Trim the last clip to stop about 0.3 s after it:
-   `edit_video` with `update_clip`, `id: "c3"` and `trim_end` = the voiceover's `end` + 0.3
+   `edit_video_clips` with `update_clip`, `id: "c3"` and `trim_end` = the voiceover's `end` + 0.3
    minus the clip's `start` (`trim_end` counts in the clip's own seconds). If `warnings` says the
    voiceover runs past the end of the video, shorten the words (`add_voiceover` with
    `replace_id`, quoted again) rather than cut a clip short.

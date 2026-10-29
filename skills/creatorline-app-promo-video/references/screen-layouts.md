@@ -41,18 +41,20 @@ it replaces every word you corrected. So work in this order:
 2. `write_captions` with `style: "bold"`, `position: "auto"` (paid once per video, in the
    person's yes). Wait for `ready`.
 3. **Dead air.** The first line starts after 0.4 s, or the last line ends more than about
-   0.5 s before the clip does: one `edit_video` with `update_clip` (`id: "talk"`, `trim_start`
-   so the first word lands at about 0.3 s, `trim_end` about 0.5 s after the last word). Then
+   0.5 s before the clip does: one `edit_video_clips` with `update_clip` (`id: "talk"`,
+   `trim_start` so the first word lands at about 0.3 s, `trim_end` about 0.5 s after the last
+   word). Then
    `write_captions` again (free, no approval), wait for `ready`, and read the final times.
-4. **Correct the words** with `edit_caption`: the app's name spelled right, numbers as digits,
-   every line in the script's words. In Both mode, take the hook out of the captions here
-   (section 3).
-5. One `edit_video` call: the cards, the hook plate, the call to action text, and
-   `remove_captions` at the end in Hook mode. None of the others change the captions.
+4. **Correct the words** with `edit_caption` (`edit_video_captions`): the app's name spelled
+   right, numbers as digits, every line in the script's words. In Both mode, take the hook out of
+   the captions here (section 3).
+5. One `edit_video_layers` call with the cards, one `edit_video_texts` call with the hook plate
+   and the call to action text, and in Hook mode, last, `edit_video_captions` with
+   `remove_captions`. None of the others change the captions.
 6. `preview_video`, fix, preview again.
 7. `export_video`.
 
-Each `edit_video` call applies all its operations or none; the answer lists every clip, text
+Each `edit_video_*` call applies all its operations or none; the answer lists every clip, text
 and layer with its start and end. Read times from it instead of adding them up.
 
 ## 3. Captions: the clock and the three modes
@@ -116,8 +118,8 @@ showing around it:
  "width": 0.48, "column": "center", "row": "middle", "corners": "rounded"}
 ```
 
-One `add_layer` per card, all in one `edit_video` call. A photo layer can show for up to 30 s;
-a card never needs that.
+One `add_layer` per card, all in one `edit_video_layers` call. A photo layer can show for up
+to 30 s; a card never needs that.
 
 ## 5. Card timing
 
@@ -166,7 +168,7 @@ missing section is not a problem: the script skips its beat.
 
 ## 7. The hook plate and the call to action
 
-Both on the top row, where `auto` captions never sit.
+Both on the top row, where `auto` captions never sit, as `edit_video_texts` operations.
 
 ```json
 [{"op": "add_text", "id": "hook", "text": "A FREE BUDGET\nTHAT SORTS ITSELF", "start": 0, "end": 2.1,
@@ -196,7 +198,7 @@ at a time.
 ## 9. When the person brings a screen recording
 
 Never ask for one. When the person brings their own recording, use it as a card, not a full
-screen:
+screen (an `edit_video_layers` operation):
 
 ```json
 {"op": "add_layer", "asset_id": "<recording>", "id": "r1", "kind": "video", "start": 4.0,
@@ -213,10 +215,11 @@ screen:
   voice.
 - **Full screen or split screen only when the person asks for that look.**
   - Full screen: the same layer with `fill: true` instead of `width`, `column` and `row`.
-  - Split screen: it belongs to a clip, so first `split_clip` the take where the stretch
-    starts and ends (the first split's new id in `applied` is the middle piece), then
-    `write_captions` again (free), then `{"op": "set_split_screen", "id": "<middle piece>",
-    "asset_id": "<recording>", "place": "top", "share": "third", "sound": false}`. A wide
+  - Split screen: it belongs to a clip, so first `split_clip` (`edit_video_clips`) the take
+    where the stretch starts and ends (the first split's new id in `applied` is the middle
+    piece), then `write_captions` again (free), then `edit_video_split_screen` with
+    `{"op": "set_split_screen", "id": "<middle piece>", "asset_id": "<recording>", "place":
+    "top", "share": "third", "sound": false}`. A wide
     recording takes `share: "third"`, a phone one `half`; `focus` `{x, y, zoom}` picks the
     part that shows. The second video plays from its own start and cannot be trimmed there.
 

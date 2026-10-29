@@ -1,8 +1,8 @@
 # Unboxing briefs, worked
 
-Six briefs, one per situation, each with the exact `create_generation` call. The products and
-brands are made up. Ids in angle brackets come from `list_brands`, `list_assets` or
-`import_asset`; never show them to the person. Call first WITHOUT `confirm` to get the price,
+Six briefs, one per situation, each with the exact `generate_ugc_video` arguments. The
+products and brands are made up. Ids in angle brackets come from `list_brands`, `list_assets`
+or `import_asset`; never show them to the person. Call first WITHOUT `confirm` to get the price,
 then again with `confirm: true` after the yes. A 30-second first look is worked in
 after-the-reveal.md, section 5.
 
@@ -38,7 +38,6 @@ Sound: voice and room sound only: the slice of the tape, the flaps, the tissue, 
 
 ```json
 {
-  "tool": "ugc-video",
   "brand_id": "<brand id>",
   "prompt": "<the brief above>",
   "inputs": { "objects": ["<serum photo asset id>"] },
@@ -71,7 +70,6 @@ Sound: voice and room sound only: the knuckle taps, the magnet's click, a slow b
 
 ```json
 {
-  "tool": "ugc-video",
   "brand_id": "<brand id>",
   "prompt": "<the brief above>",
   "inputs": { "objects": ["<candle photo asset id>", "<box photo asset id>"] },
@@ -106,7 +104,6 @@ Sound: voice and room sound only: the knuckle taps, the flap, the tissue, a laug
 
 ```json
 {
-  "tool": "ugc-video",
   "brand_id": "<brand id>",
   "prompt": "<the brief above>",
   "inputs": {
@@ -141,7 +138,6 @@ Sound: room sound only: the slice of the tape, the flaps, the tissue, the cap's 
 
 ```json
 {
-  "tool": "ugc-video",
   "brand_id": "<brand id>",
   "prompt": "<the brief above>",
   "inputs": { "objects": ["<lipstick photo asset id>"] },
@@ -171,7 +167,6 @@ Sound: voice and room sound only: the slice of the tape, the flaps, the tissue, 
 
 ```json
 {
-  "tool": "ugc-video",
   "brand_id": "<brand id>",
   "prompt": "<the brief above>",
   "inputs": { "objects": ["<bottle photo asset id>"] },
@@ -222,7 +217,6 @@ Sound: voice and room sound only.
 
 ```json
 {
-  "tool": "ugc-video",
   "brand_id": "<brand id>",
   "prompt": "<take 2's brief>",
   "inputs": { "objects": ["<tote photo asset id>"] },

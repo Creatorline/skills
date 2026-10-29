@@ -79,10 +79,10 @@ avatar's own photo is the frame.
 5. **Plan in one message** (asking.md): the avatar, the scene (as it is, or the place, mic or
    green screen), the voice, the quality, the script as it will be said, and about how long it
    runs. Ask only a real gap.
-6. **Price.** `create_generation` with every argument and no `confirm`:
+6. **Price.** `generate_talking_head` with every argument and no `confirm`:
 
    ```json
-   {"tool": "talking-head", "brand_id": "<brand id>",
+   {"brand_id": "<brand id>",
     "prompt": "<the script, tags included>",
     "params": {"resolution": "768P"}}
    ```
@@ -105,17 +105,23 @@ build it in Video Studio (free; the export and captions have their own price the
 
 ```json
 {"brand_id": "<brand id>", "title": "<title>",
+ "clips": [{"asset_id": "<the main video's asset id>"}]}
+```
+
+Send that to `create_video`, then put the talking head on it with `edit_video_layers`:
+
+```json
+{"video_id": "<video id>",
  "operations": [
-   {"op": "add_clip", "asset_id": "<the main video's asset id>"},
    {"op": "add_layer", "asset_id": "<the talking head's asset id>", "kind": "green_screen",
     "column": "left", "row": "bottom", "width": 0.45, "over": "video", "sound": true}
  ]}
 ```
 
-Send that to `create_video`. The green comes off and the avatar stands bottom left. Bottom right
-or a bigger presenter: change `column` or `width`. A main video shorter than the talking head
-cuts the layer at its end, so pick one at least as long, or add clips after it with
-`edit_video`. Then `preview_video` to look, and `creatorline-video-studio` for the rest.
+The green comes off and the avatar stands bottom left. Bottom right or a bigger presenter:
+change `column` or `width`. A main video shorter than the talking head cuts the layer at its
+end, so pick one at least as long, or add clips after it with `edit_video_clips`. Then
+`preview_video` to look, and `creatorline-video-studio` for the rest.
 
 ## Check before you show it
 

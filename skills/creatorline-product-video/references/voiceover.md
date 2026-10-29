@@ -24,9 +24,9 @@ word:". Keep the final text: the captions are checked against it.
   woman's voice with an American accent, warm and quick".
 - The gender is settled once and stays the same in every take and every clip of the video, and
   matches any hands in frame.
-- For the brand's own voice, or one voice over a clip made of joined takes, run `change-voice`
-  on the finished clip with `params.voice_id` (SKILL.md, Voice options). Exact words over about
-  45 s: path D's `add_voiceover`.
+- For the brand's own voice, or one voice over a clip made of joined takes, run
+  `generate_change_voice` on the finished clip with `params.voice_id` (SKILL.md, Voice
+  options). Exact words over about 45 s: path D's `add_voiceover`.
 - The voice talks like a person beside you: second person ("two pumps, then your ends"), plain
   description of what the frame shows ("cap off, one press, done"), or its own first person.
 - It speaks as the avatar, in its own voice (truth-and-safety.md, section 4): its tone, its
@@ -145,5 +145,5 @@ person gives.
   `add_voiceover` with the exact words) rather than paying for take after take. Spell a hard name
   the way it sounds in the `add_voiceover` text; captions take the real spelling.
 - Captions print what was heard: compare `captions.lines` with your script and correct a
-  misheard word with the `edit_caption` operation (`edit_video`), brand names spelled as in the
-  script.
+  misheard word with the `edit_caption` operation (`edit_video_captions`), brand names spelled
+  as in the script.

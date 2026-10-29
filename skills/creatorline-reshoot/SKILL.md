@@ -117,11 +117,10 @@ Every step, and what each setting changes:
    in it. Whenever `objects` or `source_video` is attached, write one that says what each
    attachment is for: the server does not check this, and an unplaced attachment is wasted.
 
-6. **Price it.** `create_generation` WITHOUT `confirm`:
+6. **Price it.** `generate_reshoot` WITHOUT `confirm`:
 
    ```json
    {
-     "tool": "reshoot",
      "brand_id": "BRAND_ID",
      "avatar_id": "AVATAR_ID",
      "prompt": "DIRECTION",
@@ -332,7 +331,7 @@ What next?
 ```
 
 `OUTPUT_URL` is `output[0].url` and `STUDIO_URL` is `studio_url` from `get_generation`. N is
-`credits_charged` from the confirmed `create_generation`. M is `credit_balance` from
+`credits_charged` from the confirmed `generate_reshoot`. M is `credit_balance` from
 `get_credit_balance` read now: a take re-filmed on the second model moves the charge. The video
 link expires; the Creatorline link stays.
 

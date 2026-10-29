@@ -30,7 +30,7 @@ be filmed exactly as written with natural mouth movement.
 | "A proper show", "a studio look", "different camera angles" | This route |
 | Every word exactly as written, filmed with the host saying it | This route, or the voice-first route (host-continuity.md, section 8) |
 
-On the writer route `create_generation` always rewrites the brief into the model's prompt and
+On the writer route `generate_ugc_video` always rewrites the brief into the model's prompt and
 films one phone: it never takes written camera setups. Here the prompt reaches the video model
 exactly as you write it, through a workflow step with Enhance off. The writer does not rewrite
 it, so every rule below, Safety included, is yours to keep. The frame stays 9:16: Video Studio makes
@@ -232,7 +232,7 @@ For every part:
 2. The first setup differs from the last setup of the part before.
 3. Every cut inside changes the size by a step and the viewpoint.
 4. Every input is named by the right token, and nothing an image shows is described.
-5. The duration is inside the range `list_models` gives for the model.
+5. The duration is inside the range the tool's schema gives for the model.
 6. No placeholder, id, part number, note to the person, or word about the graphics layer.
 7. Safety holds (house-rules.md, section 7): no real, named person, no minor.
 8. The realism layer and the voice block are word for word the show's; the exclusions come

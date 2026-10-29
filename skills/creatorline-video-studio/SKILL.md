@@ -77,9 +77,10 @@ the person to the sibling skill when that is the whole request.
 1. **Activate.** If `track_skill_activation` is in your tools, call it once for this request
    with `skill_name: "creatorline-video-studio"`.
 2. **Orient** (house rules, section 1). Then `get_video_guide` once per conversation, before
-   your first `create_video` or `edit_video`. It is free and it is the authority: the
-   operations with the fields each needs and takes, the text looks, caption styles, voiceover
-   feelings, limits and what costs credits. When it and this file disagree, it wins.
+   your first `create_video` or `edit_video_*` call. It is free and it is the authority: the
+   operations with the fields each needs and takes, which edit tool does each, the text looks,
+   caption styles, voiceover feelings, limits and what costs credits. When it and this file
+   disagree, it wins.
 3. **Find the video or the media.**
    - An existing video: `list_videos` with `brand_id` (newest change first), match the title,
      then `get_video`. Read its clips, texts, layers, `warnings` and `revision`.
@@ -113,13 +114,18 @@ the person to the sibling skill when that is the whole request.
    for it', then your three clips with the slow starts cut, about 18 s, 'Link in bio' over the
    end." Edits are free, so build without asking for a yes.
 6. **Build.**
-   - New: `create_video` with `brand_id`, a `title` the person will recognize, and
-     `operations`: the clips first, in order, then the hook, texts, layers and the sound.
-   - Existing: `edit_video` with `video_id` and `operations` (`title` renames it).
-   - Give everything you add an `id` of your own ("hook", "c1", "title") so later operations in
-     the same call can name it, and use `over` (a clip id, or `"video"`) to time a text or a
-     layer to a clip instead of adding up seconds.
-   - Up to 60 operations per call, applied all or none
+   - New: `create_video` with `brand_id`, a `title` the person will recognize, `clips` (in
+     play order) and, when it opens on one, a `hook`. Then, right after, the texts with
+     `edit_video_texts`, the layers with `edit_video_layers` and the sound with
+     `edit_video_sound`.
+   - Existing: one tool per part of the video, each with `video_id` and `operations`:
+     `edit_video_clips` (clips and the hook), `edit_video_split_screen`, `edit_video_texts`,
+     `edit_video_layers`, `edit_video_sound` (music and voiceovers), `edit_video_captions`.
+     `rename_video` with `title` renames it.
+   - Give everything you add an `id` of your own ("hook", "c1", "title") so later operations
+     and calls can name it, and use `over` (a clip id, or `"video"`) to time a text or a layer
+     to a clip instead of adding up seconds.
+   - Up to 60 operations per call, each call applied all or none
      ([timeline rules](references/timeline-rules.md)). Ready-made sequences per format are in
      [formats](references/formats.md).
 7. **Read the answer.** It is the whole video: every clip, text and layer with its `start` and
@@ -127,14 +133,14 @@ the person to the sibling skill when that is the whole request.
    adjusted), `warnings` and `ready_to_export`. Take every time from it; never work one out.
 8. **Look.** `preview_video` with `video_id` (6 frames over the whole video, up to 9); add
    `show_safe_area: true` whenever the video has layers or a split screen, and `at: [...]` for
-   moments that matter (`[0.1, 1, 1.8]` for the opening as the feed shows it, the last second
-   for the ending). Check what
-   [Check before you show it](#check-before-you-show-it) lists, fix with `edit_video`, look
-   again. The pictures are for you: the person may never see them. When `exact` is false, clips
-   are shown by their cover frame: judge placement, overlap and readability, not what the clip
-   shows at that second. Stop after three rounds and show what you have.
+   moments that matter (`[0.1, 1, 1.8]` for the opening as the feed shows it, the last second for
+   the ending). Check what [Check before you show it](#check-before-you-show-it) lists, fix with
+   the `edit_video_*` tools, look again. The pictures are for you: the person may never see them.
+   When `exact` is false, clips are shown by their cover frame: judge placement, overlap and
+   readability, not what the clip shows at that second. Stop after three rounds and show what you
+   have.
 9. **Show the draft and price the finish.** Get the price of each finishing step without
-   starting it: `run_video_ai` without `confirm` when the plan needs AI on a clip,
+   starting it: the [AI on a clip](#ai-on-a-clip) tool without `confirm` when the plan needs one,
    `add_voiceover` without `confirm` when one is planned, `write_captions` without `confirm`
    when someone speaks, `export_video` without `confirm`. Then the draft card
    ([below](#show-the-result)): what you made, the studio link to watch it with sound, the
@@ -145,18 +151,19 @@ the person to the sibling skill when that is the whole request.
    plan (house rules, section 8), and stop there.
 10. **Finish, on yes**, in this order (the yes covers exactly what you quoted; re-quote when
     anything changed):
-    1. **AI on a clip**, if planned: `run_video_ai` with `confirm: true`, then wait for it
+    1. **AI on a clip**, if planned: the same AI tool with `confirm: true`, then wait for it
        ([AI on a clip](#ai-on-a-clip); a wait of minutes follows house rules, section 3). Its
        result changes the cut, so it goes first: re-anchor texts with `over`, then look again.
     2. **Voiceover**, if planned: `add_voiceover` with the same arguments and `confirm: true`.
        It waits for the take and answers with its real `end`; fit the clips to it (trim the
        last clip to end about 0.3 s after the voice), then `preview_video` again.
     3. **Captions** when someone speaks: `write_captions` with `confirm: true` (style and
-       position: `creatorline-captions` knows them; `hormozi` and `auto` by default). It
-       answers at once with `captions.status: "writing"`. Read `get_video` about every 20 s
-       until `ready` ("Writing the captions, about a minute."). Read `captions.lines` and fix a
-       misheard word with an `edit_caption` operation. Labels timed to what is said (formats 2,
-       8 and 10) go on now, from the lines' times; texts never put captions out of date.
+       position: `creatorline-captions` knows them; `hormozi` and `auto` by default). It answers
+       at once with `captions.status: "writing"`. Read `get_video` about every 20 s until `ready`
+       ("Writing the captions, about a minute."). Read `captions.lines` and fix a misheard word
+       with an `edit_caption` operation (`edit_video_captions`). Labels timed to what is said
+       (formats 2, 8 and 10) go on now, from the lines' times; texts never put captions out of
+       date.
     4. **Export**: `get_video` first; `ready_to_export` must be true. Then `export_video` with
        `confirm: true`. Read `get_video` every 10 to 30 s until `export.status` is `done`
        ("Exporting the MP4, usually one to a few minutes."). `export.asset_id` is the MP4 in the
@@ -189,8 +196,9 @@ The full mechanics, with every default and refusal, are in
    A change to the clips (added, removed, trimmed, split, reordered, sped up) or to a
    voiceover makes them `out_of_date`. Once a video has paid for its captions, `write_captions`
    again is free and starts without a yes; if it answers with a price, ask.
-4. **All or nothing.** When one operation is refused, nothing in that call was saved. Fix the
-   one it names and send the WHOLE list again, not the rest of it.
+4. **All or nothing.** When one operation is refused, nothing in that call was saved (what
+   earlier calls saved stays). Fix the one it names and send that call's WHOLE list again, not
+   the rest of it.
 5. **Two writers.** The person can have the video open in the studio while you work; your
    changes appear there as you make them. When they edit too, the server makes your change on
    the newest version; when it still cannot, the answer says nothing was saved: `get_video`,
@@ -234,26 +242,27 @@ The short version. The long one, with numbers and examples, is
 
 ## AI on a clip
 
-`run_video_ai` works on footage inside a video. It spends credits: call it without `confirm`
+Seven tools work on footage inside a video. Each spends credits: call it without `confirm`
 for the price, ask (with the rest of the finish when there is one, as one total), then
 `confirm: true`. It answers at once. Read `get_video` every 20 s or so ("Filming the new take,
 a few minutes.") until no clip shows `generating` and no warning starts with "Wait". A failed
 run is refunded and leaves the video as it was. It works only on the brand's own files, never
 on a stock clip.
 
-| `action` | Works on | Does |
+| Tool | Works on | Does |
 |---|---|---|
-| `generate_video` | nothing (`prompt`) | A new clip from words, with the avatar unless `include_avatar: false`; it joins the END (move it with `update_clip` and `index`) |
-| `generate_photo` | nothing (`prompt`) | A new photo clip from words, with the avatar unless `include_avatar: false`, at the end |
-| `character_swap` | a video clip showing 5 to 30 s | The avatar takes the person's place. `mode`: `transfer` (default; optional `prompt`) or `replace` (no `prompt`) |
-| `reshoot` | a video clip showing 5 s or more | The clip's idea filmed again with the avatar; `duration` when it is longer than one take |
-| `change_voice` | a video clip | The same words in another voice (`voice_id`, else the brand's) |
-| `edit_photo` | a photo clip | The photo changed the way `prompt` says |
-| `animate_photo` | a photo clip | A video that starts on the photo; `prompt` says what moves |
+| `add_ai_video_clip` | nothing (`prompt`) | A new clip from words, with the avatar unless `include_avatar: false`; it joins the END (move it with `update_clip` and `index`) |
+| `add_ai_photo_clip` | nothing (`prompt`) | A new photo clip from words, with the avatar unless `include_avatar: false`, at the end |
+| `swap_character_in_clip` | a video clip (`clip_id`) showing 5 to 30 s | The avatar takes the person's place. `mode`: `transfer` (default; optional `prompt`) or `replace` (no `prompt`) |
+| `reshoot_clip` | a video clip (`clip_id`) showing 5 s or more | The clip's idea filmed again with the avatar; `duration` when it is longer than one take |
+| `change_clip_voice` | a video clip (`clip_id`) | The same words in another voice (`voice_id`, else the brand's) |
+| `edit_photo_clip` | a photo clip (`clip_id`) | The photo changed the way `prompt` says |
+| `animate_photo_clip` | a photo clip (`clip_id`) | A video that starts on the photo; `prompt` says what moves |
 
-`avatar_id` picks another avatar (else the brand's default). For anything bigger than one
-clip, the sibling skill knows the craft: `creatorline-character-swap`, `creatorline-reshoot`,
-`creatorline-voiceover`. Never name the engine behind a result.
+Each takes `video_id` and `confirm` besides its own fields (its schema lists them). `avatar_id`
+picks another avatar (else the brand's default) on the four that film one. For anything bigger
+than one clip, the sibling skill knows the craft: `creatorline-character-swap`,
+`creatorline-reshoot`, `creatorline-voiceover`. Never name the engine behind a result.
 
 ## Check before you show it
 
@@ -278,7 +287,7 @@ clip, the sibling skill knows the craft: `creatorline-character-swap`, `creatorl
 | What you see | Why | Do this |
 |---|---|---|
 | "Operation N (...) cannot be done, so NOTHING was saved" | One operation broke a rule; the reason and the valid values follow | Fix that one and send the whole list again |
-| "Add a clip first" | A text, layer, voiceover or caption on an empty video | Put `add_clip` first in the list |
+| "Add a clip first" | A text, layer, voiceover or caption on an empty video | Clips first: `create_video` with `clips`, or `add_clip` with `edit_video_clips` |
 | "... is a photo" / "... is a sound" / "`duration` is how long a PHOTO shows" | A field for the other kind of media | Photos take `duration`; videos take trims, `speed`, `sound`; audio goes in `set_sound` |
 | "No asset ... that this brand can use" | Another brand's file, or a wrong id | `list_assets` with this `brand_id`, or `import_asset` it for this brand |
 | "This video is being changed somewhere else right now" | The person is editing it in the studio | `get_video`, then the change on what is there; ask them to pause |
@@ -362,4 +371,4 @@ Open only the one the task needs.
   results, failures, safety, what only the app does.
 - [Asking](references/asking.md): how to run the intake.
 - [Video briefs](references/video-briefs.md): writing the `prompt` when new footage is made for
-  the edit (`run_video_ai` or a format skill).
+  the edit (an [AI on a clip](#ai-on-a-clip) tool or a format skill).
