@@ -42,12 +42,12 @@ video. Composes a shot plan with Enhance on; with Enhance off, tokens bind the i
 
 | Model | One take | Resolution | Cost | Notes |
 |---|---|---|---|---|
-| `bytedance-seedance-2-5-reference-to-video` | 30 s (duration up to 120, filmed as joined takes) | 720p, 1080p | standard | The hero. AI faces only. Up to 10 reference clips |
-| `bytedance-seedance-2-0-reference-to-video` | 15 s (up to 60) | 720p, 1080p | standard | Real faces, with consent. Up to 3 reference clips |
-| `bytedance-seedance-2-0-reference-to-video-fast` (default) | 15 s (up to 60) | 720p | low | Drafts and volume |
-| `bytedance-seedance-2-0-mini-reference-to-video` | 15 s (up to 60) | 720p | lowest | Budget drafts |
+| `bytedance-seedance-2-5-reference-to-video` | 30 s (duration up to 120, filmed as joined takes) | 720p, 1080p | standard | The hero. AI faces only. Up to 30 images in all; up to 10 reference clips and up to 10 audio clips, each 2 to 30 s, 30 s in all per slot |
+| `bytedance-seedance-2-0-reference-to-video` | 15 s (up to 60) | 720p, 1080p | standard | Real faces, with consent. At most 9 images in all (avatars, location and objects together); up to 3 reference clips, each 2 to 15 s, 15 s in all; up to 3 audio clips |
+| `bytedance-seedance-2-0-reference-to-video-fast` (default) | 15 s (up to 60) | 720p | low | Drafts and volume. The 2.0 limits: 9 images in all, 3 reference clips of 2 to 15 s, 3 audio clips |
+| `bytedance-seedance-2-0-mini-reference-to-video` | 5, 10 or 15 s (up to 60, in 5 s steps) | 720p | lowest | Budget drafts. `duration` in 5 s steps only; the 2.0 limits |
 | `google-gemini-omni-flash-reference-to-video` | 10 s (up to 60) | 720p, 1080p | low (1080p high) | `characters` up to 3, `location` 2, `objects` 2, `reference_videos` up to 3; no audio slot |
-| `veo3-1-reference-to-video` | 8 s steps (8 to 56) | 720p, 1080p | high | `image_urls` only (up to 3): the avatar is NOT added |
+| `veo3-1-reference-to-video` | 8 s steps (8 to 56) | 720p, 1080p | high | `image_urls` only (up to 3): the avatar is NOT added. Always with sound: no `generate_audio` |
 | `xai-grok-imagine-reference-to-video` | up to 15 s | 720p | lowest | `image_urls` only (up to 7): the avatar is NOT added |
 
 Pick 2.5 for the piece that gets posted, 2.0 for a real person's face, the default for drafts
@@ -68,15 +68,16 @@ Kling v3 tiers, `keyframes` on Flux 3 Max Keyframes; the end frame is the matchi
 | `bytedance-seedance-2-0-image-to-video` | 4 to 15 s | 720p, 1080p | standard | |
 | `bytedance-seedance-2-0-image-to-video-fast` (default) | 4 to 15 s | 720p | low | Volume |
 | `google-gemini-omni-flash-image-to-video` | 3 to 10 s | 720p, 1080p | low (1080p high) | |
-| `veo3-1-first-last-frame-to-video` | 4, 6 or 8 s | 720p, 1080p | high | A first-and-last-frame look |
-| `veo3-1-first-last-frame-to-video-fast` | 4, 6 or 8 s | 720p, 1080p | low | |
+| `veo3-1-first-last-frame-to-video` | 4, 6 or 8 s | 720p, 1080p | high | A first-and-last-frame look. Always with sound: no `generate_audio` |
+| `veo3-1-first-last-frame-to-video-fast` | 4, 6 or 8 s | 720p, 1080p | low | Always with sound: no `generate_audio` |
 | `veo-3-1-lite-first-last-frame-to-video` | 8 s | 720p, 1080p | low, one price per run | |
 | `flux-3-max-image-to-video` | 5 to 20 s | 720p, 1080p | low (1080p standard) | First frame `image_url`, optional `end_image_url` |
 | `flux-3-max-keyframes-to-video` | 5 to 20 s | 720p, 1080p | low (1080p standard) | Up to 10 `keyframes` with `keyframe_timestamps`: whole seconds, comma-separated, ascending, within `duration` (empty spreads them evenly) |
 | `xai-grok-imagine-video-1-5-preview-image-to-video` | 1 to 15 s | 720p | lowest | No end frame |
 | `minimax-h3-max-image-to-video` / `minimax-h3-max-turbo-image-to-video` | 5 to 15 s | `768P` | lowest | `prompt_expansion_mode` |
-| `kling-v3-pro-image-to-video` / `kling-v3-standard-image-to-video` / `kling-o3-standard-image-to-video` | 3 to 15 s | fixed 1080p / 720p / 720p | low to lowest | Native audio raises the Kling v3 rate |
-| `kling-v3-4k-image-to-video` | 3 to 15 s | fixed 4K | highest | Only when asked |
+| `kling-v3-pro-image-to-video` / `kling-v3-standard-image-to-video` | 5, 10 or 15 s | fixed 1080p / 720p | low to lowest | Native audio raises the rate; with an end frame the take has no sound and is priced so |
+| `kling-o3-standard-image-to-video` | 3 to 15 s | fixed 720p | lowest | With an end frame the take has no sound and is priced so |
+| `kling-v3-4k-image-to-video` | 5, 10 or 15 s | fixed 4K | highest | Only when asked. With an end frame the take has no sound |
 
 ## 3. Video: text to video (`video-t2v`)
 
@@ -91,13 +92,15 @@ whenever the avatar should appear, use reference video instead.
 | `flux-3-max-text-to-video` | 5 to 20 s | 720p, 1080p | low (1080p standard) |
 | `minimax-h3-max-text-to-video` / `minimax-h3-max-turbo-text-to-video` | 5 to 15 s | `768P` | lowest |
 
+Veo 3.1 always films with sound: it has no `generate_audio`.
+
 ## 4. Video: Reshoot (`reshoot`)
 
 A source video re-filmed with the avatar: same beats, cut rhythm and sound, optionally the
 person's product and new lines. Output: video. Slots: `character: image (auto)`,
 `source: video` (required: bind it or wire it), `objects: image?` (the product shown instead
 of the one in the video), `source_video: video?` (up to 3: a screen recording or product
-footage to show). The prompt is an optional Direction; the pipeline writes its own model
+footage to show; each 2 to 15 s and 15 s in all on 2.0, 2 to 30 s and 30 s in all on 2.5). The prompt is an optional Direction; the pipeline writes its own model
 prompt, so no `enhance` key. Params: `duration` (default 10), `resolution`, `change_voice`
 (no effect in a workflow: add a `change-voice` step for the avatar's voice). The source needs
 one main person on camera.
@@ -133,7 +136,7 @@ the engine behind it; the modes are Transfer and Replace, the qualities Standard
 
 The avatar performs the moves of a motion video (a dance, a gesture) from its photo. Output:
 video. `kling-v3-standard-motion-control`: `character_image: image (auto)`,
-`motion_video: video` (required). Params: `scene_control` (`video`, default: the avatar is put
+`motion_video: video` (required, 3 to 30 s; at most 10 s with `character_orientation: image`). Params: `scene_control` (`video`, default: the avatar is put
 into the motion video's first frame; `image`: keeps the avatar photo's background),
 `character_orientation` (`video` default, or `image`). Fixed prompt: no prompt, no `enhance`.
 Cost: per second of the motion video, low.
@@ -161,21 +164,23 @@ existing image: `characters: image (auto, up to 4)`, `location: image?`,
 `other_elements: image?`. Every picture of the avatar is `photo-edit`; a product-only edit
 sets `dropCharacterAvatar: true`. Params: `aspect_ratio`, `resolution` (default `1K` on the
 Nano Banana models and `2K` on GPT Image; `2K` for a frame that gets animated or posted; `4K`
-only when asked), `num_images` (keep 1: a step passes one image on). Output: image.
+only when asked), `num_images` (keep 1: a step passes one image on). Output: image. The edit
+models take a limited number of images across their three slots together: 14 on Nano Banana,
+16 on GPT Image, 15 on Seedream counting the pictures it makes.
 
 | Stage | Model | Cost | Notes |
 |---|---|---|---|
 | `photo` | `nano-banana-pro` (default) | standard | Realism; 9:16 available |
 | `photo` | `nano-banana-2-1-text-to-image` | low | Newer Nano Banana 2; volume |
 | `photo` | `nano-banana-2-text-to-image` | low | Volume |
-| `photo` | `gpt-image-v2-text-to-image` | low to highest by `quality` (`Low`, `Medium`, `High`) | Words inside the image |
+| `photo` | `gpt-image-v2-text-to-image` | low to highest by `quality` (`Low`, `Medium`, `High`) | Words inside the image. GPT Image ratios: `1:1`, `2:3`, `3:2`, `3:4`, `4:3`, `16:9`, `9:16` (no `auto`) |
 | `photo` | `gpt-image-v2-5-flare-text-to-image` / `gpt-image-v2-5-sunburst-text-to-image` | low to highest by `quality` (`Low`, `Medium`, `High` default, `XHigh`, `Max`) | Newer GPT Image; Sunburst is slower, for finer detail |
 | `photo-edit` | `nano-banana-pro-edit` (default) | standard | Best likeness. No 9:16 (`auto` follows the input) |
 | `photo-edit` | `nano-banana-2-1-edit` | low | 9:16 available (`Auto` follows the input) |
 | `photo-edit` | `nano-banana-2-edit` | low | No 9:16 |
 | `photo-edit` | `gpt-image-v2-edit` | low to highest by `quality` | 9:16 available; words inside the image |
 | `photo-edit` | `gpt-image-v2-5-flare-edit` / `gpt-image-v2-5-sunburst-edit` | low to highest by `quality` (as above) | 9:16 available; the newer GPT Image |
-| `photo-edit` | `bytedance-seedream-v4-5-edit` | lowest | `image_size` instead of ratio and resolution (`portrait_16_9` is vertical) |
+| `photo-edit` | `bytedance-seedream-v4-5-edit` | lowest | `image_size` instead of ratio and resolution: `auto_2K` (default), `auto_4K`, `portrait_4_3`, `landscape_4_3`, `portrait_16_9` (vertical), `landscape_16_9` |
 
 A 9:16 still of the avatar (a frame to animate, a story): `gpt-image-v2-edit` at `9:16`.
 
