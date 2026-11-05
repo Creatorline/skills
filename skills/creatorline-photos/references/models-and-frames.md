@@ -46,14 +46,14 @@ Spelled exactly as here; a value not listed is refused before anything is charge
 |---|---|---|---|
 | `nano-banana-pro-edit` | `auto` (default), `1:1`, `2:3`, `3:2`, `3:4`, `4:3`, `4:5` | `1K` (default), `2K`, `4K` | |
 | `nano-banana-2-edit` | `Auto` (default), `1:1`, `1:4`, `4:1`, `1:8`, `8:1`, `2:3`, `3:2`, `3:4`, `4:3` | `1K` (default), `2K`, `4K` | |
-| `gpt-image-v2-edit` | `1:1`, `2:3`, `3:2`, `3:4`, `4:3`, `16:9`, `9:16` (default) | `1K`, `2K` (default), `4K` | `quality`: `Low`, `Medium` (default), `High` |
-| `gpt-image-v2-5-flare-edit`, `gpt-image-v2-5-sunburst-edit` | as `gpt-image-v2-edit` | `1K`, `2K` (default), `4K` | `quality`: `Low`, `Medium`, `High` (default), `XHigh`, `Max` (their `High` costs what GPT 2's `Medium` does) |
+| `gpt-image-v2-edit` | `auto` (the first image's own shape), `1:1`, `3:1`, `2:3`, `3:2`, `3:4`, `4:3`, `16:9`, `9:16` (default) | `1K`, `2K` (default), `4K` | `quality`: `Low`, `Medium` (default), `High` |
+| `gpt-image-v2-5-flare-edit`, `gpt-image-v2-5-sunburst-edit` | `1:1`, `2:3`, `3:2`, `3:4`, `4:3`, `16:9`, `9:16` (default) | `1K`, `2K` (default), `4K` | `quality`: `Low`, `Medium`, `High` (default), `XHigh`, `Max` (their `High` costs what GPT 2's `Medium` does) |
 | `nano-banana-2-1-edit` | `Auto` (default), `1:1`, `2:3`, `3:2`, `3:4`, `4:3`, `4:5`, `5:4`, `9:16`, `16:9`, `21:9` | `1K` (default), `2K`, `4K` | |
 | `bytedance-seedream-v4-5-edit` | none | none | `image_size`: `auto_2K` (default), `auto_4K`, `portrait_4_3`, `landscape_4_3`, `portrait_16_9`, `landscape_16_9` |
 | `nano-banana-2-text-to-image` | `1:1`, `2:3`, `3:2`, `3:4`, `4:3`, `4:5`, `5:4`, `9:16` (default), `16:9`, `21:9` | `1K` (default), `2K`, `4K` | |
 | `nano-banana-pro` | `21:9`, `16:9`, `3:2`, `4:3`, `5:4`, `1:1`, `4:5`, `3:4`, `2:3`, `9:16` (default) | `1K` (default), `2K`, `4K` | |
-| `gpt-image-v2-text-to-image` | as `gpt-image-v2-edit` | `2K` (default) | `quality` as above |
-| `gpt-image-v2-5-flare-text-to-image`, `gpt-image-v2-5-sunburst-text-to-image` | as `gpt-image-v2-edit` | `2K` (default) | `quality` as the 2.5 edits |
+| `gpt-image-v2-text-to-image` | `1:1`, `2:3`, `3:2`, `3:4`, `4:3`, `16:9`, `9:16` (default) | `2K` (default) | `quality` as above |
+| `gpt-image-v2-5-flare-text-to-image`, `gpt-image-v2-5-sunburst-text-to-image` | `1:1`, `2:3`, `3:2`, `3:4`, `4:3`, `16:9`, `9:16` (default) | `2K` (default) | `quality` as the 2.5 edits |
 | `nano-banana-2-1-text-to-image` | `1:1`, `2:3`, `3:2`, `3:4`, `4:3`, `4:5`, `5:4`, `9:16` (default), `16:9`, `21:9` | `1K` (default), `2K`, `4K` | |
 
 - Always pass `aspect_ratio` (or `image_size`) and `resolution: "2K"`: the defaults differ from
@@ -78,7 +78,7 @@ Spelled exactly as here; a value not listed is refused before anything is charge
 | A square grid post, a product tile | `1:1` | default; `gpt-image-v2-edit` when nobody is in it |
 | A shop listing (studio shot) | `1:1` | `gpt-image-v2-edit` |
 | A Pinterest pin | `2:3` | `gpt-image-v2-edit` with nobody in it; default with the avatar |
-| A website, email or campaign banner | `16:9` | `gpt-image-v2-edit`; `3:2` on the default with the avatar in it |
+| A website, email or campaign banner | `16:9`, or `3:1` for a slim strip | `gpt-image-v2-edit`; `3:2` on the default with the avatar in it |
 | An ad pack | `1:1`, `4:5` and `9:16` | `gpt-image-v2-edit` for `1:1` and `9:16`, default for `4:5` |
 
 Every frame of one carousel shares one frame shape.
