@@ -110,10 +110,10 @@ line ("Working on Glow Lab with Mia."), and go straight to the request.
 | You find | Say, in one line | Offer |
 |---|---|---|
 | No brand | Creatorline works per brand: create the first at https://app.creatorline.io/brands/new | nothing else until it exists |
-| No avatar for the brand | Make the avatar (face, voice, persona) at https://app.creatorline.io/avatars/new | a narrated faceless video, photos without a person, a script |
+| No avatar for the brand | Make the avatar now, here (references/new-avatar.md), or in the app at https://app.creatorline.io/avatars/new | a narrated faceless video, photos without a person, a script |
 | No connected account | Posting needs one, connected at https://app.creatorline.io/connections; making works now | the usual options |
 | An account with `can_publish: false` | "TikTok @glowlab needs reconnecting" with the connections link | the usual options |
-| `free_trial: true` | The trial answer (house-rules.md, section 8): nothing that uses credits runs until the plan starts | a script, a week planned, the avatar's face made in the app |
+| `free_trial: true` | The trial answer (house-rules.md, section 8): nothing that uses credits runs until the plan starts | a script, a week planned, the avatar's one face (references/new-avatar.md) |
 | Not the workspace they meant | They switch it (house-rules.md, section 8) | |
 
 ## Route the request
@@ -367,13 +367,13 @@ house-rules.md, section 9.
 | Task | Where |
 |---|---|
 | Create a brand | https://app.creatorline.io/brands/new |
-| Create an avatar (face, voice, persona) | https://app.creatorline.io/avatars/new |
+| Clone a voice, or a persona from named accounts | https://app.creatorline.io/avatars/new |
 | Connect or reconnect a social account | https://app.creatorline.io/connections |
 | Browse trends to re-film | https://app.creatorline.io/trending |
 | Approve, edit or decline a post waiting for review | https://app.creatorline.io/review |
 | The posting calendar, rescheduling, cancelling | https://app.creatorline.io/publish |
 | Analytics | https://app.creatorline.io/analytics |
-| Upload a file from the person's device | https://app.creatorline.io/assets, then find it with `list_assets` |
+| Upload a file from the device, where `create_upload` is not offered | https://app.creatorline.io/assets, then find it with `list_assets` |
 
 Pages that show one brand at a time open on the right brand with `?activeBrand=<brand id>`
 added to the link. Trends and analytics depend on the workspace's package: a locked page means it
@@ -390,3 +390,5 @@ is not included.
 - [references/asking.md](references/asking.md): how to ask, and how little.
 - [references/video-briefs.md](references/video-briefs.md): how to write a brief the server's
   writer turns into a strong video or photo.
+- [references/new-avatar.md](references/new-avatar.md): making a new avatar from a photo or
+  from generated faces, and bringing a file from the person's machine.

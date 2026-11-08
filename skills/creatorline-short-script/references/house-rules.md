@@ -69,7 +69,7 @@ When the host shows the Creatorline card, the quote is on it with an Approve but
 
 | Spends credits: needs a yes | Free |
 |---|---|
-| every `generate_*` tool, `run_workflow` (a real run), `add_voiceover`, `write_captions` (the first time on a video), the Video Studio AI tools (`add_ai_video_clip`, `add_ai_photo_clip`, `swap_character_in_clip`, `reshoot_clip`, `change_clip_voice`, `edit_photo_clip`, `animate_photo_clip`), `export_video` | every `list_*` and `get_*` tool, `import_asset`, `create_video`, the `edit_video_*` tools, `rename_video`, `preview_video`, `preview_assets`, `show_media`, `show_templates`, `show_avatars`, `create_post`, `validate_workflow`, `create_workflow`, `update_workflow` |
+| every `generate_*` tool (`generate_avatar_faces` included), `run_workflow` (a real run), `add_voiceover`, `write_captions` (the first time on a video), the Video Studio AI tools (`add_ai_video_clip`, `add_ai_photo_clip`, `swap_character_in_clip`, `reshoot_clip`, `change_clip_voice`, `edit_photo_clip`, `animate_photo_clip`), `export_video` | every `list_*` and `get_*` tool, `import_asset`, `create_upload`, `complete_upload`, `create_avatar`, `create_video`, the `edit_video_*` tools, `rename_video`, `preview_video`, `preview_assets`, `show_media`, `show_templates`, `show_avatars`, `create_post`, `validate_workflow`, `create_workflow`, `update_workflow` |
 
 **Batches.** Several paid runs for one request (a video plus captions plus export, five
 variations, a week of posts): quote every item first, add them up, ask one yes for the total.
@@ -230,7 +230,7 @@ way.
 
 | The answer says | Tell the person |
 |---|---|
-| "... is for paying customers. This workspace is in its free trial ...", or `free_trial: true` | Nothing that spends credits runs until the plan is started, and nothing was charged. An owner or admin starts the plan in the Creatorline app; give a link only if the answer had one (`start_plan_url`). Meanwhile offer free work: a script, a plan, a Video Studio edit of existing media, a post of existing media. The trial covers one avatar face, made in the app at https://app.creatorline.io/avatars/new. |
+| "... is for paying customers. This workspace is in its free trial ...", or `free_trial: true` | Nothing that spends credits runs until the plan is started, and nothing was charged. An owner or admin starts the plan in the Creatorline app; give a link only if the answer had one (`start_plan_url`). Meanwhile offer free work: a script, a plan, a Video Studio edit of existing media, a post of existing media. The trial covers one avatar face: `generate_avatar_faces` with `count: 1` (its price is still asked), or the app at https://app.creatorline.io/avatars/new. |
 | "Not enough credits: ... Nothing was charged and nothing was made." | The shortfall in one line, the server's own line about where credits come from, and a cheaper version. |
 | Only `get_plan_requirement` exists | Call it and say what it says: this connection needs the Growth plan or above. Give its link (`upgrade_url`, or `pricing_url` when that is all it has). Nothing else works until then. |
 | Only `list_workspaces` exists | The account is in several workspaces and has not picked one for this app. Call it, name the workspaces, give `choose_url`. Nothing has to be removed or added again: once they pick, they ask again. |
@@ -255,10 +255,10 @@ show one brand at a time: add `?activeBrand=<brand id>` so the right brand opens
 |---|---|
 | Create a brand | https://app.creatorline.io/brands/new |
 | Edit the brand document (voice, content angles, do's and don'ts) | Settings, Brands: the gear beside the brand in the left rail's brand switcher (no direct link) |
-| Create an avatar: face, voice, voice clone, persona | https://app.creatorline.io/avatars/new |
+| Clone a voice for an avatar, or write its persona from accounts the person names (a NEW avatar from a face, with a library voice, is made here: `create_avatar`) | https://app.creatorline.io/avatars/new |
 | Edit an avatar | https://app.creatorline.io/avatars (B) |
 | Connect or reconnect a social account; pin an avatar to it | https://app.creatorline.io/connections (B) |
-| Use a file from the person's device | https://app.creatorline.io/assets (B): drop it there, then find it with `list_assets` |
+| Use a file from the person's device, when `create_upload` is not offered (a chat app: it needs a shell) | https://app.creatorline.io/assets (B): drop it there, then find it with `list_assets` |
 | Approve, edit or decline a post waiting for review | https://app.creatorline.io/review (B) |
 | The calendar, posting slots, rescheduling or cancelling a post | https://app.creatorline.io/publish (B) |
 | Live posts | https://app.creatorline.io/published (B) |

@@ -24,7 +24,7 @@ image, never describe it from memory.
 | A link to the image file itself | `import_asset` with the `url`, the `brand_id` and a `title` (the product name). Use the returned asset in the slot; it stays in the library for next time. |
 | A product page link | Put the URL in the brief: the writer reads the page for facts. A slot still needs an image FILE: ask once for a photo, or for the image's own address (open the image, copy its address). |
 | A TikTok or Instagram video of the product | `import_asset` takes a video post link. Use it as a reference clip or a source, never as the product photo. |
-| A file on their device | Only links reach `import_asset`. Ask them to drop the file into https://app.creatorline.io/assets, then find it with `list_assets`. |
+| A file on their device | With `create_upload` offered (an agent with a shell): `create_upload` with its name, type and exact size, run the `curl` it returns, then `complete_upload`. Otherwise ask them to drop the file into https://app.creatorline.io/assets, then find it with `list_assets`. |
 | Nothing | Ask once, inside the intake message. Without a photo, offer a version where the product is named but never shown. |
 
 - A web page link in an image slot is refused before anything is charged.
