@@ -63,6 +63,24 @@ written for it to fit the rest. Anything else they said about it goes to `about`
   https://app.creatorline.io/assets and you find it with `list_assets`.
 - Already in Creatorline: `list_assets` with `file_type: "image"`, then `preview_assets`.
 
+**Check the face before the sheet.** The sheet copies the face from this photo, so look at it
+first: open the file when it is on their machine, or `preview_assets` with its id. The face is
+clear when it faces the camera or is turned at most three quarters, fills a fair part of the
+frame, is sharp and well lit, and nothing covers it (dark sunglasses, a hand, a mask, hair, a
+cap's shadow). For an animal, the same holds for its face.
+
+When it is not clear, say so BEFORE anything is priced or made, in one line that names what is
+wrong, and offer the ways on:
+
+- "The face is not clear in this photo (it shows the back of the head / the side / it is too
+  small / it is blurry / sunglasses cover the eyes). The sheet would have to invent the face."
+- Options: another photo where the face shows; generated options from a description instead
+  (a person only); or go ahead with this one, knowing the face is made up.
+
+Go ahead only on their explicit yes, and say again in the sheet's price line that the face is
+invented. A photo that shows only part of the body (chest up) is fine: say the sheet will
+invent the rest (legs, shoes).
+
 **Generated options** (no photo yet, a person only).
 1. Optional: `list_avatar_templates` (narrow by `gender`), show the pictures, let them pick a
    look. Its `id` is the `template_id`.
