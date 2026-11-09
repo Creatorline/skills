@@ -230,7 +230,7 @@ way.
 
 | The answer says | Tell the person |
 |---|---|
-| "... is for paying customers. This workspace is in its free trial ...", or `free_trial: true` | Nothing that spends credits runs until the plan is started, and nothing was charged. An owner or admin starts the plan in the Creatorline app; give a link only if the answer had one (`start_plan_url`). Meanwhile offer free work: a script, a plan, a Video Studio edit of existing media, a post of existing media. The trial covers one avatar face: `generate_avatar_faces` with `count: 1` (its price is still asked), or the app at https://app.creatorline.io/avatars/new. |
+| "... is for paying customers. This workspace is in its free trial ...", or `free_trial: true` | Nothing that spends credits runs until the plan is started, and nothing was charged. An owner or admin starts the plan in the Creatorline app; give a link only if the answer had one (`start_plan_url`). Meanwhile offer free work: a script, a plan, a Video Studio edit of existing media, a post of existing media. The trial covers one avatar face option (`generate_avatar_faces` with `count: 1`, its price still asked), not the avatar's character sheet: a new avatar is made once the plan starts, or in the app at https://app.creatorline.io/avatars/new. |
 | "Not enough credits: ... Nothing was charged and nothing was made." | The shortfall in one line, the server's own line about where credits come from, and a cheaper version. |
 | Only `get_plan_requirement` exists | Call it and say what it says: this connection needs the Growth plan or above. Give its link (`upgrade_url`, or `pricing_url` when that is all it has). Nothing else works until then. |
 | Only `list_workspaces` exists | The account is in several workspaces and has not picked one for this app. Call it, name the workspaces, give `choose_url`. Nothing has to be removed or added again: once they pick, they ask again. |
@@ -255,7 +255,7 @@ show one brand at a time: add `?activeBrand=<brand id>` so the right brand opens
 |---|---|
 | Create a brand | https://app.creatorline.io/brands/new |
 | Edit the brand document (voice, content angles, do's and don'ts) | Settings, Brands: the gear beside the brand in the left rail's brand switcher (no direct link) |
-| Clone a voice for an avatar, or write its persona from accounts the person names (a NEW avatar from a face, with a library voice, is made here: `create_avatar`) | https://app.creatorline.io/avatars/new |
+| Clone a voice for an avatar, or write its persona from accounts the person names (a NEW avatar, a person or an animal, with a library voice, is made here: its character sheet with `generate_avatar_faces`, then `create_avatar`) | https://app.creatorline.io/avatars/new |
 | Edit an avatar | https://app.creatorline.io/avatars (B) |
 | Connect or reconnect a social account; pin an avatar to it | https://app.creatorline.io/connections (B) |
 | Use a file from the person's device, when `create_upload` is not offered (a chat app: it needs a shell) | https://app.creatorline.io/assets (B): drop it there, then find it with `list_assets` |

@@ -1,18 +1,58 @@
 # A new avatar, and a file from the person's machine
 
+## Contents
+
+1. Ask once
+2. The persona
+3. The photo
+4. The character sheet
+5. Create it
+6. Refusals
+
+A new avatar always starts from its **character sheet**: one picture with three photos side by
+side (a chest-up close-up, the full body from the front, the full body from the back) on a plain
+light grey background. It is what keeps the avatar's face, build, hair and clothes the same in
+every photo and video made with it. The person's own photo is only the reference the sheet is
+made from; it never becomes the avatar's picture by itself. `create_avatar` refuses anything
+that is not a sheet.
+
+An avatar can be a person or an animal (a pet, a mascot animal): for an animal, pass its
+`species` ("Siamese cat", "borzoi").
+
 ## 1. Ask once
 
-One message, with defaults: the avatar's name, gender and age (18 to 80), the brand it
-belongs to (the active one by default), and where the face comes from:
+One message, with defaults: the avatar's name, a person or an animal (and which animal),
+gender, age (a person 18 to 80, an animal 0 to 40), the brand it belongs to (the active one by
+default), and where the look comes from:
 
-1. **Their own photo** (a face, well lit, looking at the camera): no cost.
-2. **Generated options** like a ready-made look, or from a description: a few credits each.
+1. **A photo they have** of the person or animal (the face clear, the body visible if possible).
+2. **Generated options** like a ready-made look, or from a description (a person only).
 
 A voice is optional: offer two or three from `list_voices` that fit, or none (runs then use the
 brand's voice). Cloning a voice and a persona from named accounts are app-only
 (https://app.creatorline.io/avatars/new).
 
-## 2. The face
+## 2. The persona
+
+The persona decides every script the avatar says, so settle it before creating the avatar. Ask
+in the same message as section 1, or right after it. Draft each answer yourself from what you
+already know (the brief, the bio, the account it will post on, the brand from `get_brand`), so
+the person mostly confirms or corrects:
+
+| Ask | Goes to `persona.` |
+|---|---|
+| Who is it, in two or three sentences (its bio, personality, story)? | `who`, and 2 to 4 words of it as `archetype` |
+| Who does it talk to? | `audience` |
+| How does it talk (a few words: dry, warm, hyped, deadpan)? | `tone` |
+| What does it post about (3 to 5 topics)? | `content_angles` |
+| What should viewers do (follow, comment, visit the link)? | `cta` |
+| Anything it never says or does? | `donts` |
+
+`format_notes` (how its videos are built: length, hooks, pacing) is optional; never name a fixed
+place or set. Show the draft as a short list and ask "anything to change?". What they skip is
+written for it to fit the rest. Anything else they said about it goes to `about`.
+
+## 3. The photo
 
 **A photo they have.**
 - A link to the image file: `import_asset` with the `url` and the `brand_id`.
@@ -23,7 +63,7 @@ brand's voice). Cloning a voice and a persona from named accounts are app-only
   https://app.creatorline.io/assets and you find it with `list_assets`.
 - Already in Creatorline: `list_assets` with `file_type: "image"`, then `preview_assets`.
 
-**Generated options.**
+**Generated options** (no photo yet, a person only).
 1. Optional: `list_avatar_templates` (narrow by `gender`), show the pictures, let them pick a
    look. Its `id` is the `template_id`.
 2. `generate_avatar_faces` with `template_id` and/or `description` (plus `gender`, `age`,
@@ -31,27 +71,67 @@ brand's voice). Cloning a voice and a persona from named accounts are app-only
    credits and the balance, and wait for a yes.
 3. On the yes, the same call with `confirm: true`. It answers at once with `take_ids`.
 4. `get_avatar_faces` with the `take_ids` and `wait_seconds: 45`, again until `done`
-   (one to four minutes). Show every ready picture, numbered, and let them pick one.
+   (one to four minutes). Show every ready picture, numbered, and let them pick one. The picked
+   take's id is the photo for the sheet.
 5. None fits: change the description and ask again, with its price.
 
-A workspace in its free trial can make ONE face: `count: 1`.
+## 4. The character sheet
 
-## 3. Create it
+`generate_avatar_faces` with `photo_asset_id` (the photo's id, or the picked take's id),
+`gender`, `species` for an animal, and `brand_id`, WITHOUT `confirm`: it answers with the price
+(about 6 credits). Say what it is ("a character sheet of Miso: a close-up, the front and the
+back, side by side"), the credits and the balance, and wait for a yes. Then the same call with
+`confirm: true`, and `get_avatar_faces` with its `take_ids` and `wait_seconds: 45` until `done`.
 
-`create_avatar` with `name`, `gender`, `age`, `face_asset_id` (the take's id or the image's
-id), `brand_id`, and `voice_id` plus `voice_name` when one was picked. Free. Its persona is
-written in the background within a minute.
+Show the sheet and ask if it looks right: the same face, build, hair (or coat) and clothes as
+the photo, three clean panels. If a panel is off, make another (with its price). Do not add a
+`description` or `template_id`: the sheet is made from the photo alone.
 
-Show it: **the name**, one line (brand, voice), the picture, and the app link (`studio_url`).
+The server sends the sheet's prompt word for word. Never make the sheet with
+`generate_photo_edit` instead: that tool rewrites its prompt, and its pictures are not sheets
+`create_avatar` accepts. For reference, a man's sheet is asked for like this (a woman's says
+"woman" and "her", an animal's names it and keeps its coat and markings):
+
+> Character reference sheet of the man in the first reference image: three photos placed
+> directly side by side, filling the whole image edge to edge, separated only by a narrow plain
+> white gap. No frames, no borders, no outer margin, no mat or card around the panels.
+>
+> Left: chest-up close-up portrait, facing the camera, neutral relaxed expression.
+>
+> Middle: full-body front view, standing straight, arms relaxed at his sides, head to shoes in
+> frame.
+>
+> Right: full-body back view, same pose, head to shoes in frame.
+>
+> Keep his exact face, build, hair and outfit from the first image, identical and consistent
+> across all three photos.
+>
+> Plain seamless light grey studio background in each photo, soft even lighting, even spacing
+> and framing, clean silhouette, consistent alignment.
+>
+> Photorealistic, DSLR, muted tones. No text.
+
+A workspace in its free trial: its credits cover one face option, not a sheet. The avatar is
+made once the plan starts (house rules, section 8).
+
+## 5. Create it
+
+`create_avatar` with `name`, `gender`, `age`, `face_asset_id` (the sheet's take id), `brand_id`,
+`persona` (section 2), `about`, `species` for an animal, and `voice_id` plus `voice_name` when
+one was picked. Free. The persona fields given are written as given; the rest are written in
+the background within a minute to fit them.
+
+Show it: **the name**, one line (brand, voice), the sheet, and the app link (`studio_url`).
 Offer next: a first photo of it, a talking video, or setting it as the brand's default avatar
 in the app.
 
-## 4. Refusals
+## 6. Refusals
 
 | Answer | Do |
 |---|---|
+| "A new avatar starts from its character sheet, not a photo." | Make the sheet (section 4) from that photo, then `create_avatar` with the sheet's id. |
 | "The workspace holds N avatars, as many as its plan allows." | Say so with the link the answer gives; offer an existing avatar. |
 | "That upload is not complete" / "The file has not arrived" | Run the `curl` line, then `complete_upload`; past 5 minutes, `create_upload` again. |
-| "That face take is still generating" | `get_avatar_faces` with `wait_seconds`. |
-| "That file is not an image" | The face must be a photo. |
+| "That face take is still generating" / "That face option is still generating" | `get_avatar_faces` with `wait_seconds`. |
+| "That file is not an image" | The sheet is made from a photo. |
 | A take `failed`, none came back | The credits came back; offer another try with its price. |

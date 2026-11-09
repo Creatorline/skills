@@ -113,7 +113,7 @@ line ("Working on Glow Lab with Mia."), and go straight to the request.
 | No avatar for the brand | Make the avatar now, here (references/new-avatar.md), or in the app at https://app.creatorline.io/avatars/new | a narrated faceless video, photos without a person, a script |
 | No connected account | Posting needs one, connected at https://app.creatorline.io/connections; making works now | the usual options |
 | An account with `can_publish: false` | "TikTok @glowlab needs reconnecting" with the connections link | the usual options |
-| `free_trial: true` | The trial answer (house-rules.md, section 8): nothing that uses credits runs until the plan starts | a script, a week planned, the avatar's one face (references/new-avatar.md) |
+| `free_trial: true` | The trial answer (house-rules.md, section 8): nothing that uses credits runs until the plan starts | a script, a week planned, one avatar face option (references/new-avatar.md) |
 | Not the workspace they meant | They switch it (house-rules.md, section 8) | |
 
 ## Route the request
@@ -390,5 +390,6 @@ is not included.
 - [references/asking.md](references/asking.md): how to ask, and how little.
 - [references/video-briefs.md](references/video-briefs.md): how to write a brief the server's
   writer turns into a strong video or photo.
-- [references/new-avatar.md](references/new-avatar.md): making a new avatar from a photo or
-  from generated faces, and bringing a file from the person's machine.
+- [references/new-avatar.md](references/new-avatar.md): making a new avatar (a person or an
+  animal) from its character sheet, made from a photo or a generated face, and bringing a file
+  from the person's machine.
