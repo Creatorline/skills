@@ -214,7 +214,7 @@ on the ledge, the street outside in warm light. Casual phone photo, slightly til
   plants on the left"); a place photo alone can put her in the wrong spot.
 - **Her in place of a person in their photo:** the photo in `other_elements`, "replace the
   person in @Input1 with @Avatar1, keep the pose, the clothes, the place and the light". Only
-  for a photo that is theirs, never of a public figure or someone who has not agreed.
+  for a photo that is theirs, never of someone who has not agreed.
 
 ## 11. A photo trend recreated
 

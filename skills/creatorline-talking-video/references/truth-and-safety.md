@@ -19,7 +19,7 @@ are how the lines are written, not gate items. It all adds to house-rules.md, se
   are talking to or has agreed to appear. A photo of someone is not permission to make them
   talk.
 - Consent unclear: ask once. No clear yes: use the avatar.
-- Never a public figure, a celebrity, a minor, or anyone made to pass for a specific real person.
+- Never a minor, or anyone made to pass for a specific real person who did not agree.
 - Never make anyone read younger: no "girl", "boy", "kid", "teen", "young", school uniforms or a
   child's bedroom in a brief. An ask that makes the person a minor, or leaves their adulthood
   unclear, stops here; nobody is quietly aged up to get around it.

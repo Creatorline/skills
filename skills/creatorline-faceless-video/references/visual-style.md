@@ -329,7 +329,7 @@ Frame: a tall frame, the subject in the upper middle, a calm lower third
   to picture, and a real person must never be recognizable.
 - **Real people, living or historical, are named in the narration only.** On screen they are
   an archetype in the right clothes, told apart by silhouette and build, from behind or far
-  away. No celebrity, politician or anyone who has not agreed.
+  away. No one who has not agreed.
 - **The brand's avatar stays out.** `include_avatar: false` on every `generate_photo_edit` call.
   Describe every figure fully so none comes out looking like the avatar.
 - **Figures read as adults.** Never a young person in a picture. Never write "child", "kid" or

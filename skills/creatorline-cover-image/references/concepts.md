@@ -197,7 +197,7 @@ strong cover words whenever the video lands on one.
 | A news strip about something that did not happen | none: a news look reads as a real outlet reporting it |
 | "DAY 100" when there is no hundredth day | the real episode or day number, or none |
 | Another brand's product, logo or interface as a prop | a plain, unbranded item; generic styling |
-| A celebrity or a real person's face | the avatar, or the person's own photo with their consent |
+| A real person's face, without their consent | the avatar, or the person's own photo with their consent |
 | A before and after | When the video shows the change: a split in before-and-after mode (section 8) |
 
 When you change the person's words, say so in one line in the plan, with the reason: "The
