@@ -168,7 +168,7 @@ The first avatar (`avatar_id`, or the brand's default) replaces the main person.
 avatar replaces the next most prominent person. The first avatar goes in by itself; the second
 goes in `inputs.character` as ONE asset id (Recast takes up to three there, four people in all:
 [references/calls.md](references/calls.md), section 3). NEVER list the first avatar there too:
-it goes in by itself, and listed again it is sent twice. Two ids there plus the first avatar make three
+it goes in by itself, and listed again it is sent twice. On Transfer and Replace, two ids there plus the first avatar make three
 faces, and the run fails.
 
 Name both people from the cover by role, place and clothes, and put the casting in the price
