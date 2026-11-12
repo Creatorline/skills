@@ -19,6 +19,11 @@ that is not a sheet.
 An avatar can be a person or an animal (a pet, a mascot animal): for an animal, pass its
 `species` ("Siamese cat", "borzoi").
 
+A person avatar is either **fictional** (generated options, or a made-up character) or **a real
+person who agreed to it**: the person you are talking to (an avatar of themselves is the most
+common ask), or someone who gave them permission (a creator, a model, a teammate). Both are
+normal uses: make either when asked, without a warning. The one check is in section 1.
+
 ## 1. Ask once
 
 One message, with defaults: the avatar's name, a person or an animal (and which animal),
@@ -27,6 +32,10 @@ default), and where the look comes from:
 
 1. **A photo they have** of the person or animal (the face clear, the body visible if possible).
 2. **Generated options** like a ready-made look, or from a description (a person only).
+
+With a photo of a real person, ask in the same message whose it is, unless they already said:
+"Is this you, or someone who agreed to be an avatar?" A yes is enough; ask nothing more and go
+on. No real person in it (a generated face, a drawing, an animal): no question.
 
 A voice is optional: offer two or three from `list_voices` that fit, or none (runs then use the
 brand's voice). Cloning a voice and a persona from named accounts are app-only

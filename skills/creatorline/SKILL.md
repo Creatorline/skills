@@ -132,6 +132,7 @@ intake.
 | A promo for an app, website, online store or software, with real screenshots or a screen recording (no trend link to copy) | `creatorline-app-promo-video` |
 | A TikTok, Reels or Shorts link re-filmed with the avatar: same beats and sound, new performer, maybe their product or app | `creatorline-reshoot` |
 | A real video kept exactly, with one or two people in it replaced by avatars; or the avatar doing a dance's moves | `creatorline-character-swap` |
+| One video filmed with several avatars, one per account | `creatorline-character-swap` (its multiply reference) |
 | Many versions of one video to compare: other avatars, hooks, products, voices, two or more languages | `creatorline-ad-variations` |
 | Something changed in a video that already exists, the rest kept: a product, an object, the clothes, the background, a colour, words in the picture | One quick change for the whole clip: the fast path (`generate_video_edit`). Their product, a timed change or several versions: `creatorline-ad-variations` |
 | A longer episode (30 to 120 s) or a recurring series with the avatar as host; an episode script over 60 s | `creatorline-ai-host` |

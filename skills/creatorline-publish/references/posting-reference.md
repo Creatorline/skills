@@ -1,7 +1,8 @@
 # Posting reference
 
-Every field, rule, status and refusal of the three posting tools: `create_post`, `publish_post`
-and `list_posts`, plus `list_connections` for the accounts.
+Every field, rule, status and refusal of the posting tools: `create_post`, `publish_post` and
+`list_posts`, `list_connections` for the accounts, and `set_device_posting` and `move_post_day`
+for accounts that post from a phone (section 9).
 
 ## Contents
 
@@ -13,7 +14,7 @@ and `list_posts`, plus `list_connections` for the accounts.
 6. [Statuses and list_posts](#6-statuses-and-list_posts)
 7. [Refusals and fixes](#7-refusals-and-fixes)
 8. [Several posts](#8-several-posts)
-9. [Posting from the brand's phone](#9-posting-from-the-brands-phone)
+9. [Phone accounts](#9-phone-accounts)
 
 ## 1. create_post
 
@@ -36,7 +37,10 @@ You cannot change or delete it afterwards from here, so get the words right firs
 | `auto_add_music` | no | TikTok photo carousels: TikTok adds a sound. On unless set to `false` |
 | `photo_cover_index` | no | TikTok photo carousels: the cover photo, 0-based into `asset_ids` |
 | `platform_settings` | no | Per platform, keyed by a channel the post targets: `caption` and `scheduled_for` everywhere, plus `title` and `visibility` (`public`, `unlisted`, `private`) on `YouTube`. All values are strings |
-| `physical_device` | no | Section 9 |
+| `device_day` | no | A post for a phone account only: the day it goes out, `YYYY-MM-DD`, a US (Pacific) day, today or later. Section 9 |
+| `music_link` | no | A post for a phone account only: the link of a sound on that account's own platform. Section 9 |
+| `mute_music` | no | With `music_link` on a video: the sound is attached muted and the video's own sound plays |
+| `physical_device` | no | The brand's own older phone binding. Section 9 |
 
 Neither `connection_ids` nor `channels`: the post goes to every platform the brand has connected,
 one account each. Always pass `connection_ids` instead, so the post goes exactly where the
@@ -79,13 +83,15 @@ Fixes for a mismatch:
 
 `list_connections` with `brand_id` returns, per account: `id`, `platform` (`IG`, `TikTok`,
 `YouTube`, `Telegram`), `handle`, `display_name`, `status`, `can_publish`, `avatar_id` and
-`follower_count`.
+`follower_count`. An account that posts from a phone also carries `physical_device: true`,
+and, when set, `posts_per_day` and `first_posting_day` (section 9).
 
 | Field | Meaning |
 |---|---|
 | `can_publish: true` | The account can take posts |
 | `can_publish: false` | Logged out on the platform's side (`status` `expired` or `disconnected`) or never finished. It must be reconnected at https://app.creatorline.io/connections. A post naming it is refused |
 | `avatar_id` | The avatar pinned to the account: the face that posts there. An avatar with an account is an Influencer in the app |
+| `physical_device: true` | The account posts from a real phone. One such account per post, a day instead of a time (section 9) |
 
 Choosing:
 
@@ -145,10 +151,12 @@ person. The page may not be in the app's menu, so the link is the way in: always
 
 ## 6. Statuses and list_posts
 
-`list_posts` takes `brand_id`, `status` and `limit` (newest first). Each row: `id`, `status`,
+`list_posts` takes `brand_id`, `status`, `batch_id` (one batch's posts) and `limit` (up to 200,
+newest first). Each row: `id`, `status`,
 `caption`, `channels`, `urls` (live links, once a platform confirms), `scheduled_for` and
 `timezone` (before it goes out), `error` (why it did not go out), `draft`, `made_with_ai`.
-There is no title: find a post by the start of its caption and its channels. A queued post's
+A post for a phone account also carries `device_post_day`, `device_post_time`, `device_day` and
+`device_error` (section 9). There is no title: find a post by the start of its caption and its channels. A queued post's
 `scheduled_for` is a full date and time in UTC: say it in the brand's zone.
 
 | `status` | Meaning | Tell the person |
@@ -157,6 +165,8 @@ There is no title: find a post by the start of its caption and its channels. A q
 | `approved` | Approved, being handed over | "On its way" |
 | `scheduled` | Handed over; goes out at its time | "Scheduled for <time>" |
 | `scheduled` with `error` | The hand-off failed; it stays scheduled | The reason; offer `publish_post` again (the retry) |
+| `scheduled` with `device_post_day` | On its phone, for that US day | "Goes out on <day>"; the hour from `device_post_time` when it is there |
+| `scheduled` with `device_error` | Not on its phone | The reason; when it says it will not be tried again by itself, offer `publish_post` again |
 | `published` with `urls` | Live | One link per platform from `urls` |
 | `published` without `urls` | Sent; the platforms have not shown it yet | "On its way, live in a few minutes" |
 | `draft_sent` | In the TikTok app's inbox; final for Creatorline | "Finish it in the TikTok app" |
@@ -193,6 +203,12 @@ the message.
 | "A clip can only be published from pending_review or approved ..." | Already sent, live, failed or declined | `list_posts` to see where it stands |
 | "This brand has no posting queue yet" | No posting schedule | `now` or a time; the schedule is set up in Schedule (https://app.creatorline.io/publish) |
 | "The post could not be handed to the publisher: ..." | The platform or the account refused it | Say why. It stays scheduled; `publish_post` again is the retry, after a short yes. Reconnect the account first if the reason is about the login |
+| "A post goes out through one physical-device account" | Two phone accounts in one post | One post per phone account |
+| "A post that goes out only from a physical-device account takes no time" | `scheduled_for` on a phone-only post | Leave it out; `device_day` for a day |
+| "`device_day` is a US (Pacific) day ..." | A past day, or not `YYYY-MM-DD` | Today or later, as `YYYY-MM-DD` |
+| "This account posts on <platform>, so `music_link` must be ..." | A sound of the other platform, or not a sound's link | The sound's link copied from that platform's app |
+| "This take was filmed for @x" | A take made for one account, posted to another | Leave `connection_ids` and `channels` out: the post goes to the account the take was filmed for |
+| "The post could not be handed to the connected phone (...)" | The phone's service refused it | Say why. It stays scheduled; `publish_post` again is the retry |
 | "This API key is read-only" | A key without write access | House rules, section 8 |
 
 A refusal about the plan, the free trial or the workspace: house rules, section 8.
@@ -210,9 +226,94 @@ A refusal about the plan, the free trial or the workspace: house rules, section 
 
 A piece that fails a check is left out of the batch and named; the rest go on.
 
-## 9. Posting from the brand's phone
+## 9. Phone accounts
 
-`physical_device: true` posts from a real phone bound to the brand, beside or instead of the
-accounts. Use it only when the person asks for it. It needs the workspace to have the feature
-and a phone bound to the brand; the answer says which is missing. Phone only: pass
-`"channels": []` with it. It cannot be combined with `draft`.
+Some accounts post from a real phone instead of through the platform's own connection.
+`list_connections` marks them `physical_device: true`. They are ordinary accounts in every
+other way: pick them by handle, pass them in `connection_ids`.
+
+What is different:
+
+| Rule | Detail |
+|---|---|
+| One phone account per post | A post for two phone accounts is refused: make one post each |
+| A day, never an hour | The phone's service picks the hour itself. A phone-only post takes no `scheduled_for`, and one is refused |
+| The day is a US day | `device_day`, `device_post_day` and `first_posting_day` are US (Pacific) days, taken as written. Say "Monday the 16th, US time", never an hour |
+| No draft | `draft` cannot be combined with a phone account |
+| A sound by its link | `music_link`: the link of a sound on that account's own platform (a TikTok sound for a TikTok account, an Instagram audio for an Instagram account), copied from the app. `mute_music: true` attaches it muted, so the video's own sound plays |
+
+**Which day a post takes.** Each phone account holds its posts per weekday and, optionally, a
+first posting day. An approved post that names no day takes the account's next day with room:
+with 2 a day, the third post approved goes to the day after. A post created with `device_day`
+goes out on that day, whatever the account's numbers.
+
+**Setting an account's days: `set_device_posting`.** Ask the person first; it is free.
+
+```json
+{
+  "connection_id": "<the phone account's id>",
+  "posts_per_day": {"mon": 2, "tue": 2, "wed": 2, "thu": 2, "fri": 2, "sat": 2, "sun": 2},
+  "first_posting_day": "2026-11-16"
+}
+```
+
+- `posts_per_day` replaces the whole week: a weekday left out is 0, each from 0 to 6, and at
+  least one day needs a post.
+- `first_posting_day`: no post is given an earlier day; `null` removes it.
+- An account with no numbers follows the brand's posting schedule. Set them before a batch is
+  approved, so the batch spreads the way the person expects.
+
+**Creating the post.** `create_post` with the phone account in `connection_ids`, no
+`scheduled_for`, and `device_day` only when the person named a day:
+
+```json
+{
+  "brand_id": "<brand id>",
+  "asset_ids": ["<the video's asset id>"],
+  "caption": "...",
+  "hashtags": ["..."],
+  "connection_ids": ["<the phone account's id>"],
+  "music_link": "https://www.instagram.com/reels/audio/<id>/",
+  "made_with_ai": true
+}
+```
+
+**Sending it.** The review queue's Approve, or `publish_post` after the person's yes (any
+`mode`: a phone post takes its day either way, and no time). The answer's `goes_out` names the
+US day. Pass it on as a day: "It goes out on Monday the 16th, US time; the phone picks the
+hour."
+
+**Reading it back.** `list_posts` (with `batch_id` for a batch):
+
+| Field | Meaning |
+|---|---|
+| `device_post_day` | The US day the post holds on its phone |
+| `device_post_time` | The hour the phone's service picked, in UTC, once known |
+| `device_day` | The day a person picked, when one was |
+| `device_error` | Why the post is not on its phone. It says whether it is tried again by itself; when it is not, `publish_post` on the same post tries once more, after a short yes |
+
+**Moving it: `move_post_day`.** For an approved post that has not gone out. Ask first.
+
+```json
+{"clip_id": "<the post's id>", "device_day": "2026-11-18"}
+```
+
+The answer's `on_phone: false` means the old post came off the phone and the new one could not
+be made yet: say so, and that it is tried again within the hour.
+
+**A batch for several phone accounts** (one take per account, section 8 for the rest):
+
+1. `list_connections`: the phone accounts and their `posts_per_day`. Any without numbers, or a
+   first day that does not fit the plan: propose them, and on a yes call `set_device_posting`.
+2. Count: an account at 2 a day takes 14 posts in a week; the 15th goes to the week after.
+   Tell the person when the batch does not fit the days they asked for.
+3. One `create_post` per piece and account, each with the account's id and the same `batch_id`.
+4. The posts wait in the review queue. When the person approves there, tell them to keep that
+   page open until the last one is approved.
+5. Afterwards, `list_posts` with the `batch_id`: one line per account with its days, and any
+   `device_error` with its reason.
+
+**The brand's own phone (older).** A brand may still have one phone bound to the brand itself
+instead of an account in `list_connections`. `physical_device: true` posts from it, beside or
+instead of the accounts; phone only is `"channels": []` with it. Use it only when the person
+asks for "the brand's phone" and no phone account is listed.

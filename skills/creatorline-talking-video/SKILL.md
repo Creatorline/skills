@@ -216,7 +216,7 @@ The words, timing, lip movement and delivery stay; only the voice changes.
   "@Avatar1 says @Audio1" in the brief, with the words not written out. Only their own voice,
   or one they have permission to use; never imitate a voice from a clip. No voice step after.
 - A real person on camera says words they agreed to say: show them the lines with the price.
-- Never a public figure, a celebrity, a minor or anyone who did not agree.
+- Never a minor or anyone who did not agree.
 
 ## Craft
 

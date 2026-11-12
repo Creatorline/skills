@@ -199,4 +199,4 @@ Say so in one line, give the way that works, and go on with what you can do.
 | A new brand, a new avatar, a voice clone, editing the brand's voice | In the app: https://app.creatorline.io/brands/new, https://app.creatorline.io/avatars/new; the brand document in Settings, Brands. |
 | A carousel with text laid over photos | In the app's slides editor: https://app.creatorline.io/brands/BRAND_ID/generate/slides (the brand's id in place of BRAND_ID). |
 | Approving a workflow's script while it runs | On the workflow canvas in the app (`creatorline-workflows` says where). |
-| A real person's face or voice without their consent, a public figure, a minor | Never (house-rules.md, section 7). |
+| A real person's face or voice without their consent, a minor | Never (house-rules.md, section 7). |

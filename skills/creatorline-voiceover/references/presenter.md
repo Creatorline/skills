@@ -3,7 +3,7 @@
 The person's video plays as it is, and their avatar sits in a card on one side, talking to the
 viewer as its narrator: commentary on a product clip, a screen recording explained, a reaction
 while the video runs. The avatar is the presenter: a consented, persistent identity of the
-brand. Never a photo of a real person, a public figure or anyone else (house rules, section 7).
+brand. Never a plain photo of someone in place of the avatar (house rules, section 7).
 
 ## Contents
 

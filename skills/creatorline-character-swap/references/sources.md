@@ -62,7 +62,7 @@ Say a red flag in one line before the price, with one fix. Then do what the pers
 | They want their product, new lines or a new place throughout | Reshoot (`creatorline-reshoot`). A product the performer holds can also go in Transfer's `other_elements`. |
 | They want the moves, not this footage | The motion route (`generate_motion_control`) |
 | A child on screen | Do not use it (house-rules.md, section 7) |
-| A real person's face offered as the second avatar | Only the person themselves, or with their permission; never a public figure |
+| A real person's face offered as the second avatar | Only the person themselves, or with their permission |
 
 Rights: the result keeps the source's footage and sound. For a paid ad, prefer a source the
 brand owns or has licensed. For a trend post, the platform's own reuse rules apply.

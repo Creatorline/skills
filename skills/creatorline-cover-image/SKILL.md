@@ -265,7 +265,7 @@ section 5).
 | Vertical when it should be wide | `aspect_ratio` left out | Pass the frame's `aspect_ratio` |
 | The product wrong, its label garbled | A weak photo, a big logo | [Product intake](references/product-intake.md); the words carry the name |
 | A second person looks like the avatar | The other person was not described | Their own lock, side and look, or leave them out |
-| Refused by the content check | A celebrity, a real person or another brand in the brief | The avatar and plain, unbranded items |
+| Refused by the content check | A real person or another brand in the brief | The avatar and plain, unbranded items |
 | A change failed or was refused | The edit model | Once on the other model, quoted (cover briefs, section 10); then stop |
 | The face drifted after a few changes | Edits stacked on edits | The original brief again with the changes written into it |
 
