@@ -9,7 +9,7 @@ below are placeholders: take them from the tools, never from the person.
 
 1. [Limits](#1-limits)
 2. [One avatar, Transfer](#2-one-avatar-transfer)
-3. [Two avatars](#3-two-avatars)
+3. [Two avatars, and up to four on Recast](#3-two-avatars)
 4. [Transfer with a place, a garment or a product](#4-transfer-with-a-place-a-garment-or-a-product)
 5. [Replace, with or without an Outfit](#5-replace-with-or-without-an-outfit)
 6. [A part of a longer video, in Video Studio](#6-a-part-of-a-longer-video-in-video-studio)
@@ -24,7 +24,8 @@ below are placeholders: take them from the tools, never from the person.
 | Tool | `generate_character_swap` |
 | `model` | `character-swap-transfer` (Transfer, the default) or `character-swap-replace` (Replace). Pass it: it is the mode. |
 | `inputs.source_video` | Required. One video: an asset id, a direct file link, or a TikTok / Instagram post link. Import it first anyway: the import gives you its length. |
-| `inputs.character` | Optional. ONE asset id: the second avatar's face. The first avatar goes in by itself, so two people in total. |
+| `model` for more than two people | `character-swap-recast` (Recast): up to four people, the avatars in their own clothes, at most 15 s. Section 3. |
+| `inputs.character` | Optional. ONLY the avatars beside the first one, as asset ids: one on Transfer and Replace (two people in total), up to three on Recast (four in total). The first avatar (`avatar_id`, else the brand's default) goes in by itself: never list it here, or it is sent twice. |
 | `inputs.other_elements` | Transfer only. Up to 6 images: a place, a garment, a product. |
 | `inputs.outfit` | Replace only. One image of clothes, worn by the main avatar. |
 | `params.duration` | Whole seconds, 4 to 30. Always set it: the source's length, rounded, at most 30. Left out, it is 15 and 15 seconds are billed. The swap films the source's first `duration` seconds. |
@@ -79,6 +80,29 @@ confirmed call carry the same arguments. Reuse the same id for every run in a ba
 
 For Replace, use `character-swap-replace` and drop `prompt`: the order alone decides who is
 who.
+
+**Three or four avatars: Recast.** `character-swap-recast` films the video again with up to
+four avatars, each in its own clothes. `avatar_id` is the first; `inputs.character` holds the
+other two or three, in order. The first replaces the main person, the second the other one,
+and the prompt says whom the third and fourth replace. At most 15 seconds.
+
+```json
+{
+  "model": "character-swap-recast",
+  "brand_id": "<brand id>",
+  "avatar_id": "<Steve's avatar id>",
+  "inputs": {
+    "source_video": "<source asset id>",
+    "character": ["<Alex's face asset id>", "<Creeper's face asset id>"]
+  },
+  "params": { "resolution": "720p" },
+  "prompt": "Image 3 replaces the man by the door."
+}
+```
+
+Steve is NOT in `character`: his face is already the first image. With him listed there too,
+the model gets his face twice and puts a second Steve in. To list every avatar yourself
+instead, pass `"include_avatar": false` and put all of them in `character`, the main one first.
 
 ## 4. Transfer with a place, a garment or a product
 

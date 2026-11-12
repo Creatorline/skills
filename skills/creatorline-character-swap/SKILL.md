@@ -4,7 +4,7 @@ description: "Swaps one or two people in a real video for AI avatars, keeping ev
 license: MIT
 metadata:
   author: creatorline
-  version: "2.1"
+  version: "2.2"
 ---
 
 # Character Swap
@@ -44,6 +44,7 @@ to before anything ran.
 |---|---|---|---|
 | **Transfer** (`character-swap-transfer`, the default) | Moves, camera, cuts, setting, sound, and the performer's clothes | Face, hair, body | "Put my avatar in this video." Most requests. |
 | **Replace** (`character-swap-replace`) | Moves, camera, cuts, setting, sound | Face, hair, body, and the clothes in its own image or in an Outfit image | "As she looks", "in her own clothes", "wearing this outfit" |
+| **Recast** (`character-swap-recast`) | Every move and every cut, and the sound. The whole take is filmed again | Face, hair, body and its own clothes, for up to FOUR people; optionally a new place from one photo | "All four of them", "move it to this place", more than two people swapped. At most 15 s |
 | **Motion** (`generate_motion_control`) | Only the moves: the footage itself is not kept | Its photo, clothes and all, in the video's setting or the photo's own background | "Do this dance on its own", "on a plain background". One person only. |
 | **Reshoot** (`creatorline-reshoot`) | The idea, the beats, the cut rhythm, the sound | A new take: their product, new lines, a new place | They want their own version, not this footage |
 
@@ -165,7 +166,9 @@ line before the price, with one fix: a cleaner part of the clip, the motion rout
 
 The first avatar (`avatar_id`, or the brand's default) replaces the main person. A second
 avatar replaces the next most prominent person. The first avatar goes in by itself; the second
-goes in `inputs.character` as ONE asset id. Two ids there plus the first avatar make three
+goes in `inputs.character` as ONE asset id (Recast takes up to three there, four people in all:
+[references/calls.md](references/calls.md), section 3). NEVER list the first avatar there too:
+it goes in by itself, and listed again it is sent twice. Two ids there plus the first avatar make three
 faces, and the run fails.
 
 Name both people from the cover by role, place and clothes, and put the casting in the price
