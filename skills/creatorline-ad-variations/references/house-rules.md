@@ -261,7 +261,7 @@ show one brand at a time: add `?activeBrand=<brand id>` so the right brand opens
 | Create a brand | https://app.creatorline.io/brands/new |
 | Edit the brand document (voice, content angles, do's and don'ts) | Settings, Brands: the gear beside the brand in the left rail's brand switcher (no direct link) |
 | Clone a voice for an avatar, or write its persona from accounts the person names (a NEW avatar, a person or an animal, with a library voice, is made here: its character sheet with `generate_avatar_faces`, then `create_avatar`) | https://app.creatorline.io/avatars/new |
-| Edit an avatar | https://app.creatorline.io/avatars (B) |
+| A new face (look) for an avatar, or its persona (its name, description and voice change with `update_avatar`; `delete_avatar` removes one, after a yes) | https://app.creatorline.io/avatars (B) |
 | Connect or reconnect a social account; pin an avatar to it | https://app.creatorline.io/connections (B) |
 | Use a file from the person's device, when `create_upload` is not offered (a chat app: it needs a shell) | https://app.creatorline.io/assets (B): drop it there, then find it with `list_assets` |
 | Approve, edit or decline a post waiting for review | https://app.creatorline.io/review (B) |

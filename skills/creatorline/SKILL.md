@@ -31,7 +31,8 @@ section 10).
 - One simple piece with no format around it: a plain photo of the avatar (no product of
   theirs, no outfit to show), a picture with no one in it, a short clip of the avatar, a photo
   brought to life, a scene clip.
-- Account questions: which brands, avatars and accounts there are, how many credits are left,
+- Account questions: which brands, avatars and accounts there are, what was made so far,
+  renaming or deleting an avatar ([references/lookups.md](references/lookups.md)), the credits left,
   what a piece would cost (its `generate_*` tool without `confirm`, free, starts nothing).
 - A generation that failed, is stuck, or came out wrong. A post that failed to go out:
   `creatorline-publish`.
@@ -382,6 +383,7 @@ is not included.
 
 ## References
 
+- [references/lookups.md](references/lookups.md): avatars and creations page by page, changing or deleting an avatar.
 - [references/routing.md](references/routing.md): example requests for every skill, the
   look-alikes settled, requests that chain skills, and what is not possible from a chat.
 - [references/troubleshooting.md](references/troubleshooting.md): every refusal, failure and
