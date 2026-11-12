@@ -1,10 +1,10 @@
 ---
 name: creatorline-character-swap
-description: "Swaps one or two people in a real video for AI avatars, keeping every move, the camera, the cuts and the sound, or has an avatar dance a video's moves on its own. Use for 'put my avatar in this TikTok', 'swap the dancer for Mia', 'replace both people'. Not for a new take with new lines or a product: use creatorline-reshoot. Try-ons: creatorline-try-on-video."
+description: "Swaps one or two people in a real video for AI avatars, keeping every move, the camera, the cuts and the sound, or has an avatar dance a video's moves on its own. Use for 'put my avatar in this TikTok', 'swap the dancer for Mia', 'replace both people', 'this video with a different avatar per account'. Not for a new take with new lines or a product: use creatorline-reshoot. Try-ons: creatorline-try-on-video."
 license: MIT
 metadata:
   author: creatorline
-  version: "2.0"
+  version: "2.1"
 ---
 
 # Character Swap
@@ -46,6 +46,12 @@ to before anything ran.
 | **Replace** (`character-swap-replace`) | Moves, camera, cuts, setting, sound | Face, hair, body, and the clothes in its own image or in an Outfit image | "As she looks", "in her own clothes", "wearing this outfit" |
 | **Motion** (`generate_motion_control`) | Only the moves: the footage itself is not kept | Its photo, clothes and all, in the video's setting or the photo's own background | "Do this dance on its own", "on a plain background". One person only. |
 | **Reshoot** (`creatorline-reshoot`) | The idea, the beats, the cut rhythm, the sound | A new take: their product, new lines, a new place | They want their own version, not this footage |
+
+**The same video for several avatars or accounts** ("this video for all ten accounts, a
+different avatar on each"): `multiply_character_swap`, one call for all of them, with a test
+take the person sees before the rest is filmed. It has its own steps:
+[references/multiply.md](references/multiply.md). Never loop `generate_character_swap` for
+this: the test take and the batch are lost.
 
 Tell the person what a route does, never its id: "Mia takes her place and wears her outfit."
 A swap copies only the moves that are in the clip. Anything new needs Reshoot or a new video.
@@ -277,6 +283,8 @@ Pick the 2 or 3 that fit, one line each:
 - [references/calls.md](references/calls.md): the exact call for every case, the limits,
   pricing a batch.
 - [references/sources.md](references/sources.md): finding, checking and cutting a source.
+- [references/multiply.md](references/multiply.md): one video filmed with several avatars for
+  several accounts, test take first, and turning the takes into posts.
 - [references/directions.md](references/directions.md): Transfer directions, Replace levers,
   two avatars.
 - [references/house-rules.md](references/house-rules.md): the session, consent, waiting,

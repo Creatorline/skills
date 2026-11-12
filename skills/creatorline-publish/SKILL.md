@@ -4,7 +4,7 @@ description: "Turns a finished video or photos into a post: caption, hashtags an
 license: MIT
 metadata:
   author: creatorline
-  version: "2.0"
+  version: "2.1"
 ---
 
 # Post and Schedule
@@ -84,6 +84,11 @@ Run the session by [the house rules](references/house-rules.md) and ask every qu
      the same message as step 7.
    - No account can post: stop here. Connecting happens in the app (link above). Offer to write
      the caption now; the media waits in the library.
+   - An account with `physical_device: true` posts from a real phone: one such account per
+     post, and it takes a DAY, never an hour
+     ([the posting reference](references/posting-reference.md), section 9). For a post that
+     goes only to phone accounts, step 7 asks which day (or "its next free day"), not a time,
+     and `create_post` carries no `scheduled_for`.
 5. **Check the fit** before you write anything ([the posting reference](references/posting-reference.md),
    section 2):
 
@@ -219,6 +224,8 @@ The full craft, with examples, is in [captions](references/captions.md). The cor
 | "The post could not be handed to the publisher: ... stays scheduled" | Say why in plain words; `publish_post` again on the same post is the retry (one short yes) |
 | "A clip can only be published from pending_review or approved ..." | It already went out, failed or was declined: `list_posts` shows which |
 | `list_posts` shows `failed` with `error` | Pass on the reason. It cannot be published again: offer a new post for the platforms that failed |
+| `list_posts` shows `device_error` on a `scheduled` post | The post is not on its phone. Pass on the reason; when it says it is not tried again by itself, `publish_post` on the same post is the retry (one short yes) |
+| "... takes no time: the phone's service picks the hour" | A phone-only post: drop `scheduled_for`; `device_day` for a day |
 | A wrong caption on a post already created | It is edited in the app while the post has not gone out: the review queue, or Schedule once it is scheduled |
 | A refusal about the plan, the trial or the workspace | House rules, section 8 |
 
@@ -291,7 +298,7 @@ still needs an export, price all the exports together first and get one yes for 
 |---|---|
 | Connect or reconnect an account, pin an avatar to it | https://app.creatorline.io/connections |
 | Approve, edit or decline a post waiting for review | https://app.creatorline.io/review |
-| Move a scheduled post to another day or time, edit its caption, cancel it; the posting schedule | https://app.creatorline.io/publish |
+| Move a scheduled post to another day or time, edit its caption, cancel it; the posting schedule (a post on a phone account is moved to another day with `move_post_day`, and its account's days are set with `set_device_posting`) | https://app.creatorline.io/publish |
 | Live posts | https://app.creatorline.io/published |
 | Take down a post that is live | on the platform itself |
 
@@ -302,7 +309,8 @@ Each of these pages shows one brand at a time: add `?activeBrand=<brand id>` to 
 - [Captions](references/captions.md): caption shape, hook lines, calls to action, hashtags,
   per-platform notes, the brand's voice, disclosure, worked examples.
 - [Posting reference](references/posting-reference.md): every `create_post` and `publish_post`
-  field, the media and platform rules, accounts, statuses, refusals and fixes, batches.
+  field, the media and platform rules, accounts, statuses, refusals and fixes, batches, and
+  accounts that post from a phone (days instead of times, sounds, moving a post).
 - [Timing](references/timing.md): the four ways a post goes out, time zones, another day, good
   hours by brand category.
 - [House rules](references/house-rules.md): the session, consent, the result card, safety, the
