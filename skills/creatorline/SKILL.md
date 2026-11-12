@@ -383,7 +383,7 @@ is not included.
 
 ## References
 
-- [references/lookups.md](references/lookups.md): avatars and creations page by page, changing or deleting an avatar.
+- [references/lookups.md](references/lookups.md): avatars and creations page by page, changing or deleting an avatar, its looks and cover.
 - [references/routing.md](references/routing.md): example requests for every skill, the
   look-alikes settled, requests that chain skills, and what is not possible from a chat.
 - [references/troubleshooting.md](references/troubleshooting.md): every refusal, failure and
