@@ -34,3 +34,29 @@ A place is not a look. A photo of a place goes into the take that should be set 
 Name an avatar back before changing or deleting it ("Mia, the fitness coach on Glow Lab?")
 when a search matched more than one.
 
+## Folders in the Library
+
+A brand keeps two walls in its Library, and each has its own folders, two levels deep (a
+folder, then a subfolder): `creations` (My Creations, what was generated) and `assets` (My
+Assets, what was uploaded or imported). An item is in one folder or in none. The person sees
+the same folders in the app.
+
+| The ask | Use |
+|---|---|
+| "Which folders do I have?", "what is in March campaign?" | `list_folders` with `brand_id` (and `wall` for one wall): each folder with its `path` ("March campaign / Hooks"). Then `list_creations` or `list_assets` with `folder_id` for what is in one, or `unfiled: true` for what is in none |
+| "Make a folder for the launch", "a Hooks folder inside it" | `create_folder` with the `wall` and a `name`; `parent_folder_id` makes it a subfolder. Look at `list_folders` first and use a folder that is already there |
+| "Put these in the launch folder", "file last week's videos" | `move_to_folder` with `asset_ids` (100 at most) and `folder_id`. The answer says how many moved and names the ones that could not with the reason; say both |
+| "Take it out of the folder" | `move_to_folder` with `unfiled: true` and `brand_id` |
+| "Rename the folder" | `rename_folder` |
+| "Delete the folder" | `delete_folder`. Call it first WITHOUT `confirm`: nothing is deleted, and the answer says how many items and subfolders it holds and where they go. Say exactly that, ask, and only on the person's yes call it again with `confirm: true` |
+
+- An item files on its own wall: a generated one in a `creations` folder, an uploaded or
+  imported one in an `assets` folder. A file shared across the workspace belongs to no brand
+  and is never filed.
+- Deleting a folder keeps what is in it: the items move one level up, and a folder's
+  subfolders become folders. Deleting the videos and photos themselves is done by the person
+  in the app.
+- A new piece lands in no folder. After a batch, offer to file it: "Want these three in
+  March campaign?"
+- Talk in folder names and paths; ids are for calling tools.
+
