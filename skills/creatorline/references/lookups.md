@@ -43,7 +43,7 @@ the same folders in the app.
 
 | The ask | Use |
 |---|---|
-| "Which folders do I have?", "what is in March campaign?" | `list_folders` with `brand_id` (and `wall` for one wall): each folder with its `path` ("March campaign / Hooks"). Then `list_creations` or `list_assets` with `folder_id` for what is in one, or `unfiled: true` for what is in none |
+| "Which folders do I have?", "what is in March campaign?" | Browse like a drive: `list_creations` (or `list_assets`) with `brand_id` answers with `folders`, the top-level folders of that wall; call it again with a folder's `id` as `folder_id` to go in, and the answer has what is in it, the `folder` you are in and its subfolders as `folders`. `unfiled: true` is what is in no folder. `list_folders` with `brand_id` gives the whole tree at once, each folder with its `path` ("March campaign / Hooks") |
 | "Make a folder for the launch", "a Hooks folder inside it" | `create_folder` with the `wall` and a `name`; `parent_folder_id` makes it a subfolder. Look at `list_folders` first and use a folder that is already there |
 | "Put these in the launch folder", "file last week's videos" | `move_to_folder` with `asset_ids` (100 at most) and `folder_id`. The answer says how many moved and names the ones that could not with the reason; say both |
 | "Take it out of the folder" | `move_to_folder` with `unfiled: true` and `brand_id` |
