@@ -50,6 +50,16 @@ the same folders in the app.
 | "Rename the folder" | `rename_folder` |
 | "Delete the folder" | `delete_folder`. Call it first WITHOUT `confirm`: nothing is deleted, and the answer says how many items and subfolders it holds and where they go. Say exactly that, ask, and only on the person's yes call it again with `confirm: true` |
 
+Browsing, three things to know:
+
+- `folders` and `folder` come on the FIRST page only. Read further pages with `next_cursor`
+  for more items; the folders are already known.
+- Folders are a brand's: a list with no `brand_id` and no `folder_id` shows none. Ask which
+  brand when there are several.
+- Without `folder_id` or `unfiled`, the rows are EVERY item, filed or not, each with its
+  `folder_id`. To show the person a folder's view, list the `folders` first, then what is in
+  no folder (`unfiled: true`), the way a drive shows its top.
+
 - An item files on its own wall: a generated one in a `creations` folder, an uploaded or
   imported one in an `assets` folder. A file shared across the workspace belongs to no brand
   and is never filed.
