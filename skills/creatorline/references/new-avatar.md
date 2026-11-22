@@ -68,7 +68,8 @@ written for it to fit the rest. Anything else they said about it goes to `about`
 - A file on their machine, when `create_upload` is offered: `create_upload` with the file's
   name, MIME type and exact size in bytes (`wc -c < file`), then run the `curl` line it returns
   from the folder that holds the file (fix the path if needed; the link lasts 5 minutes), then
-  `complete_upload` with the `asset_id`. A chat app has no `create_upload`: they drop the file at
+  always `complete_upload` with the `asset_id`, even when the curl failed: an upload left open
+  stays stuck at "Uploading" in their Library. A chat app has no `create_upload`: they drop the file at
   https://app.creatorline.io/assets and you find it with `list_assets`.
 - Already in Creatorline: `list_assets` with `file_type: "image"`, then `preview_assets`.
 
@@ -158,7 +159,8 @@ in the app.
 |---|---|
 | "A new avatar starts from its character sheet, not a photo." | Make the sheet (section 4) from that photo, then `create_avatar` with the sheet's id. |
 | "The workspace holds N avatars, as many as its plan allows." | Say so with the link the answer gives; offer an existing avatar. |
-| "That upload is not complete" / "The file has not arrived" | Run the `curl` line, then `complete_upload`; past 5 minutes, `create_upload` again. |
+| "That upload is not complete" | Run the `curl` line, then `complete_upload`; past 5 minutes, `create_upload` again. |
+| "The file never arrived, so this upload was removed" | Fix the cause (path, headers, an expired link), then `create_upload` again, its `curl`, then `complete_upload`. |
 | "That face take is still generating" / "That face option is still generating" | `get_avatar_faces` with `wait_seconds`. |
 | "That file is not an image" | The sheet is made from a photo. |
 | A take `failed`, none came back | The credits came back; offer another try with its price. |
